@@ -3,7 +3,7 @@ var phase;
 var startSize = 200;
 var graphScale = 2/3;
 
-var speed = 0.04;
+var speed = 0.06;
 
 var nPhases = 0;
 var maxPhases = 99;
