@@ -27,7 +27,7 @@ class ElementBox {
 
             textAlign(LEFT, TOP);
             textSize(8);
-            //text(this.mass, 4, 4);
+            text(this.mass, 4, 4);
 
             textAlign(CENTER, CENTER);
             textSize(18);
