@@ -71,7 +71,7 @@ function draw() {
 		pressedY = mouseY;
 	}
 
-	image(bg, -windowWidth / 2, -windowHeight / 2);
+	image(bg, 0, 0, 800, 600);
 
 	push();
 	rotateX(x_rotation);
