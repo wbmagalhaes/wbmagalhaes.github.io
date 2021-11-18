@@ -41,8 +41,8 @@ let pressedX = 0;
 let pressedY = 0;
 let isPressed = false;
 
-let sensitivityX = 0; //0.0001;
-let sensitivityY = 0; //-0.0001;
+let sensitivityX = 0.0001;
+let sensitivityY = -0.0001;
 
 let rotationSpeed = 0.0001;
 
