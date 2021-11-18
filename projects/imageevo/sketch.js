@@ -2,7 +2,7 @@ var tiles = [];
 var img;
 
 function preload() {
-	img = loadImage('./imageevo/image00.jpg');
+	img = loadImage('./image00.jpg');
 }
 
 function setup() {

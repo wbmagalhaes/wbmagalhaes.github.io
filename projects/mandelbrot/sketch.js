@@ -12,7 +12,7 @@ var julia_program;
 var f;
 
 function preload() {
-	f = loadFont('../fonts/arial.otf');
+	f = loadFont('./arial.otf');
 }
 
 function setup() {
