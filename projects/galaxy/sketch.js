@@ -5,12 +5,12 @@ let galaxy;
 let x_rotation, y_rotation, z_rotation;
 
 function preload() {
-	bg = loadImage('./background.png');
+	bg = loadImage('./background.jpg');
 	dust = loadImage('./spacedust.png');
 }
 
 function setup() {
-	createCanvas(windowWidth, windowHeight, WEBGL).parent("canvas-holder");
+	createCanvas(800, 600, WEBGL).parent("canvas-holder");
 
 	galaxy = new Galaxy(
 		createVector(0, 0, 0),
@@ -81,8 +81,4 @@ function draw() {
 	galaxy.draw();
 
 	pop();
-}
-
-function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
 }
