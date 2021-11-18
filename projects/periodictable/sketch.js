@@ -8,7 +8,7 @@ var currentYear = 1600;
 var boxSize;
 
 function preload() {
-	data = loadJSON('./periodictable/elements.json');
+	data = loadJSON('./elements.json');
 }
 
 function setup() {

@@ -2,7 +2,7 @@ var original, sorted;
 var currentIdx = 0;
 
 function preload() {
-	original = loadImage('./pixelsorting/image00.jpg');
+	original = loadImage('./image00.jpg');
 }
 
 function setup() {
