@@ -1,5 +1,4 @@
 # Atomic Orbitals
-https://wbmagalhaes.github.io/orbitals/
 
 Hydrogen orbitals wave functions, with a<sub>o</sub> = 1
 
