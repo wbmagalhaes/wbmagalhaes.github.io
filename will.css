@@ -1,0 +1,13 @@
+#back-btn {
+	position: absolute;
+	z-index: 1000;
+	top: 2rem;
+	left: 2rem;
+	width: 3rem;
+	height: 4rem;
+	line-height: 3rem;
+}
+
+canvas {
+	border-radius: .25rem;
+}
