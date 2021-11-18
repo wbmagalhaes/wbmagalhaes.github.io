@@ -12,7 +12,7 @@ function setup() {
 	z_rotation = 0;
 
 	wave_sel = createSelect();
-	wave_sel.position(10, 10);
+	wave_sel.position(10, windowWidth - 50);
 
 	Object.keys(waves_dict).forEach(key => {
 		wave_sel.option(key);
