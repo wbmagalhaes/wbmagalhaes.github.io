@@ -177,7 +177,6 @@ function setup() {
 	controls.rotateSpeed = 0.4;
 	controls.target = cameraTarget;
 
-	controls.enableDamping = true;
 	controls.update();
 
 	clock = new THREE.Clock(true);
