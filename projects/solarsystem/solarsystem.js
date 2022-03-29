@@ -114,7 +114,7 @@ function setup() {
 	});
 
 	tex_loader.load('./textures/2k_saturn.jpg', texture => {
-		const obj = new SpaceObject(0.7, 26, 5.51, 0.325, texture);
+		const obj = new SpaceObject(0.6, 26, 5.51, 0.325, texture);
 		obj.addOrbit();
 
 		tex_loader.load('./textures/2k_saturn_ring_alpha.png', texture => {
@@ -171,7 +171,7 @@ function setup() {
 	controls.maxPolarAngle = 1.578;
 
 	controls.minDistance = 12;
-	controls.maxDistance = 50;
+	controls.maxDistance = 70;
 	controls.targetDistance = 18;
 
 	controls.rotateSpeed = 0.4;
