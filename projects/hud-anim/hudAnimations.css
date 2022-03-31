@@ -1,0 +1,156 @@
+@keyframes pulse {
+
+	from,
+	10% {
+		opacity: 1
+	}
+
+	90%,
+	to {
+		opacity: 0
+	}
+}
+
+@keyframes showLine {
+	from {
+		stroke-dashoffset: var(--path-length)
+	}
+
+	to {
+		stroke-dashoffset: 0
+	}
+}
+
+@keyframes showLineMiddle {
+	from {
+		stroke-dasharray: 0 var(--path-length);
+		stroke-dashoffset: calc(var(--path-length) / -2)
+	}
+
+	to {
+		stroke-dasharray: var(--path-length) var(--path-length);
+		stroke-dashoffset: 0
+	}
+}
+
+@keyframes slideLeftOut {
+	from {
+		transform: translateX(-5%)
+	}
+
+	to {
+		transform: translateX(0)
+	}
+}
+
+@keyframes slideRightOut {
+	from {
+		transform: translateX(5%)
+	}
+
+	to {
+		transform: translateX(0)
+	}
+}
+
+@keyframes slideLeftIn {
+	from {
+		transform: translateX(5%)
+	}
+
+	to {
+		transform: translateX(0)
+	}
+}
+
+@keyframes slideRightIn {
+	from {
+		transform: translateX(-5%)
+	}
+
+	to {
+		transform: translateX(0)
+	}
+}
+
+@keyframes blink {
+	from {
+		opacity: .1
+	}
+
+	to {
+		opacity: 1
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0)
+	}
+
+	to {
+		transform: rotate(360deg)
+	}
+}
+
+@keyframes fadeIn {
+
+	from {
+		opacity: 0
+	}
+
+	to {
+		opacity: 1
+	}
+}
+
+@keyframes fadeOut {
+
+	from {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0
+	}
+}
+
+@keyframes flashIn {
+
+	50%,
+	from,
+	to {
+		opacity: 1
+	}
+
+	25%,
+	75% {
+		opacity: 0
+	}
+}
+
+@keyframes flashOut {
+
+	50%,
+	from,
+	to {
+		opacity: 0
+	}
+
+	25%,
+	75% {
+		opacity: 1
+	}
+}
+
+
+@keyframes fill-up {
+
+	from {
+		transform: scaleX(0.15);
+	}
+
+	to {
+		transform: scaleX(1.0);
+	}
+}

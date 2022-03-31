@@ -1,0 +1,126 @@
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+.hud-background {
+	background-image: url(./bg1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.hud {
+	position: relative;
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	width: 100%;
+	height: 100%;
+}
+
+.hud-map {
+	clip-path: url(#clip-path);
+	opacity: 0.6;
+}
+
+.green {
+	fill: #76ff76;
+	stroke: #76ff76;
+}
+
+.purple {
+	fill: #ae00ff;
+	stroke: #ae00ff;
+}
+
+.alpha-50 {
+	opacity: 0.5;
+}
+
+.fill {
+	stroke: none;
+}
+
+.stroke {
+	stroke-width: 2px;
+	stroke-linecap: round;
+	fill: none;
+}
+
+.pulse {
+	animation: pulse 1s ease-in-out infinite alternate;
+}
+
+.rotate {
+	animation: rotate 4s linear infinite forwards;
+}
+
+.fill-up {
+	animation: fill-up 2.5s ease-in-out infinite alternate;
+}
+
+/** ANIMATION START **/
+/*
+.hud-arc path {
+	stroke-dasharray: 0 var(--path-length);
+	stroke-dashoffset: calc(var(--path-length) / -2);
+	animation: showLineMiddle 1s ease-in-out 1s forwards;
+}
+
+.hud-arc circle {
+	opacity: 0;
+	animation: fadeIn .2s linear 1.75s forwards;
+}
+
+.hud-border path {
+	stroke-dasharray: var(--path-length);
+	stroke-dashoffset: var(--path-length);
+	animation: showLine 1.2s ease-in-out 2s forwards;
+}
+
+.hud-border-bottom path {
+	stroke-dasharray: var(--path-length);
+	stroke-dashoffset: var(--path-length);
+	animation: showLine .5s ease-in-out 3.25s forwards;
+}
+
+.hud-border-bottom path.middle {
+	stroke-dasharray: 0 var(--path-length);
+	stroke-dashoffset: calc(var(--path-length) / -2);
+	animation: showLineMiddle .5s ease-in-out 3.25s forwards;
+}
+
+.hud-top,
+.hud-bottom {
+	opacity: 0;
+	animation: flashIn .5s ease-out 4s forwards;
+}
+
+.hud-grad path.left {
+	opacity: 0;
+	transform: translateX(-5%);
+	animation: flashIn .3s ease-out 4s forwards, slideLeftOut 350ms ease-out 4s forwards;
+}
+
+.hud-grad path.right {
+	opacity: 0;
+	transform: translateX(5%);
+	animation: flashIn .3s ease-out 4s forwards, slideRightOut 350ms ease-out 4s forwards;
+}
+
+.hud-arrows .arrow path {
+	stroke-dasharray: var(--path-length);
+	stroke-dashoffset: var(--path-length);
+	animation: showLine .3s ease-in-out 4.2s forwards;
+}
+
+.hud-arrows .arrow circle {
+	opacity: 0;
+	animation: fadeIn .15s linear 4.35s forwards;
+}
+
+.hud-map {
+	opacity: 0;
+	animation: fadeIn 1s ease-out 4.6s forwards;
+}
+*/
