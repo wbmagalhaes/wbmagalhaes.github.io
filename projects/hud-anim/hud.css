@@ -60,7 +60,7 @@ body {
 }
 
 /** ANIMATION START **/
-/*
+
 .hud-arc path {
 	stroke-dasharray: 0 var(--path-length);
 	stroke-dashoffset: calc(var(--path-length) / -2);
@@ -123,4 +123,3 @@ body {
 	opacity: 0;
 	animation: fadeIn 1s ease-out 4.6s forwards;
 }
-*/
