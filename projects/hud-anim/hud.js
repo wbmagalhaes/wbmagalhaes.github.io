@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	$('#hud').load('./hud.html', _ => {
+	$('#hud-holder').load('./hud.html', _ => {
 		setLength('.hud-border path');
 		setLength('.hud-arc path');
 		setLength('.hud-border-bottom path');
@@ -9,7 +9,7 @@ $(document).ready(function () {
 		setDurationDelay('.hud-map rect', 5000, 8000, -15000, -2000);
 
 		const mapLines = $('.hud-map .lines path');
-		for (var i = 0; i < mapLines.length; i++) {
+		for (let i = 0; i < mapLines.length; i++) {
 			mapLines[i].style.opacity = getRandomArbitrary(0.1, 0.5);
 		}
 
@@ -21,22 +21,23 @@ $(document).ready(function () {
 
 function setLength(query) {
 	const elements = $(query);
+
 	for (let i = 0; i < elements.length; i++) {
 		const element = elements[i];
 		const length = element.getTotalLength();
+
 		element.style = '--path-length: ' + length + 'px;';
 	}
 }
 
 function setDurationDelay(query, duMin = 400, duMax = 600, deMin = -500, deMax = -100) {
 	const elements = $(query);
-	console.log(elements.length);
 
-	for (var i = 0; i < elements.length; i++) {
+	for (let i = 0; i < elements.length; i++) {
 		const element = elements[i];
 
-		var delay = ~~getRandomArbitrary(deMin, deMax);
-		var duration = ~~getRandomArbitrary(duMin, duMax);
+		const delay = ~~getRandomArbitrary(deMin, deMax);
+		const duration = ~~getRandomArbitrary(duMin, duMax);
 
 		element.style =
 			'animation-delay: ' + delay + 'ms;' +
