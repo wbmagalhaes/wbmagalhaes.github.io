@@ -7,15 +7,44 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../will.css">
+	<link rel="stylesheet" href="./audio.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="./audio.js"></script>
 </head>
 
 <body>
 	<a href="../../" id="back-btn" role="button" class="btn btn-primary">❮</a>
-	<div id="content" class="container mt-3">
-		<div class="row text-center">
-			<div id="canvas-holder" class="col"></div>
+
+	<div class="row w-100 h-100 background p-0 m-0">
+		<div id="content" class="container mt-3">
+			<div class="row text-center">
+				<div class="col-10 mx-auto">
+					<div id="audio-holder">a</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
+	<div id="content" class="container mt-3">
+		<div class="row text-center">
+
+			<div id="audio-popup" class="popup-wrapper row middle-xs center-xs hide">
+				<div class="col-xs-5">
+					<div class="row popup txt-center">
+						<div class="audio-header">
+							<div class="audio-bars" id="audio-bars-holder"> </div>
+							<div class="row middle-xs center-xs audio-icon-container">
+								<span class="row middle-xs center-xs fas fa-volume-up"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
