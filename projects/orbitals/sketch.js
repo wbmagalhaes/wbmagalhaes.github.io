@@ -1,7 +1,7 @@
 let xRotation, yRotation, zRotation;
 let waveSelect;
 
-let wave = '3s';
+let wave = '3dz2';
 let orbital;
 
 function setup() {
