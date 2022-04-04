@@ -1,4 +1,4 @@
-let waves_dict = {
+let wavesDict = {
 	'1s': orbital_1s,
 	'2s': orbital_2s,
 	'2pz': orbital_2pz,

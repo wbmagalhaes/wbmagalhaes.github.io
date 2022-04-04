@@ -1,42 +1,52 @@
 class Orbital {
-	constructor(size, n_points, wave_function, is_3d) {
+	constructor(size, wf) {
 		this.points = [];
+
 		this.maximum = 0;
-		this.is_3d = is_3d;
+		this.minimum = 5000;
 
-		for (let i = 0; i < n_points; i++) {
-			const x = ((Math.random() * 2.0) - 1.0) * size;
-			const y = is_3d ? ((Math.random() * 2.0) - 1.0) * size : 0;
-			const z = ((Math.random() * 2.0) - 1.0) * size;
+		const step = 32;
+		const threshold = 0.005;
 
-			const r = sqrt(x * x + y * y + z * z);
-			const theta = acos(z / r);
-			const phi = atan(y / x);
+		for (let i = 0; i < 2 * size; i += step) {
+			for (let j = 0; j < 2 * size; j += step) {
+				for (let k = 0; k < 2 * size; k += step) {
 
-			const psi = wave_function(30 * r / size, theta, phi);
+					const x = (i - size);
+					const y = (j - size);
+					const z = (k - size);
 
-			if (abs(psi) > 0.005) {
-				this.maximum = Math.max(abs(psi), this.maximum);
-				this.points.push(new Point(x, y, z, psi));
+					const point = new Point(x, y, z, size, wf);
+
+					if (point.value > threshold) {
+
+						const l = new Point(x + 0, y + step, z + 0, size, wf);
+						const r = new Point(x + 0, y - step, z + 0, size, wf);
+						const b = new Point(x - step, y + 0, z + 0, size, wf);
+						const f = new Point(x + step, y + 0, z + 0, size, wf);
+						const u = new Point(x + 0, y + 0, z + step, size, wf);
+						const d = new Point(x + 0, y + 0, z - step, size, wf);
+
+						if (u.value < threshold ||
+							d.value < threshold ||
+							l.value < threshold ||
+							r.value < threshold ||
+							f.value < threshold ||
+							b.value < threshold) {
+
+							this.maximum = Math.max(point.value, this.maximum);
+							this.minimum = Math.min(point.value, this.minimum);
+							this.points.push(point);
+						}
+					}
+				}
 			}
 		}
 	}
 
 	render() {
-		for (let i = 0; i < this.points.length; i++) {
-			const pt = this.points[i];
-			push();
-			translate(pt.x, pt.y, pt.z);
-
-			const radius = (this.is_3d ? 6 : 12) * abs(pt.psi) / this.maximum;
-
-			if (pt.psi > 0)
-				fill(48, 48, 255);
-			else
-				fill(255, 48, 48);
-
-			sphere(radius);
-			pop();
-		}
+		this.points.forEach(point => {
+			point.render(this.minimum, this.maximum);
+		});
 	}
 }

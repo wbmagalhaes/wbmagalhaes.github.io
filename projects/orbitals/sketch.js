@@ -1,30 +1,27 @@
-let x_rotation, y_rotation, z_rotation;
-let wave_sel, checkbox_3d;
+let xRotation, yRotation, zRotation;
+let waveSelect;
 
-let wave = '3dz2';
-let display_3d = true;
+let wave = '3s';
+let orbital;
 
 function setup() {
 	createCanvas(800, 600, WEBGL).parent("canvas-holder");
 
-	x_rotation = PI / -22;
-	y_rotation = PI / -14;
-	z_rotation = 0;
+	xRotation = PI / -22;
+	yRotation = PI / -14;
+	zRotation = 0;
 
-	wave_sel = createSelect();
-	wave_sel.position(10, windowWidth - 50);
+	waveSelect = createSelect();
+	waveSelect.position(150, 50);
 
-	Object.keys(waves_dict).forEach(key => {
-		wave_sel.option(key);
+	Object.keys(wavesDict).forEach(key => {
+		waveSelect.option(key);
 	});
 
-	wave_sel.selected('3dz2');
-	wave_sel.changed(waveSelectEvent);
+	waveSelect.selected(wave);
+	waveSelect.changed(waveSelectEvent);
 
-	checkbox_3d = createCheckbox('3D', true);
-	checkbox_3d.changed(displayCheckEvent);
-	checkbox_3d.position(6, 32);
-	checkbox_3d.style('color', '#FFF');
+	orbital = new Orbital(512, wavesDict[wave]);
 }
 
 let pressedX = 0;
@@ -48,12 +45,10 @@ function mouseReleased() {
 }
 
 function waveSelectEvent() {
-	let item = wave_sel.value();
+	let item = waveSelect.value();
 	wave = item;
-}
 
-function displayCheckEvent() {
-	display_3d = this.checked();
+	orbital = new Orbital(512, wavesDict[wave]);
 }
 
 function draw() {
@@ -63,18 +58,16 @@ function draw() {
 		let dx = (mouseX - pressedX) * sensitivityX * deltaTime;
 		let dy = (mouseY - pressedY) * sensitivityY * deltaTime;
 
-		y_rotation += dx;
-		x_rotation += dy;
+		yRotation += dx;
+		xRotation += dy;
 
 		pressedX = mouseX;
 		pressedY = mouseY;
 	}
 
-	if (display_3d) {
-		rotateX(x_rotation);
-		rotateY(y_rotation);
-		rotateZ(z_rotation);
-	}
+	rotateX(xRotation);
+	rotateY(yRotation);
+	rotateZ(zRotation);
 
 	rotateX(PI / 2);
 
@@ -90,13 +83,6 @@ function draw() {
 	line(0, 0, -height / 2, 0, 0, height / 2);
 
 	noStroke();
-
-	let orbital = new Orbital(
-		size = 512,
-		n_points = 10000,
-		wave_function = waves_dict[wave],
-		is_3d = display_3d
-	);
 
 	orbital.render();
 }
