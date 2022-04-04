@@ -48,10 +48,10 @@ export class SpaceObject {
 		});
 	}
 
-	addAtmosphere(size, coefficient, power, color) {
+	addAtmosphere(data) {
 		const atmosphere = new THREE.Mesh(
-			new THREE.SphereGeometry(size, 32, 32),
-			AtmosphereMaterial(coefficient, power, new THREE.Color(color))
+			new THREE.SphereGeometry(data.size, 32, 32),
+			AtmosphereMaterial(data.coefficient, data.power, new THREE.Color(data.color))
 		);
 
 		this.meshGroup.add(atmosphere);
