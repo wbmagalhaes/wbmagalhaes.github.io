@@ -10,7 +10,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'wb': {
+				'wm': {
 					'primary': {
 						DEFAULT: '#100E32',
 						50: '#DCDBF5',
