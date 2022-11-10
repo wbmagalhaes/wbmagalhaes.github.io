@@ -1,0 +1,65 @@
+.spacewiz {
+	&__text-bg-fill {
+		@apply spacewiz__text;
+		@apply spacewiz__bg;
+		@apply spacewiz__fill;
+
+		&--reversed {
+			@apply spacewiz__text--reversed;
+			@apply spacewiz__bg--reversed;
+			@apply spacewiz__fill--reversed;
+		}
+	}
+
+	&__text {
+		@apply text-wb-primary dark:text-wb-secondary;
+
+		&--reversed {
+			@apply text-wb-secondary dark:text-wb-primary;
+		}
+
+		&--accent {
+			@apply font-bold text-wb-navy dark:text-wb-flamingo;
+		}
+	}
+
+	&__bg {
+		@apply bg-wb-primary dark:bg-wb-secondary;
+
+		&--reversed {
+			@apply bg-wb-secondary dark:bg-wb-primary;
+		}
+
+		&--accent {
+			@apply bg-wb-navy dark:bg-wb-flamingo;
+
+			&:hover {
+				@apply bg-wb-navy-600 dark:bg-wb-flamingo-600;
+			}
+		}
+	}
+
+	// &__dotted {
+	// 	background-image: radial-gradient(ellipse at center, var(--tw-gradient-from) 10%, var(--tw-gradient-to) 12%);
+	// 	background-size: 10px 10px;
+	// }
+
+	&__fill {
+		@apply fill-wb-primary dark:fill-wb-secondary;
+
+		&--reversed {
+			@apply fill-wb-secondary dark:fill-wb-primary;
+		}
+	}
+
+	&__stroke {
+		@apply stroke-wb-secondary;
+
+		fill-opacity: 1;
+		stroke-width: 1;
+
+		&--reversed {
+			@apply stroke-wb-primary;
+		}
+	}
+}

@@ -1,0 +1,1420 @@
+{
+	"elements": [
+		{
+			"name": "Hydrogen",
+			"symbol": "H",
+			"Z": 1,
+			"mass": 1.00794,
+			"position": {
+				"x": 1,
+				"y": 1
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1671
+		},
+		{
+			"name": "Helium",
+			"symbol": "He",
+			"Z": 2,
+			"mass": 4.002602,
+			"position": {
+				"x": 18,
+				"y": 1
+			},
+			"color": "#C0FFFFFF",
+			"discover_year": 1868
+		},
+		{
+			"name": "Lithium",
+			"symbol": "Li",
+			"Z": 3,
+			"mass": 6.941,
+			"position": {
+				"x": 1,
+				"y": 2
+			},
+			"color": "#FF6666FF",
+			"discover_year": 1817
+		},
+		{
+			"name": "Beryllium",
+			"symbol": "Be",
+			"Z": 4,
+			"mass": 9.012182,
+			"position": {
+				"x": 2,
+				"y": 2
+			},
+			"color": "#FFDEADFF",
+			"discover_year": 1798
+		},
+		{
+			"name": "Boron",
+			"symbol": "B",
+			"Z": 5,
+			"mass": 10.811,
+			"position": {
+				"x": 13,
+				"y": 2
+			},
+			"color": "#CCCC99FF",
+			"discover_year": 1808
+		},
+		{
+			"name": "Carbon",
+			"symbol": "C",
+			"Z": 6,
+			"mass": 12.0107,
+			"position": {
+				"x": 14,
+				"y": 2
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": -3750
+		},
+		{
+			"name": "Nitrogen",
+			"symbol": "N",
+			"Z": 7,
+			"mass": 14.0067,
+			"position": {
+				"x": 15,
+				"y": 2
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1772
+		},
+		{
+			"name": "Oxy­gen",
+			"symbol": "O",
+			"Z": 8,
+			"mass": 15.9994,
+			"position": {
+				"x": 16,
+				"y": 2
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1771
+		},
+		{
+			"name": "Fluor­ine",
+			"symbol": "F",
+			"Z": 9,
+			"mass": 18.998403,
+			"position": {
+				"x": 17,
+				"y": 2
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1810
+		},
+		{
+			"name": "Neon",
+			"symbol": "Ne",
+			"Z": 10,
+			"mass": 20.1797,
+			"position": {
+				"x": 18,
+				"y": 2
+			},
+			"color": "#C0FFFFFF",
+			"discover_year": 1898
+		},
+		{
+			"name": "Sodium",
+			"symbol": "Na",
+			"Z": 11,
+			"mass": 22.989769,
+			"position": {
+				"x": 1,
+				"y": 3
+			},
+			"color": "#FF6666FF",
+			"discover_year": 1807
+		},
+		{
+			"name": "Magne­sium",
+			"symbol": "Mg",
+			"Z": 12,
+			"mass": 24.305,
+			"position": {
+				"x": 2,
+				"y": 3
+			},
+			"color": "#FFDEADFF",
+			"discover_year": 1755
+		},
+		{
+			"name": "Alumin­ium",
+			"symbol": "Al",
+			"Z": 13,
+			"mass": 26.981538,
+			"position": {
+				"x": 13,
+				"y": 3
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1824
+		},
+		{
+			"name": "Sili­con",
+			"symbol": "Si",
+			"Z": 14,
+			"mass": 28.0855,
+			"position": {
+				"x": 14,
+				"y": 3
+			},
+			"color": "#CCCC99FF",
+			"discover_year": 1823
+		},
+		{
+			"name": "Phos­phorus",
+			"symbol": "P",
+			"Z": 15,
+			"mass": 30.973762,
+			"position": {
+				"x": 15,
+				"y": 3
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1669
+		},
+		{
+			"name": "Sulfur",
+			"symbol": "S",
+			"Z": 16,
+			"mass": 32.065,
+			"position": {
+				"x": 16,
+				"y": 3
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": -2000
+		},
+		{
+			"name": "Chlor­ine",
+			"symbol": "Cl",
+			"Z": 17,
+			"mass": 35.453,
+			"position": {
+				"x": 17,
+				"y": 3
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1774
+		},
+		{
+			"name": "Argon",
+			"symbol": "Ar",
+			"Z": 18,
+			"mass": 39.948,
+			"position": {
+				"x": 18,
+				"y": 3
+			},
+			"color": "#C0FFFFFF",
+			"discover_year": 1894
+		},
+		{
+			"name": "Potassium",
+			"symbol": "K",
+			"Z": 19,
+			"mass": 39.0983,
+			"position": {
+				"x": 1,
+				"y": 4
+			},
+			"color": "#FF6666FF",
+			"discover_year": 1807
+		},
+		{
+			"name": "Cal­cium",
+			"symbol": "Ca",
+			"Z": 20,
+			"mass": 40.078,
+			"position": {
+				"x": 2,
+				"y": 4
+			},
+			"color": "#FFDEADFF",
+			"discover_year": 1808
+		},
+		{
+			"name": "Scan­dium",
+			"symbol": "Sc",
+			"Z": 21,
+			"mass": 44.95591,
+			"position": {
+				"x": 3,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1879
+		},
+		{
+			"name": "Tita­nium",
+			"symbol": "Ti",
+			"Z": 22,
+			"mass": 47.867,
+			"position": {
+				"x": 4,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1879
+		},
+		{
+			"name": "Vana­dium",
+			"symbol": "V",
+			"Z": 23,
+			"mass": 50.9415,
+			"position": {
+				"x": 5,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1801
+		},
+		{
+			"name": "Chrom­ium",
+			"symbol": "Cr",
+			"Z": 24,
+			"mass": 51.9961,
+			"position": {
+				"x": 6,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1794
+		},
+		{
+			"name": "Manga­nese",
+			"symbol": "Mn",
+			"Z": 25,
+			"mass": 54.938045,
+			"position": {
+				"x": 7,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1774
+		},
+		{
+			"name": "Iron",
+			"symbol": "Fe",
+			"Z": 26,
+			"mass": 55.845,
+			"position": {
+				"x": 8,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": -5000
+		},
+		{
+			"name": "Cobalt",
+			"symbol": "Co",
+			"Z": 27,
+			"mass": 58.933195,
+			"position": {
+				"x": 9,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1735
+		},
+		{
+			"name": "Nickel",
+			"symbol": "Ni",
+			"Z": 28,
+			"mass": 58.6934,
+			"position": {
+				"x": 10,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1751
+		},
+		{
+			"name": "Copper",
+			"symbol": "Cu",
+			"Z": 29,
+			"mass": 63.546,
+			"position": {
+				"x": 11,
+				"y": 4
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": -9000
+		},
+		{
+			"name": "Zinc",
+			"symbol": "Zn",
+			"Z": 30,
+			"mass": 65.409,
+			"position": {
+				"x": 12,
+				"y": 4
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": -1000
+		},
+		{
+			"name": "Gallium",
+			"symbol": "Ga",
+			"Z": 31,
+			"mass": 69.723,
+			"position": {
+				"x": 13,
+				"y": 4
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1875
+		},
+		{
+			"name": "Germa­nium",
+			"symbol": "Ge",
+			"Z": 32,
+			"mass": 72.64,
+			"position": {
+				"x": 14,
+				"y": 4
+			},
+			"color": "#CCCC99FF",
+			"discover_year": 1886
+		},
+		{
+			"name": "Arsenic",
+			"symbol": "As",
+			"Z": 33,
+			"mass": 74.9216,
+			"position": {
+				"x": 15,
+				"y": 4
+			},
+			"color": "#CCCC99FF",
+			"discover_year": -300
+		},
+		{
+			"name": "Sele­nium",
+			"symbol": "Se",
+			"Z": 34,
+			"mass": 78.96,
+			"position": {
+				"x": 16,
+				"y": 4
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1817
+		},
+		{
+			"name": "Bromine",
+			"symbol": "Br",
+			"Z": 35,
+			"mass": 79.904,
+			"position": {
+				"x": 17,
+				"y": 4
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1825
+		},
+		{
+			"name": "Kryp­ton",
+			"symbol": "Kr",
+			"Z": 36,
+			"mass": 83.798,
+			"position": {
+				"x": 18,
+				"y": 4
+			},
+			"color": "#C0FFFFFF",
+			"discover_year": 1898
+		},
+		{
+			"name": "Rubid­ium",
+			"symbol": "Rb",
+			"Z": 37,
+			"mass": 85.4678,
+			"position": {
+				"x": 1,
+				"y": 5
+			},
+			"color": "#FF6666FF",
+			"discover_year": 1861
+		},
+		{
+			"name": "Stront­ium",
+			"symbol": "Sr",
+			"Z": 38,
+			"mass": 87.62,
+			"position": {
+				"x": 2,
+				"y": 5
+			},
+			"color": "#FFDEADFF",
+			"discover_year": 1787
+		},
+		{
+			"name": "Yttrium",
+			"symbol": "Y",
+			"Z": 39,
+			"mass": 88.90585,
+			"position": {
+				"x": 3,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1794
+		},
+		{
+			"name": "Zirco­nium",
+			"symbol": "Zr",
+			"Z": 40,
+			"mass": 91.224,
+			"position": {
+				"x": 4,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1789
+		},
+		{
+			"name": "Nio­bium",
+			"symbol": "Nb",
+			"Z": 41,
+			"mass": 92.90638,
+			"position": {
+				"x": 5,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1801
+		},
+		{
+			"name": "Molyb­denum",
+			"symbol": "Mo",
+			"Z": 42,
+			"mass": 95.94,
+			"position": {
+				"x": 6,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1778
+		},
+		{
+			"name": "Tech­netium",
+			"symbol": "Tc",
+			"Z": 43,
+			"mass": 98.9063,
+			"position": {
+				"x": 7,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1937
+		},
+		{
+			"name": "Ruthe­nium",
+			"symbol": "Ru",
+			"Z": 44,
+			"mass": 101.07,
+			"position": {
+				"x": 8,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1844
+		},
+		{
+			"name": "Rho­dium",
+			"symbol": "Rh",
+			"Z": 45,
+			"mass": 102.9055,
+			"position": {
+				"x": 9,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1804
+		},
+		{
+			"name": "Pallad­ium",
+			"symbol": "Pd",
+			"Z": 46,
+			"mass": 106.42,
+			"position": {
+				"x": 10,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1802
+		},
+		{
+			"name": "Silver",
+			"symbol": "Ag",
+			"Z": 47,
+			"mass": 107.8682,
+			"position": {
+				"x": 11,
+				"y": 5
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": -5000
+		},
+		{
+			"name": "Cad­mium",
+			"symbol": "Cd",
+			"Z": 48,
+			"mass": 112.411,
+			"position": {
+				"x": 12,
+				"y": 5
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1817
+		},
+		{
+			"name": "Indium",
+			"symbol": "In",
+			"Z": 49,
+			"mass": 114.818,
+			"position": {
+				"x": 13,
+				"y": 5
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1863
+		},
+		{
+			"name": "Tin",
+			"symbol": "Sn",
+			"Z": 50,
+			"mass": 118.71,
+			"position": {
+				"x": 14,
+				"y": 5
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": -3500
+		},
+		{
+			"name": "Anti­mony",
+			"symbol": "Sb",
+			"Z": 51,
+			"mass": 121.76,
+			"position": {
+				"x": 15,
+				"y": 5
+			},
+			"color": "#CCCC99FF",
+			"discover_year": -800
+		},
+		{
+			"name": "Tellur­ium",
+			"symbol": "Te",
+			"Z": 52,
+			"mass": 127.6,
+			"position": {
+				"x": 16,
+				"y": 5
+			},
+			"color": "#CCCC99FF",
+			"discover_year": 1782
+		},
+		{
+			"name": "Iodine",
+			"symbol": "I",
+			"Z": 53,
+			"mass": 126.90447,
+			"position": {
+				"x": 17,
+				"y": 5
+			},
+			"color": "#F0FF8FFF",
+			"discover_year": 1811
+		},
+		{
+			"name": "Xenon",
+			"symbol": "Xe",
+			"Z": 54,
+			"mass": 131.293,
+			"position": {
+				"x": 18,
+				"y": 5
+			},
+			"color": "#C0FFFFFF",
+			"discover_year": 1898
+		},
+		{
+			"name": "Caesium",
+			"symbol": "Cs",
+			"Z": 55,
+			"mass": 132.90545,
+			"position": {
+				"x": 1,
+				"y": 6
+			},
+			"color": "#FF6666FF",
+			"discover_year": 1860
+		},
+		{
+			"name": "Ba­rium",
+			"symbol": "Ba",
+			"Z": 56,
+			"mass": 137.327,
+			"position": {
+				"x": 2,
+				"y": 6
+			},
+			"color": "#FFDEADFF",
+			"discover_year": 1772
+		},
+		{
+			"name": "Lan­thanum",
+			"symbol": "La",
+			"Z": 57,
+			"mass": 138.90547,
+			"position": {
+				"x": 3,
+				"y": 6
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1838
+		},
+		{
+			"name": "Cerium",
+			"symbol": "Ce",
+			"Z": 58,
+			"mass": 140.116,
+			"position": {
+				"x": 4,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1803
+		},
+		{
+			"name": "Praseo­dymium",
+			"symbol": "Pr",
+			"Z": 59,
+			"mass": 140.90765,
+			"position": {
+				"x": 5,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1885
+		},
+		{
+			"name": "Neo­dymium",
+			"symbol": "Nd",
+			"Z": 60,
+			"mass": 144.242,
+			"position": {
+				"x": 6,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1885
+		},
+		{
+			"name": "Prome­thium",
+			"symbol": "Pm",
+			"Z": 61,
+			"mass": 146.915,
+			"position": {
+				"x": 7,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1942
+		},
+		{
+			"name": "Sama­rium",
+			"symbol": "Sm",
+			"Z": 62,
+			"mass": 150.36,
+			"position": {
+				"x": 8,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1879
+		},
+		{
+			"name": "Europ­ium",
+			"symbol": "Eu",
+			"Z": 63,
+			"mass": 151.964,
+			"position": {
+				"x": 9,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1896
+		},
+		{
+			"name": "Gadolin­ium",
+			"symbol": "Gd",
+			"Z": 64,
+			"mass": 157.25,
+			"position": {
+				"x": 10,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1880
+		},
+		{
+			"name": "Ter­bium",
+			"symbol": "Tb",
+			"Z": 65,
+			"mass": 158.92535,
+			"position": {
+				"x": 11,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1843
+		},
+		{
+			"name": "Dysprosium",
+			"symbol": "Dy",
+			"Z": 66,
+			"mass": 162.5,
+			"position": {
+				"x": 12,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1886
+		},
+		{
+			"name": "Hol­mium",
+			"symbol": "Ho",
+			"Z": 67,
+			"mass": 164.93032,
+			"position": {
+				"x": 13,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1878
+		},
+		{
+			"name": "Erbium",
+			"symbol": "Er",
+			"Z": 68,
+			"mass": 167.259,
+			"position": {
+				"x": 14,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1843
+		},
+		{
+			"name": "Thulium",
+			"symbol": "Tm",
+			"Z": 69,
+			"mass": 168.93421,
+			"position": {
+				"x": 15,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1879
+		},
+		{
+			"name": "Ytter­bium",
+			"symbol": "Yb",
+			"Z": 70,
+			"mass": 173.04,
+			"position": {
+				"x": 16,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1878
+		},
+		{
+			"name": "Lute­tium",
+			"symbol": "Lu",
+			"Z": 71,
+			"mass": 174.967,
+			"position": {
+				"x": 17,
+				"y": 9
+			},
+			"color": "#FFBFFFFF",
+			"discover_year": 1906
+		},
+		{
+			"name": "Haf­nium",
+			"symbol": "Hf",
+			"Z": 72,
+			"mass": 178.49,
+			"position": {
+				"x": 4,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1922
+		},
+		{
+			"name": "Tanta­lum",
+			"symbol": "Ta",
+			"Z": 73,
+			"mass": 180.94788,
+			"position": {
+				"x": 5,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1802
+		},
+		{
+			"name": "Tung­sten",
+			"symbol": "W",
+			"Z": 74,
+			"mass": 183.84,
+			"position": {
+				"x": 6,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1781
+		},
+		{
+			"name": "Rhe­nium",
+			"symbol": "Re",
+			"Z": 75,
+			"mass": 186.207,
+			"position": {
+				"x": 7,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1908
+		},
+		{
+			"name": "Os­mium",
+			"symbol": "Os",
+			"Z": 76,
+			"mass": 190.23,
+			"position": {
+				"x": 8,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1803
+		},
+		{
+			"name": "Iridium",
+			"symbol": "Ir",
+			"Z": 77,
+			"mass": 192.217,
+			"position": {
+				"x": 9,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1803
+		},
+		{
+			"name": "Plat­inum",
+			"symbol": "Pt",
+			"Z": 78,
+			"mass": 195.084,
+			"position": {
+				"x": 10,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1735
+		},
+		{
+			"name": "Gold",
+			"symbol": "Au",
+			"Z": 79,
+			"mass": 196.96656,
+			"position": {
+				"x": 11,
+				"y": 6
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": -6000
+		},
+		{
+			"name": "Mercury",
+			"symbol": "Hg",
+			"Z": 80,
+			"mass": 200.59,
+			"position": {
+				"x": 12,
+				"y": 6
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": -2000
+		},
+		{
+			"name": "Thallium",
+			"symbol": "Tl",
+			"Z": 81,
+			"mass": 204.3833,
+			"position": {
+				"x": 13,
+				"y": 6
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1861
+		},
+		{
+			"name": "Lead",
+			"symbol": "Pb",
+			"Z": 82,
+			"mass": 207.2,
+			"position": {
+				"x": 14,
+				"y": 6
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": -7000
+		},
+		{
+			"name": "Bis­muth",
+			"symbol": "Bi",
+			"Z": 83,
+			"mass": 208.904,
+			"position": {
+				"x": 15,
+				"y": 6
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1753
+		},
+		{
+			"name": "Polo­nium",
+			"symbol": "Po",
+			"Z": 84,
+			"mass": 208.9824,
+			"position": {
+				"x": 16,
+				"y": 6
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1898
+		},
+		{
+			"name": "Asta­tine",
+			"symbol": "At",
+			"Z": 85,
+			"mass": 209.9871,
+			"position": {
+				"x": 17,
+				"y": 6
+			},
+			"color": "#CCCC99FF",
+			"discover_year": 1940
+		},
+		{
+			"name": "Radon",
+			"symbol": "Rn",
+			"Z": 86,
+			"mass": 222.0176,
+			"position": {
+				"x": 18,
+				"y": 6
+			},
+			"color": "#C0FFFFFF",
+			"discover_year": 1899
+		},
+		{
+			"name": "Francium",
+			"symbol": "Fr",
+			"Z": 87,
+			"mass": 223.0197,
+			"position": {
+				"x": 1,
+				"y": 7
+			},
+			"color": "#FF6666FF",
+			"discover_year": 1939
+		},
+		{
+			"name": "Ra­dium",
+			"symbol": "Ra",
+			"Z": 88,
+			"mass": 226.0254,
+			"position": {
+				"x": 2,
+				"y": 7
+			},
+			"color": "#FFDEADFF",
+			"discover_year": 1898
+		},
+		{
+			"name": "Actin­ium",
+			"symbol": "Ac",
+			"Z": 89,
+			"mass": 227.028,
+			"position": {
+				"x": 3,
+				"y": 7
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1902
+		},
+		{
+			"name": "Thor­ium",
+			"symbol": "Th",
+			"Z": 90,
+			"mass": 232.03806,
+			"position": {
+				"x": 4,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1829
+		},
+		{
+			"name": "Protac­tinium",
+			"symbol": "Pa",
+			"Z": 91,
+			"mass": 231.03588,
+			"position": {
+				"x": 5,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1913
+		},
+		{
+			"name": "Ura­nium",
+			"symbol": "U",
+			"Z": 92,
+			"mass": 238.02891,
+			"position": {
+				"x": 6,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1789
+		},
+		{
+			"name": "Neptu­nium",
+			"symbol": "Np",
+			"Z": 93,
+			"mass": 237.048,
+			"position": {
+				"x": 7,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1940
+		},
+		{
+			"name": "Pluto­nium",
+			"symbol": "Pu",
+			"Z": 94,
+			"mass": 244.064,
+			"position": {
+				"x": 8,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1940
+		},
+		{
+			"name": "Ameri­cium",
+			"symbol": "Am",
+			"Z": 95,
+			"mass": 243.061,
+			"position": {
+				"x": 9,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1944
+		},
+		{
+			"name": "Curium",
+			"symbol": "Cm",
+			"Z": 96,
+			"mass": 247.07,
+			"position": {
+				"x": 10,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1944
+		},
+		{
+			"name": "Berkel­ium",
+			"symbol": "Bk",
+			"Z": 97,
+			"mass": 247.0703,
+			"position": {
+				"x": 11,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1949
+		},
+		{
+			"name": "Califor­nium",
+			"symbol": "Cf",
+			"Z": 98,
+			"mass": 251.0796,
+			"position": {
+				"x": 12,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1950
+		},
+		{
+			"name": "Einstei­nium",
+			"symbol": "Es",
+			"Z": 99,
+			"mass": 252.083,
+			"position": {
+				"x": 13,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1952
+		},
+		{
+			"name": "Fer­mium",
+			"symbol": "Fm",
+			"Z": 100,
+			"mass": 257.095,
+			"position": {
+				"x": 14,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1952
+		},
+		{
+			"name": "Mende­levium",
+			"symbol": "Md",
+			"Z": 101,
+			"mass": 258.098,
+			"position": {
+				"x": 15,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1955
+		},
+		{
+			"name": "Nobel­ium",
+			"symbol": "No",
+			"Z": 102,
+			"mass": 259.101,
+			"position": {
+				"x": 16,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1966
+		},
+		{
+			"name": "Lawren­cium",
+			"symbol": "Lr",
+			"Z": 103,
+			"mass": 262.1097,
+			"position": {
+				"x": 17,
+				"y": 10
+			},
+			"color": "#FF99CCFF",
+			"discover_year": 1961
+		},
+		{
+			"name": "Ruther­fordium",
+			"symbol": "Rf",
+			"Z": 104,
+			"mass": 261.1088,
+			"position": {
+				"x": 4,
+				"y": 7
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1964
+		},
+		{
+			"name": "Dub­nium",
+			"symbol": "Db",
+			"Z": 105,
+			"mass": 262.1141,
+			"position": {
+				"x": 5,
+				"y": 7
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1970
+		},
+		{
+			"name": "Sea­borgium",
+			"symbol": "Sg",
+			"Z": 106,
+			"mass": 262.1182,
+			"position": {
+				"x": 6,
+				"y": 7
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1974
+		},
+		{
+			"name": "Bohr­ium",
+			"symbol": "Bh",
+			"Z": 107,
+			"mass": 262.1229,
+			"position": {
+				"x": 7,
+				"y": 7
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1981
+		},
+		{
+			"name": "Has­sium",
+			"symbol": "Hs",
+			"Z": 108,
+			"mass": 270,
+			"position": {
+				"x": 8,
+				"y": 7
+			},
+			"color": "#FFC0C0FF",
+			"discover_year": 1984
+		},
+		{
+			"name": "Meit­nerium",
+			"symbol": "Mt",
+			"Z": 109,
+			"mass": 278,
+			"position": {
+				"x": 9,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 1982
+		},
+		{
+			"name": "Darm­stadtium",
+			"symbol": "Ds",
+			"Z": 110,
+			"mass": 281,
+			"position": {
+				"x": 10,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 1994
+		},
+		{
+			"name": "Roent­genium",
+			"symbol": "Rg",
+			"Z": 111,
+			"mass": 282,
+			"position": {
+				"x": 11,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 1994
+		},
+		{
+			"name": "Coper­nicium",
+			"symbol": "Cn",
+			"Z": 112,
+			"mass": 285,
+			"position": {
+				"x": 12,
+				"y": 7
+			},
+			"color": "#CCCCCCFF",
+			"discover_year": 1996
+		},
+		{
+			"name": "Nihon­ium",
+			"symbol": "Nh",
+			"Z": 113,
+			"mass": 286,
+			"position": {
+				"x": 13,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 2003
+		},
+		{
+			"name": "Flerov­ium",
+			"symbol": "Fl",
+			"Z": 114,
+			"mass": 289,
+			"position": {
+				"x": 14,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 1999
+		},
+		{
+			"name": "Moscov­ium",
+			"symbol": "Mc",
+			"Z": 115,
+			"mass": 290,
+			"position": {
+				"x": 15,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 2003
+		},
+		{
+			"name": "Liver­morium",
+			"symbol": "Lv",
+			"Z": 116,
+			"mass": 293,
+			"position": {
+				"x": 16,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 2000
+		},
+		{
+			"name": "Tenness­ine",
+			"symbol": "Ts",
+			"Z": 117,
+			"mass": 294,
+			"position": {
+				"x": 17,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 2009
+		},
+		{
+			"name": "Oga­nesson",
+			"symbol": "Og",
+			"Z": 118,
+			"mass": 295,
+			"position": {
+				"x": 18,
+				"y": 7
+			},
+			"color": "#E8E8E8FF",
+			"discover_year": 2002
+		}
+	]
+}
