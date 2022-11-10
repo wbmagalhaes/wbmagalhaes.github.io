@@ -12,29 +12,29 @@
 	}
 
 	&__text {
-		@apply text-wb-primary dark:text-wb-secondary;
+		@apply text-wm-primary dark:text-wm-secondary;
 
 		&--reversed {
-			@apply text-wb-secondary dark:text-wb-primary;
+			@apply text-wm-secondary dark:text-wm-primary;
 		}
 
 		&--accent {
-			@apply font-bold text-wb-navy dark:text-wb-flamingo;
+			@apply font-bold text-wm-navy dark:text-wm-flamingo;
 		}
 	}
 
 	&__bg {
-		@apply bg-wb-primary dark:bg-wb-secondary;
+		@apply bg-wm-primary dark:bg-wm-secondary;
 
 		&--reversed {
-			@apply bg-wb-secondary dark:bg-wb-primary;
+			@apply bg-wm-secondary dark:bg-wm-primary;
 		}
 
 		&--accent {
-			@apply bg-wb-navy dark:bg-wb-flamingo;
+			@apply bg-wm-navy dark:bg-wm-flamingo;
 
 			&:hover {
-				@apply bg-wb-navy-600 dark:bg-wb-flamingo-600;
+				@apply bg-wm-navy-600 dark:bg-wm-flamingo-600;
 			}
 		}
 	}
@@ -45,21 +45,21 @@
 	// }
 
 	&__fill {
-		@apply fill-wb-primary dark:fill-wb-secondary;
+		@apply fill-wm-primary dark:fill-wm-secondary;
 
 		&--reversed {
-			@apply fill-wb-secondary dark:fill-wb-primary;
+			@apply fill-wm-secondary dark:fill-wm-primary;
 		}
 	}
 
 	&__stroke {
-		@apply stroke-wb-secondary;
+		@apply stroke-wm-secondary;
 
 		fill-opacity: 1;
 		stroke-width: 1;
 
 		&--reversed {
-			@apply stroke-wb-primary;
+			@apply stroke-wm-primary;
 		}
 	}
 }
