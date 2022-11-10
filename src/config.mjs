@@ -2,7 +2,7 @@ export const SITE = {
 	name: 'William - Web Stuff',
 
 	origin: 'https://wbmagalhaes.github.io/',
-	basePathname: 'web-stuff/',
+	basePathname: '/',
 
 	title: 'William - Web Stuff',
 	description: '⚛️',
