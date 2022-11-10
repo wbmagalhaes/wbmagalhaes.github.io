@@ -1,10 +1,10 @@
 export const SITE = {
-	name: 'William - Web Stuff',
+	name: 'William - Portfólio',
 
 	origin: 'https://wbmagalhaes.github.io/',
 	basePathname: '/',
 
-	title: 'William - Web Stuff',
+	title: 'William - Portfólio',
 	description: '⚛️',
 
 	// googleAnalyticsId: '',
