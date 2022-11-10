@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/PageLayout.astro';
+const allProjects = await Astro.glob('./*.mdx');
+---
+
+<Layout>
+	<section>
+		<div class="px-6 py-10 max-w-6xl mx-auto text-justify">
+			<h1>Projetos</h1>
+			<ul>
+				{
+					allProjects.map((project) => (
+						<li>
+							<a href={project.url}>{project.frontmatter.title}</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+</Layout>

@@ -1,3 +1,6 @@
 {
-	"cSpell.words": ["Lensflare"]
+	"cSpell.words": ["Lensflare"],
+	"files.associations": {
+		"*.mdx": "markdown"
+	}
 }
