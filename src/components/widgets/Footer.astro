@@ -1,8 +1,44 @@
 ---
+import { Icon } from 'astro-icon';
 ---
 
-<footer class="footer border-t bg-wm-coal-800 text-wm-coal-300 border-wm-coal-200">
-	<div class="px-6 py-10 max-w-6xl mx-auto">
-		Footer
+<footer class="footer font-logo mt-16 bg-wm-coal-800 text-wm-coal-300 border-t border-wm-coal-400">
+	<div class="flex flex-row px-16 py-6">
+		<div class="mr-auto">
+			<a class="text-wm-coal-200" href="https://github.com/wbmagalhaes/" target="_blank">
+				<div class="text-wm-coal-200 inline-flex align-text-bottom">
+					<Icon name="simple-icons:github" class="w-5 h-5" />
+				</div>
+				<span class="underline">@wbmagalhaes</span>
+			</a>
+		</div>
+
+		<div class="ml-auto">
+			Feito com
+			<a class="text-wm-coal-200" href="https://astro.build/" target="_blank">
+				<div class="inline-flex align-text-bottom">
+					<Icon name="simple-icons:astro" class="w-5 h-5" />
+				</div>
+				<span class="underline">Astro</span>
+			</a>,
+			<a class="text-wm-coal-200" href="https://reactjs.org/" target="_blank">
+				<div class="inline-flex align-text-bottom">
+					<Icon name="simple-icons:react" class="w-5 h-5" />
+				</div>
+				<span class="underline">React</span>
+			</a>,
+			<a class="text-wm-coal-200" href="https://tailwindcss.com/" target="_blank">
+				<div class="inline-flex align-text-bottom">
+					<Icon name="simple-icons:tailwindcss" class="w-5 h-5" />
+				</div>
+				<span class="underline">Tailwind</span>
+			</a>e
+			<a class="text-wm-coal-200">
+				<div class="inline-flex align-text-bottom">
+					<Icon name="ant-design:heart-filled" class="w-5 h-5" />
+				</div>
+				Amor
+			</a>
+		</div>
 	</div>
 </footer>

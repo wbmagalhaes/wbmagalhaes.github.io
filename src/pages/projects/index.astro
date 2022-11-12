@@ -1,19 +1,42 @@
 ---
+import { Image } from '@astrojs/image/components';
+
 import Layout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@atoms/ProjectCard';
+
 const allProjects = await Astro.glob('./*.mdx');
+allProjects.sort((a, b) => {
+	var dateA = new Date(a.frontmatter.date).getTime();
+	var dateB = new Date(b.frontmatter.date).getTime();
+	return dateA - dateB;
+});
 ---
 
 <Layout>
-	<section class="px-6 py-10 max-w-6xl mx-auto text-justify bg-wm-secondary-800 rounded-b-xl">
+	<section class="px-6 py-10 max-w-6xl mx-auto">
 		<h1>Projetos</h1>
-		<ul>
+		<div class="grid grid-cols-3 justify-items-center gap-6 mt-10">
 			{
 				allProjects.map((project) => (
-					<li>
-						<a href={project.url}>{project.frontmatter.title}</a>
-					</li>
+					<ProjectCard
+						client:load
+						url={project.url}
+						title={project.frontmatter.title}
+						description={project.frontmatter.description}
+						tags={project.frontmatter.tags}
+						date={project.frontmatter.date}
+					>
+						<Image
+							slot="cover"
+							class="w-full m-auto text-center"
+							src={import(/*@vite-ignore*/ project.frontmatter.cover)}
+							alt={'Imagem de capa'}
+							width={'auto'}
+							height={256}
+						/>
+					</ProjectCard>
 				))
 			}
-		</ul>
+		</div>
 	</section>
 </Layout>
