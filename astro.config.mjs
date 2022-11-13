@@ -24,9 +24,9 @@ export default defineConfig({
 		image(),
 	],
 
-	vite: {
-		build: {
-			target: 'es2021',
-		},
-	},
+	// vite: {
+	// 	build: {
+	// 		target: 'es2021',
+	// 	},
+	// },
 });

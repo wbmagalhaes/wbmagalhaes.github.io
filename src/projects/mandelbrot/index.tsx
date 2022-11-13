@@ -1,14 +1,19 @@
-import loadable from '@loadable/component';
+import { lazy, Suspense } from 'react';
 
-const MandelbrotRender = loadable(() => import('./MandelbrotSketch'), {
-	fallback: <div>Loading...</div>,
-	ssr: false,
-});
+const MandelbrotRender = lazy(() => import('./MandelbrotSketch'));
 
 export function MandelbrotSet() {
-	return <MandelbrotRender scale={1.8} offset={[-0.5, 0]} />;
+	return (
+		<Suspense fallback={null}>
+			<MandelbrotRender scale={1.8} offset={[-0.5, 0]} />
+		</Suspense>
+	);
 }
 
 export function JuliaSet() {
-	return <MandelbrotRender scale={1.6} julia />;
+	return (
+		<Suspense fallback={null}>
+			<MandelbrotRender scale={1.6} julia />
+		</Suspense>
+	);
 }
