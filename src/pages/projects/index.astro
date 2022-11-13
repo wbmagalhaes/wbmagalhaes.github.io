@@ -1,11 +1,9 @@
 ---
-import { Image } from '@astrojs/image/components';
-
 import Layout from '@layouts/BaseLayout.astro';
 import ProjectCard from '@atoms/ProjectCard';
 
-const allProjects = await Astro.glob('./*.mdx');
-allProjects.sort((a, b) => {
+const projects = await Astro.glob('./*.mdx');
+projects.sort((a, b) => {
 	var dateA = new Date(a.frontmatter.date).getTime();
 	var dateB = new Date(b.frontmatter.date).getTime();
 	return dateA - dateB;
@@ -17,24 +15,16 @@ allProjects.sort((a, b) => {
 		<h1>Projetos</h1>
 		<div class="grid grid-cols-3 justify-items-center gap-6 mt-10">
 			{
-				allProjects.map((project) => (
+				projects.map((project) => (
 					<ProjectCard
 						client:load
 						url={project.url}
+						cover={project.frontmatter.cover}
 						title={project.frontmatter.title}
 						description={project.frontmatter.description}
 						tags={project.frontmatter.tags}
 						date={project.frontmatter.date}
-					>
-						<Image
-							slot="cover"
-							class="w-full m-auto text-center"
-							src={import(/*@vite-ignore*/ project.frontmatter.cover)}
-							alt={'Imagem de capa'}
-							width={'auto'}
-							height={256}
-						/>
-					</ProjectCard>
+					/>
 				))
 			}
 		</div>

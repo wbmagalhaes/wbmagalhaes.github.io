@@ -10,7 +10,9 @@ interface Props {
 export default function ProjectCard({ url, cover, title, description, tags, date }: Props) {
 	return (
 		<article className="max-w-xs flex flex-col bg-wm-secondary rounded-lg shadow-xl overflow-hidden">
-			<a href={url}>{cover}</a>
+			<a href={url}>
+				<img src={cover} className="w-full m-auto text-center" alt="Imagem de capa" width="auto" height={256} />
+			</a>
 
 			<div className="flex-grow p-5">
 				<h1 className="mb-2 text-2xl font-bold tracking-tight text-wm-coal-900">
@@ -20,7 +22,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 			</div>
 
 			<div className="relative mx-5 py-2 flex flex-row flex-wrap mt-auto gap-2">
-				<div className='absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-coal-200 sides-fade'></div>
+				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-coal-200 sides-fade"></div>
 				{tags?.map((tag, i) => (
 					<span
 						key={i}
