@@ -1,0 +1,14 @@
+---
+layout: ../../layouts/ProjectLayout.astro
+cover: /images/teste.jpg
+title: Mandelbrot
+description: Mandelbrot and Julia sets.
+tags: [JavaScript, React.js, p5.js]
+date: 2022-01-01
+---
+
+import { MandelbrotSet, JuliaSet } from '../../projects/mandelbrot';
+
+<MandelbrotSet client:load />
+
+<JuliaSet client:load />
