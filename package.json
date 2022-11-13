@@ -19,6 +19,7 @@
 		"@astrolib/seo": "^0.2.1",
 		"@fontsource/inter": "^4.5.14",
 		"@fontsource/mononoki": "^4.5.3",
+		"@loadable/babel-plugin": "^5.13.2",
 		"@loadable/component": "^5.15.2",
 		"@react-three/drei": "^9.32.7",
 		"@react-three/fiber": "^8.8.8",

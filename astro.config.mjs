@@ -10,6 +10,7 @@ import { SITE } from './src/config.mjs';
 export default defineConfig({
 	site: SITE.origin,
 	base: SITE.basePathname,
+
 	output: 'static',
 
 	integrations: [
