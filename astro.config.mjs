@@ -21,5 +21,11 @@ export default defineConfig({
 			},
 		}),
 		image(),
-	]
+	],
+
+	vite: {
+		build: {
+			target: 'es2021',
+		},
+	},
 });

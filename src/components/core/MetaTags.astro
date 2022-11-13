@@ -1,53 +1,45 @@
 ---
-import { getImage } from '@astrojs/image';
+import { AstroSeo } from '@astrolib/seo';
+// import { GoogleAnalytics } from '@astrolib/analytics';
 
 import { SITE } from '~/config.mjs';
 import Fonts from '@atoms/Fonts.astro';
 
-const { src: defaultImage } = await getImage({
-	src: 'meta_main.png',
-	width: 1200,
-	height: 628,
-});
 const {
 	title = SITE.name,
 	description = '',
-	image: _image = defaultImage,
 	canonical,
 	noindex = false,
 	nofollow = false,
 	ogTitle = title,
 	ogType = 'website',
 } = Astro.props;
-const image = 'meta_main.png'
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="/favicon.ico" sizes="any" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any" type="image/svg+xml" />
 
 <Fonts />
 
 <AstroSeo
 	title={title}
 	description={description}
-
 	canonical={canonical}
 	noindex={noindex}
 	nofollow={nofollow}
-
 	openGraph={{
 		url: canonical,
 		title: ogTitle,
 		description: description,
 		type: ogType,
-		image: image,
+		// image: image,
 		// site_name: 'SiteName',
 	}}
 	twitter={{
 		// handle: '@handle',
 		// site: '@site',
-		cardType: image,
+		// cardType: image,
 	}}
 />
 
