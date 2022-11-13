@@ -36,6 +36,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 			<div className="flex flex-row p-5">
 				<span className="inline-flex items-center text-xs">
 					{new Date(date ?? '').toLocaleDateString('pt-BR', {
+						timeZone: 'UTC',
 						year: 'numeric',
 						month: 'short',
 						day: '2-digit',
