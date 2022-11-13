@@ -11,4 +11,30 @@ import Teste from '@projects/teste';
 
 <Teste client:load />
 
-blah blah
+blah blah.
+
+## Code
+
+```csharp
+
+	interface ITeste {
+		int A { get; }
+		bool B { get; }
+		void ThisIsATest();
+	}
+
+	public Teste : ITeste {
+
+		int a = 1;
+		public int A => a;
+
+		bool b = true;
+		pubic bool B => b;
+
+		public void ThisIsATest() {
+
+		}
+	}
+
+
+```

@@ -90,7 +90,7 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: ["'Inter'", 'sans-serif', ...defaultTheme.fontFamily.sans],
-				logo: ["'Mononoki'", 'mono', ...defaultTheme.fontFamily.mono],
+				mono: ["'Mononoki'", 'mono', ...defaultTheme.fontFamily.mono],
 			}
 		}
 	},
