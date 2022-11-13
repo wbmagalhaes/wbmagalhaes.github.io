@@ -40,27 +40,31 @@
 	}
 
 	footer {
+
 		.circles {
+
 			div {
 				@apply flex place-items-center gap-2;
 
 				div {
-					@apply rounded-full bg-gray-200;
+					@apply rounded-full bg-gray-300;
 				}
 			}
 		}
 
 		.socials {
-			a {
-				@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-300;
-			}
 
-			a:hover {
-				@apply bg-wm-coal-200;
+			a[href] {
+				@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-200;
+
+				&:hover {
+					@apply scale-110;
+				}
 			}
 		}
 
 		nav {
+
 			div {
 
 				&:not(:last-child)::after {
@@ -68,15 +72,18 @@
 
 				}
 
-				a {
-					@apply underline;
+				a[href] {
+					@apply underline text-wm-coal-200;
+
+					&:hover {
+						@apply text-wm-coal-100;
+					}
 				}
 			}
 		}
 
 		.tool-list {
 			a {
-				@apply text-wm-coal-200;
 
 				div {
 					@apply inline-flex align-text-bottom;
@@ -86,24 +93,26 @@
 					}
 				}
 
-				span {
-					@apply underline;
+				&[href] span {
+					@apply underline text-wm-coal-200;
+
+					&:hover {
+						@apply text-wm-coal-100;
+					}
 				}
 			}
 		}
 	}
-}
 
-.astro-code {
-	@apply rounded-lg;
-}
+	.astro-code {
+		@apply rounded-lg;
+	}
 
-.sides-fade {
-	mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+	.sides-fade {
+		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+	}
 
-}
-
-.footer-fade {
-	mask-image: radial-gradient(ellipse at 0% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 100%);
-
+	.footer-fade {
+		mask-image: radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0) 100%);
+	}
 }

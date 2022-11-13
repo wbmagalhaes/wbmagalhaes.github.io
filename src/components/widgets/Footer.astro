@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon';
 
 <div class="relative">
 	<div class="absolute bottom-0 -z-10 w-full h-5/6"></div>
-	<footer class="mx-16 rounded-t-2xl bg-wm-coal-600 px-4 text-wm-coal-100">
+	<footer class="mx-16 rounded-t-2xl bg-wm-coal-600 px-4 text-wm-coal-200">
 		<section>
 			<div class="circles flex justify-between p-4">
 				<div>
@@ -31,9 +31,9 @@ import { Icon } from 'astro-icon';
 			</div>
 		</section>
 
-		<section class="grid grid-cols-3">
-			<div class="bg-footer-texture bg-left-bottom bg-contain bg-repeat-x footer-fade"></div>
-			<div class="socials col-start-2 flex justify-center p-4 pb-24 gap-2">
+		<section class="relative grid grid-cols-3">
+			<div class="absolute w-full h-2/3 bottom-0 bg-footer-texture bg-left-bottom bg-contain bg-repeat-x footer-fade"></div>
+			<div class="socials z-10 col-start-2 flex justify-center p-4 pb-24 gap-2">
 				<a href="https://github.com/wbmagalhaes/" target="_blank">
 					<Icon name="simple-icons:github" class="w-6 h-6" />
 				</a>
@@ -44,7 +44,7 @@ import { Icon } from 'astro-icon';
 					<Icon name="simple-icons:instagram" class="w-6 h-6" />
 				</a>
 			</div>
-			<nav class="flex justify-end p-4 gap-2">
+			<nav class="flex z-10 justify-end p-4 gap-2">
 				<div><a href="#">Home</a></div>
 				<div><a href="#">Projetos</a></div>
 				<div><a href="#">Sobre</a></div>

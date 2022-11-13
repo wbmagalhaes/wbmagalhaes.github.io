@@ -46,11 +46,11 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 					className="inline-flex
 					ml-auto items-center py-1.5 px-3 rounded-lg
 					text-sm font-medium text-center text-white
-					bg-gradient-to-r from-wm-primary-300 to-wm-primary-400 hover:from-wm-primary-500 hover:to-wm-primary-600"
+					bg-gradient-to-r from-wm-primary-300 to-wm-primary-400 hover:from-wm-primary-500 hover:to-wm-primary-600 transition duration-300"
 				>
 					Abrir
 					<svg
-						className="ml-2 -mr-1 w-4 h-4"
+						className="ml-2 w-4 h-4"
 						aria-hidden="true"
 						fill="currentColor"
 						viewBox="0 0 20 20"
