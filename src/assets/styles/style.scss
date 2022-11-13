@@ -26,8 +26,84 @@
 	h6 {
 		@apply text-base;
 	}
+
+	header {
+		nav {
+			a {
+				@apply border-y-2 border-transparent text-wm-primary px-2 py-4 transition duration-300;
+			}
+
+			a:hover {
+				@apply bg-wm-secondary-400 border-b-wm-primary-600;
+			}
+		}
+	}
+
+	footer {
+		.circles {
+			div {
+				@apply flex place-items-center gap-2;
+
+				div {
+					@apply rounded-full bg-gray-200;
+				}
+			}
+		}
+
+		.socials {
+			a {
+				@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-300;
+			}
+
+			a:hover {
+				@apply bg-wm-coal-200;
+			}
+		}
+
+		nav {
+			div {
+
+				&:not(:last-child)::after {
+					@apply content-['|'] ml-2;
+
+				}
+
+				a {
+					@apply underline;
+				}
+			}
+		}
+
+		.tool-list {
+			a {
+				@apply text-wm-coal-200;
+
+				div {
+					@apply inline-flex align-text-bottom;
+
+					svg {
+						@apply w-5 h-5;
+					}
+				}
+
+				span {
+					@apply underline;
+				}
+			}
+		}
+	}
 }
 
 .astro-code {
 	@apply rounded-lg;
+}
+
+.sides-fade {
+	mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+
+}
+
+.footer-fade {
+	mask-image: radial-gradient(ellipse at 0% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 100%);
+
 }

@@ -9,6 +9,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			backgroundImage: {
+				'footer-texture': "url('/images/pattern-diagonal-stripes.svg')",
+			},
 			colors: {
 				'wm': {
 					'primary': {

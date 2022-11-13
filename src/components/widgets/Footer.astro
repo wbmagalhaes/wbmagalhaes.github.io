@@ -3,88 +3,71 @@ import { Icon } from 'astro-icon';
 ---
 
 <div class="relative">
-	<div class="absolute bottom-0 -z-10 w-full h-5/6 bg-gradient-to-b from-wm-coal-600 to-wm-coal-800"></div>
-	<footer class="mx-16 rounded-t-2xl bg-wm-coal-600 px-4 text-wm-coal-300">
-		<section class="grid grid-cols-3 p-4">
-			<div class="flex justify-start place-items-center gap-2">
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-2 h-2 rounded-full bg-gray-400"></div>
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-20 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-2 h-2 rounded-full bg-gray-400"></div>
-			</div>
-			<div class="flex justify-center place-items-center gap-2">
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-16 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-2 h-2 rounded-full bg-gray-400"></div>
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-			</div>
-			<div class="flex justify-end place-items-center gap-2">
-				<div class="w-24 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-2 h-2 rounded-full bg-gray-400"></div>
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
-				<div class="w-1 h-1 rounded-full bg-gray-400"></div>
+	<div class="absolute bottom-0 -z-10 w-full h-5/6"></div>
+	<footer class="mx-16 rounded-t-2xl bg-wm-coal-600 px-4 text-wm-coal-100">
+		<section>
+			<div class="circles flex justify-between p-4">
+				<div>
+					<div class="w-1 h-1"></div>
+					<div class="w-2 h-2"></div>
+					<div class="w-1 h-1"></div>
+					<div class="w-20 h-1"></div>
+					<div class="w-2 h-2"></div>
+				</div>
+				<div>
+					<div class="w-1 h-1"></div>
+					<div class="w-1 h-1"></div>
+					<div class="w-16 h-1"></div>
+					<div class="w-1 h-1"></div>
+					<div class="w-2 h-2"></div>
+					<div class="w-1 h-1"></div>
+				</div>
+				<div>
+					<div class="w-24 h-1"></div>
+					<div class="w-2 h-2"></div>
+					<div class="w-1 h-1"></div>
+					<div class="w-1 h-1"></div>
+				</div>
 			</div>
 		</section>
 
-		<section class="grid grid-cols-3 py-12 place-items-center bg-red-500">
-			<div class="flex col-start-2 gap-2">
-				<a
-					class="p-2.5 rounded-full bg-wm-coal-200 text-wm-coal-800"
-					href="https://github.com/wbmagalhaes/"
-					target="_blank"
-				>
+		<section class="grid grid-cols-3">
+			<div class="bg-footer-texture bg-left-bottom bg-contain bg-repeat-x footer-fade"></div>
+			<div class="socials col-start-2 flex justify-center p-4 pb-24 gap-2">
+				<a href="https://github.com/wbmagalhaes/" target="_blank">
 					<Icon name="simple-icons:github" class="w-6 h-6" />
 				</a>
-				<a
-					class="p-2.5 rounded-full bg-wm-coal-200 text-wm-coal-800"
-					href="https://www.linkedin.com/in/wbmagalhaes/"
-					target="_blank"
-				>
+				<a href="https://www.linkedin.com/in/wbmagalhaes/" target="_blank">
 					<Icon name="simple-icons:linkedin" class="w-6 h-6" />
 				</a>
-				<a
-					class="p-2.5 rounded-full bg-wm-coal-200 text-wm-coal-800"
-					href="https://instagram.com/wbmagalhaes/"
-					target="_blank"
-				>
+				<a href="https://instagram.com/wbmagalhaes/" target="_blank">
 					<Icon name="simple-icons:instagram" class="w-6 h-6" />
 				</a>
 			</div>
-			<nav class="flex gap-2 ml-auto mr-2">
-				<div class="after:content-['|'] after:ml-2"><a class="underline" href="#">Home</a></div>
-				<div class="after:content-['|'] after:ml-2"><a class="underline" href="#">Projetos</a></div>
-				<div class=""><a class="underline" href="#">Sobre</a></div>
+			<nav class="flex justify-end p-4 gap-2">
+				<div><a href="#">Home</a></div>
+				<div><a href="#">Projetos</a></div>
+				<div><a href="#">Sobre</a></div>
 			</nav>
 		</section>
 
 		<section class="flex py-2 border-t border-wm-coal-400">
-			<div class="ml-auto font-mono">
+			<div class="tool-list ml-auto font-mono">
 				Feito com
-				<a class="text-wm-coal-200" href="https://astro.build/" target="_blank">
-					<div class="inline-flex align-text-bottom">
-						<Icon name="simple-icons:astro" class="w-5 h-5" />
-					</div>
-					<span class="underline">Astro</span>
+				<a href="https://astro.build/" target="_blank">
+					<div><Icon name="simple-icons:astro" /></div>
+					<span>Astro</span>
 				</a>,
-				<a class="text-wm-coal-200" href="https://reactjs.org/" target="_blank">
-					<div class="inline-flex align-text-bottom">
-						<Icon name="simple-icons:react" class="w-5 h-5" />
-					</div>
-					<span class="underline">React</span>
+				<a href="https://reactjs.org/" target="_blank">
+					<div><Icon name="simple-icons:react" /></div>
+					<span>React</span>
 				</a>,
-				<a class="text-wm-coal-200" href="https://tailwindcss.com/" target="_blank">
-					<div class="inline-flex align-text-bottom">
-						<Icon name="simple-icons:tailwindcss" class="w-5 h-5" />
-					</div>
-					<span class="underline">Tailwind</span>
+				<a href="https://tailwindcss.com/" target="_blank">
+					<div><Icon name="simple-icons:tailwindcss" /></div>
+					<span>Tailwind</span>
 				</a>e
-				<a class="text-wm-coal-200">
-					<div class="inline-flex align-text-bottom">
-						<Icon name="ant-design:heart-filled" class="w-5 h-5" />
-					</div>
+				<a>
+					<div><Icon name="ant-design:heart-filled" /></div>
 					Amor
 				</a>
 			</div>
