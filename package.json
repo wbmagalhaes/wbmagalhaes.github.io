@@ -13,12 +13,8 @@
 	"dependencies": {
 		"@astrojs/image": "^0.9.1",
 		"@astrojs/mdx": "^0.11.4",
-		"@astrojs/partytown": "^1.0.1",
 		"@astrojs/react": "^1.1.4",
-		"@astrojs/sitemap": "^1.0.0",
 		"@astrojs/tailwind": "^2.0.2",
-		"@astrolib/analytics": "^0.2.4",
-		"@astrolib/seo": "^0.2.1",
 		"@fontsource/inter": "^4.5.14",
 		"@fontsource/mononoki": "^4.5.3",
 		"@loadable/component": "^5.15.2",

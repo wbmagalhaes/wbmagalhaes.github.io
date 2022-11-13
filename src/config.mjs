@@ -6,7 +6,4 @@ export const SITE = {
 
 	title: 'William - Portfólio',
 	description: '⚛️',
-
-	// googleAnalyticsId: '',
-	// googleSiteVerificationId: '',
 };
