@@ -77,7 +77,7 @@ uniform float u_scale;
 uniform bool u_julia;
 uniform vec2 u_julia_constant;
 
-int iterate(vec2 point, vec2 c) {
+int iterate(vec2 p, vec2 c) {
 	const int maxIterations = 100;
 	const float threshold = 16.0;
 
@@ -86,16 +86,16 @@ int iterate(vec2 point, vec2 c) {
 	for (int i = 0; i < maxIterations; i++) {
 		result++;
 
-		float _x = point.x * point.x - point.y * point.y + c.x;
-		float _y = 2.0 * point.x * point.y + c.y;
+		float _x = p.x * p.x - p.y * p.y + c.x;
+		float _y = 2.0 * p.x * p.y + c.y;
 
 		float mag_sqr = _x * _x + _y * _y;
 		if (mag_sqr > threshold) {
 			break;
 		}
 
-		point.x = _x;
-		point.y = _y;
+		p.x = _x;
+		p.y = _y;
 	}
 
 	return result;

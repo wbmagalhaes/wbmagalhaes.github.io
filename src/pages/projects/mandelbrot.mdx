@@ -23,7 +23,7 @@ $f(z) = z^2 + c$
 blablah
 
 ```glsl
-int iterate(float a, float b) {
+int iterate(vec2 p, vec2 c) {
 	const int maxIterations = 100;
 	const float threshold = 16.0;
 
@@ -32,16 +32,16 @@ int iterate(float a, float b) {
 	for (int i = 0; i < maxIterations; i++) {
 		result++;
 
-		float _a = a * a - b * b + c.x;
-		float _b = 2.0 * a * b + c.y;
+		float _x = p.x * p.x - p.y * p.y + c.x;
+		float _y = 2.0 * p.x * p.y       + c.y;
 
-		float mag_sqr = _a * _a + _b * _b;
+		float mag_sqr = _x * _x + _y * _y;
 		if (mag_sqr > threshold) {
 			break;
 		}
 
-		a = _a;
-		b = _b;
+		p.x = _x;
+		p.y = _y;
 	}
 
 	return result;
