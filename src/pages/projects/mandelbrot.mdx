@@ -1,13 +1,15 @@
 ---
-layout: ../../layouts/ProjectLayout.astro
-cover: /images/teste.jpg
+layout: '@layouts/ProjectLayout.astro'
+cover: '@images/teste.jpg'
 title: Mandelbrot
 description: Mandelbrot and Julia sets.
 tags: [JavaScript, p5.js]
 date: 2022-01-01
 ---
 
-import { MandelbrotSet, JuliaSet } from '../../projects/mandelbrot';
+import { MandelbrotSet, JuliaSet } from '@projects/mandelbrot';
 
-<MandelbrotSet client:only='react' />
-<JuliaSet client:only='react' />
+<div class="flex flex-wrap gap-2">
+	<MandelbrotSet client:only="react" />
+	<JuliaSet client:only="react" />
+</div>

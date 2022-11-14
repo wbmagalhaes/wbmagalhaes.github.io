@@ -1,17 +1,19 @@
 import { ReactP5Wrapper } from 'react-p5-wrapper';
 
-export default function MandelbrotSetRender({ scale = 1, offset = [0, 0], julia = false }) {
-	return <ReactP5Wrapper sketch={sketch} scale={scale} offset={offset} julia={julia} />;
+export default function MandelbrotSetRender({ holderRef, scale = 1, offset = [0, 0], julia = false }) {
+	return <ReactP5Wrapper sketch={(p5) => sketch(p5, holderRef)} scale={scale} offset={offset} julia={julia} />;
 }
 
-function sketch(p5) {
+function sketch(p5, holderRef) {
 	let program;
 	let scale = 1;
 	let offset = [0, 0];
 	let julia = false;
 
 	p5.setup = () => {
-		p5.createCanvas(600, 400, p5.WEBGL);
+		const w = holderRef.current.offsetWidth;
+		const h = holderRef.current.offsetHeight;
+		p5.createCanvas(w, h, p5.WEBGL);
 		p5.pixelDensity(1);
 		p5.noStroke();
 
