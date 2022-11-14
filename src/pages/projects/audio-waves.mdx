@@ -1,10 +1,18 @@
 ---
-layout: ../../layouts/ProjectLayout.astro
+layout: '@layouts/ProjectLayout.astro'
 cover: /images/teste.jpg
 title: Audio Waves
-description: Audio Waves.
-tags: [JavaScript]
-date: 2022-01-01
+description: Descrição.
+tags: [JavaScript, React.js]
+date: 2022-01-04
 ---
+
+import { AudioWaves } from '@projects/audio-waves';
+
+Blah blah blah.
+
+<div class="flex justify-center">
+	<AudioWaves client:only="react" />
+</div>
 
 Audio Waves.
