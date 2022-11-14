@@ -27,11 +27,14 @@ function sketch(p5, holderRef) {
 	};
 
 	p5.draw = () => {
+		let x = p5.map(p5.mouseX, 0, p5.width, -1, 1);
+		let y = p5.map(p5.mouseY, 0, p5.height, -1, 1);
+
 		program.setUniform('u_resolution', [p5.width, p5.height]);
 		program.setUniform('u_offset', offset);
 		program.setUniform('u_scale', scale);
 		program.setUniform('u_julia', julia);
-		program.setUniform('u_julia_constant', [-0.4, 0.6]);
+		program.setUniform('u_julia_constant', [x, y]);
 
 		p5.shader(program);
 		p5.plane(p5.width, p5.height);
