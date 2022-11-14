@@ -29,9 +29,22 @@
 	}
 
 	header {
+
 		nav {
 			a {
-				@apply border-y-2 border-transparent text-wm-primary px-4 py-4 transition duration-300;
+				@apply border-y-2 border-transparent text-wm-primary p-2 sm:p-4 transition duration-300;
+
+				div {
+					@apply inline-flex align-middle sm:align-top;
+
+					svg {
+						@apply w-6 h-6 sm:mx-2;
+					}
+				}
+
+				span {
+					@apply hidden md:inline-flex;
+				}
 			}
 
 			a:hover {

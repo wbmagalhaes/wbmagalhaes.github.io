@@ -1,12 +1,21 @@
 ---
+import { Icon } from 'astro-icon';
 ---
 
 <header class="sticky top-0 z-40 w-full bg-wm-secondary-200 shadow">
 	<div class="flex items-center justify-between lg:max-w-6xl lg:mx-auto px-4 sm:px-6 font-mono mx-auto">
-		<a href="/" class="text-2xl py-2 font-extrabold text-wm-primary whitespace-nowrap">William Magalhães</a>
-		<nav class="hidden sm:flex">
-			<a href="/projects/">Projetos</a>
-			<a href="#">Sobre</a>
+		<a href="/" class="text-2xl font-extrabold text-wm-primary whitespace-nowrap">
+			William <span class="hidden sm:inline">Magalhães</span>
+		</a>
+		<nav class="flex">
+			<a href="/projects/">
+				<div><Icon name="ci:list-checklist-alt" /></div>
+				<span>Projetos</span>
+			</a>
+			<a href="#">
+				<div><Icon name="ci:info-circle-outline" /></div>
+				<span>Sobre</span>
+			</a>
 		</nav>
 	</div>
 </header>
