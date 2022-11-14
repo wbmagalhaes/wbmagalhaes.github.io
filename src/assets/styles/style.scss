@@ -113,7 +113,10 @@
 		mask-image: radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0) 100%);
 	}
 
-	project {
+	.project {
+		p {
+			@apply my-2;
+		}
 
 		a[href] {
 			@apply text-blue-600 underline;
@@ -124,9 +127,7 @@
 		}
 
 		.astro-code {
-			@apply rounded-lg;
+			@apply p-6 rounded-lg;
 		}
 	}
-
-
 }

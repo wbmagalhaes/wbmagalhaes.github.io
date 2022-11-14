@@ -16,6 +16,34 @@ Visualização do conjunto de [Mandelbrot](https://en.wikipedia.org/wiki/Mandelb
 	<JuliaSet client:only="react" />
 </div>
 
-blah lah blah lbah
+bla blah blah descrição
 
 $f(z) = z^2 + c$
+
+blablah
+
+```shader
+int iterate(float a, float b) {
+	const int maxIterations = 100;
+	const float threshold = 16.0;
+
+	int result = 0;
+
+	for (int i = 0; i < maxIterations; i++) {
+		result++;
+
+		float _a = a * a - b * b + c.x;
+		float _b = 2.0 * a * b + c.y;
+
+		float mag_sqr = _a * _a + _b * _b;
+		if (mag_sqr > threshold) {
+			break;
+		}
+
+		a = _a;
+		b = _b;
+	}
+
+	return result;
+}
+```

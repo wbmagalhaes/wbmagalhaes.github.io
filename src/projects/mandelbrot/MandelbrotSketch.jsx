@@ -77,40 +77,25 @@ uniform float u_scale;
 uniform bool u_julia;
 uniform vec2 u_julia_constant;
 
-int iterate(float start_a, float start_b) {
+int iterate(vec2 point, vec2 c) {
 	const int maxIterations = 100;
 	const float threshold = 16.0;
 
 	int result = 0;
 
-	float a = start_a;
-	float b = start_b;
-
 	for (int i = 0; i < maxIterations; i++) {
-		float aa = a * a;
-		float bb = b * b;
-		float two_ab = 2.0 * a * b;
-
-		float new_a = aa - bb;
-		float new_b = two_ab;
-
-		if (u_julia) {
-			new_a += u_julia_constant.x;
-			new_b += u_julia_constant.y;
-		}
-		else {
-			new_a += start_a;
-			new_b += start_b;
-		}
-
 		result++;
 
-		float mag = new_a * new_a + new_b * new_b;
-		if (mag > threshold)
-			break;
+		float _x = point.x * point.x - point.y * point.y + c.x;
+		float _y = 2.0 * point.x * point.y + c.y;
 
-		a = new_a;
-		b = new_b;
+		float mag_sqr = _x * _x + _y * _y;
+		if (mag_sqr > threshold) {
+			break;
+		}
+
+		point.x = _x;
+		point.y = _y;
 	}
 
 	return result;
@@ -130,7 +115,10 @@ void main(void) {
 
 	vec2 p = u_scale * (((2.0 * (gl_FragCoord.xy) / u_resolution.xy) - 1.0) + u_offset.xy);
 
-	int n = iterate(p.x, p.y * u_resolution.y / u_resolution.x);
+	vec2 point = vec2(p.x, p.y * u_resolution.y / u_resolution.x);
+	vec2 c = vec2(u_julia ? u_julia_constant : point);
+
+	int n = iterate(point, c);
 	if (n < maxIterations) {
 		float hue = float(n) / float(maxIterations);
 		result = hsv2rgb(vec4(hue, 1.0, 1.0, 1.0));
