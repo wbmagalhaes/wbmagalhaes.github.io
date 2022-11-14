@@ -21,7 +21,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 				<p className="font-normal text-wm-coal-700">{description}</p>
 			</div>
 
-			<div className="relative mx-5 py-2 flex flex-row flex-wrap mt-auto gap-2">
+			<div className="relative px-5 py-1 md:py-2 flex flex-row flex-wrap mt-auto gap-1 md:gap-2">
 				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-coal-200 sides-fade"></div>
 				{tags?.map((tag, i) => (
 					<span
@@ -33,7 +33,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 				))}
 			</div>
 
-			<div className="flex flex-row p-5">
+			<div className="flex flex-row p-2 pl-5 md:p-5">
 				<span className="inline-flex items-center text-xs">
 					{new Date(date ?? '').toLocaleDateString('pt-BR', {
 						timeZone: 'UTC',

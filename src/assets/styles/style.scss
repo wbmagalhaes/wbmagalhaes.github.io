@@ -44,7 +44,7 @@
 		.circles {
 
 			div {
-				@apply flex place-items-center gap-2;
+				@apply gap-2;
 
 				div {
 					@apply rounded-full bg-gray-300;
@@ -89,7 +89,7 @@
 					@apply inline-flex align-text-bottom;
 
 					svg {
-						@apply w-5 h-5;
+						@apply w-4 h-4 sm:w-5 sm:h-5;
 					}
 				}
 
