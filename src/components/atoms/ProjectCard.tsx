@@ -9,9 +9,9 @@ interface Props {
 
 export default function ProjectCard({ url, cover, title, description, tags, date }: Props) {
 	return (
-		<article className="max-w-xs flex flex-col bg-wm-secondary rounded-lg shadow-xl overflow-hidden">
+		<article className="max-w-xs flex flex-col bg-wm-secondary rounded-lg shadow-xl text-left overflow-hidden">
 			<a href={url}>
-				<img src={cover} className="w-full m-auto text-center" alt="Imagem de capa" width="auto" height={256} />
+				<img src={cover} className="w-full m-auto text-center" alt="Imagem de Capa" width="auto" height={256} />
 			</a>
 
 			<div className="flex-grow p-5">

@@ -1,14 +1,7 @@
 import { lazy, Suspense, useRef } from 'react';
+import Loading from '@atoms/Loading';
 
 const MandelbrotRender = lazy(() => import('./MandelbrotSketch'));
-
-function Loading() {
-	return (
-		<div className="grid text-wm-secondary w-full h-full place-items-center">
-			<span>Loading...</span>
-		</div>
-	);
-}
 
 export function MandelbrotSet() {
 	const ref = useRef(null);

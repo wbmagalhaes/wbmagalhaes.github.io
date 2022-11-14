@@ -113,11 +113,20 @@
 		mask-image: radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0) 100%);
 	}
 
-	.astro-code {
-		@apply rounded-lg;
-	}
-}
+	project {
 
-.canvas-holder {
-	@apply w-full max-w-2xl mx-auto aspect-[8/6] rounded-md overflow-hidden bg-wm-coal-500;
+		a[href] {
+			@apply text-blue-600 underline;
+		}
+
+		.canvas-holder {
+			@apply w-full max-w-lg aspect-[8/6] rounded-md overflow-hidden;
+		}
+
+		.astro-code {
+			@apply rounded-lg;
+		}
+	}
+
+
 }

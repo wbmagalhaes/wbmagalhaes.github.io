@@ -1,7 +1,11 @@
 import { defineConfig } from 'astro/config';
 
 import react from '@astrojs/react';
+
 import mdx from '@astrojs/mdx';
+import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math'
+
 import tailwind from '@astrojs/tailwind';
 import image from '@astrojs/image';
 
@@ -15,7 +19,10 @@ export default defineConfig({
 
 	integrations: [
 		react(),
-		mdx(),
+		mdx({
+			remarkPlugins: [remarkMath],
+			rehypePlugins: [rehypeKatex]
+		}),
 		tailwind({
 			config: {
 				applyBaseStyles: false,
@@ -24,9 +31,9 @@ export default defineConfig({
 		image(),
 	],
 
-	// vite: {
-	// 	build: {
-	// 		target: 'es2021',
-	// 	},
-	// },
+	vite: {
+		build: {
+			target: 'es2021',
+		},
+	},
 });
