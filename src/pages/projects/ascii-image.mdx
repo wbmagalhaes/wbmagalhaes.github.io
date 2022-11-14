@@ -1,10 +1,16 @@
 ---
-layout: ../../layouts/ProjectLayout.astro
+layout: '@layouts/ProjectLayout.astro'
 cover: /images/teste.jpg
-title: ASCII Image
-description: ASCII Image.
-tags: [JavaScript]
-date: 2022-01-01
+title: Image to ASCII
+description: Descrição.
+tags: [JavaScript, p5.js]
+date: 2022-01-03
 ---
 
-ASCII Image.
+import { ASCII } from '@projects/ascii-image';
+
+<div class="flex justify-center">
+	<ASCII client:only="react" />
+</div>
+
+bla blah blah descrição

@@ -126,6 +126,10 @@
 			@apply w-full max-w-lg aspect-[8/6] rounded-md overflow-hidden;
 		}
 
+		astro-island:only-of-type .canvas-holder {
+			@apply max-w-full lg:max-w-[90%] aspect-[16/9]
+		}
+
 		.astro-code {
 			@apply p-6 rounded-lg;
 		}

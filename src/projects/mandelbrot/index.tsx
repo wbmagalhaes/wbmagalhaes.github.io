@@ -1,27 +1,27 @@
 import { lazy, Suspense, useRef } from 'react';
 import Loading from '@atoms/Loading';
 
-const MandelbrotRender = lazy(() => import('./MandelbrotSketch'));
+const Sketch = lazy(() => import('./sketch'));
 
-export function MandelbrotSet() {
+export function Mandelbrot() {
 	const ref = useRef(null);
 
 	return (
 		<div className="canvas-holder" ref={ref}>
 			<Suspense fallback={<Loading />}>
-				<MandelbrotRender holderRef={ref} scale={1.8} offset={[-0.5, 0]} />
+				<Sketch holderRef={ref} scale={1.8} offset={[-0.5, 0]} />
 			</Suspense>
 		</div>
 	);
 }
 
-export function JuliaSet() {
+export function Julia() {
 	const ref = useRef(null);
 
 	return (
 		<div className="canvas-holder" ref={ref}>
 			<Suspense fallback={<Loading />}>
-				<MandelbrotRender holderRef={ref} scale={1.6} julia />
+				<Sketch holderRef={ref} scale={1.6} julia />
 			</Suspense>
 		</div>
 	);

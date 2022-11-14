@@ -4,16 +4,16 @@ cover: /images/teste.jpg
 title: Mandelbrot
 description: Visualização dos conjuntos de Mandelbrot e de Julia em WebGL.
 tags: [JavaScript, p5.js, WebGL]
-date: 2022-01-01
+date: 2022-01-02
 ---
 
-import { MandelbrotSet, JuliaSet } from '@projects/mandelbrot';
+import { Mandelbrot, Julia } from '@projects/mandelbrot';
 
 Visualização do conjunto de [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set) e do conjunto de [Julia](https://en.wikipedia.org/wiki/Julia_set) gerados por shader WebGL.
 
-<div class="flex flex-wrap justify-center gap-4 my-4">
-	<MandelbrotSet client:only="react" />
-	<JuliaSet client:only="react" />
+<div class="flex flex-wrap justify-center gap-4">
+	<Mandelbrot client:only="react" />
+	<Julia client:only="react" />
 </div>
 
 bla blah blah descrição
