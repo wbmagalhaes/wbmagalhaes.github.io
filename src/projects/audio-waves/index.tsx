@@ -1,4 +1,12 @@
+import { useRef } from 'react';
+
 export function AudioWaves() {
+	const ref = useRef(null);
+
+	const WIDTH = 4;
+	const GAP = 4;
+	const N = 112;
+
 	return (
 		<div className="canvas-holder bg-gray-900 grid place-items-center">
 			<svg viewBox="0 0 1000 500">
@@ -12,14 +20,33 @@ export function AudioWaves() {
 				</defs>
 
 				<g transform="translate(500, 250)">
-					<g>
-						<rect
-							className="stroke-none fill-[url(#bar-gradient)]"
-							x="-2"
-							y="-200"
-							width="4"
-							height="400"
-						/>
+					<g ref={ref}>
+						{Array(N)
+							.fill(0)
+							.map((_, i) => {
+								const width = 896;
+
+								const delay = ~~(-80000 + Math.abs(i - N / 2) * 240);
+								const pos = i * (WIDTH + GAP) - width / 2 + WIDTH;
+
+								const waveA = 5 * Math.cos((pos * 1 * Math.PI) / width);
+								const waveB = 1 * Math.cos((pos * 3 * Math.PI) / width);
+								const waveC = 2 * Math.cos((pos * 9 * Math.PI) / width);
+								const wave = (waveA * waveB * waveC) / 10;
+
+								const maxHeight = Math.abs(wave);
+								const minHeight = maxHeight * 0.33;
+
+								return (
+									<rect
+										className="stroke-none fill-[url(#bar-gradient)]"
+										x={(WIDTH + GAP) * (i - (N - 1) / 2) - WIDTH / 2}
+										y={maxHeight * -200}
+										width={WIDTH}
+										height={maxHeight * 400}
+									/>
+								);
+							})}
 					</g>
 
 					<line className="stroke-gray-100 stroke-2" x1="-450" y1="0" x2="450" y2="0" />
