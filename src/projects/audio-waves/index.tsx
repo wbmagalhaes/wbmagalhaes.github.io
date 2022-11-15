@@ -85,23 +85,23 @@ const containerWidth = 900;
 const N = ~~((containerWidth + barGap) / (barWidth + barGap) / 2);
 
 // amplitudes das funções de onda
-const A_waveA = 5;
-const A_waveB = 3;
-const A_waveC = 1;
+const A_wave1 = 5;
+const A_wave2 = 3;
+const A_wave3 = 1;
 
 // frequência das funções de onda
-const f_waveA = 1;
-const f_waveB = 11;
-const f_waveC = 3;
+const f_wave1 = 0.5;
+const f_wave2 = 5.5;
+const f_wave3 = 1.5;
 
 function evalWave(i: number) {
 	const pos = i * (barWidth + barGap);
 	const normPos = pos / containerWidth;
 
-	const waveA = A_waveA * Math.cos(normPos * f_waveA * Math.PI);
-	const waveB = A_waveB * Math.cos(normPos * f_waveB * Math.PI);
-	const waveC = A_waveC * Math.cos(normPos * f_waveC * Math.PI);
-	const wave = (waveA + waveB + waveC) / (A_waveA + A_waveB + A_waveC);
+	const waveA = A_wave1 * Math.cos(normPos * f_wave1 * 2 * Math.PI);
+	const waveB = A_wave2 * Math.cos(normPos * f_wave2 * 2 * Math.PI);
+	const waveC = A_wave3 * Math.cos(normPos * f_wave3 * 2 * Math.PI);
+	const wave = (waveA + waveB + waveC) / (A_wave1 + A_wave2 + A_wave3);
 
 	return [pos, wave * wave];
 }
