@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const containerVariants = {
+const barContainerVariants = {
 	stopped: {
 		opacity: 1,
 	},
@@ -11,11 +11,11 @@ const containerVariants = {
 	},
 };
 
-const itemVariants = {
+const barsVariants = {
 	stopped: {
 		scaleY: 0,
 		transition: {
-			duration: 4,
+			duration: 2,
 			type: 'spring',
 			bounce: 0,
 		},
@@ -122,7 +122,7 @@ export function AudioWaves() {
 				</defs>
 
 				<g transform="translate(500, 250)">
-					<motion.g variants={containerVariants} initial="stopped" animate={active ? 'wave' : 'stopped'}>
+					<motion.g variants={barContainerVariants} initial="stopped" animate={active ? 'wave' : 'stopped'}>
 						{Array(N)
 							.fill(0)
 							.map((_, i) => {
@@ -130,7 +130,7 @@ export function AudioWaves() {
 								return (
 									<motion.rect
 										key={i}
-										variants={itemVariants}
+										variants={barsVariants}
 										custom={scale}
 										className="stroke-none fill-[url(#bar-gradient)]"
 										x={-pos}
@@ -142,7 +142,7 @@ export function AudioWaves() {
 							})}
 					</motion.g>
 
-					<motion.g variants={containerVariants} initial="stopped" animate={active ? 'wave' : 'stopped'}>
+					<motion.g variants={barContainerVariants} initial="stopped" animate={active ? 'wave' : 'stopped'}>
 						{Array(N)
 							.fill(0)
 							.map((_, i) => {
@@ -150,7 +150,7 @@ export function AudioWaves() {
 								return (
 									<motion.rect
 										key={i}
-										variants={itemVariants}
+										variants={barsVariants}
 										custom={scale}
 										className="stroke-none fill-[url(#bar-gradient)]"
 										x={pos}
@@ -163,7 +163,7 @@ export function AudioWaves() {
 					</motion.g>
 
 					<line className="stroke-gray-100 stroke-2" x1="-450" y1="0" x2="450" y2="0" />
-					<circle className="fill-gray-900 stroke-gray-100 stroke-2" r="80" />
+					<circle className="fill-gray-900 stroke-gray-100 stroke-2" cx="0" cy="0" r="80" />
 
 					<motion.g
 						whileHover={{ scale: 1.1 }}
@@ -171,54 +171,47 @@ export function AudioWaves() {
 						onClick={() => setActive(!active)}
 						className="cursor-pointer "
 					>
-						<circle className="fill-gray-700 stroke-gray-600 stroke-2" r="60" />
-						<svg
-							transform="translate(-40, -40)"
-							xmlns="http://www.w3.org/2000/svg"
-							width="80"
-							height="80"
-							preserveAspectRatio="xMidYMid meet"
-							viewBox="0 0 24 24"
+						<circle className="fill-gray-700 stroke-gray-600 stroke-2" cx="0" cy="0" r="60" />
+
+						<g
+							transform="scale(3)"
+							className="fill-none stroke-2 stroke-gray-100"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						>
-							<g
-								className="fill-none stroke-[1.5] stroke-gray-100"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							>
-								<motion.path
-									variants={soundVariants}
-									initial="hidden"
-									animate={active ? 'show' : 'hidden'}
-									d="M 16.5 7.5 S 18 9 18 11.5 s -1.5 4 -1.5 4"
-								/>
-								<motion.path
-									variants={soundVariants}
-									initial="hidden"
-									animate={active ? 'show' : 'hidden'}
-									d="M 19.5 4.5 S 22 7 22 11.5 s -2.5 7 -2.5 7"
-								/>
+							<motion.path
+								variants={soundVariants}
+								initial="hidden"
+								animate={active ? 'show' : 'hidden'}
+								d="m 4.5 -4 s 1.5 1.5 1.5 4 s -1.5 4 -1.5 4"
+							/>
+							<motion.path
+								variants={soundVariants}
+								initial="hidden"
+								animate={active ? 'show' : 'hidden'}
+								d="m 7.5 -7 s 2.5 2.5 2.5 7 s -2.5 7 -2.5 7"
+							/>
 
-								<motion.path
-									variants={noSoundVariants}
-									custom={0}
-									initial="hidden"
-									animate={active ? 'hidden' : 'show'}
-									d="M 16 9 L 22 15"
-								/>
-								<motion.path
-									variants={noSoundVariants}
-									custom={1}
-									initial="hidden"
-									animate={active ? 'hidden' : 'show'}
-									d="M 16 15 L 22 9"
-								/>
+							<motion.path
+								variants={noSoundVariants}
+								custom={0}
+								initial="hidden"
+								animate={active ? 'hidden' : 'show'}
+								d="M 4 -3 l 6 6 "
+							/>
+							<motion.path
+								variants={noSoundVariants}
+								custom={1}
+								initial="hidden"
+								animate={active ? 'hidden' : 'show'}
+								d="M 4 3 l 6 -6"
+							/>
 
-								<path
-									className="fill-gray-700"
-									d="M2 14v-4a1 1 0 0 1 1-1h2.697a1 1 0 0 0 .555-.168l4.193-2.796A1 1 0 0 1 12 6.87v10.26a1 1 0 0 1-1.555.832l-4.193-2.795A1 1 0 0 0 5.697 15H3a1 1 0 0 1-1-1Z"
-								/>
-							</g>
-						</svg>
+							<path
+								className="fill-gray-700"
+								d="m -10 2 v -4 a 1 1 0 0 1 1 -1 h 2.697 a 1 1 0 0 0 0.555 -0.168 l 4.193 -2.796 a 1 1 0 0 1 1.555 0.834 v 10.26 a 1 1 0 0 1 -1.555 0.832 l -4.193 -2.795 a 1 1 0 0 0 -0.555 -0.167 h -2.697 a 1 1 0 0 1 -1 -1 z"
+							/>
+						</g>
 					</motion.g>
 				</g>
 			</svg>
