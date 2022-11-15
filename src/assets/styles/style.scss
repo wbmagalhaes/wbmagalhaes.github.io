@@ -77,25 +77,6 @@
 			}
 		}
 
-		nav {
-
-			div {
-
-				&:not(:last-child)::after {
-					@apply content-['|'] ml-2;
-
-				}
-
-				a[href] {
-					@apply underline text-wm-coal-200;
-
-					&:hover {
-						@apply text-wm-coal-100;
-					}
-				}
-			}
-		}
-
 		.tool-list {
 			a {
 
