@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useRef, useEffect } from 'react';
+import { lazy, Suspense, useRef, useState, useEffect } from 'react';
 import Loading from '@atoms/Loading';
 
 const Sketch = lazy(() => import('./sketch'));
@@ -28,7 +28,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 	}, [holderEl]);
 
 	return (
-		<div className="flex flex-col w-full max-w-lg justify-start">
+		<div className="container">
 			<div ref={holderEl} className="canvas-holder">
 				<Suspense fallback={<Loading />}>
 					<Sketch

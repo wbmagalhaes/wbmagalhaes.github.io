@@ -116,8 +116,16 @@
 			@apply text-blue-600 underline;
 		}
 
+		.container {
+			@apply flex flex-col w-full max-w-lg justify-start;
+		}
+
+		astro-island:only-of-type .container {
+			@apply max-w-4xl;
+		}
+
 		.canvas-holder {
-			@apply w-full max-w-lg aspect-[8/6] rounded-md overflow-hidden;
+			@apply w-full max-w-lg mx-auto aspect-[8/6] rounded-md overflow-hidden;
 		}
 
 		astro-island:only-of-type .canvas-holder {

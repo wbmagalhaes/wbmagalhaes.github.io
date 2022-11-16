@@ -13,13 +13,13 @@ export default function Sketch({ size, scale = 1, offset = [0, 0], julia_const =
 }
 
 function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
+	let size: { w: number; h: number } = { w: 800, h: 600 };
+
 	let program: any;
 
 	let scale: number | undefined = 1;
 	let offset: [number, number] | undefined = [0, 0];
 	let julia_const: [number, number] | undefined;
-
-	let size: { w: number; h: number } = { w: 800, h: 600 };
 
 	p5.setup = () => {
 		p5.createCanvas(size.w, size.h, p5.WEBGL);
