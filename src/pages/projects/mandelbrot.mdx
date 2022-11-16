@@ -12,8 +12,8 @@ import { Mandelbrot, Julia } from '@projects/mandelbrot';
 Visualização do conjunto de [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set) e do conjunto de [Julia](https://en.wikipedia.org/wiki/Julia_set) gerados por shader WebGL.
 
 <div class="flex flex-wrap justify-center gap-4">
-	<Mandelbrot client:only="react" />
-	<Julia client:only="react" />
+	<Mandelbrot client:only="react" defaultZoom={0.55} defaultOffset={[-0.5, 0]} />
+	<Mandelbrot client:only="react" defaultZoom={0.6} defaultJulia={[-0.4, 0.6]} />
 </div>
 
 bla blah blah descrição

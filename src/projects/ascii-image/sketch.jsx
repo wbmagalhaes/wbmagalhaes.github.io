@@ -40,8 +40,6 @@ function sketch(p5, holderRef) {
 		let dy = p5.height - img.height;
 		p5.translate(dx / 2, dy / 2);
 
-		// p5.image(image, 0, 0);
-
 		img.loadPixels();
 
 		for (let i = 0; i < img.width / pixelSize; i++) {
