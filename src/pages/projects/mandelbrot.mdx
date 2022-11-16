@@ -7,9 +7,9 @@ tags: [JavaScript, p5.js, WebGL]
 date: 2022-01-02
 ---
 
-import { Mandelbrot } from '@projects/mandelbrot';
-
 Visualização do conjunto de [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set) e do conjunto de [Julia](https://en.wikipedia.org/wiki/Julia_set) gerados por shader WebGL.
+
+import { Mandelbrot } from '@projects/mandelbrot';
 
 <div class="flex flex-wrap justify-center gap-4">
 	<Mandelbrot client:only="react" defaultZoom={0.55} defaultOffset={[-0.5, 0]} />

@@ -14,24 +14,9 @@ type WaveProps = {
 	frequency: number;
 };
 
-function indexToPosition(i: number) {
-	return i * (barWidth + barGap);
-}
-
-function evalPosition(pos: number, waveA: WaveProps, waveB: WaveProps, waveC: WaveProps) {
-	const normPos = pos / containerWidth;
-
-	const a = waveA.amplitude * Math.cos(normPos * waveA.frequency * 2 * Math.PI);
-	const b = waveB.amplitude * Math.cos(normPos * waveB.frequency * 2 * Math.PI);
-	const c = waveC.amplitude * Math.cos(normPos * waveC.frequency * 2 * Math.PI);
-	const wave = (a + b + c) / (waveA.amplitude + waveB.amplitude + waveC.amplitude);
-
-	return wave * wave;
-}
-
-const waveA = { amplitude: 5, frequency: 0.5 };
-const waveB = { amplitude: 3, frequency: 5.5 };
-const waveC = { amplitude: 1, frequency: 1.5 };
+const waveA: WaveProps = { amplitude: 5, frequency: 0.5 };
+const waveB: WaveProps = { amplitude: 3, frequency: 5.5 };
+const waveC: WaveProps = { amplitude: 1, frequency: 1.5 };
 
 const wave = Array(N)
 	.fill(0)
@@ -70,4 +55,19 @@ export function AudioWaves() {
 			</div>
 		</div>
 	);
+}
+
+function indexToPosition(i: number) {
+	return i * (barWidth + barGap);
+}
+
+function evalPosition(pos: number, waveA: WaveProps, waveB: WaveProps, waveC: WaveProps) {
+	const normPos = pos / containerWidth;
+
+	const a = waveA.amplitude * Math.cos(normPos * waveA.frequency * 2 * Math.PI);
+	const b = waveB.amplitude * Math.cos(normPos * waveB.frequency * 2 * Math.PI);
+	const c = waveC.amplitude * Math.cos(normPos * waveC.frequency * 2 * Math.PI);
+	const wave = (a + b + c) / (waveA.amplitude + waveB.amplitude + waveC.amplitude);
+
+	return wave * wave;
 }
