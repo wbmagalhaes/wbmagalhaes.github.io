@@ -14,8 +14,8 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 	const [size, setSize] = useState({ w: 800, h: 600 });
 
 	const [zoom, setZoom] = useState(defaultZoom);
-	const [x, setX] = useState(defaultOffset[0]);
-	const [y, setY] = useState(defaultOffset[1]);
+	const [origin_x, setOriginX] = useState(defaultOffset[0]);
+	const [origin_y, setOriginY] = useState(defaultOffset[1]);
 
 	const [julia_x, setJuliaX] = useState(defaultJulia ? defaultJulia[0] : 0);
 	const [julia_y, setJuliaY] = useState(defaultJulia ? defaultJulia[1] : 0);
@@ -42,53 +42,55 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 					<Sketch
 						size={size}
 						scale={2 / Math.exp(zoom)}
-						offset={[x, y]}
+						offset={[origin_x, origin_y]}
 						julia_const={defaultJulia ? [julia_x, julia_y] : undefined}
 					/>
 				</Suspense>
 			</div>
-			<div className="flex flex-col w-[90%] mt-4 mx-auto">
-				<label className="block mb-2 text-sm font-medium text-gray-900">
-					Origem X: {signedNumber(x, 3)}
-					<input
-						type="range"
-						onChange={(e) => setX(Number(e.target.value))}
-						value={x}
-						step={0.001}
-						min={-2}
-						max={2}
-						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-					/>
+			<div className="flex flex-col w-[90%] my-4 mx-auto">
+				<label className="mb-2 text-sm font-medium text-gray-900">
+					<div className="mb-2">Origem: {complexNumber(origin_x, origin_y, 3)}</div>
+					<div className="flex flex-row flex-wrap gap-3">
+						<input
+							type="range"
+							onChange={(e) => setOriginX(Number(e.target.value))}
+							value={origin_x}
+							step={0.001}
+							min={-2}
+							max={2}
+							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+						/>
+						<input
+							type="range"
+							onChange={(e) => setOriginY(Number(e.target.value))}
+							value={origin_y}
+							step={0.001}
+							min={-2}
+							max={2}
+							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+						/>
+					</div>
 				</label>
-				<label className="block mb-2 text-sm font-medium text-gray-900">
-					Origem Y: {signedNumber(y, 3)}
-					<input
-						type="range"
-						onChange={(e) => setY(Number(e.target.value))}
-						value={y}
-						step={0.001}
-						min={-2}
-						max={2}
-						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-					/>
-				</label>
-				<label className="block mb-2 text-sm font-medium text-gray-900">
-					Zoom: {zoom.toFixed(2)}
-					<input
-						type="range"
-						onChange={(e) => setZoom(Number(e.target.value))}
-						value={zoom}
-						step={0.01}
-						min={0.0}
-						max={15}
-						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-					/>
+
+				<label className="mb-2 text-sm font-medium text-gray-900">
+					<div className="mb-2">Zoom: {zoom.toFixed(2)}</div>
+					<div className="flex flex-row flex-wrap gap-3">
+						<input
+							type="range"
+							onChange={(e) => setZoom(Number(e.target.value))}
+							value={zoom}
+							step={0.01}
+							min={0.0}
+							max={15}
+							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+						/>
+					</div>
 				</label>
 
 				{defaultJulia && (
-					<>
-						<label className="block mb-2 text-sm font-medium text-gray-900">
-							Constante de Julia: {complexNumber(julia_x, julia_y, 3)}
+					<label className="mb-2 text-sm font-medium text-gray-900">
+						<div className="mb-2">Julia: {complexNumber(julia_x, julia_y, 3)}</div>
+						<div className="flex flex-row flex-wrap gap-3">
 							<input
 								type="range"
 								onChange={(e) => setJuliaX(Number(e.target.value))}
@@ -96,10 +98,8 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 								step={0.001}
 								min={-2}
 								max={2}
-								className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+								className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
 							/>
-						</label>
-						<label className="block mb-2 text-sm font-medium text-gray-900">
 							<input
 								type="range"
 								onChange={(e) => setJuliaY(Number(e.target.value))}
@@ -107,10 +107,10 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 								step={0.001}
 								min={-2}
 								max={2}
-								className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+								className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
 							/>
-						</label>
-					</>
+						</div>
+					</label>
 				)}
 			</div>
 		</div>
