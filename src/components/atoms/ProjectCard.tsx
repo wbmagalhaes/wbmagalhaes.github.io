@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 interface Props {
 	url?: string;
 	cover?: string;
@@ -9,7 +11,7 @@ interface Props {
 
 export default function ProjectCard({ url, cover, title, description, tags, date }: Props) {
 	return (
-		<article className="w-full max-w-xs flex flex-col bg-wm-secondary rounded-lg shadow-xl text-left overflow-hidden">
+		<article className="w-full max-w-xs flex flex-col bg-wm-secondary rounded-lg shadow-xl text-left overflow-hidden border border-wm-primary-100">
 			<a href={url} className="w-full h-48 grid place-items-center overflow-hidden">
 				<img src={cover} className="min-w-full min-h-full object-cover bg-gray-300" alt="Imagem de Capa" />
 			</a>
@@ -22,7 +24,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 			</div>
 
 			<div className="relative px-5 py-1 md:py-2 flex flex-row flex-wrap mt-auto gap-1 md:gap-2">
-				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-coal-200 sides-fade"></div>
+				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-primary-300 sides-fade"></div>
 				{tags?.map((tag, i) => (
 					<span
 						key={i}
@@ -42,28 +44,46 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 						day: '2-digit',
 					})}
 				</span>
-				<a
+				<motion.a
+					initial="normal"
+					whileHover="hover"
 					href={url}
-					className="inline-flex
-					ml-auto items-center py-1.5 px-3 rounded-lg
-					text-sm font-medium text-center text-white
-					bg-gradient-to-r from-wm-primary-300 to-wm-primary-400 hover:from-wm-primary-500 hover:to-wm-primary-600 transition duration-300"
+					className="flex gap-2
+					ml-auto items-center
+					text-sm font-medium text-wm-primary-300 hover:text-wm-primary-600"
 				>
 					Abrir
 					<svg
-						className="ml-2 w-4 h-4"
+						className="w-6 h-6"
 						aria-hidden="true"
 						fill="currentColor"
-						viewBox="0 0 20 20"
+						viewBox="0 0 24 24"
 						xmlns="http://www.w3.org/2000/svg"
 					>
-						<path
-							fillRule="evenodd"
-							d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-							clipRule="evenodd"
-						></path>
+						<motion.path
+							variants={{
+								normal: {
+									x: 0,
+									y: 0,
+									transition: {
+										ease: 'anticipate',
+										duration: 0.1,
+									},
+								},
+								hover: {
+									x: 3,
+									y: -3,
+									transition: {
+										ease: 'anticipate',
+										duration: 0.25,
+									},
+								},
+							}}
+							d="M14 4c0 .55.45 1 1 1h2.59l-9.13 9.13a.996.996 0 1 0 1.41 1.41L19 6.41V9c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1z"
+						/>
+						<path d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h5c.55 0 1-.45 1-1s-.45-1-1-1H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-.55-.45-1-1-1s-1 .45-1 1v5c0 .55-.45 1-1 1z" />
 					</svg>
-				</a>
+				</motion.a>
 			</div>
 		</article>
 	);
