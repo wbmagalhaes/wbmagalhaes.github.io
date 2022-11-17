@@ -46,7 +46,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 						type="range"
 						onChange={(e) => setX(Number(e.target.value))}
 						value={x}
-						step={0.01}
+						step={0.001}
 						min={-2}
 						max={2}
 						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -58,7 +58,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 						type="range"
 						onChange={(e) => setY(Number(e.target.value))}
 						value={y}
-						step={0.01}
+						step={0.001}
 						min={-2}
 						max={2}
 						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -71,8 +71,8 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 						onChange={(e) => setZoom(Number(e.target.value))}
 						value={zoom}
 						step={0.01}
-						min={0.1}
-						max={1000}
+						min={0.5}
+						max={10000}
 						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
 					/>
 				</label>
@@ -85,7 +85,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 								type="range"
 								onChange={(e) => setJuliaX(Number(e.target.value))}
 								value={julia_x}
-								step={0.01}
+								step={0.001}
 								min={-2}
 								max={2}
 								className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -97,7 +97,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 								type="range"
 								onChange={(e) => setJuliaY(Number(e.target.value))}
 								value={julia_y}
-								step={0.01}
+								step={0.001}
 								min={-2}
 								max={2}
 								className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
