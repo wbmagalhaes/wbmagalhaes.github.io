@@ -10,12 +10,8 @@ interface Props {
 export default function ProjectCard({ url, cover, title, description, tags, date }: Props) {
 	return (
 		<article className="w-full max-w-xs flex flex-col bg-wm-secondary rounded-lg shadow-xl text-left overflow-hidden">
-			<a href={url} className="w-full h-48 bg-cover m-auto text-center overflow-hidden">
-				<img
-					src={cover}
-					className="min-w-full min-h-full flex justify-center items-center"
-					alt="Imagem de Capa"
-				/>
+			<a href={url} className="w-full h-48 grid place-items-center overflow-hidden">
+				<img src={cover} className="min-w-full min-h-full object-cover bg-gray-300" alt="Imagem de Capa" />
 			</a>
 
 			<div className="flex-grow p-5">
