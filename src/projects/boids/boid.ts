@@ -1,14 +1,27 @@
 import { P5CanvasInstance } from 'react-p5-wrapper';
 
 export class Boid {
-	private size: number;
-	private maxVel: number;
-	private maxAcc: number;
-
 	private position: any;
 	private velocity: any;
 	private acceleration: any;
+
+	private size: number;
 	private color: any;
+
+	private maxVel = 100;
+	private maxAcc = 100;
+
+	private alignmentWeight = 3;
+	private cohesionWeight = 2;
+	private repulsionWeight = 35;
+	private clearWeight = 1;
+
+	private calcAlignment: any;
+	private calcCohesion: any;
+	private calcRepulsion: any;
+	private calcClear: any;
+	private clearDirA: any;
+	private clearDirB: any;
 
 	private totalAlignment: any;
 	private totalCohesion: any;
@@ -16,103 +29,113 @@ export class Boid {
 	private totalClear: any;
 
 	constructor(p5: P5CanvasInstance) {
-		this.size = 12;
-		this.maxVel = 3;
-		this.maxAcc = 0.1;
-
-		this.position = p5.createVector(p5.random(-1, 1), p5.random(-1, 1)).setMag(100);
-		this.velocity = p5.createVector(p5.random(1, 2), p5.random(-1, 1));
+		this.position = p5.createVector(p5.random(-1, 1) * 250, p5.random(-1, 1) * 250);
+		this.velocity = p5.createVector(p5.random(-100, 100), p5.random(-100, 100));
 		this.acceleration = p5.createVector(0);
+
+		this.calcAlignment = p5.createVector(0);
+		this.calcCohesion = p5.createVector(0);
+		this.calcRepulsion = p5.createVector(0);
+		this.calcClear = p5.createVector(0);
+		this.clearDirA = p5.createVector(0);
+		this.clearDirB = p5.createVector(0);
 
 		this.totalAlignment = p5.createVector(0);
 		this.totalCohesion = p5.createVector(0);
 		this.totalRepulsion = p5.createVector(0);
 		this.totalClear = p5.createVector(0);
 
-		this.color = p5.color(255);
+		this.size = p5.random(12, 18);
+		this.color = p5.color(p5.random(80, 200));
 	}
 
-	steer(others: Boid[], p5: P5CanvasInstance) {
+	steer(others: Boid[]) {
 		this.totalAlignment.mult(0);
 		this.totalCohesion.mult(0);
 		this.totalRepulsion.mult(0);
 		this.totalClear.mult(0);
 
 		others.forEach((boid) => {
-			this.totalAlignment.add(this.alignmentWith(boid, p5));
-			this.totalCohesion.add(this.cohesionWith(boid, p5));
-			this.totalRepulsion.add(this.repulsionWith(boid, p5));
-			this.totalClear.add(this.clearWith(boid, p5));
+			this.totalAlignment.add(this.alignmentWith(boid));
+			this.totalCohesion.add(this.cohesionWith(boid));
+			this.totalRepulsion.add(this.repulsionWith(boid));
+			this.totalClear.add(this.clearWith(boid));
 		});
 
 		this.acceleration.mult(0);
-		this.acceleration.add(this.totalAlignment.mult(1));
-		this.acceleration.add(this.totalCohesion.mult(1));
-		this.acceleration.add(this.totalRepulsion.mult(5));
-		this.acceleration.add(this.totalClear.mult(3));
+		this.acceleration.add(this.totalAlignment.mult(this.alignmentWeight));
+		this.acceleration.add(this.totalCohesion.mult(this.cohesionWeight));
+		this.acceleration.add(this.totalRepulsion.mult(this.repulsionWeight * 1000));
+		this.acceleration.add(this.totalClear.mult(this.clearWeight));
 		this.acceleration.limit(this.maxAcc);
 	}
 
-	alignmentWith(boid: Boid, p5: P5CanvasInstance) {
-		let result = p5.createVector(0).add(boid.velocity).sub(this.velocity);
-		return result;
+	alignmentWith(boid: Boid) {
+		this.calcAlignment.mult(0);
+
+		return this.calcAlignment.add(boid.velocity).sub(this.velocity);
 	}
 
-	cohesionWith(boid: Boid, p5: P5CanvasInstance) {
-		let result = p5.createVector(0).add(boid.position).sub(this.position);
-		let s = 1 + p5.max(0, boid.size - this.size);
-		return result.mult(s);
+	cohesionWith(boid: Boid) {
+		this.calcCohesion.mult(0);
+		this.calcCohesion.add(boid.position).sub(this.position);
+
+		let s = 1 + Math.max(0, boid.size - this.size);
+		return this.calcCohesion.mult(s);
 	}
 
-	repulsionWith(boid: Boid, p5: P5CanvasInstance) {
-		let result = p5.createVector(0).add(this.position).sub(boid.position);
-		let d = result.mag();
+	repulsionWith(boid: Boid) {
+		this.calcRepulsion.mult(0);
+		this.calcRepulsion.add(boid.position).sub(this.position);
 
-		if (d > 0) {
-			result.div(d * d);
+		let x = this.calcRepulsion.x;
+		let y = this.calcRepulsion.y;
+		let distSqr = x * x + y * y;
+
+		if (distSqr != 0) {
+			this.calcRepulsion.div(distSqr);
 		}
 
-		return result;
+		return this.calcRepulsion.mult(-1);
 	}
 
-	clearWith(boid: Boid, p5: P5CanvasInstance) {
-		let d = p5.createVector(0).add(boid.position).sub(this.position);
+	clearWith(boid: Boid) {
+		this.calcClear.mult(0);
+		this.calcClear.add(boid.position).sub(this.position);
 
-		let dir1 = p5.createVector(-d.y, d.x);
-		let dir2 = p5.createVector(d.y, -d.x);
+		this.clearDirA.set(-this.calcClear.y, +this.calcClear.x);
+		this.clearDirB.set(+this.calcClear.y, -this.calcClear.x);
 
-		let dot1 = this.velocity.dot(dir1);
-		let dot2 = this.velocity.dot(dir2);
+		let dot1 = this.velocity.dot(this.clearDirA);
+		let dot2 = this.velocity.dot(this.clearDirB);
 
-		return dot1 > dot2 ? dir1 : dir2;
+		return dot1 > dot2 ? this.clearDirA : this.clearDirB;
 	}
 
-	update(p5: P5CanvasInstance) {
-		this.velocity.add(this.acceleration).limit(this.maxVel);
-		this.position.add(this.velocity);
+	update(dt: number, canvasSize: { w: number; h: number }) {
+		this.velocity.add(this.acceleration.mult(dt)).limit(this.maxVel);
+		this.position.add(this.velocity.copy().mult(dt));
 
 		// Check left and right edges
-		if (this.position.x < (-p5.width - this.size) / 2.0) this.position.x = (p5.width + this.size) / 2.0;
-		else if (this.position.x > (p5.width + this.size) / 2.0) this.position.x = (-p5.width - this.size) / 2.0;
+		let limX = (canvasSize.w + this.size) / 2;
+		if (this.position.x < -limX) this.position.x = limX;
+		else if (this.position.x > limX) this.position.x = -limX;
 
 		// Check top and bottom edges
-		if (this.position.y < (-p5.height - this.size) / 2.0) this.position.y = (p5.height + this.size) / 2.0;
-		else if (this.position.y > (p5.height + this.size) / 2.0) this.position.y = (-p5.height - this.size) / 2.0;
+		let limY = (canvasSize.h + this.size) / 2;
+		if (this.position.y < -limY) this.position.y = limY;
+		else if (this.position.y > limY) this.position.y = -limY;
 	}
 
 	render(p5: P5CanvasInstance) {
-		let s = this.size / 3.0;
-
 		p5.push();
-
-		p5.translate(p5.width / 2, p5.height / 2);
 
 		p5.translate(this.position);
 		p5.rotate(this.velocity.heading() + Math.PI / 2);
 
 		p5.fill(this.color);
 		p5.noStroke();
-		p5.triangle(-s, 0, s, 0, 0, -this.size);
+		p5.triangle(-this.size / 3, 0, this.size / 3, 0, 0, -this.size);
 
 		p5.pop();
 	}

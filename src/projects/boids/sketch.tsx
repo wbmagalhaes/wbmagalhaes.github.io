@@ -14,7 +14,7 @@ export default function Sketch({ size }: Props) {
 function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	let size: { w: number; h: number } = { w: 800, h: 600 };
 
-	let boids: Boid[] = Array(32)
+	let boids: Boid[] = Array(64)
 		.fill(0)
 		.map(() => new Boid(p5));
 
@@ -34,12 +34,14 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	p5.draw = () => {
 		p5.background(51);
 
+		p5.translate(p5.width / 2, p5.height / 2);
+
 		boids.forEach((boid) => {
-			boid.steer(boids, p5);
+			boid.steer(boids);
 		});
 
 		boids.forEach((boid) => {
-			boid.update(p5);
+			boid.update(p5.deltaTime / 1000, size);
 			boid.render(p5);
 		});
 	};
