@@ -1,13 +1,16 @@
 ---
-import Layout from '@layouts/BaseLayout.astro';
+import Layout from '@layouts/HomeLayout.astro';
 import { loremIpsum } from 'lorem-ipsum';
 ---
 
 <Layout>
-	<section class="px-4 sm:px-6 py-6 sm:py-10 lg:max-w-6xl lg:mx-auto mb-12 sm:mb-8 text-justify">
-		<h1>Home</h1>
-		<p class="pt-3">{loremIpsum({ count: 8 })}</p>
-		<p class="pt-3">{loremIpsum({ count: 6 })}</p>
-		<p class="pt-3">{loremIpsum({ count: 7 })}</p>
+	<h1>Home</h1>
+	<section class="my-6">
+		<p class="indent-12">{loremIpsum({ count: 8 })}</p>
+		<p class="indent-12">{loremIpsum({ count: 1 })}</p>
+		<p class="indent-12">{loremIpsum({ count: 12 })}</p>
+		<p class="indent-12">{loremIpsum({ count: 6 })}</p>
+		<p class="indent-12">{loremIpsum({ count: 18 })}</p>
+		<p class="indent-12">{loremIpsum({ count: 7 })}</p>
 	</section>
 </Layout>
