@@ -27,13 +27,21 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 		});
 	}, [holderEl]);
 
+	function signedNumber(x: number, digits: number = 3) {
+		return x >= 0 ? '+' + x.toFixed(digits) : x.toFixed(digits);
+	}
+
+	function complexNumber(real: number, imaginary: number, digits: number = 3) {
+		return signedNumber(real, digits) + signedNumber(imaginary, digits) + 'i';
+	}
+
 	return (
 		<div className="container">
 			<div ref={holderEl} className="canvas-holder">
 				<Suspense fallback={<Loading />}>
 					<Sketch
 						size={size}
-						scale={1 / zoom}
+						scale={2 / Math.exp(zoom)}
 						offset={[x, y]}
 						julia_const={defaultJulia ? [julia_x, julia_y] : undefined}
 					/>
@@ -41,7 +49,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 			</div>
 			<div className="flex flex-col w-[90%] mt-4 mx-auto">
 				<label className="block mb-2 text-sm font-medium text-gray-900">
-					X: {x.toFixed(2)}
+					Origem X: {signedNumber(x, 3)}
 					<input
 						type="range"
 						onChange={(e) => setX(Number(e.target.value))}
@@ -53,7 +61,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 					/>
 				</label>
 				<label className="block mb-2 text-sm font-medium text-gray-900">
-					Y: {y.toFixed(2)}
+					Origem Y: {signedNumber(y, 3)}
 					<input
 						type="range"
 						onChange={(e) => setY(Number(e.target.value))}
@@ -65,14 +73,14 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 					/>
 				</label>
 				<label className="block mb-2 text-sm font-medium text-gray-900">
-					Zoom: {zoom}
+					Zoom: {zoom.toFixed(2)}
 					<input
 						type="range"
 						onChange={(e) => setZoom(Number(e.target.value))}
 						value={zoom}
 						step={0.01}
-						min={0.5}
-						max={10000}
+						min={0.0}
+						max={15}
 						className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
 					/>
 				</label>
@@ -80,7 +88,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 				{defaultJulia && (
 					<>
 						<label className="block mb-2 text-sm font-medium text-gray-900">
-							Parte Real: {julia_x.toFixed(2)}
+							Constante de Julia: {complexNumber(julia_x, julia_y, 3)}
 							<input
 								type="range"
 								onChange={(e) => setJuliaX(Number(e.target.value))}
@@ -92,7 +100,6 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 							/>
 						</label>
 						<label className="block mb-2 text-sm font-medium text-gray-900">
-							Parte Imaginária: {julia_y.toFixed(2)}i
 							<input
 								type="range"
 								onChange={(e) => setJuliaY(Number(e.target.value))}
