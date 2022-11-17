@@ -49,9 +49,9 @@ export function Boids() {
 					<Sketch size={size} options={options} />
 				</Suspense>
 			</div>
-			<div className="flex flex-col my-4 mr-auto gap-2">
+			<div className="flex flex-col ml-4 my-4 mr-auto gap-2">
 				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
-					<div className="place-self-end">Alinhamento: {options.alignmentWeight}</div>
+					<div className="place-self-start">Alinhamento: {options.alignmentWeight}</div>
 					<input
 						type="range"
 						onChange={(e) => setAlignment(Number(e.target.value))}
@@ -64,7 +64,7 @@ export function Boids() {
 				</label>
 
 				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
-					<div className="place-self-end">Coesão: {options.cohesionWeight}</div>
+					<div className="place-self-start">Coesão: {options.cohesionWeight}</div>
 					<input
 						type="range"
 						onChange={(e) => setCohesion(Number(e.target.value))}
@@ -77,7 +77,7 @@ export function Boids() {
 				</label>
 
 				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
-					<div className="place-self-end">Repulsão: {options.repulsionWeight}</div>
+					<div className="place-self-start">Repulsão: {options.repulsionWeight}</div>
 					<input
 						type="range"
 						onChange={(e) => setRepulsion(Number(e.target.value))}
@@ -90,7 +90,7 @@ export function Boids() {
 				</label>
 
 				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
-					<div className="place-self-end">Clear: {options.clearWeight}</div>
+					<div className="place-self-start">Clear: {options.clearWeight}</div>
 					<input
 						type="range"
 						onChange={(e) => setClear(Number(e.target.value))}

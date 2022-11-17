@@ -12,7 +12,7 @@ const { frontmatter } = Astro.props;
 
 <Layout>
 	<section class="px-4 sm:px-6 py-6 sm:py-10 lg:max-w-6xl lg:mx-auto mb-12 sm:mb-8">
-		<h1>{frontmatter.title}</h1>
+		<h1 class="border-b-2 border-wm-primary">{frontmatter.title}</h1>
 		<article class="project my-6">
 			<slot />
 		</article>
