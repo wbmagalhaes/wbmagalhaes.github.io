@@ -1,20 +1,5 @@
 import { P5CanvasInstance } from 'react-p5-wrapper';
-
-export class SteerOptions {
-	alignmentWeight = 2.5;
-	cohesionWeight = 3;
-	repulsionWeight = 1.1;
-	clearWeight = 0.5;
-
-	copy() {
-		let o = new SteerOptions();
-		o.alignmentWeight = this.alignmentWeight;
-		o.cohesionWeight = this.cohesionWeight;
-		o.repulsionWeight = this.repulsionWeight;
-		o.clearWeight = this.clearWeight;
-		return o;
-	}
-}
+import { SteerOptions } from './SteerOptions';
 
 export class Boid {
 	private position: any;

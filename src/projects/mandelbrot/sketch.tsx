@@ -1,25 +1,22 @@
 import { ReactP5Wrapper } from 'react-p5-wrapper';
 import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
+import { MandelbrotOptions } from './MandelbrotOptions';
 
 interface Props {
 	size: { w: number; h: number };
-	scale?: number;
-	offset?: [number, number];
-	julia_const?: [number, number];
+	options: MandelbrotOptions;
 }
 
-export default function Sketch({ size, scale = 1, offset = [0, 0], julia_const = undefined }: Props) {
-	return <ReactP5Wrapper sketch={sketch} size={size} scale={scale} offset={offset} julia_const={julia_const} />;
+export default function Sketch({ size, options }: Props) {
+	return <ReactP5Wrapper sketch={sketch} size={size} options={options} />;
 }
 
 function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	let size: { w: number; h: number } = { w: 800, h: 600 };
+	let options: MandelbrotOptions;
+	let scale = 1;
 
 	let program: any;
-
-	let scale: number | undefined = 1;
-	let offset: [number, number] | undefined = [0, 0];
-	let julia_const: [number, number] | undefined;
 
 	p5.setup = () => {
 		p5.createCanvas(size.w, size.h, p5.WEBGL);
@@ -32,21 +29,24 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	};
 
 	p5.updateWithProps = (props: SketchProps & Props) => {
-		scale = props.scale;
-		offset = props.offset;
-		julia_const = props.julia_const;
-
 		size = props.size;
 		p5.resizeCanvas(size.w, size.h);
+
+		options = props.options;
+		scale = 2 / Math.exp(options.zoom);
 	};
 
 	p5.draw = () => {
+		if (!options) {
+			return;
+		}
+
 		program.setUniform('u_resolution', [p5.width, p5.height]);
-		program.setUniform('u_offset', offset);
+		program.setUniform('u_offset', [options.offset.x, options.offset.y]);
 		program.setUniform('u_scale', scale);
 
-		program.setUniform('u_julia', !!julia_const);
-		program.setUniform('u_julia_constant', julia_const ?? [0, 0]);
+		program.setUniform('u_julia', !!options.julia_const);
+		program.setUniform('u_julia_constant', [options.julia_const?.x ?? 0, options.julia_const?.y ?? 0]);
 
 		p5.shader(program);
 		p5.plane(p5.width, p5.height);

@@ -12,8 +12,8 @@ Visualização do conjunto de [Mandelbrot](https://en.wikipedia.org/wiki/Mandelb
 import { Mandelbrot } from '@projects/mandelbrot';
 
 <div class="flex flex-wrap justify-center gap-4">
-	<Mandelbrot client:only="react" defaultZoom={0.2} defaultOffset={[-0.75, 0]} />
-	<Mandelbrot client:only="react" defaultZoom={0.3} defaultJulia={[-0.4, 0.6]} />
+	<Mandelbrot client:only="react" defaultZoom={0.2} defaultOffset={{ x: -0.75, y: 0 }} />
+	<Mandelbrot client:only="react" defaultZoom={0.3} defaultJulia={{ x: -0.4, y: 0.6 }} />
 </div>
 
 bla blah blah descrição

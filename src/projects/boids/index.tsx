@@ -1,46 +1,13 @@
-import { lazy, Suspense, useRef, useState, useEffect } from 'react';
+import { lazy, Suspense, useState } from 'react';
+import { useHolderSize } from '@core/useHolderSize';
 import Loading from '@atoms/Loading';
 
-import { SteerOptions } from './boid';
-
+import { SteerOptions } from './SteerOptions';
 const Sketch = lazy(() => import('./sketch'));
 
 export function Boids() {
-	const holderEl = useRef<HTMLDivElement>(null);
-	const [size, setSize] = useState({ w: 800, h: 600 });
-
+	const [holderEl, size] = useHolderSize();
 	const [options, setOptions] = useState(new SteerOptions());
-
-	function setAlignment(value: number) {
-		let o = options.copy();
-		o.alignmentWeight = value;
-		setOptions(o);
-	}
-
-	function setCohesion(value: number) {
-		let o = options.copy();
-		o.cohesionWeight = value;
-		setOptions(o);
-	}
-
-	function setRepulsion(value: number) {
-		let o = options.copy();
-		o.repulsionWeight = value;
-		setOptions(o);
-	}
-
-	function setClear(value: number) {
-		let o = options.copy();
-		o.clearWeight = value;
-		setOptions(o);
-	}
-
-	useEffect(() => {
-		setSize({
-			w: holderEl?.current?.offsetWidth ?? 800,
-			h: holderEl?.current?.offsetHeight ?? 600,
-		});
-	}, [holderEl]);
 
 	return (
 		<div className="container">
@@ -54,7 +21,12 @@ export function Boids() {
 					<div className="place-self-start">Alinhamento: {options.alignmentWeight}</div>
 					<input
 						type="range"
-						onChange={(e) => setAlignment(Number(e.target.value))}
+						onChange={(e) =>
+							setOptions({
+								...options,
+								alignmentWeight: Number(e.target.value),
+							})
+						}
 						value={options.alignmentWeight}
 						step={0.1}
 						min={0}
@@ -67,7 +39,12 @@ export function Boids() {
 					<div className="place-self-start">Coesão: {options.cohesionWeight}</div>
 					<input
 						type="range"
-						onChange={(e) => setCohesion(Number(e.target.value))}
+						onChange={(e) =>
+							setOptions({
+								...options,
+								cohesionWeight: Number(e.target.value),
+							})
+						}
 						value={options.cohesionWeight}
 						step={0.1}
 						min={0}
@@ -80,7 +57,12 @@ export function Boids() {
 					<div className="place-self-start">Repulsão: {options.repulsionWeight}</div>
 					<input
 						type="range"
-						onChange={(e) => setRepulsion(Number(e.target.value))}
+						onChange={(e) =>
+							setOptions({
+								...options,
+								repulsionWeight: Number(e.target.value),
+							})
+						}
 						value={options.repulsionWeight}
 						step={0.1}
 						min={0}
@@ -93,7 +75,12 @@ export function Boids() {
 					<div className="place-self-start">Clear: {options.clearWeight}</div>
 					<input
 						type="range"
-						onChange={(e) => setClear(Number(e.target.value))}
+						onChange={(e) =>
+							setOptions({
+								...options,
+								clearWeight: Number(e.target.value),
+							})
+						}
 						value={options.clearWeight}
 						step={0.1}
 						min={0}
