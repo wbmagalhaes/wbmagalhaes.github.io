@@ -79,13 +79,6 @@
 		.astro-code {
 			@apply p-6 rounded-lg;
 		}
-
-		.footer-fade {
-			mask-image: radial-gradient(ellipse at 50% 100%,
-					rgb(0 0 0 / 1) 0%,
-					rgb(0 0 0 / 0) 66%,
-					rgb(0 0 0 / 0) 100%);
-		}
 	}
 
 	footer {
@@ -127,6 +120,13 @@
 					}
 				}
 			}
+		}
+
+		.footer-fade {
+			mask-image: radial-gradient(ellipse at 50% 100%,
+					rgb(0 0 0 / 1) 0%,
+					rgb(0 0 0 / 0) 66%,
+					rgb(0 0 0 / 0) 100%);
 		}
 	}
 
