@@ -66,7 +66,7 @@ const soundVariants = {
 		},
 	},
 	show: {
-		opacity: [1, 0],
+		opacity: [1, 1, 1, 1, 0],
 		pathLength: [0, 1],
 		pathOffset: [0.5, 0],
 		x: [-10, 0],

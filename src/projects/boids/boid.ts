@@ -29,8 +29,8 @@ export class Boid {
 	private totalClear: any;
 
 	constructor(p5: P5CanvasInstance) {
-		this.position = p5.createVector(p5.random(-1, 1) * 250, p5.random(-1, 1) * 250);
-		this.velocity = p5.createVector(p5.random(-100, 100), p5.random(-100, 100));
+		this.position = p5.createVector(p5.random(-1, 1), p5.random(-1, 1)).mult(250);
+		this.velocity = p5.createVector(p5.random(-1, 1), p5.random(-1, 1)).mult(100);
 		this.acceleration = p5.createVector(0);
 
 		this.calcAlignment = p5.createVector(0);
