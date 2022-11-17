@@ -6,15 +6,16 @@ export class Boid {
 	private acceleration: any;
 
 	private size: number;
+	private visionRange: number;
 	private color: any;
 
 	private maxVel = 100;
 	private maxAcc = 100;
 
-	private alignmentWeight = 3;
-	private cohesionWeight = 2;
-	private repulsionWeight = 35;
-	private clearWeight = 1;
+	private alignmentWeight = 2.5;
+	private cohesionWeight = 3;
+	private repulsionWeight = 32;
+	private clearWeight = 0.5;
 
 	private calcAlignment: any;
 	private calcCohesion: any;
@@ -46,6 +47,7 @@ export class Boid {
 		this.totalClear = p5.createVector(0);
 
 		this.size = p5.random(12, 18);
+		this.visionRange = this.size * 10;
 		this.color = p5.color(p5.random(80, 200));
 	}
 
@@ -56,10 +58,16 @@ export class Boid {
 		this.totalClear.mult(0);
 
 		others.forEach((boid) => {
-			this.totalAlignment.add(this.alignmentWith(boid));
-			this.totalCohesion.add(this.cohesionWith(boid));
-			this.totalRepulsion.add(this.repulsionWith(boid));
-			this.totalClear.add(this.clearWith(boid));
+			let dx = boid.position.x - this.position.x;
+			let dy = boid.position.y - this.position.y;
+			let distSqr = dx * dx + dy * dy;
+
+			if (distSqr <= this.visionRange * this.visionRange) {
+				this.totalAlignment.add(this.alignmentWith(boid));
+				this.totalCohesion.add(this.cohesionWith(boid));
+				this.totalRepulsion.add(this.repulsionWith(boid));
+				this.totalClear.add(this.clearWith(boid));
+			}
 		});
 
 		this.acceleration.mult(0);
