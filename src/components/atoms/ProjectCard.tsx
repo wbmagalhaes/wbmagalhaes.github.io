@@ -24,7 +24,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 			</div>
 
 			<div className="relative px-5 py-1 md:py-2 flex flex-row flex-wrap mt-auto gap-1 md:gap-2">
-				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-primary-300 sides-fade"></div>
+				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-primary-200 sides-fade"></div>
 				{tags?.map((tag, i) => (
 					<span
 						key={i}
