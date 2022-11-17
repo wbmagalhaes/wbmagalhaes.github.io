@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-
 	h1 {
 		@apply text-4xl;
 	}
@@ -29,7 +28,6 @@
 	}
 
 	header {
-
 		nav {
 			a {
 				@apply border-y-2 border-transparent text-wm-primary p-2 sm:p-4 transition duration-300;
@@ -51,60 +49,6 @@
 				@apply bg-wm-secondary-400 border-b-wm-primary-600;
 			}
 		}
-	}
-
-	footer {
-
-		.circles {
-
-			div {
-				@apply gap-2;
-
-				div {
-					@apply rounded-full bg-gray-300;
-				}
-			}
-		}
-
-		.socials {
-
-			a[href] {
-				@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-200;
-
-				&:hover {
-					@apply scale-110;
-				}
-			}
-		}
-
-		.tool-list {
-			a {
-
-				div {
-					@apply inline-flex align-text-bottom;
-
-					svg {
-						@apply w-4 h-4 sm:w-5 sm:h-5;
-					}
-				}
-
-				&[href] span {
-					@apply underline text-wm-coal-200;
-
-					&:hover {
-						@apply text-wm-coal-100;
-					}
-				}
-			}
-		}
-	}
-
-	.sides-fade {
-		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
-	}
-
-	.footer-fade {
-		mask-image: radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 66%, rgba(0, 0, 0, 0) 100%);
 	}
 
 	.project {
@@ -129,11 +73,68 @@
 		}
 
 		astro-island:only-of-type .canvas-holder {
-			@apply max-w-4xl aspect-[16/9]
+			@apply max-w-4xl aspect-[16/9];
 		}
 
 		.astro-code {
 			@apply p-6 rounded-lg;
 		}
+
+		.footer-fade {
+			mask-image: radial-gradient(ellipse at 50% 100%,
+					rgb(0 0 0 / 1) 0%,
+					rgb(0 0 0 / 0) 66%,
+					rgb(0 0 0 / 0) 100%);
+		}
+	}
+
+	footer {
+		.circles {
+			div {
+				@apply gap-2;
+
+				div {
+					@apply rounded-full bg-gray-300;
+				}
+			}
+		}
+
+		.socials {
+			a[href] {
+				@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-200;
+
+				&:hover {
+					@apply scale-110;
+				}
+			}
+		}
+
+		.tool-list {
+			a {
+				div {
+					@apply inline-flex align-text-bottom;
+
+					svg {
+						@apply w-4 h-4 sm:w-5 sm:h-5;
+					}
+				}
+
+				&[href] span {
+					@apply underline text-wm-coal-200;
+
+					&:hover {
+						@apply text-wm-coal-100;
+					}
+				}
+			}
+		}
+	}
+
+	.sides-fade {
+		mask-image: linear-gradient(to right,
+				rgb(0 0 0 / 0) 0%,
+				rgb(0 0 0 / 1) 20%,
+				rgb(0 0 0 / 1) 80%,
+				rgb(0 0 0 / 0) 100%);
 	}
 }
