@@ -1,6 +1,7 @@
 {
 	"name": "@wbmagalhaes/github.io",
 	"type": "module",
+	"node": ">=14.16",
 	"version": "1.0.0",
 	"private": false,
 	"scripts": {
