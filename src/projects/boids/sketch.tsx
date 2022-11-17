@@ -1,19 +1,21 @@
 import { ReactP5Wrapper } from 'react-p5-wrapper';
 import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
 
-import { Boid } from './boid';
+import { Boid, SteerOptions } from './boid';
 
 interface Props {
 	size: { w: number; h: number };
+	options: SteerOptions;
 }
 
-export default function Sketch({ size }: Props) {
-	return <ReactP5Wrapper sketch={sketch} size={size} />;
+export default function Sketch({ size, options }: Props) {
+	return <ReactP5Wrapper sketch={sketch} size={size} options={options} />;
 }
 
 function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	let size: { w: number; h: number } = { w: 800, h: 600 };
 
+	let options = new SteerOptions();
 	let boids: Boid[] = Array(64)
 		.fill(0)
 		.map(() => new Boid(p5));
@@ -29,6 +31,8 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	p5.updateWithProps = (props: SketchProps & Props) => {
 		size = props.size;
 		p5.resizeCanvas(size.w, size.h);
+
+		options = props.options;
 	};
 
 	p5.draw = () => {
@@ -37,7 +41,7 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 		p5.translate(p5.width / 2, p5.height / 2);
 
 		boids.forEach((boid) => {
-			boid.steer(boids);
+			boid.steer(boids, options);
 		});
 
 		boids.forEach((boid) => {

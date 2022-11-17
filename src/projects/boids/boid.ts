@@ -1,5 +1,21 @@
 import { P5CanvasInstance } from 'react-p5-wrapper';
 
+export class SteerOptions {
+	alignmentWeight = 2.5;
+	cohesionWeight = 3;
+	repulsionWeight = 1.1;
+	clearWeight = 0.5;
+
+	copy() {
+		let o = new SteerOptions();
+		o.alignmentWeight = this.alignmentWeight;
+		o.cohesionWeight = this.cohesionWeight;
+		o.repulsionWeight = this.repulsionWeight;
+		o.clearWeight = this.clearWeight;
+		return o;
+	}
+}
+
 export class Boid {
 	private position: any;
 	private velocity: any;
@@ -11,11 +27,6 @@ export class Boid {
 
 	private maxVel = 100;
 	private maxAcc = 100;
-
-	private alignmentWeight = 2.5;
-	private cohesionWeight = 3;
-	private repulsionWeight = 32;
-	private clearWeight = 0.5;
 
 	private calcAlignment: any;
 	private calcCohesion: any;
@@ -51,7 +62,7 @@ export class Boid {
 		this.color = p5.color(p5.random(80, 200));
 	}
 
-	steer(others: Boid[]) {
+	steer(others: Boid[], options: SteerOptions) {
 		this.totalAlignment.mult(0);
 		this.totalCohesion.mult(0);
 		this.totalRepulsion.mult(0);
@@ -71,10 +82,10 @@ export class Boid {
 		});
 
 		this.acceleration.mult(0);
-		this.acceleration.add(this.totalAlignment.mult(this.alignmentWeight));
-		this.acceleration.add(this.totalCohesion.mult(this.cohesionWeight));
-		this.acceleration.add(this.totalRepulsion.mult(this.repulsionWeight * 1000));
-		this.acceleration.add(this.totalClear.mult(this.clearWeight));
+		this.acceleration.add(this.totalAlignment.mult(options.alignmentWeight));
+		this.acceleration.add(this.totalCohesion.mult(options.cohesionWeight));
+		this.acceleration.add(this.totalRepulsion.mult(options.repulsionWeight));
+		this.acceleration.add(this.totalClear.mult(options.clearWeight));
 		this.acceleration.limit(this.maxAcc);
 	}
 
@@ -99,6 +110,8 @@ export class Boid {
 		let x = this.calcRepulsion.x;
 		let y = this.calcRepulsion.y;
 		let distSqr = x * x + y * y;
+
+		distSqr /= this.visionRange * this.visionRange;
 
 		if (distSqr != 0) {
 			this.calcRepulsion.div(distSqr);
