@@ -7,6 +7,7 @@
 [![node.js version](https://img.shields.io/github/package-json/node/wbmagalhaes/wbmagalhaes.github.io?logo=nodedotjs)](https://nodejs.org/)
 [![Astro Version](https://img.shields.io/github/package-json/dependency-version/wbmagalhaes/wbmagalhaes.github.io/astro?logo=astro)](https://astro.build/)
 [![React Version](https://img.shields.io/github/package-json/dependency-version/wbmagalhaes/wbmagalhaes.github.io/react?logo=react)](https://pt-br.reactjs.org/)
+[![Tailwind Version](https://img.shields.io/github/package-json/dependency-version/wbmagalhaes/wbmagalhaes.github.io/tailwindcss?label=tailwind&logo=tailwindcss)](https://tailwindcss.com/)
 
 ## Sobre
 
