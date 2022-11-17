@@ -1,2 +1,0 @@
-# Flocking Simulator
-

@@ -1,6 +1,8 @@
 import { ReactP5Wrapper } from 'react-p5-wrapper';
 import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
 
+import { Boid } from './boid';
+
 interface Props {
 	size: { w: number; h: number };
 }
@@ -12,8 +14,12 @@ export default function Sketch({ size }: Props) {
 function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	let size: { w: number; h: number } = { w: 800, h: 600 };
 
+	let boids: Boid[] = Array(32)
+		.fill(0)
+		.map(() => new Boid(p5));
+
 	p5.setup = () => {
-		p5.createCanvas(size.w, size.h, p5.WEBGL);
+		p5.createCanvas(size.w, size.h);
 		p5.pixelDensity(1);
 
 		p5.noStroke();
@@ -27,5 +33,14 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 
 	p5.draw = () => {
 		p5.background(51);
+
+		boids.forEach((boid) => {
+			boid.steer(boids, p5);
+		});
+
+		boids.forEach((boid) => {
+			boid.update(p5);
+			boid.render(p5);
+		});
 	};
 }
