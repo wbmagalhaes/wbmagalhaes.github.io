@@ -49,13 +49,13 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 			</div>
 			<div className="flex flex-col w-[90%] my-4 mx-auto">
 				<label className="mb-2 text-sm font-medium text-gray-900">
-					<div className="mb-2">Origem: {complexNumber(origin_x, origin_y, 3)}</div>
+					<div className="mb-2">Origem: {complexNumber(origin_x, origin_y, 4)}</div>
 					<div className="flex flex-row flex-wrap gap-3">
 						<input
 							type="range"
 							onChange={(e) => setOriginX(Number(e.target.value))}
 							value={origin_x}
-							step={0.001}
+							step={0.0001}
 							min={-2}
 							max={2}
 							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -64,7 +64,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 							type="range"
 							onChange={(e) => setOriginY(Number(e.target.value))}
 							value={origin_y}
-							step={0.001}
+							step={0.0001}
 							min={-2}
 							max={2}
 							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -89,13 +89,13 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 
 				{defaultJulia && (
 					<label className="mb-2 text-sm font-medium text-gray-900">
-						<div className="mb-2">Julia: {complexNumber(julia_x, julia_y, 3)}</div>
+						<div className="mb-2">Julia: {complexNumber(julia_x, julia_y, 4)}</div>
 						<div className="flex flex-row flex-wrap gap-3">
 							<input
 								type="range"
 								onChange={(e) => setJuliaX(Number(e.target.value))}
 								value={julia_x}
-								step={0.001}
+								step={0.0001}
 								min={-2}
 								max={2}
 								className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
@@ -104,7 +104,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = [0, 0], defaultJul
 								type="range"
 								onChange={(e) => setJuliaY(Number(e.target.value))}
 								value={julia_y}
-								step={0.001}
+								step={0.0001}
 								min={-2}
 								max={2}
 								className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
