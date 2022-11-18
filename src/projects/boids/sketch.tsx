@@ -1,7 +1,7 @@
 import { ReactP5Wrapper } from 'react-p5-wrapper';
 import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
 
-import { Boid } from './Boid';
+import { Boid } from './BoidObject';
 import { SteerOptions } from './SteerOptions';
 
 interface Props {
