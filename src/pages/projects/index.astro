@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/PageLayout.astro';
 import ProjectCard from '@atoms/ProjectCard';
+import ToTopButton from '@atoms/ToTopButton';
 
 const projects = await Astro.glob('./*.mdx');
 projects.sort((a, b) => {
@@ -26,5 +27,6 @@ projects.sort((a, b) => {
 				/>
 			))
 		}
+		<ToTopButton client:load />
 	</section>
 </Layout>
