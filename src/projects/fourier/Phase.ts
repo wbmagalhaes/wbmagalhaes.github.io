@@ -14,10 +14,17 @@ export class Phase {
 
 	private subPhase: Phase | null = null;
 
-	constructor(
-		p5: P5CanvasInstance,
-		{ i = 0, position = Vector2.zero(), baseSize = 200 }: { i?: number; position?: Vector2; baseSize: number }
-	) {
+	constructor({
+		i = 0,
+		position = Vector2.zero(),
+		baseSize,
+		color,
+	}: {
+		i?: number;
+		position?: Vector2;
+		baseSize: number;
+		color: any;
+	}) {
 		this.id = i;
 		this.factor = i * 2 + 1;
 
@@ -25,7 +32,7 @@ export class Phase {
 		this.position = position;
 		this.radius = baseSize / (Math.PI * this.factor);
 
-		this.color = p5.color(p5.random(10, 160), p5.random(10, 160), p5.random(10, 160));
+		this.color = color;
 	}
 
 	update(angle: number): any {
@@ -65,9 +72,10 @@ export class Phase {
 
 	createSubPhase(p5: P5CanvasInstance) {
 		if (!this.subPhase) {
-			this.subPhase = new Phase(p5, {
+			this.subPhase = new Phase({
 				i: this.id + 1,
 				baseSize: this.baseSize,
+				color: this.color,
 			});
 		} else {
 			this.subPhase.createSubPhase(p5);
