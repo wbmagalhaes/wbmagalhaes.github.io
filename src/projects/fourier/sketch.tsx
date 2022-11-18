@@ -34,7 +34,7 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 
 	let phasesColor = p5.color(60, 92, 162, 192);
 	let trailColor = p5.color(222, 78, 78);
-	let graphColor = p5.color(60, 92, 162);
+	let graphColor = p5.color(27, 27, 27);
 
 	p5.setup = () => {
 		p5.createCanvas(size.w, size.h);
@@ -173,10 +173,10 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 		p5.noStroke();
 
 		p5.fill(0);
-		p5.circle(point.x, point.y, 6);
+		p5.circle(point.x, point.y, 4);
 
 		p5.fill(graphColor);
-		p5.circle(phaseX, point.y, 6);
+		p5.circle(phaseX, point.y, 4);
 
 		p5.pop();
 	}
