@@ -1,0 +1,40 @@
+.project {
+	p {
+		@apply my-2;
+	}
+
+	a[href] {
+		@apply text-blue-600 underline;
+	}
+
+	.container {
+		@apply flex flex-col w-full max-w-lg justify-start;
+	}
+
+	astro-island:only-of-type .container {
+		@apply max-w-4xl;
+	}
+
+	.canvas-holder {
+		@apply w-full max-w-lg mx-auto aspect-[8/6] rounded-md overflow-hidden;
+	}
+
+	astro-island:only-of-type .canvas-holder {
+		@apply max-w-4xl aspect-[16/9];
+	}
+
+	.astro-code {
+		@apply p-6 rounded-lg;
+	}
+}
+
+.sides-fade {
+	mask-image:
+		linear-gradient(
+			to right,
+			rgb(0 0 0 / 0) 0%,
+			rgb(0 0 0 / 1) 20%,
+			rgb(0 0 0 / 1) 80%,
+			rgb(0 0 0 / 0) 100%
+		);
+}

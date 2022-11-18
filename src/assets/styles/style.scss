@@ -1,3 +1,7 @@
+@import "header";
+@import "footer";
+@import "projects";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,116 +29,5 @@
 
 	h6 {
 		@apply text-base;
-	}
-
-	header {
-		nav {
-			a {
-				@apply border-y-2 border-transparent text-wm-primary p-2 sm:p-4 transition duration-300;
-
-				div {
-					@apply inline-flex align-middle sm:align-top;
-
-					svg {
-						@apply w-6 h-6;
-					}
-				}
-
-				span {
-					@apply hidden md:inline-flex;
-				}
-			}
-
-			a:hover {
-				@apply bg-wm-secondary-400 border-b-wm-primary-600;
-			}
-		}
-	}
-
-	.project {
-		p {
-			@apply my-2;
-		}
-
-		a[href] {
-			@apply text-blue-600 underline;
-		}
-
-		.container {
-			@apply flex flex-col w-full max-w-lg justify-start;
-		}
-
-		astro-island:only-of-type .container {
-			@apply max-w-4xl;
-		}
-
-		.canvas-holder {
-			@apply w-full max-w-lg mx-auto aspect-[8/6] rounded-md overflow-hidden;
-		}
-
-		astro-island:only-of-type .canvas-holder {
-			@apply max-w-4xl aspect-[16/9];
-		}
-
-		.astro-code {
-			@apply p-6 rounded-lg;
-		}
-	}
-
-	footer {
-		.circles {
-			div {
-				@apply gap-2;
-
-				div {
-					@apply rounded-full bg-gray-300;
-				}
-			}
-		}
-
-		.socials {
-			a[href] {
-				@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-200;
-
-				&:hover {
-					@apply scale-110;
-				}
-			}
-		}
-
-		.tool-list {
-			a {
-				div {
-					@apply inline-flex align-text-bottom;
-
-					svg {
-						@apply w-4 h-4 sm:w-5 sm:h-5;
-					}
-				}
-
-				&[href] span {
-					@apply underline text-wm-coal-200;
-
-					&:hover {
-						@apply text-wm-coal-100;
-					}
-				}
-			}
-		}
-
-		.footer-fade {
-			mask-image: radial-gradient(ellipse at 50% 100%,
-					rgb(0 0 0 / 1) 0%,
-					rgb(0 0 0 / 0) 66%,
-					rgb(0 0 0 / 0) 100%);
-		}
-	}
-
-	.sides-fade {
-		mask-image: linear-gradient(to right,
-				rgb(0 0 0 / 0) 0%,
-				rgb(0 0 0 / 1) 20%,
-				rgb(0 0 0 / 1) 80%,
-				rgb(0 0 0 / 0) 100%);
 	}
 }

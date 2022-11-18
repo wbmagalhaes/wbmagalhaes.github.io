@@ -1,0 +1,23 @@
+header {
+	nav {
+		a {
+			@apply border-y-2 border-transparent text-wm-primary p-2 sm:p-4 transition duration-300;
+
+			div {
+				@apply inline-flex align-middle sm:align-top;
+
+				svg {
+					@apply w-6 h-6;
+				}
+			}
+
+			span {
+				@apply hidden md:inline-flex;
+			}
+		}
+
+		a:hover {
+			@apply bg-wm-secondary-400 border-b-wm-primary-600;
+		}
+	}
+}

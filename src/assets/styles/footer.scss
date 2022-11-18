@@ -1,0 +1,51 @@
+footer {
+	.circles {
+		div {
+			@apply gap-2;
+
+			div {
+				@apply rounded-full bg-gray-300;
+			}
+		}
+	}
+
+	.socials {
+		a[href] {
+			@apply p-2.5 rounded-full bg-wm-coal-100 text-wm-coal-800 transition duration-200;
+
+			&:hover {
+				@apply scale-110;
+			}
+		}
+	}
+
+	.tool-list {
+		a {
+			div {
+				@apply inline-flex align-text-bottom;
+
+				svg {
+					@apply w-4 h-4 sm:w-5 sm:h-5;
+				}
+			}
+
+			&[href] span {
+				@apply underline text-wm-coal-200;
+
+				&:hover {
+					@apply text-wm-coal-100;
+				}
+			}
+		}
+	}
+
+	.footer-fade {
+		mask-image:
+			radial-gradient(
+				ellipse at 50% 100%,
+				rgb(0 0 0 / 1) 0%,
+				rgb(0 0 0 / 0) 66%,
+				rgb(0 0 0 / 0) 100%
+			);
+	}
+}
