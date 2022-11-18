@@ -50,7 +50,7 @@ export class Boid {
 
 		this.size = p5.random(12, 18);
 		this.visionRange = this.size * 10;
-		this.smellRange = this.size * 20;
+		this.smellRange = this.size * 15;
 		this.color = p5.color(p5.random(80, 200));
 	}
 

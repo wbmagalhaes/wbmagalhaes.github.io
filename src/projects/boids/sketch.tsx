@@ -29,11 +29,11 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 		p5.noStroke();
 		p5.fill(255);
 
-		boids = Array(40)
+		boids = Array(64)
 			.fill(0)
 			.map(() => new Boid(p5));
 
-		foods = Array(3)
+		foods = Array(2)
 			.fill(0)
 			.map(() => new Food(p5));
 	};

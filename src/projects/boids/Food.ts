@@ -24,9 +24,22 @@ export class Food {
 
 		p5.translate(this.position);
 
-		p5.fill(this.color);
 		p5.noStroke();
-		p5.circle(0, 0, this.size);
+		p5.fill(this.color);
+
+		let a = this.size / 2;
+		let b = this.size;
+
+		p5.beginShape();
+		p5.vertex(0, +a);
+		p5.vertex(-b, +b);
+		p5.vertex(-a, 0);
+		p5.vertex(-b, -b);
+		p5.vertex(0, -a);
+		p5.vertex(+b, -b);
+		p5.vertex(+a, 0);
+		p5.vertex(+b, +b);
+		p5.endShape(p5.CLOSE);
 
 		p5.pop();
 	}
