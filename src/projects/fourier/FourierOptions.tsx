@@ -1,3 +1,4 @@
 export class FourierOptions {
-	a: number = 1;
+	nPhases: number = 4;
+	frequency: number = 0.5;
 }

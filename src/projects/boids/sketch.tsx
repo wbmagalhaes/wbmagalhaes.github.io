@@ -41,6 +41,8 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 			return;
 		}
 
+		let dt = p5.deltaTime / 1000;
+
 		p5.background(51);
 
 		p5.translate(p5.width / 2, p5.height / 2);
@@ -50,7 +52,7 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 		});
 
 		boids.forEach((boid) => {
-			boid.update(p5.deltaTime / 1000, size);
+			boid.update(dt, size);
 			boid.render(p5);
 		});
 	};
