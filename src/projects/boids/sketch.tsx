@@ -2,6 +2,7 @@ import { ReactP5Wrapper } from 'react-p5-wrapper';
 import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
 
 import { Boid } from './BoidObject';
+import { Food } from './Food';
 import { SteerOptions } from './SteerOptions';
 
 interface Props {
@@ -17,9 +18,9 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	let size: { w: number; h: number } = { w: 800, h: 600 };
 
 	let options: SteerOptions;
-	let boids: Boid[] = Array(64)
-		.fill(0)
-		.map(() => new Boid(p5));
+
+	let boids: Boid[];
+	let foods: Food[];
 
 	p5.setup = () => {
 		p5.createCanvas(size.w, size.h);
@@ -27,6 +28,14 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 
 		p5.noStroke();
 		p5.fill(255);
+
+		boids = Array(40)
+			.fill(0)
+			.map(() => new Boid(p5));
+
+		foods = Array(3)
+			.fill(0)
+			.map(() => new Food(p5));
 	};
 
 	p5.updateWithProps = (props: SketchProps & Props) => {
@@ -47,8 +56,13 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 
 		p5.translate(p5.width / 2, p5.height / 2);
 
+		foods.forEach((foods) => {
+			foods.render(p5);
+			foods.recycle(p5);
+		});
+
 		boids.forEach((boid) => {
-			boid.steer(boids, options);
+			boid.steer(boids, foods, options);
 		});
 
 		boids.forEach((boid) => {

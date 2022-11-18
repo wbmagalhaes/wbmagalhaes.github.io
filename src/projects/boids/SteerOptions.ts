@@ -3,4 +3,5 @@ export class SteerOptions {
 	cohesionWeight = 3;
 	repulsionWeight = 1.1;
 	clearWeight = 0.5;
+	attractionWeight = 1;
 }

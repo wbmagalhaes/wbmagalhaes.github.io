@@ -88,6 +88,24 @@ export function Boids() {
 						className="max-w-full h-2 mr-auto my-auto bg-gray-200 rounded-lg appearance-none cursor-pointer"
 					/>
 				</label>
+
+				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
+					<div className="place-self-start">Comida: {options.attractionWeight}</div>
+					<input
+						type="range"
+						onChange={(e) =>
+							setOptions({
+								...options,
+								attractionWeight: Number(e.target.value),
+							})
+						}
+						value={options.attractionWeight}
+						step={0.1}
+						min={-5}
+						max={5}
+						className="max-w-full h-2 mr-auto my-auto bg-gray-200 rounded-lg appearance-none cursor-pointer"
+					/>
+				</label>
 			</div>
 		</div>
 	);

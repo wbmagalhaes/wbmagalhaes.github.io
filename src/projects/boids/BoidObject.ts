@@ -1,5 +1,6 @@
 import { P5CanvasInstance } from 'react-p5-wrapper';
 import { SteerOptions } from './SteerOptions';
+import { Food } from './Food';
 
 export class Boid {
 	private position: any;
@@ -8,10 +9,11 @@ export class Boid {
 
 	private size: number;
 	private visionRange: number;
+	private smellRange: number;
 	private color: any;
 
-	private maxVel = 100;
-	private maxAcc = 100;
+	private maxVel = 80;
+	private maxAcc = 120;
 
 	private calcAlignment: any;
 	private calcCohesion: any;
@@ -19,11 +21,13 @@ export class Boid {
 	private calcClear: any;
 	private clearDirA: any;
 	private clearDirB: any;
+	private calcAttraction: any;
 
 	private totalAlignment: any;
 	private totalCohesion: any;
 	private totalRepulsion: any;
 	private totalClear: any;
+	private totalAttraction: any;
 
 	constructor(p5: P5CanvasInstance) {
 		this.position = p5.createVector(p5.random(-1, 1), p5.random(-1, 1)).mult(250);
@@ -36,22 +40,26 @@ export class Boid {
 		this.calcClear = p5.createVector(0);
 		this.clearDirA = p5.createVector(0);
 		this.clearDirB = p5.createVector(0);
+		this.calcAttraction = p5.createVector(0);
 
 		this.totalAlignment = p5.createVector(0);
 		this.totalCohesion = p5.createVector(0);
 		this.totalRepulsion = p5.createVector(0);
 		this.totalClear = p5.createVector(0);
+		this.totalAttraction = p5.createVector(0);
 
 		this.size = p5.random(12, 18);
 		this.visionRange = this.size * 10;
+		this.smellRange = this.size * 20;
 		this.color = p5.color(p5.random(80, 200));
 	}
 
-	steer(others: Boid[], options: SteerOptions) {
+	steer(others: Boid[], foods: Food[], options: SteerOptions) {
 		this.totalAlignment.mult(0);
 		this.totalCohesion.mult(0);
 		this.totalRepulsion.mult(0);
 		this.totalClear.mult(0);
+		this.totalAttraction.mult(0);
 
 		others.forEach((boid) => {
 			let dx = boid.position.x - this.position.x;
@@ -66,12 +74,24 @@ export class Boid {
 			}
 		});
 
+		foods
+			.filter((food) => !food.eaten)
+			.forEach((food) => {
+				let dx = food.position.x - this.position.x;
+				let dy = food.position.y - this.position.y;
+				let distSqr = dx * dx + dy * dy;
+
+				if (distSqr <= this.smellRange * this.smellRange) {
+					this.totalAttraction.add(this.attractWith(food));
+				}
+			});
+
 		this.acceleration.mult(0);
 		this.acceleration.add(this.totalAlignment.mult(options.alignmentWeight));
 		this.acceleration.add(this.totalCohesion.mult(options.cohesionWeight));
 		this.acceleration.add(this.totalRepulsion.mult(options.repulsionWeight));
 		this.acceleration.add(this.totalClear.mult(options.clearWeight));
-		this.acceleration.limit(this.maxAcc);
+		this.acceleration.add(this.totalAttraction.mult(options.attractionWeight));
 	}
 
 	alignmentWith(boid: Boid) {
@@ -118,7 +138,30 @@ export class Boid {
 		return dot1 > dot2 ? this.clearDirA : this.clearDirB;
 	}
 
+	attractWith(food: Food) {
+		this.calcAttraction.mult(0);
+		this.calcAttraction.add(food.position).sub(this.position);
+
+		let x = this.calcAttraction.x;
+		let y = this.calcAttraction.y;
+		let distSqr = x * x + y * y;
+
+		if (distSqr < this.size * this.size) {
+			food.setEaten();
+		}
+
+		distSqr /= this.smellRange * this.smellRange;
+
+		if (distSqr != 0) {
+			this.calcAttraction.div(distSqr);
+		}
+
+		return this.calcAttraction;
+	}
+
 	update(dt: number, canvasSize: { w: number; h: number }) {
+		this.acceleration.limit(this.maxAcc);
+
 		this.velocity.add(this.acceleration.mult(dt)).limit(this.maxVel);
 		this.position.add(this.velocity.copy().mult(dt));
 

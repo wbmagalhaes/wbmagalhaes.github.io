@@ -80,7 +80,7 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 		drawBackground();
 
 		phase.update(angle);
-		phase.draw(p5);
+		phase.render(p5);
 
 		let point = phase.getPoint();
 		addPoint(point);

@@ -52,7 +52,7 @@ export class Phase {
 		return new Vector2(this.point.x + subPoint.x, this.point.y + subPoint.y);
 	}
 
-	draw(p5: P5CanvasInstance) {
+	render(p5: P5CanvasInstance) {
 		p5.push();
 
 		p5.strokeWeight(2);
@@ -65,7 +65,7 @@ export class Phase {
 		p5.stroke(33, 26, 77, 127);
 		p5.line(0, 0, this.point.x, this.point.y);
 
-		this.subPhase?.draw(p5);
+		this.subPhase?.render(p5);
 
 		p5.pop();
 	}
