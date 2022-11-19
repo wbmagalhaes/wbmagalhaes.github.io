@@ -1,55 +1,13 @@
-export default function Top() {
-	// hud-top
+import { motion } from 'framer-motion';
+import { pulse, flash } from './animations';
+
+function Sphere() {
+	return <image transform="translate(425, 30)" width="150" height="150" href="/images/sphere.gif" />;
+}
+
+function Arcs() {
 	return (
-		<g className="hud-top">
-			<g transform="translate(0, 107)">
-				<g className="stroke-none fill-[#76ff76]" transform="translate(170, 0) ">
-					<circle cx="0" cy="0" r="8" />
-					<circle cx="35" cy="0" r="8" />
-					<circle cx="70" cy="0" r="8" />
-					<circle cx="105" cy="0" r="8" />
-					<circle cx="140" cy="0" r="8" />
-				</g>
-
-				<g className="stroke-none fill-[#76ff76]" transform="translate(350, 0)">
-					<circle cx="0" cy="-6" r="4" />
-					<circle className="fill-[#ae00ff]" cx="0" cy="6" r="4" />
-					<circle cx="12" cy="-6" r="4" />
-					<circle cx="12" cy="6" r="4" />
-					<circle className="fill-[#ae00ff]" cx="24" cy="-6" r="4" />
-					<circle cx="24" cy="6" r="4" />
-				</g>
-
-				<g className="stroke-[#76ff76] fill-[#76ff76]" transform="translate(640, 0)">
-					<g transform="translate(0, 0)">
-						<circle className="fill-none" r="8" />
-						<circle className="stroke-none" r="8" />
-					</g>
-					<g transform="translate(35, 0)">
-						<circle className="fill-none" r="8" />
-						<circle className="stroke-none" r="8" />
-					</g>
-					<g transform="translate(70, 0)">
-						<circle className="fill-none" r="8" />
-						<circle className="stroke-none" r="8" />
-					</g>
-					<g transform="translate(105, 0)">
-						<circle className="fill-none" r="8" />
-						<circle className="stroke-none" r="8" />
-					</g>
-					<g transform="translate(140, 0)">
-						<circle className="fill-none" r="8" />
-						<circle className="stroke-none" r="8" />
-					</g>
-					<g transform="translate(175, 0)">
-						<circle className="fill-none" r="8" />
-						<circle className="stroke-none" r="8" />
-					</g>
-				</g>
-			</g>
-
-			<image transform="translate(425, 30)" width="150" height="150" href="/images/sphere.gif" />
-
+		<>
 			<g className="fill-[#ae00ff]">
 				<path d="M625.22,74.29H603l-.2-.54A109.84,109.84,0,0,0,397,72.52l-.2.53H375.56a.83.83,0,0,1,0-1.65h20.07a111.49,111.49,0,0,1,208.54,1.24h21.05a.83.83,0,1,1,0,1.65Z" />
 			</g>
@@ -60,6 +18,66 @@ export default function Top() {
 				<path d="M393.23,64.91H375.56a.83.83,0,0,0,0,1.65h17.67a.83.83,0,0,0,0-1.65Z" />
 				<path d="M625.22,64.91H607.17a.83.83,0,0,0,0,1.65h18.05a.83.83,0,1,0,0-1.65Z" />
 			</g>
+		</>
+	);
+}
+
+function Circles() {
+	return (
+		<g transform="translate(0, 107)">
+			<g className="stroke-none fill-[#76ff76]" transform="translate(170, 0) ">
+				<motion.circle variants={pulse} cx="0" cy="0" r="8" />
+				<motion.circle variants={pulse} cx="35" cy="0" r="8" />
+				<motion.circle variants={pulse} cx="70" cy="0" r="8" />
+				<motion.circle variants={pulse} cx="105" cy="0" r="8" />
+				<motion.circle variants={pulse} cx="140" cy="0" r="8" />
+			</g>
+
+			<g className="stroke-none fill-[#76ff76]" transform="translate(350, 0)">
+				<motion.circle variants={pulse} cx="0" cy="-6" r="4" />
+				<motion.circle variants={pulse} className="fill-[#ae00ff]" cx="0" cy="6" r="4" />
+				<motion.circle variants={pulse} cx="12" cy="-6" r="4" />
+				<motion.circle variants={pulse} cx="12" cy="6" r="4" />
+				<motion.circle variants={pulse} className="fill-[#ae00ff]" cx="24" cy="-6" r="4" />
+				<motion.circle variants={pulse} cx="24" cy="6" r="4" />
+			</g>
+
+			<g className="stroke-[#76ff76] fill-[#76ff76]" transform="translate(640, 0)">
+				<g transform="translate(0, 0)">
+					<motion.circle className="fill-none" r="8" />
+					<motion.circle variants={pulse} className="stroke-none" r="8" />
+				</g>
+				<g transform="translate(35, 0)">
+					<motion.circle className="fill-none" r="8" />
+					<motion.circle variants={pulse} className="stroke-none" r="8" />
+				</g>
+				<g transform="translate(70, 0)">
+					<motion.circle className="fill-none" r="8" />
+					<motion.circle variants={pulse} className="stroke-none" r="8" />
+				</g>
+				<g transform="translate(105, 0)">
+					<motion.circle className="fill-none" r="8" />
+					<motion.circle variants={pulse} className="stroke-none" r="8" />
+				</g>
+				<g transform="translate(140, 0)">
+					<motion.circle className="fill-none" r="8" />
+					<motion.circle variants={pulse} className="stroke-none" r="8" />
+				</g>
+				<g transform="translate(175, 0)">
+					<motion.circle className="fill-none" r="8" />
+					<motion.circle variants={pulse} className="stroke-none" r="8" />
+				</g>
+			</g>
 		</g>
+	);
+}
+
+export default function Top() {
+	return (
+		<motion.g variants={flash} custom={3.2}>
+			<Circles />
+			<Sphere />
+			<Arcs />
+		</motion.g>
 	);
 }
