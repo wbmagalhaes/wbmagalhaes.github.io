@@ -9,8 +9,9 @@ date: 2022-01-06
 Originalmente, foi criada para o site do evento "Jornada Uniceplac 2020" em JavaScript vanilla e CSS.
 Esta é uma reprodução que utiliza React.js na estruturação do elemento svg e Framer Motion para a orquestração das animações.
 
+import './hud.scss';
 import { HudAnim } from '@projects/hud-anim';
 
 <div class="flex justify-center">
-	<HudAnim client:only="react" />
+	<HudAnim client:load />
 </div>

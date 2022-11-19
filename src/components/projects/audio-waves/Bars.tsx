@@ -15,7 +15,7 @@ export function Bars({ active, direction, wave, barWidth }: Props) {
 					key={i}
 					variants={barsVariants}
 					custom={point.y}
-					className="stroke-none fill-[url(#bar-gradient)]"
+					className=" fill-[url(#bar-gradient)]"
 					x={point.x * direction}
 					y={-200}
 					width={barWidth}

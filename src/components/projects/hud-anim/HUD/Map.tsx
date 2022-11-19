@@ -1,6 +1,21 @@
 import { motion } from 'framer-motion';
 import { pulse, fadeIn } from './animations';
 
+export default function Map() {
+	return (
+		<motion.g variants={fadeIn} custom={4.75}>
+			<clipPath id="clip-path" transform="translate(-2.5)">
+				<path d="M875.61,137.74H589.35c-12.1,36.61-46.19,63-86.39,63s-74.29-26.4-86.39-63H128.17a461.56,461.56,0,0,0-43.49,423H919.1a461.56,461.56,0,0,0-43.49-423Z" />
+			</clipPath>
+
+			<g className="opacity-60 fill-hud-primary " style={{ clipPath: 'url(#clip-path)' }}>
+				<TopographicLines />
+				<Grid />
+			</g>
+		</motion.g>
+	);
+}
+
 function TopographicLines() {
 	return (
 		<>
@@ -625,20 +640,5 @@ function Grid() {
 				<motion.rect variants={pulse} x="685.67" y="185.14" width="49.4" height="49.4" />
 			</g>
 		</>
-	);
-}
-
-export default function Map() {
-	return (
-		<motion.g variants={fadeIn} custom={4.75}>
-			<clipPath id="clip-path" transform="translate(-2.5)">
-				<path d="M875.61,137.74H589.35c-12.1,36.61-46.19,63-86.39,63s-74.29-26.4-86.39-63H128.17a461.56,461.56,0,0,0-43.49,423H919.1a461.56,461.56,0,0,0-43.49-423Z" />
-			</clipPath>
-
-			<g className="opacity-60 fill-[#76ff76] stroke-none" style={{ clipPath: 'url(#clip-path)' }}>
-				<TopographicLines />
-				<Grid />
-			</g>
-		</motion.g>
 	);
 }

@@ -1,9 +1,19 @@
 import { motion } from 'framer-motion';
 import { fadeIn, fillPath, fillPathMiddle } from './animations';
 
+export default function Border() {
+	return (
+		<>
+			<MainBorder />
+			<Arcs />
+			<BottomBorder />
+		</>
+	);
+}
+
 function Arcs() {
 	return (
-		<g className="fill-none stroke-2 stroke-[#ae00ff]">
+		<g className=" stroke-2 stroke-hud-secondary">
 			<motion.path
 				variants={fillPathMiddle}
 				custom={{ delay: 0, duration: 1 }}
@@ -26,8 +36,8 @@ function Arcs() {
 			/>
 
 			<motion.g variants={fadeIn} custom={1}>
-				<circle className="stroke-none fill-[#ae00ff]" cx="54.98" cy="430.21" r="4.4" />
-				<circle className="stroke-none fill-[#ae00ff]" cx="917.53" cy="240.7" r="4.4" />
+				<circle className=" fill-hud-secondary" cx="54.98" cy="430.21" r="4.4" />
+				<circle className=" fill-hud-secondary" cx="917.53" cy="240.7" r="4.4" />
 			</motion.g>
 		</g>
 	);
@@ -35,7 +45,7 @@ function Arcs() {
 
 function MainBorder() {
 	return (
-		<g className="fill-none stroke-2 stroke-[#76ff76]">
+		<g className=" stroke-2 stroke-hud-primary">
 			<motion.path
 				variants={fillPath}
 				custom={{ delay: 1.35, duration: 1.25 }}
@@ -52,35 +62,15 @@ function MainBorder() {
 
 function BottomBorder() {
 	return (
-		<g className="stroke-[#ae00ff]">
-			<motion.path
-				variants={fillPath}
-				custom={{ delay: 2.75, duration: 0.5 }}
-				className="purple stroke"
-				d="M86.74,561.67H252.18"
-			/>
+		<g className="stroke-hud-secondary">
+			<motion.path variants={fillPath} custom={{ delay: 2.75, duration: 0.5 }} d="M86.74,561.67H252.18" />
 			<motion.path
 				variants={fillPathMiddle}
 				custom={{ delay: 2.75, duration: 0.5 }}
-				className="stroke-[#76ff76]"
+				className="stroke-hud-primary"
 				d="M691.09,561.67H307.45"
 			/>
-			<motion.path
-				variants={fillPath}
-				custom={{ delay: 2.75, duration: 0.5 }}
-				className="purple stroke"
-				d="M911.85,561.67H746.41"
-			/>
+			<motion.path variants={fillPath} custom={{ delay: 2.75, duration: 0.5 }} d="M911.85,561.67H746.41" />
 		</g>
-	);
-}
-
-export default function Border() {
-	return (
-		<>
-			<MainBorder />
-			<Arcs />
-			<BottomBorder />
-		</>
 	);
 }

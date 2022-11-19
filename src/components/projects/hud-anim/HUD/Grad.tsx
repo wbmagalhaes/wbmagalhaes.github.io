@@ -3,7 +3,7 @@ import { flash, slideFromLeft, slideFromRight } from './animations';
 
 export default function Grad() {
 	return (
-		<motion.g variants={flash} custom={3.75} className="fill-[#76ff76] ">
+		<motion.g variants={flash} custom={3.75} className="fill-hud-primary">
 			<motion.path
 				variants={slideFromLeft}
 				custom={{ delay: 4, duration: 0.5 }}

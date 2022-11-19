@@ -1,0 +1,19 @@
+@tailwind base;
+
+@layer base {
+	.fill-hud-primary {
+		@apply fill-[#76ff76] stroke-none;
+	}
+
+	.fill-hud-secondary {
+		@apply fill-[#ae00ff] stroke-none;
+	}
+
+	.stroke-hud-primary {
+		@apply stroke-[#76ff76] fill-none;
+	}
+
+	.stroke-hud-secondary {
+		@apply stroke-[#ae00ff] fill-none;
+	}
+}

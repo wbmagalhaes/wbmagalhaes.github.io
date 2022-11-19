@@ -1,6 +1,17 @@
 import { motion } from 'framer-motion';
 import { fillPath, fadeIn } from './animations';
 
+export default function Arrows() {
+	return (
+		<>
+			<g className="stroke-hud-primary  stroke-2">
+				<Paths />
+				<Points />
+			</g>
+		</>
+	);
+}
+
 function Paths() {
 	const delay = 4.5;
 	const duration = 0.3;
@@ -38,17 +49,6 @@ function Points() {
 			<motion.circle variants={fadeIn} custom={delay} cx="991.4" cy="410.47" r="5.5" />
 			<motion.circle variants={fadeIn} custom={delay} cx="975.74" cy="521.77" r="5.5" />
 			<motion.circle variants={fadeIn} custom={delay} cx="934.51" cy="636.24" r="5.5" />
-		</>
-	);
-}
-
-export default function Arrows() {
-	return (
-		<>
-			<g className="stroke-[#76ff76] fill-none stroke-2">
-				<Paths />
-				<Points />
-			</g>
 		</>
 	);
 }
