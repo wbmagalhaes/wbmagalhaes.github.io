@@ -2,16 +2,16 @@
 import Layout from '@layouts/PageLayout.astro';
 import ProjectCard from '@atoms/ProjectCard';
 import ToTopButton from '@atoms/ToTopButton';
-import { getSlugFromPath } from '@core/Path';
+import { getSlugFromURL } from '@core/Path';
 
 async function getProjects() {
-	const all = await Astro.glob('../../components/projects/**/*.mdx');
+	const all = await Astro.glob('../../data/projects/**/*.mdx');
 
 	return all
 		.filter((page) => !page.frontmatter.draft)
 		.map((page) => {
 			return {
-				slug: getSlugFromPath(page.url),
+				slug: getSlugFromURL(page.url),
 				...page,
 			};
 		})

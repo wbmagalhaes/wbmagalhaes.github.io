@@ -1,11 +1,11 @@
 ---
 import Layout from '@layouts/ProjectLayout.astro';
-import { getSlugFromPath } from '@core/Path';
+import { getSlugFromURL } from '@core/Path';
 
 export async function getStaticPaths() {
-	const all = await Astro.glob('../../components/projects/**/*.mdx');
+	const all = await Astro.glob('../../data/projects/**/*.mdx');
 	return all.map(({ url, ...page }) => {
-		const slug = getSlugFromPath(url);
+		const slug = getSlugFromURL(url);
 
 		return {
 			params: {
