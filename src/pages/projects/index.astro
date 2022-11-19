@@ -2,28 +2,42 @@
 import Layout from '@layouts/PageLayout.astro';
 import ProjectCard from '@atoms/ProjectCard';
 import ToTopButton from '@atoms/ToTopButton';
+import { getSlugFromPath } from '@core/Path';
 
-const projects = await Astro.glob('./*.mdx');
-projects.sort((a, b) => {
-	const dateA = new Date(a.frontmatter.date).getTime();
-	const dateB = new Date(b.frontmatter.date).getTime();
-	return dateB - dateA;
-});
+async function getProjects() {
+	const all = await Astro.glob('../../components/projects/**/*.mdx');
+
+	return all
+		.filter((page) => !page.frontmatter.draft)
+		.map((page) => {
+			return {
+				slug: getSlugFromPath(page.url),
+				...page,
+			};
+		})
+		.sort((pageA, pageB) => {
+			const dateA = new Date(pageA.frontmatter.date).getTime();
+			const dateB = new Date(pageB.frontmatter.date).getTime();
+			return dateB - dateA;
+		});
+}
+
+const projects = await getProjects();
 ---
 
 <Layout>
 	<h1>Projetos</h1>
 	<section class="grid sm:grid-cols-2 md:grid-cols-3 justify-items-center gap-12 my-6">
 		{
-			projects.map((project) => (
+			projects.map((page) => (
 				<ProjectCard
 					client:load
-					url={project.url}
-					cover={project.frontmatter.cover}
-					title={project.frontmatter.title}
-					description={project.frontmatter.description}
-					tags={project.frontmatter.tags}
-					date={project.frontmatter.date}
+					url={page.slug}
+					cover={page.frontmatter.cover}
+					title={page.frontmatter.title}
+					description={page.frontmatter.description}
+					tags={page.frontmatter.tags}
+					date={page.frontmatter.date}
 				/>
 			))
 		}

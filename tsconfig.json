@@ -18,11 +18,12 @@
 			"@images/*": ["src/assets/images/*"],
 			"@styles/*": ["src/assets/styles/*"],
 			"@components/*": ["src/components/*"],
+			"@data/*": ["src/data/*"],
 			"@atoms/*": ["src/components/atoms/*"],
 			"@core/*": ["src/components/core/*"],
 			"@widgets/*": ["src/components/widgets/*"],
 			"@icons/*": ["src/components/icons/*"],
-			"@projects/*": ["src/projects/*"],
+			"@projects/*": ["src/components/projects/*"],
 			"@layouts/*": ["src/layouts/*"]
 		}
 	}
