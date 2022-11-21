@@ -16,4 +16,8 @@
 	.stroke-hud-secondary {
 		@apply stroke-[#ae00ff] fill-none;
 	}
+
+	.shadow-hud-primary {
+		@apply filter: drop-shadow(0 4px 3px rgb(118 255 118 / 0.5))
+	}
 }
