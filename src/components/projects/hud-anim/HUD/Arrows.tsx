@@ -246,7 +246,7 @@ function Button({ children, cx, cy, r }: { children?: any; cx: number; cy: numbe
 			fill="rgb(0 0 0 / 0.25)"
 			className="cursor-pointer"
 		>
-			<circle className="shadow-hud-primary" strokeWidth="3" cx={cx} cy={cy} r={r} />
+			<circle className="shadow-hud-primary hover:shadow-hud-primary-lg" strokeWidth="3" cx={cx} cy={cy} r={r} />
 			<g transform={`translate(${cx - r / 2}, ${cy - r / 2})`}>{children}</g>
 		</motion.g>
 	);

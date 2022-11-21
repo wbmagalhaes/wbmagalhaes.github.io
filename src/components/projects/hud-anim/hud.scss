@@ -18,6 +18,10 @@
 	}
 
 	.shadow-hud-primary {
-		filter: drop-shadow(0 0 12px rgb(118 255 118 / 0.4))
+		filter: drop-shadow(0 0 6px rgb(118 255 118 / 0.3))
+	}
+
+	.shadow-hud-primary-lg {
+		filter: drop-shadow(0 0 12px rgb(118 255 118 / 0.3))
 	}
 }
