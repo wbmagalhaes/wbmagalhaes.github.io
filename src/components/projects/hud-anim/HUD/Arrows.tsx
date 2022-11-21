@@ -244,8 +244,9 @@ function Button({ children, cx, cy, r }: { children?: any; cx: number; cy: numbe
 			variants={flash}
 			custom={delay}
 			fill="transparent"
+			className="cursor-pointer"
 		>
-			<circle className="shadow-md shadow-current" strokeWidth="2" cx={cx} cy={cy} r={r} />
+			<circle className="drop-shadow-md drop-shadow-current" strokeWidth="2" cx={cx} cy={cy} r={r} />
 			<g transform={`translate(${cx - r / 2}, ${cy - r / 2})`}>{children}</g>
 		</motion.g>
 	);
