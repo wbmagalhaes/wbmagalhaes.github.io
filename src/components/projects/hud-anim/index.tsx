@@ -21,15 +21,17 @@ export function HudAnim() {
 					initial="hidden"
 					animate={controls}
 					className="max-w-[90%] max-h-[90%]"
-					viewBox="0 0 997.4 699.66"
+					viewBox="0 0 1197.4 699.66"
 					strokeLinecap="round"
 				>
-					<HUD.Top />
-					<HUD.Border />
-					<HUD.Grad />
-					<HUD.Arrows />
-					<HUD.Map />
-					<HUD.Bottom />
+					<g transform="translate(100, 0)">
+						<HUD.Top />
+						<HUD.Border />
+						<HUD.Grad />
+						<HUD.Arrows />
+						<HUD.Map />
+						<HUD.Bottom />
+					</g>
 				</motion.svg>
 
 				<motion.button
