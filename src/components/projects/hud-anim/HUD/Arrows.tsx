@@ -54,7 +54,7 @@ function Points() {
 	);
 }
 
-function Buttons({ size, offset }: { size: number, offset: number }) {
+function Buttons({ size, offset }: { size: number; offset: number }) {
 	return (
 		<>
 			<g transform={`translate(-${offset}, 0)`}>
@@ -243,7 +243,7 @@ function Button({ children, cx, cy, r }: { children?: any; cx: number; cy: numbe
 			whileTap={{ scale: 0.9 }}
 			variants={flash}
 			custom={delay}
-			fill="rgb(0 0 0 / 0.3)"
+			fill="rgb(0 0 0 / 0.25)"
 			className="cursor-pointer"
 		>
 			<circle className="shadow-hud-primary" strokeWidth="3" cx={cx} cy={cy} r={r} />
