@@ -18,6 +18,6 @@
 	}
 
 	.shadow-hud-primary {
-		@apply filter: drop-shadow(0 4px 3px rgb(118 255 118 / 0.5))
+		filter: drop-shadow(0 4px 3px rgb(118 255 118 / 0.5))
 	}
 }
