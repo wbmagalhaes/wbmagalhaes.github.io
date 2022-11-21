@@ -243,10 +243,10 @@ function Button({ children, cx, cy, r }: { children?: any; cx: number; cy: numbe
 			whileTap={{ scale: 0.9 }}
 			variants={flash}
 			custom={delay}
-			fill="rgb(0 0 0 / 0.25)"
+			fill="rgb(0 0 0 / 0.15)"
 			className="cursor-pointer"
 		>
-			<circle className="shadow-hud-primary hover:shadow-hud-primary-lg" strokeWidth="3" cx={cx} cy={cy} r={r} />
+			<circle className="shadow-hud-primary hover:shadow-hud-primary-lg transition-filter duration-300" strokeWidth="3" cx={cx} cy={cy} r={r} />
 			<g transform={`translate(${cx - r / 2}, ${cy - r / 2})`}>{children}</g>
 		</motion.g>
 	);
