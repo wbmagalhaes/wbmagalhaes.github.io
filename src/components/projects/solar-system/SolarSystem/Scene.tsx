@@ -50,7 +50,7 @@ function Sun({ sunTex }: { sunTex: Texture }) {
 	const sunTexture = useTexture(sunURL);
 	return (
 		<>
-			<SpaceObject size={1.6} distance={0} inclination={0} speed={1.252} mainTex={sunTexture} />
+			<SpaceObject size={1.6} distance={0} inclination={0} speed={0.252} mainTex={sunTexture} />
 			<pointLight color="#fcb640" intensity={1} />
 		</>
 	);

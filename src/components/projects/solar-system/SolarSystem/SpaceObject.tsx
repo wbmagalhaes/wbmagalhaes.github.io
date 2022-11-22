@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 
+import { Path } from 'three';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, Ring } from '@react-three/drei';
+import { Sphere } from '@react-three/drei';
 
-import { DoubleSide, CircleGeometry, Line, Mesh, Texture } from 'three';
+import type { Mesh, LineLoop, Texture } from 'three';
 
 const BASE_SPEED = 0.33;
 const BASE_INCLINATION = 1.5;
@@ -39,7 +40,7 @@ export function SpaceObject({
 		const angle = startingAngle + BASE_SPEED * speed * time;
 
 		// rotação
-		blah.current.rotation.y = angle / 10;
+		blah.current.rotation.y = angle * 2;
 
 		// translação
 		blah.current.position.x = Math.sin(angle) * distance;
@@ -53,10 +54,34 @@ export function SpaceObject({
 					<meshPhongMaterial color="white" map={mainTex} />
 				</Sphere>
 
-				<Ring rotation={[Math.PI / 2, 0, 0]} args={[distance - 0.05, distance + 0.05, 128, 1]}>
-					<meshBasicMaterial color="#a1a8b7" opacity={0.2} depthWrite={false} side={DoubleSide} transparent />
-				</Ring>
+				{orbit && <OrbitLine radius={distance} />}
 			</group>
+		</group>
+	);
+}
+
+function OrbitLine({ radius }: { radius: number }) {
+	const ref = useRef<LineLoop>(null);
+
+	useLayoutEffect(() => {
+		const path = new Path().absarc(0, 0, radius, 0, 2 * Math.PI, true);
+		const points = path.getPoints(32);
+		ref.current?.geometry.setFromPoints(points);
+	}, []);
+
+	return (
+		<group rotation={[Math.PI / 2, 0, 0]}>
+			<lineLoop ref={ref}>
+				<bufferGeometry attach="geometry" />
+				<lineBasicMaterial
+					attach="material"
+					color={'#9c88ff'}
+					opacity={0.1}
+					linewidth={1}
+					depthWrite={false}
+					transparent
+				/>
+			</lineLoop>
 		</group>
 	);
 }

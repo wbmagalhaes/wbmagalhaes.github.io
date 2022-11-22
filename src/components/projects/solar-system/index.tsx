@@ -15,7 +15,7 @@ export function SolarSystem() {
 						<Environment
 							lightIntensity={0.05}
 							fogNear={0.5}
-							fogFar={600}
+							fogFar={525}
 							starsProps={{
 								size: 500,
 								url: starsURL,
