@@ -1,19 +1,31 @@
 ---
 cover: /images/boids_cover.jpg
 title: 2D Boids
-description: Simulação de boids 2D com regras alinhamento, coesão, repulsão e clearing.
+description: Simulação de boids 2D com regras alinhamento, coesão, repulsão, clearing e target seeking.
 tags: [JavaScript, p5.js]
 date: 2015-11-09
 ---
 
-Boids.
+Boids é um algoritmo desenvolvido por Craig Reynolds em 1986 que simula o movimento coordenado de um grupo de animais, como um bando de pássaros ou um cardume de peixes.
 
 import { Boids } from '@projects/boids';
 
 <div class="flex justify-center">
-	<Boids client:only="react" />
+  <Boids client:only="react" />
 </div>
 
-blah blah:
+Esse modelo implementa os mesmos três comportamentos básicos do modelo original:
 
-https://www.youtube.com/watch?v=IoKfQrlQ7rA
+- **Alinhamento:** Se move para alinhar-se à direção média local.
+- **Coesão:** Se move para a posição média local.
+- **Repulsão:** Se afasta para evitar colisões.
+
+Além desses comportamentos básicos, também implementa:
+
+- **Clear:** Evita ficar atrás de outros boids.
+- **Target Seeking:** Se move na direção de alvos no campo de visão.
+
+A intensidade de cada comportamento pode ser alterada e partir dessas regras simples, pode-se observar o surgimento de comportamentos emergentes, como formação e divisão de bandos.
+
+- [Craig Reynolds](http://www.red3d.com/cwr/boids/)
+- [Coding Train](https://www.youtube.com/watch?v=IoKfQrlQ7rA)

@@ -90,7 +90,7 @@ export function Boids() {
 				</label>
 
 				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
-					<div className="place-self-start">Comida: {options.attractionWeight}</div>
+					<div className="place-self-start">Alvo: {options.attractionWeight}</div>
 					<input
 						type="range"
 						onChange={(e) =>

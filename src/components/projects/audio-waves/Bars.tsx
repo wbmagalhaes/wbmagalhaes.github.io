@@ -17,9 +17,9 @@ export function Bars({ active, direction, wave, barWidth }: Props) {
 					custom={point.y}
 					className=" fill-[url(#bar-gradient)]"
 					x={point.x * direction}
-					y={-200}
+					y={-80000}
 					width={barWidth}
-					height={400}
+					height={160000 }
 				/>
 			))}
 		</motion.g>

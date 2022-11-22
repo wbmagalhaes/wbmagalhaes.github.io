@@ -17,7 +17,7 @@ export function Button({ active, setActive }: Props) {
 
 			<g
 				transform="scale(3)"
-				className=" stroke-2 stroke-gray-100"
+				className=" stroke-2 stroke-gray-100 fill-none"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			>

@@ -6,7 +6,7 @@ tags: [JavaScript, React.js, Framer Motion]
 date: 2020-08-12
 ---
 
-Blah blah blah.
+Este é um cabeçalho de um menu modal desenvolvido para o site dos eventos "Jornada Uniceplac 2020" e "Jornada Uniceplac 2021" para avisar o usuário que o site possui áudio, na forma de efeitos sonoros e sons ambientes e além disso, permitia que o usuário ativasse/desativasse o áudio.
 
 import { AudioWaves } from '@projects/audio-waves';
 
@@ -14,14 +14,12 @@ import { AudioWaves } from '@projects/audio-waves';
 	<AudioWaves client:load />
 </div>
 
-Funções de onda com equação:
+A animação das barras é calculada a partir da solução da equação de Schrödinger para uma [partícula em uma caixa](https://pt.wikipedia.org/wiki/Part%C3%ADcula_em_uma_caixa) unidimensional com uma alteração de seno para cosseno, afim se obter uma equação simétrica e centralizada na origem.
 
-$$ \psi_{i} = A_{i} cos(x f_{i} 2\pi) $$
+$$ \psi(x) = A \sqrt{\frac{2}{L}} cos(\frac{x n \pi}{L} ) $$
 
-As funções são somadas e normalizadas:
+São utilizadas três dessas equações de onda, com valores de A = 8, 2 e 1 e valores de n = 1, 15 e 7, respectivamente. As equação são somadas e normalizadas.
 
-$$ \psi_{t} = \frac{\sum \psi_{i}}{\sum A_{i}} $$
+A altura base da barra é multiplicada pela a densidade de probabilidade dessa função de onda.
 
-A altura é a densidade de probabilidade da função total.
-
-$$ h = (\psi_{t})^{2} $$
+$$ H(x) = h\psi^{2}(x) $$
