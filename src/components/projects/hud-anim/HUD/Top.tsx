@@ -12,7 +12,7 @@ export default function Top() {
 }
 
 function Sphere() {
-	return <image transform="translate(425, 30)" width="150" height="150" href="/images/sphere.gif" />;
+	return <image transform="translate(425, 30)" width="150" height="150" href="/images/projects/sphere.gif" />;
 }
 
 function Arcs() {
