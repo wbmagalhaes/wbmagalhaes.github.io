@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
 import { useFrame } from '@react-three/fiber';
-import { Sphere } from '@react-three/drei';
+import { Sphere, useTexture } from '@react-three/drei';
 
-import { Mesh, Vector3 } from 'three';
+import { Mesh, Texture } from 'three';
 
 const BASE_SPEED = 0.33;
 const BASE_INCLINATION = 1.5;
@@ -13,10 +13,11 @@ export type SpaceObjectProps = {
 	distance: number;
 	inclination: number;
 	speed: number;
+	mainTex: Texture;
 	orbit?: boolean;
 };
 
-export function SpaceObject({ size, distance, inclination, speed, orbit = false }: SpaceObjectProps) {
+export function SpaceObject({ size, distance, inclination, speed, mainTex, orbit = false }: SpaceObjectProps) {
 	const blah = useRef<Mesh>(null);
 	const startingAngle = Math.random() * 2 * Math.PI;
 
@@ -39,7 +40,7 @@ export function SpaceObject({ size, distance, inclination, speed, orbit = false 
 	return (
 		<group rotation={[(BASE_INCLINATION * inclination * Math.PI) / 180, 0, 0]}>
 			<Sphere ref={blah} args={[size, 32, 32]}>
-				<meshPhongMaterial color="white" />
+				<meshPhongMaterial color="white" map={mainTex} />
 			</Sphere>
 		</group>
 	);
