@@ -1,27 +1,23 @@
-@tailwind base;
+.fill-hud-primary {
+	@apply fill-[#76ff76] stroke-none;
+}
 
-@layer base {
-	.fill-hud-primary {
-		@apply fill-[#76ff76] stroke-none;
-	}
+.fill-hud-secondary {
+	@apply fill-[#ae00ff] stroke-none;
+}
 
-	.fill-hud-secondary {
-		@apply fill-[#ae00ff] stroke-none;
-	}
+.stroke-hud-primary {
+	@apply stroke-[#76ff76] fill-none;
+}
 
-	.stroke-hud-primary {
-		@apply stroke-[#76ff76] fill-none;
-	}
+.stroke-hud-secondary {
+	@apply stroke-[#ae00ff] fill-none;
+}
 
-	.stroke-hud-secondary {
-		@apply stroke-[#ae00ff] fill-none;
-	}
+.shadow-hud-primary {
+	filter: drop-shadow(0 0 3px rgb(118 255 118 / 0.2))
+}
 
-	.shadow-hud-primary {
-		filter: drop-shadow(0 0 3px rgb(118 255 118 / 0.2))
-	}
-
-	.shadow-hud-primary-lg {
-		filter: drop-shadow(0 0 12px rgb(118 255 118 / 0.4))
-	}
+.shadow-hud-primary-lg {
+	filter: drop-shadow(0 0 12px rgb(118 255 118 / 0.4))
 }

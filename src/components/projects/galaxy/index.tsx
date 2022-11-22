@@ -16,7 +16,7 @@ export function Fourier() {
 					<Sketch size={size} options={options} />
 				</Suspense>
 			</div>
-			<div className="flex flex-col ml-4 my-4 mr-auto gap-2">
+			<div className="flex flex-col my-4 mr-auto gap-2">
 				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium text-gray-900">
 					<div className="place-self-start">A: {options.a}</div>
 					<input

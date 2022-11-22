@@ -1,7 +1,5 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
-// import { GoogleAnalytics } from '@astrolib/analytics';
-
 import { SITE } from '~/config.mjs';
 import Fonts from '@atoms/Fonts.astro';
 
@@ -18,7 +16,7 @@ const {
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="/favicon.ico" sizes="any" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" type="image/ico" />
 <link
 	rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"
@@ -39,18 +37,5 @@ const {
 		title: ogTitle,
 		description: description,
 		type: ogType,
-		// image: image,
-		// site_name: 'SiteName',
-	}}
-	twitter={{
-		// handle: '@handle',
-		// site: '@site',
-		// cardType: image,
 	}}
 />
-
-<!-- Google Site Verification -->
-<!-- {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />} -->
-
-<!-- Google Analytics -->
-<!-- {SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />} -->
