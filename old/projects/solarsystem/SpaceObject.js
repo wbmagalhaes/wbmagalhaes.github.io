@@ -19,20 +19,4 @@ export class SpaceObject {
 
 		this.meshGroup.add(atmosphere);
 	}
-
-	addRing(inner, outer, texture, opacity) {
-		const ring = new THREE.Mesh(
-			new PlanetRingGeometry(inner, outer, 64),
-			new THREE.MeshBasicMaterial({
-				color: '#FFF',
-				map: texture,
-				side: THREE.DoubleSide,
-				transparent: true,
-				opacity: opacity,
-			})
-		);
-
-		ring.rotation.x = Math.PI / 2;
-		this.objectMesh.add(ring);
-	}
 }
