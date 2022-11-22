@@ -1,5 +1,15 @@
 {
-	"cSpell.words": ["boid", "Boid", "boids", "fourier", "julia", "Lensflare", "mult"],
+	"cSpell.words": [
+		"boid",
+		"Boid",
+		"boids",
+		"drei",
+		"fourier",
+		"julia",
+		"Lensflare",
+		"mult",
+		"Phong"
+	],
 	"files.associations": {
 		"*.mdx": "markdown"
 	}
