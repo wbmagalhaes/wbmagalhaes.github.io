@@ -1,9 +1,9 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useFrame } from '@react-three/fiber';
-import { Sphere, useTexture } from '@react-three/drei';
+import { Sphere, Ring } from '@react-three/drei';
 
-import { Mesh, Texture } from 'three';
+import { DoubleSide, CircleGeometry, Line, Mesh, Texture } from 'three';
 
 const BASE_SPEED = 0.33;
 const BASE_INCLINATION = 1.5;
@@ -15,9 +15,18 @@ export type SpaceObjectProps = {
 	speed: number;
 	mainTex: Texture;
 	orbit?: boolean;
+	ring?: boolean;
 };
 
-export function SpaceObject({ size, distance, inclination, speed, mainTex, orbit = false }: SpaceObjectProps) {
+export function SpaceObject({
+	size,
+	distance,
+	inclination,
+	speed,
+	mainTex,
+	orbit = false,
+	ring = false,
+}: SpaceObjectProps) {
 	const blah = useRef<Mesh>(null);
 	const startingAngle = Math.random() * 2 * Math.PI;
 
@@ -38,10 +47,16 @@ export function SpaceObject({ size, distance, inclination, speed, mainTex, orbit
 	});
 
 	return (
-		<group rotation={[(BASE_INCLINATION * inclination * Math.PI) / 180, 0, 0]}>
-			<Sphere ref={blah} args={[size, 32, 32]}>
-				<meshPhongMaterial color="white" map={mainTex} />
-			</Sphere>
+		<group>
+			<group rotation={[(BASE_INCLINATION * inclination * Math.PI) / 180, 0, 0]}>
+				<Sphere ref={blah} args={[size, 32, 32]}>
+					<meshPhongMaterial color="white" map={mainTex} />
+				</Sphere>
+
+				<Ring rotation={[Math.PI / 2, 0, 0]} args={[distance - 0.05, distance + 0.05, 128, 1]}>
+					<meshBasicMaterial color="#a1a8b7" opacity={0.2} depthWrite={false} side={DoubleSide} transparent />
+				</Ring>
+			</group>
 		</group>
 	);
 }

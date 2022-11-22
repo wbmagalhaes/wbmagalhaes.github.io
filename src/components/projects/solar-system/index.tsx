@@ -23,7 +23,7 @@ export function SolarSystem() {
 							gridProps={{
 								size: 100,
 								divisions: 50,
-								color: new Color('#fcb640'),
+								color: new Color('#a1a8b7'),
 								origin: new Vector3(0, -10, 0),
 								distance: 40,
 								opacity: 0.075,

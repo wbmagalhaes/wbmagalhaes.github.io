@@ -4,15 +4,15 @@ import type { Texture } from 'three';
 import { SpaceObject } from './SpaceObject';
 import type { SpaceObjectProps } from './SpaceObject';
 
-export const sunURL = '/images/projects/solar-system/2k_sun.jpg';
-export const mercuryURL = '/images/projects/solar-system/2k_mercury.jpg';
-export const venusURL = '/images/projects/solar-system/2k_venus.jpg';
-export const earthURL = '/images/projects/solar-system/2k_earth.jpg';
-export const marsURL = '/images/projects/solar-system/2k_mars.jpg';
-export const jupiterURL = '/images/projects/solar-system/2k_jupiter.jpg';
-export const saturnURL = '/images/projects/solar-system/2k_saturn.jpg';
-export const uranusURL = '/images/projects/solar-system/2k_uranus.jpg';
-export const neptuneURL = '/images/projects/solar-system/2k_neptune.jpg';
+const sunURL = '/images/projects/solar-system/2k_sun.jpg';
+const mercuryURL = '/images/projects/solar-system/2k_mercury.jpg';
+const venusURL = '/images/projects/solar-system/2k_venus.jpg';
+const earthURL = '/images/projects/solar-system/2k_earth.jpg';
+const marsURL = '/images/projects/solar-system/2k_mars.jpg';
+const jupiterURL = '/images/projects/solar-system/2k_jupiter.jpg';
+const saturnURL = '/images/projects/solar-system/2k_saturn.jpg';
+const uranusURL = '/images/projects/solar-system/2k_uranus.jpg';
+const neptuneURL = '/images/projects/solar-system/2k_neptune.jpg';
 
 export type SceneProps = {};
 
