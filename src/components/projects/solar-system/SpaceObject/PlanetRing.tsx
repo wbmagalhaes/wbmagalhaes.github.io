@@ -1,18 +1,19 @@
 import { useRef, useLayoutEffect } from 'react';
 import { DoubleSide } from 'three';
+import { useTexture } from '@react-three/drei';
 import { PlanetRingGeometry } from './PlanetRingGeometry';
-
 import type { Mesh, Texture } from 'three';
 
 export type RingProps = {
 	inner: number;
 	outer: number;
-	texture: Texture;
+	textureURL?: string;
 	opacity: number;
 	rotation: [number, number, number];
 };
 
-export function PlanetRing({ inner, outer, texture, opacity, rotation }: RingProps) {
+export function PlanetRing({ inner, outer, textureURL, opacity, rotation }: RingProps) {
+	const texture = textureURL ? useTexture(textureURL) : null;
 	const ref = useRef<Mesh>(null);
 
 	useLayoutEffect(() => {

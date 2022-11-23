@@ -1,12 +1,12 @@
 import { useRef } from 'react';
-
 import { useFrame } from '@react-three/fiber';
-import { Sphere } from '@react-three/drei';
+import { Sphere, useTexture } from '@react-three/drei';
 import { OrbitLine } from './OrbitLine';
 import { PlanetRing } from './PlanetRing';
-
-import type { Group, Mesh, Texture } from 'three';
+import { PlanetAtmosphere } from './PlanetAtmosphere';
+import type { Group, Mesh } from 'three';
 import type { RingProps } from './PlanetRing';
+import type { AtmosphereProps } from './PlanetAtmosphere';
 
 const BASE_SPEED = 0.33;
 const BASE_INCLINATION = 1.5;
@@ -16,9 +16,10 @@ export type SpaceObjectProps = {
 	distance: number;
 	inclination: number;
 	speed: number;
-	mainTex: Texture;
+	textureURL?: string;
 	orbit?: boolean;
 	ring?: RingProps;
+	atmosphere?: AtmosphereProps;
 };
 
 export function SpaceObject({
@@ -26,10 +27,12 @@ export function SpaceObject({
 	distance,
 	inclination,
 	speed,
-	mainTex,
+	textureURL,
 	orbit = false,
 	ring = undefined,
+	atmosphere = undefined,
 }: SpaceObjectProps) {
+	const texture = textureURL ? useTexture(textureURL) : null;
 	const orbitRef = useRef<Group>(null);
 	const planetRef = useRef<Mesh>(null);
 	const startingAngle = Math.random() * 2 * Math.PI;
@@ -57,9 +60,10 @@ export function SpaceObject({
 			<group ref={orbitRef}>
 				<group position={[distance, 0, 0]}>
 					<Sphere ref={planetRef} args={[size, 32, 32]}>
-						<meshPhongMaterial color="white" map={mainTex} />
+						<meshPhongMaterial color="white" map={texture} />
 					</Sphere>
 					{ring && <PlanetRing {...ring} />}
+					{atmosphere && <PlanetAtmosphere {...atmosphere} />}
 				</group>
 			</group>
 			{orbit && <OrbitLine radius={distance} />}

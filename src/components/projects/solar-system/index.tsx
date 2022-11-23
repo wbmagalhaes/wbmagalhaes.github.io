@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import { Color, Vector3 } from 'three';
+import { Vector3 } from 'three';
 import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera, OrbitControls, Preload } from '@react-three/drei';
-import { Environment, Scene } from './SolarSystem';
-
-export const starsURL = '/images/projects/solar-system/2k_stars.jpg';
+import { Environment } from './Environment';
+import { Scene } from './Scene';
+import { Data } from './data';
 
 export function SolarSystem() {
 	return (
@@ -18,18 +18,18 @@ export function SolarSystem() {
 							fogFar={525}
 							starsProps={{
 								size: 500,
-								url: starsURL,
+								textureURL: '/images/projects/solar-system/2k_stars.jpg',
 							}}
 							gridProps={{
 								size: 100,
 								divisions: 50,
-								color: new Color('#a1a8b7'),
+								color: '#a1a8b7',
 								origin: new Vector3(0, -10, 0),
 								distance: 40,
 								opacity: 0.075,
 							}}
 						/>
-						<Scene />
+						<Scene sunProps={Data.Sun} planetsProps={Data.Planets} />
 						<Preload all />
 					</Suspense>
 

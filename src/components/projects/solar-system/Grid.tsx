@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
+import { Color, ColorRepresentation, Vector3 } from 'three';
 
 export type GridProps = {
 	size: number;
 	divisions: number;
-	color: THREE.Color;
-	origin: THREE.Vector3;
+	color: ColorRepresentation;
+	origin: Vector3;
 	distance: number;
 	opacity: number;
 };
@@ -14,11 +15,11 @@ export function Grid({ size, divisions, color, origin, distance, opacity }: Grid
 		() => ({
 			uniforms: {
 				color: {
-					type: 'v3',
-					value: color,
+					type: 'c',
+					value: new Color(color),
 				},
 				origin: {
-					type: 'c',
+					type: 'v3',
 					value: origin,
 				},
 				limitDistance: {
@@ -39,7 +40,7 @@ export function Grid({ size, divisions, color, origin, distance, opacity }: Grid
 
 	return (
 		<gridHelper position={origin} args={[size, divisions]}>
-			<shaderMaterial attach="material" {...data} />
+			<shaderMaterial {...data} />
 		</gridHelper>
 	);
 }
