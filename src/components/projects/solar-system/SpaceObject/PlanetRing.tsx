@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect } from 'react';
 import { DoubleSide } from 'three';
 import { useTexture } from '@react-three/drei';
 import { PlanetRingGeometry } from './PlanetRingGeometry';
-import type { Mesh, Texture } from 'three';
+import type { Mesh } from 'three';
 
 export type RingProps = {
 	inner: number;

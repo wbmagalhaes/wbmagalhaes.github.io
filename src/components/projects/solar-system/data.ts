@@ -1,11 +1,45 @@
-import type { SpaceObjectProps } from './SpaceObject';
-import type { SunProps } from './SpaceObject/Sun';
+import { Vector3 } from 'three';
+import type { SceneProps } from './Scene';
+import type { EnvironmentProps } from './Environment';
+import type { OrbitControlsProps } from '@react-three/drei';
+import type { PerspectiveCameraProps } from '@react-three/fiber';
 
-export const Data: {
-	Sun: SunProps;
-	Planets: SpaceObjectProps[];
-} = {
-	Sun: {
+export const CameraData: PerspectiveCameraProps = {
+	position: [6, 6, 20],
+	fov: 75,
+};
+
+export const OrbitData: OrbitControlsProps = {
+	enableZoom: true,
+	enablePan: false,
+	minPolarAngle: 0.625,
+	maxPolarAngle: 1.575,
+	minDistance: 12,
+	maxDistance: 70,
+	rotateSpeed: 0.4,
+	target: [-2, -2, 0],
+};
+
+export const EnvironmentData: EnvironmentProps = {
+	lightIntensity: 0.05,
+	fogNear: 0.5,
+	fogFar: 525,
+	starsProps: {
+		size: 500,
+		textureURL: '/images/projects/solar-system/2k_stars.jpg',
+	},
+	gridProps: {
+		size: 100,
+		divisions: 50,
+		color: '#a1a8b7',
+		origin: new Vector3(0, -10, 0),
+		distance: 40,
+		opacity: 0.075,
+	},
+};
+
+export const SceneData: SceneProps = {
+	sunProps: {
 		textureURL: '/images/projects/solar-system/2k_sun.jpg',
 		size: 1.6,
 		distance: 0,
@@ -60,7 +94,7 @@ export const Data: {
 			],
 		},
 	},
-	Planets: [
+	planetsProps: [
 		{
 			textureURL: '/images/projects/solar-system/2k_mercury.jpg',
 			size: 0.2,
