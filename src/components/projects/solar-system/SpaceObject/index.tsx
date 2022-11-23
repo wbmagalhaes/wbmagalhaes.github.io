@@ -17,7 +17,7 @@ export type SpaceObjectProps = {
 	inclination: number;
 	speed: number;
 	textureURL?: string;
-	orbit?: boolean;
+	orbit?: ColorRepresentation;
 	ring?: RingProps;
 	atmosphere?: AtmosphereProps;
 	emissive?: {
@@ -32,7 +32,7 @@ export function SpaceObject({
 	inclination,
 	speed,
 	textureURL,
-	orbit = false,
+	orbit = undefined,
 	ring = undefined,
 	atmosphere = undefined,
 	emissive = undefined,
@@ -82,7 +82,7 @@ export function SpaceObject({
 					{atmosphere && <PlanetAtmosphere {...atmosphere} />}
 				</group>
 			</group>
-			{orbit && <OrbitLine radius={distance} />}
+			{orbit && <OrbitLine color={orbit} radius={distance} />}
 		</group>
 	);
 }

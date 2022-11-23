@@ -67,7 +67,7 @@ export const Data: {
 			distance: 3.4,
 			inclination: 3.38,
 			speed: 1.607,
-			orbit: true,
+			orbit: '#a1a8b7',
 		},
 		{
 			textureURL: '/images/projects/solar-system/2k_venus.jpg',
@@ -75,7 +75,7 @@ export const Data: {
 			distance: 5.1,
 			inclination: 3.86,
 			speed: 1.176,
-			orbit: true,
+			orbit: '#a1a8b7',
 		},
 		{
 			textureURL: '/images/projects/solar-system/2k_earth.jpg',
@@ -83,7 +83,7 @@ export const Data: {
 			distance: 6.2,
 			inclination: 7.155,
 			speed: 1.0,
-			orbit: true,
+			orbit: '#a1a8b7',
 			atmosphere: {
 				size: 0.5,
 				coefficient: 0.2,
@@ -97,7 +97,7 @@ export const Data: {
 			distance: 8.2,
 			inclination: 5.65,
 			speed: 0.808,
-			orbit: true,
+			orbit: '#a1a8b7',
 			atmosphere: {
 				size: 0.33,
 				coefficient: 0.2,
@@ -111,7 +111,7 @@ export const Data: {
 			distance: 16,
 			inclination: 6.09,
 			speed: 0.439,
-			orbit: true,
+			orbit: '#a1a8b7',
 		},
 		{
 			textureURL: '/images/projects/solar-system/2k_saturn.jpg',
@@ -119,7 +119,7 @@ export const Data: {
 			distance: 26,
 			inclination: 5.51,
 			speed: 0.325,
-			orbit: true,
+			orbit: '#a1a8b7',
 			ring: {
 				textureURL: '/images/projects/solar-system/2k_saturn_ring_alpha.png',
 				inner: 1,
@@ -134,7 +134,7 @@ export const Data: {
 			distance: 38,
 			inclination: 6.48,
 			speed: 0.229,
-			orbit: true,
+			orbit: '#a1a8b7',
 			ring: {
 				textureURL: '/images/projects/solar-system/2k_uranus_ring_alpha.png',
 				inner: 0.9,
@@ -149,7 +149,7 @@ export const Data: {
 			distance: 50,
 			inclination: 6.43,
 			speed: 0.182,
-			orbit: true,
+			orbit: '#a1a8b7',
 		},
 	],
 };

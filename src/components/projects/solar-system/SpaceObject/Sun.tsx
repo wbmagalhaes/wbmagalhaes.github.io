@@ -1,12 +1,24 @@
 import { SpaceObject } from './';
 import type { SpaceObjectProps } from './';
+import type { AtmosphereProps } from './PlanetAtmosphere';
 import type { ColorRepresentation } from 'three';
 
 export type SunProps = SpaceObjectProps & {
 	light: { color: ColorRepresentation };
-	atmosphere: { size: number; coefficient: number; power: number; color: ColorRepresentation };
-	emissive: { color: ColorRepresentation; intensity: number };
-	flares: { textures: string[]; elements: { id: number; x: number; y: number; color: ColorRepresentation }[] };
+	atmosphere: AtmosphereProps;
+	emissive: {
+		color: ColorRepresentation;
+		intensity: number;
+	};
+	flares: {
+		textures: string[];
+		elements: {
+			id: number;
+			x: number;
+			y: number;
+			color: ColorRepresentation;
+		}[];
+	};
 };
 
 export function Sun({ light, flares, ...props }: SunProps) {

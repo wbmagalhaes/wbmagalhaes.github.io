@@ -11,6 +11,19 @@ export function SolarSystem() {
 		<div className="container">
 			<div className="canvas-holder">
 				<Canvas>
+					<PerspectiveCamera makeDefault fov={75} position={[6, 6, 20]} rotation={[0, 0, 0]} />
+
+					<OrbitControls
+						enableZoom
+						enablePan={false}
+						minPolarAngle={0.625}
+						maxPolarAngle={1.575}
+						minDistance={12}
+						maxDistance={70}
+						rotateSpeed={0.4}
+						target={[-2, -2, 0]}
+					/>
+
 					<Suspense fallback={null}>
 						<Environment
 							lightIntensity={0.05}
@@ -32,19 +45,6 @@ export function SolarSystem() {
 						<Scene sunProps={Data.Sun} planetsProps={Data.Planets} />
 						<Preload all />
 					</Suspense>
-
-					<PerspectiveCamera makeDefault fov={75} position={[6, 6, 20]} rotation={[0, 0, 0]} />
-
-					<OrbitControls
-						enableZoom
-						enablePan={false}
-						minPolarAngle={0.625}
-						maxPolarAngle={1.575}
-						minDistance={12}
-						maxDistance={70}
-						rotateSpeed={0.4}
-						target={[-2, -2, 0]}
-					/>
 				</Canvas>
 			</div>
 		</div>
