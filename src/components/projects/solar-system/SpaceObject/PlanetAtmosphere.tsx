@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Sphere } from '@react-three/drei';
-import { BackSide, AdditiveBlending, ColorRepresentation, Color } from 'three';
+import { BackSide, AdditiveBlending, Color } from 'three';
+import type { ColorRepresentation } from 'three';
 
 export type AtmosphereProps = {
 	size: number;

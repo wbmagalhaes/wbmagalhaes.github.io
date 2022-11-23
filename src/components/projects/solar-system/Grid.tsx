@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { Color, ColorRepresentation, Vector3 } from 'three';
+import { Color, Vector3 } from 'three';
+import type { ColorRepresentation } from 'three';
 
 export type GridProps = {
 	size: number;

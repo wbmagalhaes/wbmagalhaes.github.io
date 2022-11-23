@@ -24,7 +24,7 @@ export const Data: {
 			power: 8,
 			color: '#fcb640',
 		},
-		flare: {
+		flares: {
 			textures: ['./textures/lensflare0.png', './textures/lensflare1.png'],
 			elements: [
 				{

@@ -4,7 +4,7 @@ import { Sphere, useTexture } from '@react-three/drei';
 import { OrbitLine } from './OrbitLine';
 import { PlanetRing } from './PlanetRing';
 import { PlanetAtmosphere } from './PlanetAtmosphere';
-import type { Group, Mesh } from 'three';
+import type { Group, Mesh, ColorRepresentation } from 'three';
 import type { RingProps } from './PlanetRing';
 import type { AtmosphereProps } from './PlanetAtmosphere';
 
@@ -20,6 +20,10 @@ export type SpaceObjectProps = {
 	orbit?: boolean;
 	ring?: RingProps;
 	atmosphere?: AtmosphereProps;
+	emissive?: {
+		color: ColorRepresentation;
+		intensity: number;
+	};
 };
 
 export function SpaceObject({
@@ -31,6 +35,7 @@ export function SpaceObject({
 	orbit = false,
 	ring = undefined,
 	atmosphere = undefined,
+	emissive = undefined,
 }: SpaceObjectProps) {
 	const texture = textureURL ? useTexture(textureURL) : null;
 	const orbitRef = useRef<Group>(null);
@@ -60,7 +65,18 @@ export function SpaceObject({
 			<group ref={orbitRef}>
 				<group position={[distance, 0, 0]}>
 					<Sphere ref={planetRef} args={[size, 32, 32]}>
-						<meshPhongMaterial color="white" map={texture} />
+						{emissive ? (
+							<meshPhongMaterial
+								map={texture}
+								emissive={emissive.color}
+								emissiveMap={texture}
+								emissiveIntensity={emissive.intensity}
+								depthWrite={false}
+								transparent
+							/>
+						) : (
+							<meshPhongMaterial color="white" map={texture} />
+						)}
 					</Sphere>
 					{ring && <PlanetRing {...ring} />}
 					{atmosphere && <PlanetAtmosphere {...atmosphere} />}
