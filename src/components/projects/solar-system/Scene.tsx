@@ -8,12 +8,18 @@ export type SceneProps = {
 	planetsProps: SpaceObjectProps[];
 };
 
-export function Scene({ sunProps, planetsProps }: SceneProps) {
+export function Scene({
+	sunProps,
+	planetsProps,
+	onSelectPlanet,
+}: SceneProps & {
+	onSelectPlanet: (name: string) => void;
+}) {
 	return (
 		<>
 			<Sun {...sunProps} />
 			{planetsProps.map((props, i) => (
-				<SpaceObject key={i} {...props} />
+				<SpaceObject key={i} onSelect={onSelectPlanet} {...props} />
 			))}
 		</>
 	);
