@@ -47,6 +47,7 @@ export const SceneData: SceneProps = {
 		speed: 0.252,
 		light: {
 			color: '#fcb640',
+			intensity: 1,
 		},
 		emissive: {
 			color: '#f56516',
@@ -57,41 +58,6 @@ export const SceneData: SceneProps = {
 			coefficient: 0.01,
 			power: 8,
 			color: '#fcb640',
-		},
-		flares: {
-			textures: ['./textures/lensflare0.png', './textures/lensflare1.png'],
-			elements: [
-				{
-					id: 0,
-					x: 0.4,
-					y: 0.0,
-					color: '#fcb640',
-				},
-				{
-					id: 1,
-					x: 0.021,
-					y: 0.6,
-					color: '#ffcf7d',
-				},
-				{
-					id: 1,
-					x: 0.026,
-					y: 0.7,
-					color: '#ffcf7d',
-				},
-				{
-					id: 1,
-					x: 0.041,
-					y: 0.9,
-					color: '#ffcf7d',
-				},
-				{
-					id: 1,
-					x: 0.026,
-					y: 1.0,
-					color: '#ffcf7d',
-				},
-			],
 		},
 	},
 	planetsProps: [
