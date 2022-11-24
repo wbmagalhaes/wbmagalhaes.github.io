@@ -1,7 +1,7 @@
 ---
-cover: /images/projects/covers/teste.jpg
+cover: /images/projects/covers/solar_system_cover.jpg
 title: Solar System
-description: Descrição.
+description: Modelo de sistema solar em 3D utilizando THREE.js.
 tags: [JavaScript, React.js, THREE.js, WebGL]
 date: 2020-08-12
 ---
@@ -14,3 +14,7 @@ import { SolarSystem } from '@projects/solar-system';
 <div class="flex justify-center">
 	<SolarSystem client:only="react" />
 </div>
+
+Terra e Marte possuem um shader custom para simular uma atmosfera. Esse mesmo Shaders é utilizado para o brilho ao redor do Sol.
+
+Os anéis de Saturno e Urano tem uma Geometry que forma um anel com UV aberta de forma correta para texturizar.

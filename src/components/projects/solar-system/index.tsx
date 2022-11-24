@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera, OrbitControls, Preload } from '@react-three/drei';
+import { PerspectiveCamera, OrbitControls, Preload, Plane } from '@react-three/drei';
 import { Environment } from './Environment';
 import { Scene } from './Scene';
 import { CameraData, OrbitData, EnvironmentData, SceneData } from './data';
@@ -39,7 +39,7 @@ export function SolarSystem() {
 				<Canvas>
 					<PerspectiveCamera makeDefault {...CameraData} />
 					<OrbitControls {...OrbitData} />
-					<Suspense fallback={null}>
+					<Suspense fallback={<Loading />}>
 						<Environment {...EnvironmentData} />
 						<Scene onSelectPlanet={selectPlanet} {...SceneData} />
 						<Preload all />
@@ -60,14 +60,17 @@ export function SolarSystem() {
 									<h2 className="text-center font-bold text-lime-400">{name}</h2>
 									<div className="flex flex-col gap-2">
 										{options.map((option, i) => (
-											<button key={i} className="uppercase font-semibold p-1 sm:p-2 neon-button">
+											<button
+												key={i}
+												className="text-sm font-semibold p-1 sm:p-2 neon-button"
+											>
 												{option}
 											</button>
 										))}
 									</div>
 								</div>
 								<button
-									className="flex w-6 border-l-2 border-lime-400 text-lime-400"
+									className="flex w-6 border-l-2  border-lime-400 text-lime-400"
 									onClick={() => selectPlanet(null)}
 								>
 									<svg
@@ -90,5 +93,13 @@ export function SolarSystem() {
 				))}
 			</div>
 		</div>
+	);
+}
+
+function Loading() {
+	return (
+		<Plane scale={[10000, 10000, 10000]}>
+			<meshBasicMaterial color="black" />
+		</Plane>
 	);
 }
