@@ -99,7 +99,7 @@ export function SpaceObject({
 					{atmosphere && <PlanetAtmosphere {...atmosphere} />}
 					{name && (
 						<Html
-							className="pb-2 will-change-transform select-none pointer-events-none"
+							className="planet-label pb-2 will-change-transform select-none pointer-events-none"
 							sprite
 							transform
 							distanceFactor={20}

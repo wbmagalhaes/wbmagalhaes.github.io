@@ -1,0 +1,19 @@
+.neon-card {
+	@apply text-lime-400 rounded-r-lg border-2 border-l-0 border-lime-400;
+	box-shadow: 0 0 6px rgb(163 230 53 / 0.4), 0 0 6px rgb(163 230 53 / 0.4) inset;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.neon-button {
+	@apply text-lime-400 rounded-full border-2 border-lime-400;
+	box-shadow: 0 0 6px rgb(163 230 53 / 0.4), 0 0 6px rgb(163 230 53 / 0.4) inset;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.neon-button:hover {
+	box-shadow: 0 0 12px rgb(163 230 53 / 0.4), 0 0 6px rgb(163 230 53 / 0.4) inset;
+}
+
+.canvas-holder div {
+	z-index: 0 !important;
+}
