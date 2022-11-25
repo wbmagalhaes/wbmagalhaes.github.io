@@ -15,7 +15,7 @@ async function getProjects() {
 		})
 		.map((page) => {
 			return {
-				slug: getSlugFromURL(page.url),
+				slug: getSlugFromURL(page.file),
 				...page,
 			};
 		});
@@ -31,7 +31,7 @@ const projects = await getProjects();
 			projects.map((page) => (
 				<ProjectCard
 					client:load
-					url={'/projects/' + page.slug}
+					url={`projects/${page.slug}`}
 					cover={page.frontmatter.cover}
 					title={page.frontmatter.title}
 					description={page.frontmatter.description}

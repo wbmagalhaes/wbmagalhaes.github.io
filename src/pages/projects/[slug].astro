@@ -4,8 +4,8 @@ import { getSlugFromURL } from '@core/Path';
 
 export async function getStaticPaths() {
 	const all = await Astro.glob('../../data/projects/**/*.mdx');
-	return all.map(({ url, ...page }) => {
-		const slug = getSlugFromURL(url);
+	return all.map(({ file, ...page }) => {
+		const slug = getSlugFromURL(file);
 		return {
 			params: {
 				slug: slug,
