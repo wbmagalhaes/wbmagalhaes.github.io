@@ -31,7 +31,7 @@ const projects = await getProjects();
 			projects.map((page) => (
 				<ProjectCard
 					client:load
-					url={page.slug}
+					url={`/projects/${page.slug}`}
 					cover={page.frontmatter.cover}
 					title={page.frontmatter.title}
 					description={page.frontmatter.description}
