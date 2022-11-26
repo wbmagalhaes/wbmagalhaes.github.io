@@ -11,7 +11,7 @@ footer {
 
 	.socials {
 		a[href] {
-			@apply p-2.5 rounded-full bg-wm-coal-400 text-wm-coal-800 transition duration-200;
+			@apply p-2.5 rounded-full bg-wm-coal-300 text-wm-coal-800 transition duration-200;
 
 			&:hover {
 				@apply bg-wm-coal-100;
