@@ -13,7 +13,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 	return (
 		<article className="w-full max-w-sm flex flex-col bg-wm-platinum-300 rounded-lg shadow-xl text-left overflow-hidden border border-wm-platinum-600">
 			<a href={url} className="w-full h-48 grid place-items-center overflow-hidden">
-				<img src={cover} className="min-w-full min-h-full object-cover bg-wm-carbon-100" alt="Imagem de Capa" />
+				<img src={cover} className="min-w-full min-h-full object-cover bg-wm-carbon-400 text-wm-platinum grid place-items-center" alt="Imagem de Capa" />
 			</a>
 
 			<div className="flex-grow p-5">
