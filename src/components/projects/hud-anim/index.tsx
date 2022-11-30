@@ -1,18 +1,11 @@
 import { motion, useAnimationControls } from 'framer-motion';
-import { useEffect } from 'react';
+import { useAnimationOnStart } from '@core/useAnimationOnStart';
+
 import HUD from './HUD';
 
 export function HudAnim() {
 	const controls = useAnimationControls();
-
-	async function restartAnimation() {
-		await controls.start('hidden');
-		await controls.start('show');
-	}
-
-	useEffect(() => {
-		controls.start('show');
-	}, [controls]);
+	useAnimationOnStart(controls, 'show');
 
 	return (
 		<div className="container">
@@ -44,7 +37,10 @@ export function HudAnim() {
 						rotate: -360,
 					}}
 					className="absolute left-4 bottom-4 w-8 h-8 md:w-12 md:h-12 bg-wm-accent-600 hover:bg-wm-accent-400 rounded-full p-2 text-wm-platinum shadow-md"
-					onClick={restartAnimation}
+					onClick={async () => {
+						await controls.start('hidden');
+						await controls.start('show');
+					}}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
 						<g
