@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useScroll } from '@core/useScroll';
 
 const variants = {
 	hidden: {
@@ -30,10 +31,7 @@ const variants = {
 
 export default function ToTopButton() {
 	const [visible, setVisible] = useState(false);
-
-	useEffect(() => {
-		window.addEventListener('scroll', () => setVisible(document.documentElement.scrollTop > 400));
-	});
+	useScroll(() => setVisible(document.documentElement.scrollTop > 400));
 
 	return (
 		<motion.button

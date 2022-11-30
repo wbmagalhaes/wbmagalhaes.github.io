@@ -12,7 +12,7 @@ export function HudAnim() {
 
 	useEffect(() => {
 		controls.start('show');
-	}, []);
+	}, [controls]);
 
 	return (
 		<div className="container">
