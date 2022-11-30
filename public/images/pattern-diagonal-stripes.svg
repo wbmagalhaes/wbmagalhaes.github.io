@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800" width="800" height="800" opacity="0.7">
-	<g stroke-width="1" stroke="hsla(0, 100%, 100%, 1)" fill="none">
+	xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800" width="800" height="800" opacity="0.8">
+	<g stroke-width="1" stroke="white" fill="none">
 		<line x1="0" y1="0" x2="100" y2="100"></line>
 		<line x1="100" y1="0" x2="0" y2="100"></line>
 		<line x1="100" y1="0" x2="200" y2="100"></line>
