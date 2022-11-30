@@ -11,24 +11,24 @@ interface Props {
 
 export default function ProjectCard({ url, cover, title, description, tags, date }: Props) {
 	return (
-		<article className="w-full max-w-sm flex flex-col bg-wm-secondary rounded-lg shadow-xl text-left overflow-hidden border border-wm-primary-100">
+		<article className="w-full max-w-sm flex flex-col bg-wm-platinum-300 rounded-lg shadow-xl text-left overflow-hidden border border-wm-platinum-600">
 			<a href={url} className="w-full h-48 grid place-items-center overflow-hidden">
-				<img src={cover} className="min-w-full min-h-full object-cover bg-gray-300" alt="Imagem de Capa" />
+				<img src={cover} className="min-w-full min-h-full object-cover bg-wm-carbon-100" alt="Imagem de Capa" />
 			</a>
 
 			<div className="flex-grow p-5">
-				<h2 className="mb-2 font-bold tracking-tight text-wm-coal-900">
+				<h2 className="mb-2 font-bold tracking-tight">
 					<a href={url}>{title}</a>
 				</h2>
-				<p className="font-normal text-wm-coal-700">{description}</p>
+				<p className="font-normal">{description}</p>
 			</div>
 
 			<div className="relative px-5 py-1 md:py-2 flex flex-row flex-wrap mt-auto gap-1 md:gap-2">
-				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-primary-200 sides-fade"></div>
+				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-secondary-200 sides-fade"></div>
 				{tags?.map((tag, i) => (
 					<span
 						key={i}
-						className="inline-block z-10 bg-wm-coal-100 rounded-full px-3 py-1 text-xs font-semibold text-wm-coal-400"
+						className="inline-block z-10 bg-wm-secondary-200 rounded-full px-3 py-1 text-xs font-semibold"
 					>
 						{tag}
 					</span>
@@ -50,7 +50,7 @@ export default function ProjectCard({ url, cover, title, description, tags, date
 					href={url}
 					className="flex gap-2
 					ml-auto items-center
-					text-sm font-medium text-wm-primary-300 hover:text-wm-primary-600"
+					text-sm font-medium text-wm-accent hover:text-wm-accent-800"
 				>
 					Abrir
 					<svg

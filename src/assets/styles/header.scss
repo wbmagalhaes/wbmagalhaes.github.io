@@ -1,7 +1,7 @@
 header {
 	nav {
 		a {
-			@apply border-y-2 border-transparent text-wm-primary p-2 sm:p-4 transition duration-300;
+			@apply border-y-2 border-transparent text-wm-platinum p-2 sm:p-4 transition duration-300;
 
 			div {
 				@apply inline-flex align-middle sm:align-top;
@@ -17,7 +17,7 @@ header {
 		}
 
 		a:hover {
-			@apply bg-wm-secondary-400 border-b-wm-primary-600;
+			@apply bg-wm-primary-700 border-b-wm-accent;
 		}
 	}
 }

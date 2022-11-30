@@ -4,22 +4,24 @@ footer {
 			@apply gap-2;
 
 			div {
-				@apply rounded-full bg-gray-300;
+				@apply rounded-full bg-wm-platinum;
 			}
 		}
 	}
 
 	.socials {
 		a[href] {
-			@apply p-2.5 rounded-full bg-wm-coal-300 text-wm-coal-800 transition duration-200;
+			@apply p-2.5 rounded-full bg-wm-platinum-600 text-wm-primary transition duration-200;
 
 			&:hover {
-				@apply bg-wm-coal-100;
+				@apply bg-wm-platinum;
 			}
 		}
 	}
 
 	.tool-list {
+		@apply text-wm-platinum;
+
 		a {
 			div {
 				@apply inline-flex align-text-bottom;
@@ -30,11 +32,7 @@ footer {
 			}
 
 			&[href] span {
-				@apply underline text-wm-coal-200;
-
-				&:hover {
-					@apply text-wm-coal-100;
-				}
+				@apply underline text-wm-platinum;
 			}
 		}
 	}

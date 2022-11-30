@@ -1,4 +1,5 @@
 .project {
+
 	h1,
 	h2,
 	h3,
@@ -6,10 +7,6 @@
 	h5,
 	h6 {
 		@apply font-semibold font-mono mt-8 mb-2;
-	}
-
-	h1 {
-		@apply border-b-2 border-wm-primary-100;
 	}
 
 	p {
@@ -23,7 +20,11 @@
 	}
 
 	a[href] {
-		@apply text-blue-600 underline;
+		@apply text-wm-primary-200 underline;
+	}
+
+	input[type=range] {
+		@apply bg-wm-platinum-600
 	}
 
 	.container {
@@ -43,17 +44,15 @@
 	}
 
 	.astro-code {
-		@apply p-6 rounded-lg;
+		@apply bg-wm-carbon-800 p-6 rounded-lg;
 	}
 }
 
 .sides-fade {
 	mask-image:
-		linear-gradient(
-			to right,
+		linear-gradient(to right,
 			rgb(0 0 0 / 0) 0%,
 			rgb(0 0 0 / 1) 20%,
 			rgb(0 0 0 / 1) 80%,
-			rgb(0 0 0 / 0) 100%
-		);
+			rgb(0 0 0 / 0) 100%);
 }

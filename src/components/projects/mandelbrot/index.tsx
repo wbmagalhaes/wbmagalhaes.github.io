@@ -31,7 +31,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 				</Suspense>
 			</div>
 			<div className="flex flex-col w-[90%] my-4 mx-auto">
-				<label className="mb-2 text-sm font-medium text-gray-900">
+				<label className="mb-2 text-sm font-medium">
 					<div className="mb-2">Origem: {complexNumber(options.offset.x, options.offset.y, 4)}</div>
 					<div className="flex flex-row flex-wrap gap-3">
 						<input
@@ -46,7 +46,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 							step={0.0001}
 							min={-2}
 							max={2}
-							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+							className="grow h-2 rounded-lg appearance-none cursor-pointer"
 						/>
 						<input
 							type="range"
@@ -60,12 +60,12 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 							step={0.0001}
 							min={-2}
 							max={2}
-							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+							className="grow h-2 rounded-lg appearance-none cursor-pointer"
 						/>
 					</div>
 				</label>
 
-				<label className="mb-2 text-sm font-medium text-gray-900">
+				<label className="mb-2 text-sm font-medium">
 					<div className="mb-2">Zoom: {options.zoom.toFixed(2)}</div>
 					<div className="flex flex-row flex-wrap gap-3">
 						<input
@@ -80,13 +80,13 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 							step={0.01}
 							min={0.0}
 							max={15}
-							className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+							className="grow h-2 rounded-lg appearance-none cursor-pointer"
 						/>
 					</div>
 				</label>
 
 				{options.julia_const && (
-					<label className="mb-2 text-sm font-medium text-gray-900">
+					<label className="mb-2 text-sm font-medium">
 						<div className="mb-2">
 							Julia: {complexNumber(options.julia_const.x, options.julia_const.y, 4)}
 						</div>
@@ -105,7 +105,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 								step={0.0001}
 								min={-2}
 								max={2}
-								className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+								className="grow h-2 rounded-lg appearance-none cursor-pointer"
 							/>
 							<input
 								type="range"
@@ -121,7 +121,7 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 								step={0.0001}
 								min={-2}
 								max={2}
-								className="grow h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+								className="grow h-2 rounded-lg appearance-none cursor-pointer"
 							/>
 						</div>
 					</label>

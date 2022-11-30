@@ -31,7 +31,7 @@ export function AudioWaves() {
 
 	return (
 		<div className="container">
-			<div className="canvas-holder bg-gray-900 grid place-items-center">
+			<div className="canvas-holder bg-wm-carbon grid place-items-center">
 				<svg viewBox="0 0 1000 500">
 					<defs>
 						<linearGradient id="bar-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -46,8 +46,8 @@ export function AudioWaves() {
 						<Bars active={active} direction={1} wave={wave} barWidth={barWidth} />
 						<Bars active={active} direction={-1} wave={wave} barWidth={barWidth} />
 
-						<line className="stroke-gray-100 stroke-2" x1="-450" y1="0" x2="450" y2="0" />
-						<circle className="fill-gray-900 stroke-gray-100 stroke-2" cx="0" cy="0" r="80" />
+						<line className="stroke-wm-platinum stroke-2" x1="-450" y1="0" x2="450" y2="0" />
+						<circle className="fill-wm-carbon stroke-wm-platinum stroke-2" cx="0" cy="0" r="80" />
 
 						<Button active={active} setActive={setActive} />
 					</g>

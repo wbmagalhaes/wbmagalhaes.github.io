@@ -13,11 +13,11 @@ export function Button({ active, setActive }: Props) {
 			onClick={() => setActive(!active)}
 			className="cursor-pointer "
 		>
-			<circle className="fill-gray-700 stroke-gray-600 stroke-2" cx="0" cy="0" r="60" />
+			<circle className="fill-wm-carbon-600 stroke-wm-carbon-400 hover:stroke-wm-carbon-300 stroke-2" cx="0" cy="0" r="60" />
 
 			<g
 				transform="scale(3)"
-				className=" stroke-2 stroke-gray-100 fill-none"
+				className=" stroke-2 stroke-wm-platinum fill-none"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			>
@@ -50,7 +50,7 @@ export function Button({ active, setActive }: Props) {
 				/>
 
 				<path
-					className="fill-gray-700"
+					className="fill-wm-carbon-600"
 					d="m -10 2 v -4 a 1 1 0 0 1 1 -1 h 2.697 a 1 1 0 0 0 0.555 -0.168 l 4.193 -2.796 a 1 1 0 0 1 1.555 0.834 v 10.26 a 1 1 0 0 1 -1.555 0.832 l -4.193 -2.795 a 1 1 0 0 0 -0.555 -0.167 h -2.697 a 1 1 0 0 1 -1 -1 z"
 				/>
 			</g>

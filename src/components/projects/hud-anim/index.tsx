@@ -16,7 +16,7 @@ export function HudAnim() {
 
 	return (
 		<div className="container">
-			<div className="relative canvas-holder bg-gradient-to-b from-indigo-900 to-violet-800 grid place-items-center">
+			<div className="relative canvas-holder bg-gradient-to-b from-wm-carbon-900 to-wm-carbon-700 grid place-items-center">
 				<motion.svg
 					initial="hidden"
 					animate={controls}
@@ -43,7 +43,7 @@ export function HudAnim() {
 						scale: 0.8,
 						rotate: -360,
 					}}
-					className="absolute left-4 bottom-4 w-8 h-8 md:w-12 md:h-12 bg-indigo-900 rounded-full p-2 text-white shadow-md"
+					className="absolute left-4 bottom-4 w-8 h-8 md:w-12 md:h-12 bg-wm-accent-600 hover:bg-wm-accent-400 rounded-full p-2 text-wm-platinum shadow-md"
 					onClick={restartAnimation}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
