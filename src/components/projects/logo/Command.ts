@@ -1,15 +1,9 @@
-import Action from './Action';
-
 export default class Command {
-	action: Action;
-	args: any[];
+	name: string;
+	args: string[];
 
-	constructor(action: Action, args: any[]) {
-		this.action = action;
+	constructor(name: string, args: string[]) {
+		this.name = name;
 		this.args = args;
-	}
-
-	execute() {
-		this.action.use(this.args);
 	}
 }
