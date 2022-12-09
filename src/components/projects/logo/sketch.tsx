@@ -84,14 +84,14 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 
 		options = props.options;
 
-		parser = new LogoParser(actions, options.code);
+		parser = new LogoParser(options.code, actions);
 		reset();
 	};
 
 	p5.draw = () => {
 		let cmd = parser?.getNext();
 		if (cmd) {
-			actions[cmd.name].exec_function(cmd.args);
+			actions[cmd.name].function_exec(cmd.args);
 		}
 	};
 

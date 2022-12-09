@@ -17,27 +17,34 @@ export default class Action {
 	name: string;
 	args: string[];
 	n_args: number;
-	exec_function: ActionFunction;
+	function_exec: ActionFunction | null;
+	function_body: string | null;
 
-	constructor(name: string, args: string[], exec_function: ActionFunction) {
+	constructor(
+		name: string,
+		args: string[],
+		function_exec: ActionFunction | null = null,
+		function_body: string | null = null
+	) {
 		this.name = name;
 		this.args = args;
 		this.n_args = args.length;
-		this.exec_function = exec_function;
+		this.function_exec = function_exec;
+		this.function_body = function_body;
 	}
 
-	toString(args: string[]): string {
+	parseBody(args: string[]): string {
 		if (this.n_args != args.length) {
 			return 'error';
 		}
 
-		if (typeof this.exec_function === 'string') {
-			// let result = this.exec_function;
-			// for (let i = 0; i < this.n_args; i++) {
-			// 	let regex = new RegExp(this.args[i], 'g');
-			// 	result = result.replace(regex, args[i]);
-			// }
-			// return result;
+		if (this.function_body) {
+			let result = this.function_body;
+			for (let i = 0; i < this.n_args; i++) {
+				let regex = new RegExp(this.args[i], 'g');
+				result = result.replace(regex, args[i]);
+			}
+			return result;
 		}
 
 		return `${this.name} ${args.join(' ')}`;

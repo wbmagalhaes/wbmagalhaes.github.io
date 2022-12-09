@@ -4,11 +4,10 @@ import type { ActionsDictProp } from './Action';
 
 export default class LogoParser {
 	index: number = 0;
-	commands: Command[];
+	commands: Command[] = [];
 
-	constructor(actions: ActionsDictProp, codeString: string) {
-		this.index = 0;
-		this.commands = LogoParser.parseCode(actions, codeString);
+	constructor(codeString: string, actions: ActionsDictProp) {
+		this.parseCode(codeString, actions);
 	}
 
 	private static sliceInput(input: string): string[] {
@@ -17,7 +16,7 @@ export default class LogoParser {
 			.filter((x) => x !== undefined && x != '' && x != ' ');
 	}
 
-	private static parseCode(actions: ActionsDictProp, codeString: string) {
+	private parseCode(codeString: string, actions: ActionsDictProp) {
 		try {
 			let tokens = LogoParser.sliceInput(codeString);
 			let splittedTokens: string[] = [];
@@ -45,7 +44,7 @@ export default class LogoParser {
 							continue;
 						}
 
-						subCode = tokens.slice(start + 1, i).join(' ');
+						subCode = '[' + tokens.slice(start + 1, i).join(' ') + ']';
 				}
 
 				if (depth == 0) {
@@ -53,78 +52,84 @@ export default class LogoParser {
 				}
 			}
 
-			return LogoParser.parseTokens(actions, splittedTokens);
+			this.parseTokens(splittedTokens, actions);
 		} catch (e) {
 			console.log(e);
 		}
-
-		return [];
 	}
 
-	private static parseTokens(actions: ActionsDictProp, tokens: string[]): Command[] {
-		let result: Command[] = [];
-
+	private parseTokens(tokens: string[], actions: ActionsDictProp) {
 		for (let i = 0; i < tokens.length; i++) {
 			const token = tokens[i];
+			const action = actions[token];
 
-			if (actions[token]) {
-				const action = actions[token];
+			if (action) {
 				const args = tokens.slice(i + 1, i + 1 + action.n_args);
-				result.push(new Command(token, args));
+
+				let newCommands: Command[] = [];
+				if (action.function_body) {
+					let subCode = action.parseBody(args);
+					let subParser = new LogoParser(subCode, actions);
+					newCommands = subParser.commands;
+				} else {
+					newCommands = [new Command(token, args)];
+				}
+
+				newCommands.forEach((c) => {
+					this.commands.push(c);
+				});
 
 				i += action.n_args;
-
-				// if not basic action
-				// var subTokens = LogoParser.sliceInput(code).slice(1);
-				// var subParser = new LogoParser(subTokens);
-				// var cmds = subParser.parse(false);
-				// cmds.forEach((cmd) => {
-				// 	result.push(cmd);
-				// });
 
 				continue;
 			}
 
 			switch (token) {
 				case 'repeat':
-					let n = Action.evalValue(tokens[i + 1], 1);
-					let subCode = tokens[i + 2];
-					let subParser = new LogoParser(actions, subCode);
+					i = this.repeatCommand(i, tokens, actions);
+					break;
+				case 'def':
+					i = this.defCommand(i, tokens, actions);
+					break;
+			}
+		}
+	}
 
-					for (let _ = 0; _ < n; _++) {
-						result = [...result, ...subParser.commands];
-					}
+	private repeatCommand(i: number, tokens: string[], actions: ActionsDictProp): number {
+		let n = Action.evalValue(tokens[i + 1], 1);
+		let subCode = tokens[i + 2];
+		subCode = subCode.slice(1, subCode.length - 1);
 
-					i += 2;
+		let subParser = new LogoParser(subCode, actions);
+		for (let _ = 0; _ < n; _++) {
+			this.commands = [...this.commands, ...subParser.commands];
+		}
 
-				// case 'to':
+		return i + 2;
+	}
+
+	private defCommand(i: number, tokens: string[], actions: ActionsDictProp): number {
+		let end = tokens.indexOf('end', i);
+		let subCode = tokens.slice(i + 1, end);
+		let name = subCode[0];
+
+		let start = 1;
+		let params = [];
+
+		for (start = 1; start < subCode.length; start++) {
+			const token = subCode[start];
+
+			if (token.charAt(0) === ':') {
+				params.push(token);
+			} else {
+				break;
 			}
 		}
 
-		// 		var n = this.tokens.indexOf('end', this.index);
-		// 		var subCode = this.tokens.slice(this.index + 1, n);
+		let body = subCode.slice(start).join(' ');
+		actions[name] = new Action(name, params, null, body);
 
-		// 		var name = subCode[0];
-
-		// 		var params = [];
-
-		// 		var i = 1;
-		// 		for (i = 1; i < subCode.length; i++) {
-		// 			if (subCode[i].charAt(0) == ':') params.push(subCode[i]);
-		// 			else break;
-		// 		}
-
-		// 		var actions = subCode.slice(i).join(' ');
-
-		// 		console.log('name: ', name);
-		// 		console.log('params: ', params);
-		// 		console.log('actions: ', actions);
-
-		// 		createAction(name, params, name + ' ' + actions, false);
-		// 		this.index = n;
-		// }
-
-		return result;
+		return end;
 	}
 
 	getNext(): Command | null {
