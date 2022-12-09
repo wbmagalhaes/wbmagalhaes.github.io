@@ -30,29 +30,27 @@ export function AudioWaves() {
 	const [active, setActive] = useState(true);
 
 	return (
-		<div className="container">
-			<div className="canvas-holder bg-wm-carbon grid place-items-center">
-				<svg viewBox="0 0 1000 500">
-					<defs>
-						<linearGradient id="bar-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-							<stop offset="0%" stopColor="#ae00ff" />
-							<stop offset="49%" stopColor="#581a75" />
-							<stop offset="51%" stopColor="#25530b" />
-							<stop offset="100%" stopColor="#50ad1a" />
-						</linearGradient>
-					</defs>
+		<div className="canvas-holder bg-wm-carbon grid place-items-center">
+			<svg viewBox="0 0 1000 500">
+				<defs>
+					<linearGradient id="bar-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+						<stop offset="0%" stopColor="#ae00ff" />
+						<stop offset="49%" stopColor="#581a75" />
+						<stop offset="51%" stopColor="#25530b" />
+						<stop offset="100%" stopColor="#50ad1a" />
+					</linearGradient>
+				</defs>
 
-					<g transform="translate(500, 250)">
-						<Bars active={active} direction={1} wave={wave} barWidth={barWidth} />
-						<Bars active={active} direction={-1} wave={wave} barWidth={barWidth} />
+				<g transform="translate(500, 250)">
+					<Bars active={active} direction={1} wave={wave} barWidth={barWidth} />
+					<Bars active={active} direction={-1} wave={wave} barWidth={barWidth} />
 
-						<line className="stroke-wm-platinum stroke-2" x1="-450" y1="0" x2="450" y2="0" />
-						<circle className="fill-wm-carbon stroke-wm-platinum stroke-2" cx="0" cy="0" r="80" />
+					<line className="stroke-wm-platinum stroke-2" x1="-450" y1="0" x2="450" y2="0" />
+					<circle className="fill-wm-carbon stroke-wm-platinum stroke-2" cx="0" cy="0" r="80" />
 
-						<Button active={active} setActive={setActive} />
-					</g>
-				</svg>
-			</div>
+					<Button active={active} setActive={setActive} />
+				</g>
+			</svg>
 		</div>
 	);
 }

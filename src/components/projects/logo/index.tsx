@@ -12,12 +12,13 @@ export function Logo() {
 	const [options, setOptions] = useState(new LogoOptions());
 
 	return (
-		<div className="container">
+		<>
 			<div ref={holderEl} className="canvas-holder">
 				<Suspense fallback={<Loading />}>
 					<Sketch size={size} options={options} />
 				</Suspense>
 			</div>
+
 			<div className="flex flex-col w-full md:w-3/4 my-2 mx-auto gap-2">
 				<label className="text-sm font-medium">
 					<div className="place-self-start">Código:</div>
@@ -32,6 +33,6 @@ export function Logo() {
 					OK
 				</motion.button>
 			</div>
-		</div>
+		</>
 	);
 }
