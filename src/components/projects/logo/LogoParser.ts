@@ -3,8 +3,8 @@ import Action from './Action';
 import type { ActionsDictProp } from './Action';
 
 export default class LogoParser {
-	index: number = 0;
-	commands: Command[] = [];
+	private index: number = 0;
+	private commands: Command[] = [];
 
 	constructor(codeString: string, actions: ActionsDictProp) {
 		this.parseCode(codeString, actions);
@@ -88,7 +88,7 @@ export default class LogoParser {
 				case 'repeat':
 					i = this.repeatCommand(i, tokens, actions);
 					break;
-				case 'def':
+				case 'to':
 					i = this.defCommand(i, tokens, actions);
 					break;
 			}
@@ -138,5 +138,9 @@ export default class LogoParser {
 		}
 
 		return null;
+	}
+
+	isFinished() {
+		return this.index >= this.commands.length;
 	}
 }

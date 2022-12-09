@@ -89,9 +89,16 @@ function sketch(p5: P5CanvasInstance<SketchProps & Props>) {
 	};
 
 	p5.draw = () => {
-		let cmd = parser?.getNext();
-		if (cmd) {
-			actions[cmd.name].function_exec(cmd.args);
+		if (!parser) return;
+
+		while (!parser.isFinished()) {
+			let cmd = parser.getNext();
+			if (!cmd) break;
+
+			let func = actions[cmd?.name]?.function_exec;
+			if (!func) break;
+
+			func(cmd.args);
 		}
 	};
 
