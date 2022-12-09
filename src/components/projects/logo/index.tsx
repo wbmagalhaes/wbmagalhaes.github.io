@@ -1,13 +1,15 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useHolderSize } from '@core/useHolderSize';
 import Loading from '@atoms/Loading';
 
-import { FourierOptions } from './FourierOptions';
+import { LogoOptions } from './LogoOptions';
 const Sketch = lazy(() => import('./sketch'));
 
-export function Fourier() {
+export function Logo() {
+	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const [holderEl, size] = useHolderSize();
-	const [options, setOptions] = useState(new FourierOptions());
+	const [options, setOptions] = useState(new LogoOptions());
 
 	return (
 		<div className="container">
@@ -16,19 +18,19 @@ export function Fourier() {
 					<Sketch size={size} options={options} />
 				</Suspense>
 			</div>
-			<div className="flex flex-col my-4 mr-auto gap-2">
-				<label className="grid grid-cols-2 justify-items-center gap-2 text-sm font-medium">
-					<div className="place-self-start">A: {options.a}</div>
-					<input
-						type="range"
-						onChange={(e) => setOptions({ ...options, a: Number(e.target.value) })}
-						value={options.a}
-						step={0.1}
-						min={0}
-						max={5}
-						className="max-w-full h-2 mr-auto my-auto rounded-lg appearance-none cursor-pointer"
-					/>
+			<div className="flex flex-col w-full md:w-3/4 my-2 mx-auto gap-2">
+				<label className="text-sm font-medium">
+					<div className="place-self-start">Código:</div>
+					<textarea ref={textAreaRef} defaultValue={options.code} className="w-full h-44 rounded" />
 				</label>
+				<motion.button
+					className="bg-wm-accent rounded text-wm-platinum fold-semibold p-2"
+					whileHover={{ background: '#E94957' }}
+					whileTap={{ background: '#DA1B2B' }}
+					onClick={() => setOptions({ ...options, code: textAreaRef.current?.value ?? '' })}
+				>
+					OK
+				</motion.button>
 			</div>
 		</div>
 	);
