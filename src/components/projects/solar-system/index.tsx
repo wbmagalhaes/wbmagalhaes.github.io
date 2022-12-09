@@ -15,24 +15,22 @@ export function SolarSystem() {
 	}
 
 	return (
-		<div className="container">
-			<div className="canvas-holder relative">
-				<Canvas>
-					<PerspectiveCamera makeDefault {...CameraData} />
-					<OrbitControls {...OrbitData} />
-					<Suspense fallback={<Loading />}>
-						<Environment {...EnvironmentData} />
-						<Scene onSelectPlanet={selectPlanet} {...SceneData} />
-						<Preload all />
-					</Suspense>
-				</Canvas>
+		<div className="canvas-holder relative">
+			<Canvas>
+				<PerspectiveCamera makeDefault {...CameraData} />
+				<OrbitControls {...OrbitData} />
+				<Suspense fallback={<Loading />}>
+					<Environment {...EnvironmentData} />
+					<Scene onSelectPlanet={selectPlanet} {...SceneData} />
+					<Preload all />
+				</Suspense>
+			</Canvas>
 
-				{SceneData.planetsProps.map(({ name }, i) => (
-					<AnimatePresence key={i}>
-						{planet === name && <PlanetCard name={name} onClose={() => selectPlanet(null)} />}
-					</AnimatePresence>
-				))}
-			</div>
+			{SceneData.planetsProps.map(({ name }, i) => (
+				<AnimatePresence key={i}>
+					{planet === name && <PlanetCard name={name} onClose={() => selectPlanet(null)} />}
+				</AnimatePresence>
+			))}
 		</div>
 	);
 }

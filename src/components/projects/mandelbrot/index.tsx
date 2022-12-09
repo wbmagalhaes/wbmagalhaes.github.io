@@ -6,12 +6,21 @@ import { MandelbrotOptions } from './MandelbrotOptions';
 const Sketch = lazy(() => import('./sketch'));
 
 interface Props {
-	defaultZoom: number;
-	defaultOffset: { x: number; y: number };
+	defaultZoom?: number;
+	defaultOffset?: { x: number; y: number };
 	defaultJulia?: { x: number; y: number };
 }
 
-export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, defaultJulia = undefined }: Props) {
+export function Mandelbrot() {
+	return (
+		<div className="grid grid-cols-1 lg:grid-cols-2 justify-center gap-4">
+			<RenderCanvas defaultZoom={0.2} defaultOffset={{ x: -0.75, y: 0 }} />
+			<RenderCanvas defaultZoom={0.3} defaultJulia={{ x: -0.4, y: 0.6 }} />
+		</div>
+	);
+}
+
+function RenderCanvas({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, defaultJulia = undefined }: Props) {
 	const [holderEl, size] = useHolderSize();
 	const [options, setOptions] = useState(new MandelbrotOptions(defaultZoom, defaultOffset, defaultJulia));
 
@@ -24,13 +33,14 @@ export function Mandelbrot({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, de
 	}
 
 	return (
-		<div className="container">
-			<div ref={holderEl} className="canvas-holder">
+		<div className="flex flex-col">
+			<div ref={holderEl} className="w-full mx-auto rounded-md overflow-hidden max-w-lg aspect-[8/6]">
 				<Suspense fallback={<Loading />}>
 					<Sketch size={size} options={options} />
 				</Suspense>
 			</div>
-			<div className="flex flex-col w-[90%] my-4 mx-auto">
+
+			<div className="flex flex-col w-full max-w-lg my-4 mx-auto">
 				<label className="mb-2 text-sm font-medium">
 					<div className="mb-2">Origem: {complexNumber(options.offset.x, options.offset.y, 4)}</div>
 					<div className="flex flex-row flex-wrap gap-3">
