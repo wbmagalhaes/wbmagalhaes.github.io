@@ -1,7 +1,7 @@
 ---
 cover: /images/projects/covers/teste.jpg
 title: Logo Interpreter
-description: Descrição.
+description: Interpretador de Logo com Turtle Graphics.
 tags: [JavaScript, p5.js]
 date: 2018-11-25
 ---
@@ -10,6 +10,72 @@ import { Logo } from '@projects/logo';
 
 <Logo client:only="react" />
 
+## Comandos Básicos
+
+-   **pd** abaixa a caneta
+-   **pu** levanta a caneta
+-   **fd :amount** move a caneta `:amount` pixels para frente, riscando se a caneta estiver abaixada.
+-   **bk :amount** move a caneta `:amount` pixels para trás, riscando se a caneta estiver abaixada.
+-   **rt :amount** gira a direção `:amount` graus no sentido horário
+-   **lt :amount** gira a direção `:amount` graus no sentido anti-horário
+-   **thickness :amount** altera a espessura do traço
+-   **rgb :r :g :b** define a cor do traço
+-   **randomColor** deixa o traço com cor aleatória
+-   **repeat :n [ :code ]** repete o código entre colchetes `:n` vezes
+-   **to :params :code end** define um novo comando usando os comandos básicos
+
+## Exemplos
+
+### Logo
+
+```logo
+repeat 36 [ repeat 180 [ fd 3.25 rt 2 ] rt 10 ]
+```
+
+### Coração
+
+```logo
+rgb 255 0 0
+lt 50
+fd 111.65
+repeat 200 [ rt 1 fd 1 ]
+lt 120
+repeat 200 [ rt 1 fd 1 ]
+fd 111.65
+```
+
+### Polígonos
+
+```logo
+to poly :sides :size
+	repeat :sides [ fd :size rt 360/:sides ]
+end
+
+to square :size
+	poly 4 :size
+end
+
+square 50
+```
+
+### Flor
+
+```logo
+to petal :size
+	repeat 2 [ repeat :size [fd 2 rt 1] rt 180-:size ]
+end
+
+to flower :n :size
+	repeat :n [ randomColor petal :size rt 360/:n ]
+end
+
+thickness 2
+flower 10 60
+lt 27
+thickness 1
+flower 10 80
+```
+
 ## Referências
 
-- [Coding Train](https://www.youtube.com/watch?v=i-k04yzfMpw)
+-   [Coding Train](https://www.youtube.com/watch?v=i-k04yzfMpw)
