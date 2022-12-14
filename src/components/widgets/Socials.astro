@@ -1,0 +1,26 @@
+---
+import { Icon } from 'astro-icon';
+
+type SocialProps = { link: string; icon: string };
+
+type Props = {
+	socials: SocialProps[];
+};
+
+const { socials } = Astro.props as Props;
+---
+
+<div class="fixed bottom-0 left-6 w-12 z-10">
+	<ul class="flex flex-col items-center gap-8 text-wm-accent">
+		{
+			socials.map(({ link, icon }) => (
+				<li>
+					<a href={link}>
+						<Icon class="w-6 h-6" name={icon} />
+					</a>
+				</li>
+			))
+		}
+		<span class="w-[1px] h-36 bg-wm-accent"></span>
+	</ul>
+</div>

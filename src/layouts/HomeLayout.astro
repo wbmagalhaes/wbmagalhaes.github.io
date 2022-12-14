@@ -1,9 +1,19 @@
 ---
 import Layout from '@layouts/BaseLayout.astro';
+import Socials from '@widgets/Socials.astro';
+import Email from '@widgets/Email.astro';
 ---
 
 <Layout>
-	<section class="px-4 sm:px-6 py-6 sm:py-10 lg:max-w-6xl lg:mx-auto mb-12 sm:mb-8 text-justify">
+	<Socials
+		socials={[
+			{ link: '#', icon: 'charm:github' },
+			{ link: '#', icon: 'uil:linkedin-alt' },
+			{ link: '#', icon: 'ri:instagram-line' },
+		]}
+	/>
+	<Email email="william.b.magalhaes@gmail.com" />
+	<div class="flex flex-col mx-24 px-8 bg-wm-primary">
 		<slot />
-	</section>
+	</div>
 </Layout>

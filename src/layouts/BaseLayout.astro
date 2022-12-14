@@ -2,7 +2,7 @@
 import '@styles/global.scss';
 
 import MetaTags from '@core/MetaTags.astro';
-import Header from '@widgets/Header.astro';
+import Header from '@widgets/Header';
 import Footer from '@widgets/Footer.astro';
 import Scripts from '@core/Scripts.astro';
 
@@ -15,10 +15,10 @@ const { meta = {} } = Astro.props;
 		<MetaTags {...meta} />
 	</head>
 
-	<body class="antialiased bg-wm-platinum text-wm-carbon align-middle">
-		<Header />
+	<body class="antialiased bg-wm-primary-800 text-wm-carbon align-middle">
+		<Header client:load />
 
-		<main class="overflow-x-hidden min-h-[100vh]">
+		<main class="overflow-x-hidden min-h-screen">
 			<slot />
 		</main>
 
