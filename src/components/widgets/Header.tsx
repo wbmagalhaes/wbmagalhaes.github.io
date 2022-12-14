@@ -5,9 +5,9 @@ import HeaderItem from '@atoms/HeaderItem';
 export default function Header() {
 	const [visible, setVisible] = useState(true);
 	useScroll((y) => {
-		if (visible && y > 250) {
+		if (visible && y > 150) {
 			setVisible(false);
-		} else if (!visible && y < 200) {
+		} else if (!visible && y < 100) {
 			setVisible(true);
 		}
 	});
