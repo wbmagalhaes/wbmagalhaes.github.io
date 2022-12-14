@@ -11,13 +11,8 @@ export default function HeaderItem({ href, icon, text }: Props) {
 	const controls = useAnimationControls();
 
 	return (
-		<li>
-			<motion.a
-				onHoverStart={() => controls.start('show')}
-				onHoverEnd={() => controls.start('hide')}
-				href={href}
-				className="relative text-wm-platinum-600 hover:text-wm-accent transition-all duration-200 p-0 lg:p-4"
-			>
+		<li className="relative text-wm-platinum-600 hover:text-wm-accent transition-all duration-200 p-0 lg:p-4">
+			<motion.a onHoverStart={() => controls.start('show')} onHoverEnd={() => controls.start('hide')} href={href}>
 				<svg
 					className="absolute w-full h-full top-0 left-0 hidden lg:block"
 					xmlns="http://www.w3.org/2000/svg"
