@@ -33,7 +33,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.4}
 						strokeLinecap="round"
-						d="M 10 10 H 0 V 0 H 28 L 30 2 V 6"
+						d="M 4 10 H 0 V 0 H 28 L 30 2 V 8"
 					/>
 					<motion.path
 						className="text-wm-accent"
@@ -43,7 +43,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.5}
 						strokeLinecap="round"
-						d="M 10 10 H 0 V 0 H 28 L 30 2 V 6"
+						d="M 4 10 H 0 V 0 H 28 L 30 2 V 8"
 					/>
 				</svg>
 
