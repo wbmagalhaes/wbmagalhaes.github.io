@@ -12,6 +12,11 @@ module.exports = {
 			backgroundImage: {
 				'footer-texture': "url('/images/pattern-diagonal-stripes.svg')",
 			},
+			fontSize: {
+				'3xl': '2rem',
+				'4xl': '2.5rem',
+				'5xl': '3.5rem',
+			},
 			colors: {
 				'wm': {
 					'primary': {

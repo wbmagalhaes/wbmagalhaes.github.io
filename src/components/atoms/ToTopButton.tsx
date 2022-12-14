@@ -31,7 +31,7 @@ const variants = {
 
 export default function ToTopButton() {
 	const [visible, setVisible] = useState(false);
-	useScroll(() => setVisible(document.documentElement.scrollTop > 400));
+	useScroll((y) => setVisible(y > 400));
 
 	return (
 		<motion.button

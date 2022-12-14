@@ -4,38 +4,31 @@ import HeaderItem from '@atoms/HeaderItem';
 
 export default function Header() {
 	const [visible, setVisible] = useState(true);
-	useScroll(() => {
-		if (visible && document.documentElement.scrollTop > 250) {
+	useScroll((y) => {
+		if (visible && y > 250) {
 			setVisible(false);
-		} else if (!visible && document.documentElement.scrollTop < 200) {
+		} else if (!visible && y < 200) {
 			setVisible(true);
 		}
 	});
 
 	return (
 		<header
-			className={`fixed top-0 z-40 w-full shadow-md backdrop-blur  ${
+			className={`fixed top-0 z-40 w-full shadow-md backdrop-blur ${
 				visible ? 'h-24' : 'h-12'
 			} transition-all duration-500`}
 		>
-			<div className="flex items-center justify-between h-full lg:max-w-6xl lg:mx-auto px-4 sm:px-6 font-mono mx-auto">
+			<div className="flex items-center justify-between h-full mx-0 px-4 sm:mx-24 sm:px-8 font-mono">
 				<a href="/#" className="text-2xl font-extrabold text-wm-platinum whitespace-nowrap">
-					William <span className="hidden sm:inline">Magalhães</span>
+					William <span className="hidden xl:inline">Magalhães</span>
 				</a>
 				<nav>
-					<ul className="flex gap-0">
-						<li>
-							<HeaderItem href="/#about" text="About" icon="ci:info-circle-outline" />
-						</li>
-						<li>
-							<HeaderItem href="/#experience" text="Experience" icon="ic:round-work-outline" />
-						</li>
-						<li>
-							<HeaderItem href="/#projects" text="Projects" icon="ci:list-checklist-alt" />
-						</li>
-						<li>
-							<HeaderItem href="/#contact" text="Contact" icon="ic:round-chat-bubble-outline" />
-						</li>
+					<ul className="flex gap-4 lg:gap-0 text-right">
+						<HeaderItem href="/#about" text="About" icon="ci:info-circle-outline" />
+						<HeaderItem href="/#experience" text="Experience" icon="ic:round-work-outline" />
+						<HeaderItem href="/#projects" text="Projects" icon="akar-icons:grid" />
+						<HeaderItem href="/#contact" text="Contact" icon="ic:round-chat-bubble-outline" />
+						<HeaderItem href="/#" text="Resume" icon="mdi:file-document-outline" />
 					</ul>
 				</nav>
 			</div>

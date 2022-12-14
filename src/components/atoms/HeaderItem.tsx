@@ -11,46 +11,49 @@ export default function HeaderItem({ href, icon, text }: Props) {
 	const controls = useAnimationControls();
 
 	return (
-		<motion.a
-			onHoverStart={() => controls.start('show')}
-			onHoverEnd={() => controls.start('hide')}
-			href={href}
-			className="relative text-wm-platinum-600 hover:text-wm-platinum-100 transition-all duration-200 p-2 sm:p-4"
-		>
-			<svg
-				className="absolute w-full h-full top-0 left-0"
-				xmlns="http://www.w3.org/2000/svg"
-				preserveAspectRatio="none"
-				viewBox="-2 -2 34 14"
-				fill="none"
+		<li>
+			<motion.a
+				onHoverStart={() => controls.start('show')}
+				onHoverEnd={() => controls.start('hide')}
+				href={href}
+				className="relative text-wm-platinum-600 hover:text-wm-accent transition-all duration-200 p-0 lg:p-4"
 			>
-				<motion.path
-					className="text-wm-platinum"
-					initial="hidden"
-					animate={controls}
-					variants={shadowVariants}
-					stroke="currentColor"
-					strokeWidth={0.4}
-					strokeLinecap="round"
-					d="M 10 10 H 0 V 0 H 28 L 30 2 V 6"
-				/>
-				<motion.path
-					className="text-wm-accent"
-					initial="hidden"
-					animate={controls}
-					variants={variants}
-					stroke="currentColor"
-					strokeWidth={0.5}
-					strokeLinecap="round"
-					d="M 10 10 H 0 V 0 H 28 L 30 2 V 6"
-				/>
-			</svg>
+				<svg
+					className="absolute w-full h-full top-0 left-0 hidden lg:block"
+					xmlns="http://www.w3.org/2000/svg"
+					preserveAspectRatio="none"
+					viewBox="-2 -2 34 14"
+					fill="none"
+				>
+					<motion.path
+						className="text-wm-platinum"
+						initial="hidden"
+						animate={controls}
+						variants={shadowVariants}
+						stroke="currentColor"
+						strokeWidth={0.4}
+						strokeLinecap="round"
+						d="M 10 10 H 0 V 0 H 28 L 30 2 V 6"
+					/>
+					<motion.path
+						className="text-wm-accent"
+						initial="hidden"
+						animate={controls}
+						variants={variants}
+						stroke="currentColor"
+						strokeWidth={0.5}
+						strokeLinecap="round"
+						d="M 10 10 H 0 V 0 H 28 L 30 2 V 6"
+					/>
+				</svg>
 
-			<span className="inline-flex align-middle sm:align-top sm:mr-1">
-				<Icon className="p-1 w-6 h-6" icon={icon} />
-			</span>
-			<span className="hidden md:inline-flex">{text}</span>
-		</motion.a>
+				<span className="inline-flex align-middle sm:align-top sm:mr-1">
+					<Icon className="p-0 lg:p-1 w-6 h-6" icon={icon} />
+				</span>
+
+				<span className="hidden lg:inline-flex">{text}</span>
+			</motion.a>
+		</li>
 	);
 }
 
@@ -68,7 +71,7 @@ const variants = {
 			opacity: {
 				duration: 0.01,
 			},
-			duration: 0.2,
+			duration: 0.3,
 			ease: 'easeInOut',
 		},
 	},
@@ -77,7 +80,7 @@ const variants = {
 		pathLength: [1, 0],
 		pathOffset: [0, 0.99],
 		transition: {
-			duration: 0.2,
+			duration: 0.3,
 			ease: 'easeInOut',
 		},
 		transitionEnd: {
@@ -102,7 +105,7 @@ const shadowVariants = {
 		pathLength: [1, 0],
 		pathOffset: [0, 0.99],
 		transition: {
-			duration: 0.3,
+			duration: 0.4,
 			ease: 'easeInOut',
 		},
 		transitionEnd: {
