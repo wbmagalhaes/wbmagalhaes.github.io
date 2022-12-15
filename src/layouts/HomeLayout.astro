@@ -1,7 +1,8 @@
 ---
+import { Icon } from 'astro-icon';
 import Layout from '@layouts/BaseLayout.astro';
-import Socials from '@widgets/Socials.astro';
-import Email from '@widgets/Email.astro';
+import Socials from '@widgets/Socials';
+import Email from '@widgets/Email';
 ---
 
 <Layout>
@@ -11,8 +12,13 @@ import Email from '@widgets/Email.astro';
 			{ link: '#', icon: 'eva:linkedin-outline' },
 			{ link: '#', icon: 'ri:instagram-line' },
 		]}
+		client:load
 	/>
-	<Email email="william.b.magalhaes@gmail.com" />
+
+	<Email email="william.b.magalhaes@gmail.com" client:load>
+		<Icon slot="icon" name="ic:round-alternate-email" />
+	</Email>
+
 	<div class="flex flex-col mx-0 sm:mx-24 bg-wm-primary text-wm-platinum transition-all">
 		<slot />
 	</div>

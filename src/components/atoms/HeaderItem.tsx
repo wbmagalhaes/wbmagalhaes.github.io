@@ -17,7 +17,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 					className="absolute w-full h-full top-0 left-0 hidden lg:block"
 					xmlns="http://www.w3.org/2000/svg"
 					preserveAspectRatio="none"
-					viewBox="-2 -2 34 14"
+					viewBox="0 0 30 10"
 					fill="none"
 				>
 					<motion.path
@@ -28,7 +28,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.4}
 						strokeLinecap="round"
-						d="M 4 10 H 0 V 0 H 28 L 30 2 V 8"
+						d="M 2 6 l 2 2 H 28"
 					/>
 					<motion.path
 						className="text-wm-accent"
@@ -38,7 +38,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.5}
 						strokeLinecap="round"
-						d="M 4 10 H 0 V 0 H 28 L 30 2 V 8"
+						d="M 2 6 l 2 2 H 28"
 					/>
 				</svg>
 
