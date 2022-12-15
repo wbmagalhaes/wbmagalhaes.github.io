@@ -1,4 +1,4 @@
-import { delay, motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect } from 'react';
 
 async function timeout(s: number) {
@@ -8,20 +8,25 @@ async function timeout(s: number) {
 export default function Hero() {
 	const controls = useAnimationControls();
 
-	async function startAnimation(animation: string) {
+	async function playAnimation(animation: string) {
 		await controls.start(animation);
 
 		if (animation == 'show') {
 			await controls.start('down');
-			startAnimation('hide');
+			await playAnimation('hide');
 		} else {
-			await timeout(0.5);
-			startAnimation('show');
+			await timeout(1.5);
+			await playAnimation('show');
 		}
 	}
 
+	async function start() {
+		await timeout(4);
+		await playAnimation('show');
+	}
+
 	useEffect(() => {
-		startAnimation('show');
+		start();
 	}, []);
 
 	return (
@@ -50,7 +55,7 @@ export default function Hero() {
 						viewBox="0 0 48 48"
 						fill="none"
 						stroke="currentColor"
-						strokeWidth="4"
+						strokeWidth="3"
 						strokeLinecap="round"
 						strokeLinejoin="round"
 						initial="hidden"
@@ -72,8 +77,7 @@ const svg = {
 		y: [0, 10, 0],
 		transition: {
 			repeat: 2,
-			duration: 0.75,
-			type: 'spring',
+			duration: 0.8,
 			ease: 'easeInOut',
 		},
 	},
@@ -92,13 +96,15 @@ const circle = {
 				duration: 0.01,
 			},
 			duration: 1,
+			ease: 'easeOut',
 		},
 	},
 	hide: {
 		pathLength: 0,
 		transition: {
-			duration: 0.5,
+			duration: 1,
 			delay: 0.5,
+			ease: 'easeIn',
 		},
 		transitionEnd: {
 			opacity: 0,
@@ -120,6 +126,7 @@ const arrow = {
 			},
 			duration: 0.5,
 			delay: 1,
+			ease: 'easeOut',
 		},
 	},
 	hide: {
@@ -127,6 +134,7 @@ const arrow = {
 		transition: {
 			duration: 0.25,
 			delay: 0.25,
+			ease: 'easeIn',
 		},
 		transitionEnd: {
 			opacity: 0,
@@ -148,12 +156,14 @@ const arrowPoint = {
 			},
 			duration: 0.5,
 			delay: 1.5,
+			ease: 'easeOut',
 		},
 	},
 	hide: {
 		pathLength: 0,
 		transition: {
 			duration: 0.25,
+			ease: 'easeIn',
 		},
 		transitionEnd: {
 			opacity: 0,
