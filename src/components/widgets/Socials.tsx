@@ -44,7 +44,7 @@ function SocialItem({ index, link, icon }: { index: number } & SocialProps) {
 			onHoverEnd={() => controls.start('normal')}
 			variants={itemVariants}
 		>
-			<a href={link}>
+			<a href={link} target="_blank">
 				<Icon className="w-6 h-6" icon={icon} />
 			</a>
 		</motion.li>
