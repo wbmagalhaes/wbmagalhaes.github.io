@@ -1,9 +1,8 @@
 import { motion, useAnimationControls } from 'framer-motion';
-import { Icon } from '@iconify/react';
 
 type Props = {
 	href: string;
-	icon: string;
+	icon: JSX.Element;
 	text: string;
 };
 
@@ -43,7 +42,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 				</svg>
 
 				<span className="inline-flex align-middle sm:align-top sm:mr-1">
-					<Icon className="p-0 lg:p-1 w-6 h-6" icon={icon} />
+					<div className="p-0 lg:p-1 w-6 h-6">{icon}</div>
 				</span>
 
 				<span className="hidden lg:inline-flex">{text}</span>
@@ -68,6 +67,7 @@ const variants = {
 			},
 			duration: 0.3,
 			ease: 'easeInOut',
+			type: 'spring',
 		},
 	},
 	hide: {
@@ -75,8 +75,9 @@ const variants = {
 		pathLength: [1, 0],
 		pathOffset: [0, 0.99],
 		transition: {
-			duration: 0.3,
+			duration: 0.4,
 			ease: 'easeInOut',
+			type: 'spring',
 		},
 		transitionEnd: {
 			opacity: 0,
@@ -100,8 +101,9 @@ const shadowVariants = {
 		pathLength: [1, 0],
 		pathOffset: [0, 0.99],
 		transition: {
-			duration: 0.4,
+			duration: 0.6,
 			ease: 'easeInOut',
+			type: 'spring',
 		},
 		transitionEnd: {
 			opacity: 0,

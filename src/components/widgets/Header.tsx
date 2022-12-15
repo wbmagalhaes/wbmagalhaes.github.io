@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useScroll } from '@core/useScroll';
 import HeaderItem from '@atoms/HeaderItem';
+import Icons from '@atoms/HeaderIcons';
 
 export default function Header() {
 	const [visible, setVisible] = useState(true);
@@ -23,12 +24,12 @@ export default function Header() {
 					William <span className="hidden xl:inline">Magalhães</span>
 				</a>
 				<nav>
-					<ul className="flex gap-4 lg:gap-0 text-right">
-						<HeaderItem href="/#about" text="About" icon="ci:info-circle-outline" />
-						<HeaderItem href="/#experience" text="Experience" icon="ic:round-work-outline" />
-						<HeaderItem href="/#projects" text="Projects" icon="akar-icons:grid" />
-						<HeaderItem href="/#contact" text="Contact" icon="ic:round-chat-bubble-outline" />
-						<HeaderItem href="/#" text="Resume" icon="mdi:file-document-outline" />
+					<ul slot="nav" className="flex gap-4 lg:gap-0 text-right">
+						<HeaderItem href="/#about" text="About" icon={<Icons.About />} />
+						<HeaderItem href="/#experience" text="Experience" icon={<Icons.Experience />} />
+						<HeaderItem href="/#projects" text="Projects" icon={<Icons.Projects />} />
+						<HeaderItem href="/#contact" text="Contact" icon={<Icons.Contact />} />
+						<HeaderItem href="/#" text="Resume" icon={<Icons.Resume />} />
 					</ul>
 				</nav>
 			</div>
