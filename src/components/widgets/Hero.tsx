@@ -1,6 +1,29 @@
-import { motion } from 'framer-motion';
+import { delay, motion, useAnimationControls } from 'framer-motion';
+import { useEffect } from 'react';
+
+async function timeout(s: number) {
+	return new Promise((resolve) => setTimeout(resolve, s * 1000));
+}
 
 export default function Hero() {
+	const controls = useAnimationControls();
+
+	async function startAnimation(animation: string) {
+		await controls.start(animation);
+
+		if (animation == 'show') {
+			await controls.start('down');
+			startAnimation('hide');
+		} else {
+			await timeout(0.5);
+			startAnimation('show');
+		}
+	}
+
+	useEffect(() => {
+		startAnimation('show');
+	}, []);
+
 	return (
 		<section className="h-full min-h-screen flex flex-col px-4 pb-8 sm:px-8 pt-32">
 			<div className="flex flex-col">
@@ -21,7 +44,7 @@ export default function Hero() {
 					href="#about"
 					className="w-12 h-12 rounded-full text-wm-platinum mb-16"
 				>
-					<svg
+					<motion.svg
 						xmlns="http://www.w3.org/2000/svg"
 						preserveAspectRatio="xMidYMid meet"
 						viewBox="0 0 48 48"
@@ -30,80 +53,110 @@ export default function Hero() {
 						strokeWidth="4"
 						strokeLinecap="round"
 						strokeLinejoin="round"
+						initial="hidden"
+						animate={controls}
+						variants={svg}
 					>
-						<g transform-origin="center" transform="rotate(-90)">
-							<motion.circle
-								variants={circle}
-								initial="initial"
-								animate="animate"
-								cx="24"
-								cy="24"
-								r="20"
-							/>
-						</g>
-						<motion.path variants={arrow} initial="initial" animate="animate" d="M 24 14 L 24 34" />
-						<motion.path
-							variants={arrowPoint}
-							initial="initial"
-							animate="animate"
-							d="M 16 26 L 24 34 l 8 -8"
-						/>
-					</svg>
+						<motion.circle variants={circle} cx="24" cy="24" r="20" />
+						<motion.path variants={arrow} d="M 24 14 L 24 34" />
+						<motion.path variants={arrowPoint} d="M 16 26 L 24 34 l 8 -8" />
+					</motion.svg>
 				</motion.a>
 			</div>
 		</section>
 	);
 }
 
+const svg = {
+	down: {
+		y: [0, 10, 0],
+		transition: {
+			repeat: 2,
+			duration: 0.75,
+			type: 'spring',
+			ease: 'easeInOut',
+		},
+	},
+};
+
 const circle = {
-	initial: {
+	hidden: {
 		opacity: 0,
 		pathLength: 0,
 	},
-	animate: {
+	show: {
 		opacity: 1,
 		pathLength: 1,
 		transition: {
 			opacity: {
 				duration: 0.01,
 			},
-			duration: 4,
+			duration: 1,
+		},
+	},
+	hide: {
+		pathLength: 0,
+		transition: {
+			duration: 0.5,
+			delay: 0.5,
+		},
+		transitionEnd: {
+			opacity: 0,
 		},
 	},
 };
 
 const arrow = {
-	initial: {
+	hidden: {
 		opacity: 0,
 		pathLength: 0,
 	},
-	animate: {
+	show: {
 		opacity: 1,
 		pathLength: 1,
 		transition: {
 			opacity: {
 				duration: 0.01,
 			},
-			duration: 4,
-			delay: 2,
+			duration: 0.5,
+			delay: 1,
+		},
+	},
+	hide: {
+		pathLength: 0,
+		transition: {
+			duration: 0.25,
+			delay: 0.25,
+		},
+		transitionEnd: {
+			opacity: 0,
 		},
 	},
 };
 
 const arrowPoint = {
-	initial: {
+	hidden: {
 		opacity: 0,
 		pathLength: 0,
 	},
-	animate: {
+	show: {
 		opacity: 1,
 		pathLength: 1,
 		transition: {
 			opacity: {
 				duration: 0.01,
 			},
-			duration: 4,
-			delay: 4,
+			duration: 0.5,
+			delay: 1.5,
+		},
+	},
+	hide: {
+		pathLength: 0,
+		transition: {
+			duration: 0.25,
+		},
+		transitionEnd: {
+			opacity: 0,
 		},
 	},
 };
