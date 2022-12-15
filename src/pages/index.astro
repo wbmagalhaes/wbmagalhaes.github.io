@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/HomeLayout.astro';
-import Hero from '@widgets/Hero.astro';
+import Hero from '@widgets/Hero';
 import About from '@widgets/About.astro';
 import Experience from '@widgets/Experience.astro';
 import Projects from '@widgets/Projects.astro';
@@ -8,7 +8,7 @@ import Contact from '@widgets/Contact.astro';
 ---
 
 <Layout>
-	<Hero />
+	<Hero client:load />
 	<About />
 	<Experience />
 	<Projects />
