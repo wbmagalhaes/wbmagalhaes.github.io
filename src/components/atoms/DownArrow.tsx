@@ -37,8 +37,11 @@ export function DownArrow({}: Props) {
 			whileTap={{ scale: 0.8 }}
 			href="#about"
 			className="w-12 h-12 rounded-full text-wm-platinum mb-16"
+			initial="hidden"
+			animate={controls}
+			variants={all}
 		>
-			<motion.svg
+			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				preserveAspectRatio="xMidYMid meet"
 				viewBox="0 0 48 48"
@@ -47,19 +50,24 @@ export function DownArrow({}: Props) {
 				strokeWidth="3"
 				strokeLinecap="round"
 				strokeLinejoin="round"
-				initial="hidden"
-				animate={controls}
-				variants={all}
 			>
 				<motion.circle variants={circle} cx="24" cy="24" r="20" />
 				<motion.path variants={arrow} d="M 24 14 L 24 34" />
 				<motion.path variants={arrowPoint} d="M 16 26 L 24 34 l 8 -8" />
-			</motion.svg>
+			</svg>
 		</motion.a>
 	);
 }
 
 const all = {
+	hidden: { display: 'none' },
+	show: { display: 'block' },
+	hide: {
+		display: 'none',
+		transition: {
+			delay: 1.5,
+		},
+	},
 	down: {
 		y: [0, 10, 0],
 		transition: {
