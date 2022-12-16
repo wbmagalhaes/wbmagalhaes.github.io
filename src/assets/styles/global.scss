@@ -29,9 +29,25 @@
 		@apply text-base;
 	}
 
+	.section-divider {
+		@apply relative whitespace-nowrap flex items-center gap-8 font-mono font-bold mb-4;
+
+		&::after,
+		&::before {
+			@apply block h-[1px];
+		}
+
+		&::after {
+			@apply w-72;
+		}
+
+		&::before {
+			@apply w-12;
+		}
+	}
+
 	.red-neon {
 		filter:
-			drop-shadow(0 0 12px rgb(230 57 70 / 0.4))
-			drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
+			drop-shadow(0 0 12px rgb(230 57 70 / 0.4)) drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
 	}
 }

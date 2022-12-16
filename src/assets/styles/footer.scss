@@ -1,13 +1,15 @@
 footer {
-	a[href]::after {
-		@apply bg-wm-accent w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
-	}
+	a[href] {
+		&::after {
+			@apply bg-wm-accent w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
+		}
 
-	a[href]:hover::after {
-		@apply w-full;
-	}
+		&:hover::after {
+			@apply w-full;
+		}
 
-	a[href]:hover {
-		@apply text-wm-accent;
+		&:hover {
+			@apply text-wm-accent;
+		}
 	}
 }
