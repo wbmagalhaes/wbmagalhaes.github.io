@@ -12,7 +12,7 @@ export default function Socials({ socials }: Props) {
 	const maxIndex = socials.length - 1;
 
 	return (
-		<div className="hidden sm:block fixed bottom-0 left-6 w-12 z-10">
+		<div className="hidden md:block fixed bottom-0 left-6 lg:left-8 xl:left-16 w-12 lg:w-16 xl:w-32 z-10">
 			<div className="flex flex-col place-items-center justify-end gap-6">
 				<ul className="flex flex-col items-center gap-6">
 					{socials.map(({ link, icon }, i) => (

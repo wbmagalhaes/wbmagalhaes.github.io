@@ -2,8 +2,8 @@ import { DownArrow } from '../atoms/DownArrow';
 
 export default function Hero() {
 	return (
-		<section className="h-full min-h-screen flex flex-col px-4 pb-8 sm:px-8 pt-32">
-			<div className="flex flex-col lg:m-16">
+		<section className="h-full min-h-screen flex flex-col pt-32">
+			<div className="flex flex-col p-4 md:p-8 lg:p-16">
 				<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-none">William Magalhães</h1>
 				<h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold py-2">Full-stack Developer</h2>
 				<p className="max-w-xl lg:max-w-2xl text-justify py-2">

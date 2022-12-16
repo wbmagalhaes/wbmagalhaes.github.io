@@ -11,7 +11,7 @@ export default function Email({ icon, email }: Props) {
 	useAnimationOnStart(controls, 'show');
 
 	return (
-		<div className="hidden sm:block fixed top-0 right-6 w-12 z-10">
+		<div className="hidden md:block fixed top-0 right-6 lg:right-8 xl:right-16 w-12 lg:w-16 xl:w-32 z-10">
 			<div className="flex flex-col place-items-center justify-end gap-2">
 				<motion.span
 					className="w-[1px] h-48 origin-top bg-wm-accent"
