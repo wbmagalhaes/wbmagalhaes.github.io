@@ -18,7 +18,7 @@ export default function Header() {
 		<header
 			className={`fixed top-0 z-40 w-full backdrop-blur ${visible ? 'h-32' : 'h-16'} transition-all duration-500`}
 		>
-			<div className="flex items-center justify-between h-full mx-4 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64">
+			<div className="flex items-center justify-between h-full px-4 md:px-8 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300">
 				<a href="/#">
 					<Logo />
 				</a>

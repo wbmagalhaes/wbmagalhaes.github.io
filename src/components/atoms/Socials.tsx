@@ -20,7 +20,7 @@ export default function Socials({ socials }: Props) {
 					))}
 				</ul>
 				<motion.span
-					className="w-[1px] h-32 origin-bottom bg-wm-accent"
+					className="w-[1px] h-64 origin-bottom bg-wm-accent"
 					initial="hidden"
 					animate="show"
 					variants={lineVariants}
