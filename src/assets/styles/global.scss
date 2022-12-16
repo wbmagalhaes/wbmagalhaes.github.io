@@ -28,4 +28,10 @@
 	h6 {
 		@apply text-base;
 	}
+
+	.red-neon {
+		filter:
+			drop-shadow(0 0 12px rgb(230 57 70 / 0.4))
+			drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
+	}
 }

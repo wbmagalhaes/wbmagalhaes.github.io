@@ -1,9 +1,9 @@
 import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect } from 'react';
 
-type Props = {};
+type Props = { href: string };
 
-export function DownArrow({}: Props) {
+export function DownArrow({ href }: Props) {
 	async function timeout(s: number) {
 		return new Promise((resolve) => setTimeout(resolve, s * 1000));
 	}
@@ -35,8 +35,8 @@ export function DownArrow({}: Props) {
 		<motion.a
 			whileHover={{ scale: 1.2 }}
 			whileTap={{ scale: 0.8 }}
-			href="#about"
-			className="w-12 h-12 rounded-full text-wm-platinum mb-16"
+			href={href}
+			className="w-12 h-12 mb-16 rounded-full text-wm-accent hover:text-wm-accent-300 red-neon"
 			initial="hidden"
 			animate={controls}
 			variants={all}
@@ -51,7 +51,7 @@ export function DownArrow({}: Props) {
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			>
-				<motion.circle variants={circle} cx="24" cy="24" r="20" />
+				<motion.circle className="origin-center rotate-90" variants={circle} cx="24" cy="24" r="20" />
 				<motion.path variants={arrow} d="M 24 14 L 24 34" />
 				<motion.path variants={arrowPoint} d="M 16 26 L 24 34 l 8 -8" />
 			</svg>
@@ -71,7 +71,7 @@ const all = {
 	down: {
 		y: [0, 10, 0],
 		transition: {
-			repeat: 2,
+			repeat: 3,
 			duration: 0.8,
 			ease: 'easeInOut',
 		},
@@ -82,10 +82,12 @@ const circle = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
+		pathOffset: 0.5,
 	},
 	show: {
 		opacity: 1,
 		pathLength: 1,
+		pathOffset: 0,
 		transition: {
 			opacity: {
 				duration: 0.01,
@@ -96,6 +98,7 @@ const circle = {
 	},
 	hide: {
 		pathLength: 0,
+		pathOffset: 0.5,
 		transition: {
 			duration: 1,
 			delay: 0.5,
@@ -141,10 +144,12 @@ const arrowPoint = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
+		pathOffset: 0.5,
 	},
 	show: {
 		opacity: 1,
 		pathLength: 1,
+		pathOffset: 0,
 		transition: {
 			opacity: {
 				duration: 0.01,
@@ -156,6 +161,7 @@ const arrowPoint = {
 	},
 	hide: {
 		pathLength: 0,
+		pathOffset: 0.5,
 		transition: {
 			duration: 0.25,
 			ease: 'easeIn',

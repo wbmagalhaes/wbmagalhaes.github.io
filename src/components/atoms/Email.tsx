@@ -22,7 +22,7 @@ export default function Email({ icon, email }: Props) {
 
 				<motion.a
 					href={`mailto:${email}`}
-					className="text-wm-accent hover:text-wm-accent-200 font-mono text-sm"
+					className="font-mono text-sm text-wm-accent hover:text-wm-accent-200 hover:red-neon"
 					initial="hidden"
 					animate={controls}
 					onHoverStart={() => controls.start('hover')}

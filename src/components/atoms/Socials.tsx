@@ -37,7 +37,7 @@ function SocialItem({ index, link, icon }: { index: number } & SocialProps) {
 	return (
 		<motion.li
 			custom={index}
-			className="text-wm-accent hover:text-wm-accent-200"
+			className="text-wm-accent hover:text-wm-accent-200 hover:red-neon"
 			initial="hidden"
 			animate={controls}
 			onHoverStart={() => controls.start('hover')}

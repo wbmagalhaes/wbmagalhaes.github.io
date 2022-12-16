@@ -10,7 +10,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 	const controls = useAnimationControls();
 
 	return (
-		<li className="relative text-wm-platinum-600 hover:text-wm-accent transition-all duration-200 p-0 lg:p-4">
+		<li className="relative text-wm-platinum-600 transition-all duration-200 p-0 lg:p-4">
 			<motion.a onHoverStart={() => controls.start('show')} onHoverEnd={() => controls.start('hide')} href={href}>
 				<svg
 					className="absolute w-full h-full top-0 left-0 hidden lg:block"
@@ -27,7 +27,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.4}
 						strokeLinecap="round"
-						d="M 2 6 l 2 2 H 28"
+						d="M 3 7 l 1 1 H 28"
 					/>
 					<motion.path
 						className="text-wm-accent"
@@ -37,7 +37,7 @@ export default function HeaderItem({ href, icon, text }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.5}
 						strokeLinecap="round"
-						d="M 2 6 l 2 2 H 28"
+						d="M 3 7 l 1 1 H 28"
 					/>
 				</svg>
 

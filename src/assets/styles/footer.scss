@@ -1,49 +1,13 @@
 footer {
-	.circles {
-		div {
-			@apply gap-2;
-
-			div {
-				@apply rounded-full bg-wm-platinum;
-			}
-		}
+	a[href]::after {
+		@apply bg-wm-accent w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
 	}
 
-	.socials {
-		a[href] {
-			@apply p-2.5 rounded-full border-2 border-wm-platinum bg-wm-accent-600 text-wm-platinum transition duration-200;
-
-			&:hover {
-				@apply bg-wm-accent-300
-			}
-		}
+	a[href]:hover::after {
+		@apply w-full;
 	}
 
-	.tool-list {
-		@apply text-wm-platinum;
-
-		a {
-			div {
-				@apply inline-flex align-text-bottom;
-
-				svg {
-					@apply w-4 h-4 sm:w-5 sm:h-5;
-				}
-			}
-
-			&[href] span {
-				@apply underline text-wm-platinum;
-			}
-		}
-	}
-
-	.footer-fade {
-		mask-image:
-			radial-gradient(
-				ellipse at 50% 100%,
-				rgb(0 0 0 / 1) 0%,
-				rgb(0 0 0 / 0) 66%,
-				rgb(0 0 0 / 0) 100%
-			);
+	a[href]:hover {
+		@apply text-wm-accent;
 	}
 }
