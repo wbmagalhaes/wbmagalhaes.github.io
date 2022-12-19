@@ -28,31 +28,31 @@ export default function Header() {
 							href="/#about"
 							text="About"
 							icon={<Icons.About className="lg:text-wm-accent hover:text-wm-accent" />}
-							aria-label="About Me"
+							aria="About Me"
 						/>
 						<HeaderItem
 							href="/#experience"
 							text="Experience"
 							icon={<Icons.Experience className="lg:text-wm-accent hover:text-wm-accent" />}
-							aria-label="Work Experience"
+							aria="Work Experience"
 						/>
 						<HeaderItem
 							href="/#projects"
 							text="Projects"
 							icon={<Icons.Projects className="lg:text-wm-accent hover:text-wm-accent" />}
-							aria-label="My Projects"
+							aria="My Projects"
 						/>
 						<HeaderItem
 							href="/#contact"
 							text="Contact"
 							icon={<Icons.Contact className="lg:text-wm-accent hover:text-wm-accent" />}
-							aria-label="Contact Me"
+							aria="Contact Me"
 						/>
 						<HeaderItem
 							href="/#"
 							text="Resume"
 							icon={<Icons.Resume className="lg:text-wm-accent hover:text-wm-accent" />}
-							aria-label="Resume"
+							aria="Resume"
 						/>
 					</ul>
 				</nav>

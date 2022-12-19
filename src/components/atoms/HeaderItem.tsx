@@ -4,14 +4,20 @@ type Props = {
 	href: string;
 	icon: JSX.Element;
 	text: string;
+	aria: string;
 };
 
-export default function HeaderItem({ href, icon, text }: Props) {
+export default function HeaderItem({ href, icon, text, aria }: Props) {
 	const controls = useAnimationControls();
 
 	return (
 		<li className="relative text-wm-platinum-600 transition-all duration-200 p-0 lg:p-4">
-			<motion.a onHoverStart={() => controls.start('show')} onHoverEnd={() => controls.start('hide')} href={href}>
+			<motion.a
+				href={href}
+				aria-label={aria}
+				onHoverStart={() => controls.start('show')}
+				onHoverEnd={() => controls.start('hide')}
+			>
 				<svg
 					className="absolute w-full h-full top-0 left-0 hidden lg:block"
 					xmlns="http://www.w3.org/2000/svg"
