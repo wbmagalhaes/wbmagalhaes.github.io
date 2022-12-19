@@ -1,9 +1,9 @@
 export const SITE = {
-	name: 'William - Portfólio',
+	name: 'William - Portfolio',
 
 	origin: 'https://wbmagalhaes.github.io/',
 	basePathname: '/',
 
-	title: 'William - Portfólio',
-	description: '⚛️',
+	title: 'William - Portfolio',
+	description: '⚛️ Portfolio made by William Magalhães',
 };
