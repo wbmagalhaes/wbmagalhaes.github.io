@@ -1,5 +1,4 @@
 .project {
-
 	h1,
 	h2,
 	h3,
@@ -23,8 +22,8 @@
 		@apply text-wm-primary-200 underline;
 	}
 
-	input[type=range] {
-		@apply bg-wm-platinum-600
+	input[type="range"] {
+		@apply bg-wm-platinum-600;
 	}
 
 	.canvas-holder {
@@ -42,9 +41,11 @@
 
 .sides-fade {
 	mask-image:
-		linear-gradient(to right,
+		linear-gradient(
+			to right,
 			rgb(0 0 0 / 0) 0%,
 			rgb(0 0 0 / 1) 20%,
 			rgb(0 0 0 / 1) 80%,
-			rgb(0 0 0 / 0) 100%);
+			rgb(0 0 0 / 0) 100%
+		);
 }

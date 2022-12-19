@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import { motion, useAnimationControls } from 'framer-motion';
 import { useAnimationOnStart } from '@core/useAnimationOnStart';
 
-type SocialProps = { link: string; icon: string };
+type SocialProps = { link: string; icon: string; aria: string };
 
 type Props = {
 	socials: SocialProps[];
@@ -15,8 +15,8 @@ export default function Socials({ socials }: Props) {
 		<div className="hidden md:block fixed bottom-0 left-6 lg:left-8 xl:left-16 w-12 lg:w-16 xl:w-32 z-10">
 			<div className="flex flex-col place-items-center justify-end gap-6">
 				<ul className="flex flex-col items-center gap-6">
-					{socials.map(({ link, icon }, i) => (
-						<SocialItem key={i} index={maxIndex - i} link={link} icon={icon} />
+					{socials.map(({ link, icon, aria }, i) => (
+						<SocialItem key={i} index={maxIndex - i} link={link} icon={icon} aria={aria} />
 					))}
 				</ul>
 				<motion.span
@@ -30,7 +30,7 @@ export default function Socials({ socials }: Props) {
 	);
 }
 
-function SocialItem({ index, link, icon }: { index: number } & SocialProps) {
+function SocialItem({ index, link, icon, aria }: { index: number } & SocialProps) {
 	const controls = useAnimationControls();
 	useAnimationOnStart(controls, 'show');
 
@@ -44,7 +44,7 @@ function SocialItem({ index, link, icon }: { index: number } & SocialProps) {
 			onHoverEnd={() => controls.start('normal')}
 			variants={itemVariants}
 		>
-			<a href={link} target="_blank">
+			<a href={link} target="_blank" aria-label={aria}>
 				<Icon className="w-6 h-6" icon={icon} />
 			</a>
 		</motion.li>

@@ -19,7 +19,7 @@ export default function Header() {
 			className={`fixed top-0 z-40 w-full backdrop-blur ${visible ? 'h-32' : 'h-16'} transition-all duration-500`}
 		>
 			<div className="flex items-center justify-between h-full px-4 md:px-8 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300">
-				<a href="/#">
+				<a href="/#" aria-label="home">
 					<Logo />
 				</a>
 				<nav>
@@ -28,26 +28,31 @@ export default function Header() {
 							href="/#about"
 							text="About"
 							icon={<Icons.About className="lg:text-wm-accent hover:text-wm-accent" />}
+							aria-label="About Me"
 						/>
 						<HeaderItem
 							href="/#experience"
 							text="Experience"
 							icon={<Icons.Experience className="lg:text-wm-accent hover:text-wm-accent" />}
+							aria-label="Work Experience"
 						/>
 						<HeaderItem
 							href="/#projects"
 							text="Projects"
 							icon={<Icons.Projects className="lg:text-wm-accent hover:text-wm-accent" />}
+							aria-label="My Projects"
 						/>
 						<HeaderItem
 							href="/#contact"
 							text="Contact"
 							icon={<Icons.Contact className="lg:text-wm-accent hover:text-wm-accent" />}
+							aria-label="Contact Me"
 						/>
 						<HeaderItem
 							href="/#"
 							text="Resume"
 							icon={<Icons.Resume className="lg:text-wm-accent hover:text-wm-accent" />}
+							aria-label="Resume"
 						/>
 					</ul>
 				</nav>

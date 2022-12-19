@@ -8,9 +8,9 @@ import Email from '@atoms/Email';
 <Layout>
 	<Socials
 		socials={[
-			{ link: 'https://github.com/wbmagalhaes/', icon: 'ri:github-line' },
-			{ link: 'https://www.linkedin.com/in/wbmagalhaes/', icon: 'eva:linkedin-outline' },
-			{ link: 'https://www.instagram.com/wbmagalhaes/', icon: 'ri:instagram-line' },
+			{ link: 'https://github.com/wbmagalhaes/', icon: 'ri:github-line', aria: 'GitHub' },
+			{ link: 'https://www.linkedin.com/in/wbmagalhaes/', icon: 'eva:linkedin-outline', aria: 'LinkedIn' },
+			{ link: 'https://www.instagram.com/wbmagalhaes/', icon: 'ri:instagram-line', aria: 'Instagram' },
 		]}
 		client:load
 	/>
@@ -19,7 +19,9 @@ import Email from '@atoms/Email';
 		<Icon slot="icon" name="ic:round-alternate-email" />
 	</Email>
 
-	<div class="flex flex-col px-4 md:px-8 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 bg-wm-carbon-900 text-wm-platinum transition-all duration-300">
+	<div
+		class="flex flex-col px-4 md:px-8 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 bg-wm-carbon-900 text-wm-platinum transition-all duration-300"
+	>
 		<slot />
 	</div>
 </Layout>
