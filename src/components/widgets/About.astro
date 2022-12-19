@@ -1,4 +1,62 @@
 ---
+import TechStack from '@atoms/TechStack';
+import type { TechListProps } from '@atoms/TechStack';
+
+const techs: TechListProps[] = [
+	{
+		title: 'Languages',
+		list: [
+			{ name: 'C#', icon: 'simple-icons:csharp', color: '#239120' },
+			{ name: 'Python', icon: 'simple-icons:python', color: '#3776AB' },
+			{ name: 'JavaScript', icon: 'simple-icons:javascript', color: '#F7DF1E' },
+			{ name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178C6' },
+			{ name: 'CSS3', icon: 'simple-icons:css3', color: '#1572B6' },
+			{ name: 'HTML5', icon: 'simple-icons:html5', color: '#E34F26' },
+		],
+	},
+	{
+		title: 'Frameworks, Platforms & Libraries',
+		list: [
+			{ name: 'Unity3D', icon: 'simple-icons:unity', color: '#FFFFFF' },
+			{ name: '.NET', icon: 'simple-icons:dotnet', color: '#512BD4' },
+			{ name: 'React', icon: 'simple-icons:react', color: '#61DAFB' },
+			{ name: 'TailwindCSS', icon: 'simple-icons:tailwindcss', color: '#06B6D4' },
+			{ name: 'jQuery', icon: 'simple-icons:jquery', color: '#0769AD' },
+			{ name: 'THREE.js', icon: 'simple-icons:threedotjs', color: '#FFFFFF' },
+			{ name: 'Bootstrap', icon: 'simple-icons:bootstrap', color: '#7952B3' },
+		],
+	},
+	{
+		title: 'Databases',
+		list: [
+			{ name: 'MySQL', icon: 'simple-icons:mysql', color: '#4479A1' },
+			{ name: 'MariaDB', icon: 'simple-icons:mariadb', color: '#003545' },
+			{ name: 'SQLite', icon: 'simple-icons:sqlite', color: '#003B57' },
+			{ name: 'PostgreSQL', icon: 'simple-icons:postgresql', color: '#4169E1' },
+			{ name: 'SQL Server', icon: 'simple-icons:microsoftsqlserver', color: '#CC2927' },
+		],
+	},
+	{
+		title: 'Machine Learning & Deep Learning',
+		list: [
+			{ name: 'Pandas', icon: 'simple-icons:pandas', color: '#150458' },
+			{ name: 'Plotly', icon: 'simple-icons:plotly', color: '#3F4F75' },
+			{ name: 'NumPy', icon: 'simple-icons:numpy', color: '#013243' },
+			{ name: 'Keras', icon: 'simple-icons:keras', color: '#D00000' },
+			{ name: 'TensorFlow', icon: 'simple-icons:tensorflow', color: '#FF6F00' },
+		],
+	},
+	{
+		title: 'Other',
+		list: [
+			{ name: 'Git', icon: 'simple-icons:git', color: '#F05032' },
+			{ name: 'Docker', icon: 'simple-icons:docker', color: '#2496ED' },
+			{ name: 'Postman', icon: 'simple-icons:postman', color: '#FF6C37' },
+			{ name: 'Arduino', icon: 'simple-icons:arduino', color: '#00979D' },
+			{ name: 'RaspberryPi', icon: 'simple-icons:raspberrypi', color: '#A22846' },
+		],
+	},
+];
 ---
 
 <section id="about" class="h-full min-h-screen pt-32">
@@ -7,76 +65,20 @@
 		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
 			Paragragh about what I did. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-			laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-			esse cillum dolore eu fugiat nulla pariatur.
+			laboris nisi ut aliquip ex ea commodo consequat.
 		</p>
 		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
 			Paragraph about what I'm doing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-			ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-			velit esse cillum dolore eu fugiat nulla pariatur.
+			ullamco laboris nisi ut aliquip ex ea commodo consequat.
 		</p>
 
 		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
 			Here are a some technologies I've experience working with:
 		</p>
 
-		<div>
-			<h2>Languages</h2>
-			<ul>
-				<li>C#</li>
-				<li>Python</li>
-				<li>JavaScript</li>
-				<li>TypeScript</li>
-				<li>CSS</li>
-				<li>HTML5</li>
-			</ul>
-		</div>
-
-		<div>
-			<h2>Frameworks, Platforms & Libraries</h2>
-			<ul>
-				<li>Unity3D</li>
-				<li>.NET</li>
-				<li>React</li>
-				<li>TailwindCSS</li>
-				<li>jQuery</li>
-				<li>THREE.js</li>
-				<li>Bootstrap</li>
-			</ul>
-		</div>
-
-		<div>
-			<h2>Databases</h2>
-			<ul>
-				<li>MySQL</li>
-				<li>MariaDB</li>
-				<li>SQLite</li>
-				<li>Postgres</li>
-				<li>SQL Server</li>
-			</ul>
-		</div>
-
-		<div>
-			<h2>Machine Learning & Deep Learning</h2>
-			<ul>
-				<li>Pandas</li>
-				<li>Plotly</li>
-				<li>Numpy</li>
-				<li>Keras</li>
-				<li>Tensorflow</li>
-			</ul>
-		</div>
-
-		<div>
-			<h2>Other</h2>
-			<ul>
-				<li>Git</li>
-				<li>Docker</li>
-				<li>Postman</li>
-				<li>Arduino</li>
-				<li>RaspberyPi</li>
-			</ul>
+		<div class="flex flex-col max-w-md px-4">
+			<TechStack techs={techs} client:visible />
 		</div>
 	</div>
 </section>
