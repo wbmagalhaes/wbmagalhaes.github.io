@@ -6,10 +6,10 @@ import Fonts from '@atoms/Fonts.astro';
 const {
 	title = SITE.name,
 	description = SITE.name,
-	canonical,
+	canonical = SITE.origin,
 	noindex = false,
 	nofollow = false,
-	ogTitle = title,
+	ogTitle = SITE.title,
 	ogType = 'website',
 } = Astro.props;
 ---
