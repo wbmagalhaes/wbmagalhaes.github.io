@@ -40,6 +40,7 @@ export function DownArrow({ href }: Props) {
 			initial="hidden"
 			animate={controls}
 			variants={all}
+			aria-label="Next Section"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
