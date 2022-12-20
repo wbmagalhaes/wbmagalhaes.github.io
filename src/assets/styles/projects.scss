@@ -38,14 +38,3 @@
 		@apply bg-wm-carbon-800 p-6 rounded-lg;
 	}
 }
-
-.sides-fade {
-	mask-image:
-		linear-gradient(
-			to right,
-			rgb(0 0 0 / 0) 0%,
-			rgb(0 0 0 / 1) 20%,
-			rgb(0 0 0 / 1) 80%,
-			rgb(0 0 0 / 0) 100%
-		);
-}

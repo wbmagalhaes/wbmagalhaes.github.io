@@ -18,15 +18,18 @@ type ProjectListProps = {
 export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 	return (
 		<>
-			<div>
-				{featured.map((project) => (
-					<ProjectFeatured key={project.title} project={project} />
+			<div className="flex flex-col gap-4 py-4 mb-24">
+				{featured.map((project, i) => (
+					<ProjectFeatured key={i} idx={i} project={project} />
 				))}
 			</div>
-			<div>
-				{other.map((project) => (
-					<ProjectCard key={project.title} project={project} />
-				))}
+			<div className="py-4">
+				<h2 className="mb-8 text-center">Other projects</h2>
+				<div className="grid grid-cols-3 gap-4 ">
+					{other.map((project, i) => (
+						<ProjectCard key={i} project={project} />
+					))}
+				</div>
 			</div>
 		</>
 	);

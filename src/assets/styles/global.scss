@@ -49,4 +49,15 @@
 	.red-neon {
 		filter: drop-shadow(0 0 12px rgb(230 57 70 / 0.4)) drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
 	}
+
+	.sides-fade {
+		mask-image:
+			linear-gradient(
+				to right,
+				rgb(0 0 0 / 0) 0%,
+				rgb(0 0 0 / 1) 20%,
+				rgb(0 0 0 / 1) 80%,
+				rgb(0 0 0 / 0) 100%
+			);
+	}
 }

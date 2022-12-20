@@ -36,11 +36,13 @@ export default function WorkTabs({ list }: WorkListProps) {
 					{list.map(({ name, title, description, date, activities }) => (
 						<Tab.Panel key={name}>
 							<h2 className="font-bold">{title}</h2>
-							<span className="text-xs font-mono">{date}</span>
+							<span className="text-sm font-mono">{date}</span>
 							<p className="py-2">{description}</p>
 							<ul className="p-4 list-['▹'] marker:text-wm-accent">
-								{activities.map((activity) => (
-									<li className="p-1">{activity}</li>
+								{activities.map((activity, i) => (
+									<li key={i} className="p-1">
+										{activity}
+									</li>
 								))}
 							</ul>
 						</Tab.Panel>

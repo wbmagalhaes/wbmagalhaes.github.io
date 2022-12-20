@@ -7,7 +7,7 @@ interface Props {
 
 export default function ProjectCard({ project }: Props) {
 	return (
-		<article className="w-full max-w-sm flex flex-col bg-wm-platinum-300 rounded-lg shadow-xl text-left overflow-hidden border border-wm-platinum-600">
+		<article className="w-full max-w-sm flex flex-col bg-wm-carbon-300 rounded text-left overflow-hidden">
 			<a href={project.url} className="w-full h-48 grid place-items-center overflow-hidden">
 				<img src={project.cover} className="min-w-full min-h-full object-cover bg-wm-carbon-400 text-wm-platinum grid place-items-center" alt="Imagem de Capa" />
 			</a>
@@ -20,11 +20,11 @@ export default function ProjectCard({ project }: Props) {
 			</div>
 
 			<div className="relative px-5 py-1 md:py-2 flex flex-row flex-wrap mt-auto gap-1 md:gap-2">
-				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-secondary-200 sides-fade"></div>
+				<div className="absolute top-0 left-0 w-full h-full border-y border-dashed border-wm-accent-400 sides-fade"></div>
 				{project.tags?.map((tag, i) => (
 					<span
 						key={i}
-						className="inline-block z-10 bg-wm-secondary-200 rounded-full px-3 py-1 text-xs font-semibold"
+						className="inline-block z-10 bg-wm-accent-400 rounded-full px-3 py-1 text-xs font-semibold"
 					>
 						{tag}
 					</span>
@@ -46,7 +46,7 @@ export default function ProjectCard({ project }: Props) {
 					href={project.url}
 					className="flex gap-2
 					ml-auto items-center
-					text-sm font-medium text-wm-accent hover:text-wm-accent-800"
+					text-sm font-medium text-wm-accent-600 hover:text-wm-accent-200"
 				>
 					Abrir
 					<svg
