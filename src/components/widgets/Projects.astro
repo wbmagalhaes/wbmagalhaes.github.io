@@ -14,7 +14,7 @@ async function getProjects(): Promise<ProjectProps[]> {
 		})
 		.map((page) => {
 			return {
-				url: getSlugFromURL(page.file),
+				url: '/projects/' + getSlugFromURL(page.file),
 				...page.frontmatter,
 			};
 		});
