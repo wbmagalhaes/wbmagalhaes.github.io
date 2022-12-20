@@ -1,7 +1,8 @@
 ---
 import WorkTabs from '@atoms/WorkTabs';
+import type { WorkProps } from '@atoms/WorkTabs';
 
-const work = [
+const work: WorkProps[] = [
 	{
 		name: 'Space Wizard Studios',
 		title: 'Full-Stack Freelancer',
@@ -13,7 +14,8 @@ const work = [
 		name: 'Masters Dissertation',
 		title: 'Arabica coffee defect detection by CNN',
 		date: 'Jan 2018 - Dec 2020',
-		description: 'During my masters, I buit and trained a neural network to detect and classify defects in raw coffee beans.',
+		description:
+			'During my masters, I buit and trained a neural network to detect and classify defects in raw coffee beans.',
 		activities: ['Sampling', 'Python', 'TensorFlow'],
 	},
 	{

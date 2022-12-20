@@ -1,6 +1,6 @@
 import { Tab } from '@headlessui/react';
 
-type WorkProps = {
+export type WorkProps = {
 	name: string;
 	title: string;
 	date: string;
@@ -8,7 +8,7 @@ type WorkProps = {
 	activities: string[];
 };
 
-export type WorkListProps = {
+type WorkListProps = {
 	list: WorkProps[];
 };
 
@@ -35,7 +35,7 @@ export default function WorkTabs({ list }: WorkListProps) {
 				<Tab.Panels className="border-l border-wm-carbon-600 pl-4">
 					{list.map(({ name, title, description, date, activities }) => (
 						<Tab.Panel key={name}>
-							<h3 className="font-bold">{title}</h3>
+							<h2 className="font-bold">{title}</h2>
 							<span className="text-xs font-mono">{date}</span>
 							<p className="py-2">{description}</p>
 							<ul className="p-4 list-['▹'] marker:text-wm-accent">
