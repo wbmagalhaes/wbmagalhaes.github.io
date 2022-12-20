@@ -3,10 +3,9 @@ import ProjectShowcase from '@atoms/ProjectShowcase';
 import type { ProjectProps } from '@atoms/ProjectShowcase';
 import { getSlugFromURL } from '@core/Path';
 
-async function getProjects(): Promise<[ProjectProps[], ProjectProps[]]> {
-	const allMDX = await Astro.glob('../../data/projects/**/*.mdx');
-
-	const all: ProjectProps[] = allMDX
+async function getProjects(): Promise<ProjectProps[]> {
+	const all = await Astro.glob('../../data/projects/**/*.mdx');
+	return all
 		.filter((page) => !page.frontmatter.draft)
 		.sort((pageA, pageB) => {
 			const dateA = new Date(pageA.frontmatter.date).getTime();
@@ -19,16 +18,20 @@ async function getProjects(): Promise<[ProjectProps[], ProjectProps[]]> {
 				...page.frontmatter,
 			};
 		});
-
-	const featuredProjects: ProjectProps[] = [];
-	const otherProjects: ProjectProps[] = [];
-
-	all.forEach((page) => (page.featured ? featuredProjects : otherProjects).push(page));
-
-	return [featuredProjects, otherProjects];
 }
 
-const [featuredProjects, otherProjects] = await getProjects();
+async function splitFeatured(): Promise<[ProjectProps[], ProjectProps[]]> {
+	const featured: ProjectProps[] = [];
+	const other: ProjectProps[] = [];
+
+	await getProjects().then((all) => {
+		all.forEach((page) => (page.featured ? featured : other).push(page));
+	});
+
+	return [featured, other];
+}
+
+const [featuredProjects, otherProjects] = await splitFeatured();
 ---
 
 <section id="projects" class="h-full min-h-screen pt-32">
