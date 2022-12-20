@@ -8,6 +8,8 @@ export type ProjectProps = {
 	description?: string;
 	tags?: [string];
 	date?: string;
+	draft?: boolean;
+	featured?: boolean;
 };
 
 type ProjectListProps = {
@@ -18,18 +20,20 @@ type ProjectListProps = {
 export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 	return (
 		<>
-			<div className="flex flex-col gap-4 py-4 mb-24">
+			<div className="flex flex-col gap-8 py-4 mb-24">
 				{featured.map((project, i) => (
 					<ProjectFeatured key={i} idx={i} project={project} />
 				))}
 			</div>
-			<div className="py-4">
+			<div className="flex flex-col gap-4 py-4">
 				<h2 className="mb-8 text-center">Other projects</h2>
-				<div className="grid grid-cols-3 gap-4 ">
+				<div className="grid grid-cols-3 gap-8">
 					{other.map((project, i) => (
 						<ProjectCard key={i} project={project} />
 					))}
 				</div>
+
+				<button className='bg-wm-accent text-wm-platinum p-2 rounded-full mx-auto'>See More</button>
 			</div>
 		</>
 	);

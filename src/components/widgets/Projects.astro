@@ -1,68 +1,34 @@
 ---
 import ProjectShowcase from '@atoms/ProjectShowcase';
 import type { ProjectProps } from '@atoms/ProjectShowcase';
+import { getSlugFromURL } from '@core/Path';
 
-const featuredProjects: ProjectProps[] = [
-	{
-		url: '#',
-		cover: '#',
-		title: 'Jornada Vocacional Uniceplac - 2020',
-		description: 'description',
-		tags: ['tag'],
-		date: 'date',
-	},
-	{
-		url: '#',
-		cover: '#',
-		title: 'Jornada Vocacional Uniceplac - 2021',
-		description: 'description',
-		tags: ['tag'],
-		date: 'date',
-	},
-];
+async function getProjects(): Promise<[ProjectProps[], ProjectProps[]]> {
+	const allMDX = await Astro.glob('../../data/projects/**/*.mdx');
 
-const otherProjects: ProjectProps[] = [
-	{
-		url: '#',
-		cover: '#',
-		title: 'string',
-		description: 'string',
-		tags: ['string'],
-		date: '2020-01-01',
-	},
-	{
-		url: '#',
-		cover: '#',
-		title: 'string',
-		description: 'string',
-		tags: ['string'],
-		date: '2020-01-01',
-	},
-	{
-		url: '#',
-		cover: '#',
-		title: 'string',
-		description: 'string',
-		tags: ['string'],
-		date: '2020-01-01',
-	},
-	{
-		url: '#',
-		cover: '#',
-		title: 'string',
-		description: 'string',
-		tags: ['string'],
-		date: '2020-01-01',
-	},
-	{
-		url: '#',
-		cover: '#',
-		title: 'string',
-		description: 'string',
-		tags: ['string'],
-		date: '2020-01-01',
-	},
-];
+	const all: ProjectProps[] = allMDX
+		.filter((page) => !page.frontmatter.draft)
+		.sort((pageA, pageB) => {
+			const dateA = new Date(pageA.frontmatter.date).getTime();
+			const dateB = new Date(pageB.frontmatter.date).getTime();
+			return dateB - dateA;
+		})
+		.map((page) => {
+			return {
+				url: getSlugFromURL(page.file),
+				...page.frontmatter,
+			};
+		});
+
+	const featuredProjects: ProjectProps[] = [];
+	const otherProjects: ProjectProps[] = [];
+
+	all.forEach((page) => (page.featured ? featuredProjects : otherProjects).push(page));
+
+	return [featuredProjects, otherProjects];
+}
+
+const [featuredProjects, otherProjects] = await getProjects();
 ---
 
 <section id="projects" class="h-full min-h-screen pt-32">
