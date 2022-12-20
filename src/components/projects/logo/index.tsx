@@ -26,7 +26,7 @@ export function Logo() {
 					<textarea ref={textAreaRef} defaultValue={options.code} className="w-full h-36 rounded" />
 				</label>
 				<motion.button
-					className="bg-wm-accent rounded text-wm-platinum fold-semibold p-2"
+					className="bg-wm-oxygen rounded text-wm-hydrogen fold-semibold p-2"
 					whileHover={{ background: '#E94957' }}
 					whileTap={{ background: '#DA1B2B' }}
 					onClick={() => setOptions({ ...options, code: textAreaRef.current?.value ?? '' })}

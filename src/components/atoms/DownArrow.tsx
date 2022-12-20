@@ -36,7 +36,7 @@ export function DownArrow({ href }: Props) {
 			whileHover={{ scale: 1.2 }}
 			whileTap={{ scale: 0.8 }}
 			href={href}
-			className="w-12 h-12 mb-16 rounded-full text-wm-accent hover:text-wm-accent-300 red-neon"
+			className="w-12 h-12 mb-16 rounded-full text-wm-oxygen hover:text-wm-oxygen-300 red-neon"
 			initial="hidden"
 			animate={controls}
 			variants={all}

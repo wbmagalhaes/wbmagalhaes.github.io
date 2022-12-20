@@ -23,8 +23,8 @@ export default function WorkTabs({ list }: WorkListProps) {
 							className={({ selected }) =>
 								`w-full p-4 text-sm md:whitespace-nowrap font-mono ${
 									selected
-										? 'text-wm-carbon bg-wm-accent'
-										: 'text-wm-platinum hover:bg-wm-carbon-600 hover:text-wm-platinum'
+										? 'text-wm-carbon bg-wm-oxygen'
+										: 'text-wm-hydrogen hover:bg-wm-carbon-600 hover:text-wm-hydrogen'
 								}`
 							}
 						>
@@ -38,7 +38,7 @@ export default function WorkTabs({ list }: WorkListProps) {
 							<h2 className="font-bold">{title}</h2>
 							<span className="text-sm font-mono">{date}</span>
 							<p className="py-2">{description}</p>
-							<ul className="p-4 list-['▹'] marker:text-wm-accent">
+							<ul className="p-4 list-['▹'] marker:text-wm-oxygen">
 								{activities.map((activity, i) => (
 									<li key={i} className="p-1">
 										{activity}

@@ -35,7 +35,7 @@ export function HudAnim() {
 					scale: 0.8,
 					rotate: -360,
 				}}
-				className="absolute left-4 bottom-4 w-8 h-8 md:w-12 md:h-12 bg-wm-accent-600 hover:bg-wm-accent-400 rounded-full p-2 text-wm-platinum shadow-md"
+				className="absolute left-4 bottom-4 w-8 h-8 md:w-12 md:h-12 bg-wm-oxygen-600 hover:bg-wm-oxygen-400 rounded-full p-2 text-wm-hydrogen shadow-md"
 				onClick={async () => {
 					await controls.start('hidden');
 					await controls.start('show');

@@ -11,7 +11,7 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 	const controls = useAnimationControls();
 
 	return (
-		<li className="relative text-wm-platinum-600 transition-all duration-200 p-0 lg:p-4">
+		<li className="relative text-wm-hydrogen-600 transition-all duration-200 p-0 lg:p-4">
 			<motion.a
 				href={href}
 				aria-label={aria}
@@ -26,7 +26,7 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 					fill="none"
 				>
 					<motion.path
-						className="text-wm-platinum"
+						className="text-wm-hydrogen"
 						initial="hidden"
 						animate={controls}
 						variants={shadowVariants}
@@ -36,7 +36,7 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 						d="M 3 7 l 1 1 H 28"
 					/>
 					<motion.path
-						className="text-wm-accent"
+						className="text-wm-oxygen"
 						initial="hidden"
 						animate={controls}
 						variants={variants}

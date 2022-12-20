@@ -45,8 +45,8 @@ export function AudioWaves() {
 					<Bars active={active} direction={1} wave={wave} barWidth={barWidth} />
 					<Bars active={active} direction={-1} wave={wave} barWidth={barWidth} />
 
-					<line className="stroke-wm-platinum stroke-2" x1="-450" y1="0" x2="450" y2="0" />
-					<circle className="fill-wm-carbon stroke-wm-platinum stroke-2" cx="0" cy="0" r="80" />
+					<line className="stroke-wm-hydrogen stroke-2" x1="-450" y1="0" x2="450" y2="0" />
+					<circle className="fill-wm-carbon stroke-wm-hydrogen stroke-2" cx="0" cy="0" r="80" />
 
 					<Button active={active} setActive={setActive} />
 				</g>

@@ -14,7 +14,7 @@ export default function Email({ icon, email }: Props) {
 		<div className="hidden md:block fixed top-0 right-6 lg:right-8 xl:right-16 w-12 lg:w-16 xl:w-32 z-10">
 			<div className="flex flex-col place-items-center justify-end gap-2">
 				<motion.span
-					className="w-[1px] h-64 origin-top bg-wm-accent"
+					className="w-[1px] h-64 origin-top bg-wm-oxygen"
 					initial="hidden"
 					animate="show"
 					variants={lineVariants}
@@ -22,7 +22,7 @@ export default function Email({ icon, email }: Props) {
 
 				<motion.a
 					href={`mailto:${email}`}
-					className="font-mono text-sm text-wm-accent hover:text-wm-accent-200 hover:red-neon"
+					className="font-mono text-sm text-wm-oxygen hover:text-wm-oxygen-200 hover:red-neon"
 					initial="hidden"
 					animate={controls}
 					onHoverStart={() => controls.start('hover')}

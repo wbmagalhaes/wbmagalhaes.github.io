@@ -1,7 +1,7 @@
 footer {
 	a[href] {
 		&::after {
-			@apply bg-wm-accent w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
+			@apply bg-wm-oxygen w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
 		}
 
 		&:hover::after {
@@ -9,7 +9,7 @@ footer {
 		}
 
 		&:hover {
-			@apply text-wm-accent;
+			@apply text-wm-oxygen;
 		}
 	}
 }

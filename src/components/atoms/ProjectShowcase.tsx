@@ -33,7 +33,7 @@ export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 					))}
 				</div>
 
-				<button className='bg-wm-accent text-wm-platinum p-2 rounded-full mx-auto'>See More</button>
+				<button className='bg-wm-oxygen text-wm-hydrogen p-2 rounded-full mx-auto'>See More</button>
 			</div>
 		</>
 	);
