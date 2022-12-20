@@ -9,7 +9,11 @@ export default function ProjectCard({ project }: Props) {
 	return (
 		<article className="w-full max-w-sm flex flex-col bg-wm-carbon-300 rounded text-left overflow-hidden">
 			<a href={project.url} className="w-full h-48 grid place-items-center overflow-hidden">
-				<img src={project.cover} className="min-w-full min-h-full object-cover bg-wm-carbon-400 text-wm-hydrogen grid place-items-center" alt="Imagem de Capa" />
+				<img
+					src={project.cover}
+					className="min-w-full min-h-full object-cover bg-wm-carbon-400 text-wm-hydrogen grid place-items-center"
+					alt="Imagem de Capa"
+				/>
 			</a>
 
 			<div className="flex-grow p-5">

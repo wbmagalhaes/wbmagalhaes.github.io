@@ -25,7 +25,7 @@ export default function TechStack({ techs }: TechStackProps) {
 						{list.map(({ name, icon, color }, i) => (
 							<li
 								key={i}
-								className="text-sm inline-flex rounded-full px-3 py-1 gap-3 items-center bg-wm-carbon-600"
+								className="text-sm inline-flex rounded-full px-4 py-1.5 gap-2 items-center bg-wm-carbon-600"
 							>
 								<span>{name}</span>
 								<Icon icon={icon} color={color} />
