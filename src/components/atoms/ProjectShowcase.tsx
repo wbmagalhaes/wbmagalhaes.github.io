@@ -32,8 +32,7 @@ export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 						<ProjectCard key={i} project={project} />
 					))}
 				</div>
-
-				<button className='bg-wm-oxygen text-wm-hydrogen p-2 rounded-full mx-auto'>See More</button>
+				<button className='bg-wm-oxygen text-wm-hydrogen px-4 py-2 rounded-full mx-auto'>See More</button>
 			</div>
 		</>
 	);
