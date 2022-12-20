@@ -1,20 +1,37 @@
 ---
+import WorkTabs from '@atoms/WorkTabs';
+
+const work = [
+	{
+		name: 'Space Wizard Studios',
+		title: 'Full-Stack Freelancer',
+		date: 'Aug 2020 - Present',
+		description: 'Does drinking coffee make you smarter?',
+		activities: ['blah', 'blah', 'blah'],
+	},
+	{
+		name: 'Masters Dissertation',
+		title: 'Arabica coffee defect detection by CNN',
+		date: 'Jan 2018 - Dec 2020',
+		description: 'During my masters, I buit and trained a neural network to detect and classify defects in raw coffee beans.',
+		activities: ['Sampling', 'Python', 'TensorFlow'],
+	},
+	{
+		name: 'Bacharelors Dissertation',
+		title: 'Low cost Arduino colorimeter',
+		date: 'Jan - Dec 2014',
+		description: 'Does drinking coffee make you smarter?',
+		activities: ['blah', 'blah', 'blah'],
+	},
+];
 ---
 
 <section id="experience" class="h-full min-h-screen pt-32">
 	<div class="flex flex-col">
 		<h1 class="section-divider after:bg-wm-accent before:bg-wm-accent">Experience</h1>
-		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-			dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-			ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-			nulla pariatur.
-		</p>
-		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-			dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-			ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-			nulla pariatur.
-		</p>
+		<p class="max-w-lg lg:max-w-2xl text-justify py-2">Paragraph about my work.</p>
+		<div class="md:p-4">
+			<WorkTabs list={work} client:visible />
+		</div>
 	</div>
 </section>

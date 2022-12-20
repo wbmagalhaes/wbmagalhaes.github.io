@@ -20,6 +20,7 @@
 		"@astrolib/seo": "^0.2.1",
 		"@fontsource/inter": "^4.5.14",
 		"@fontsource/mononoki": "^4.5.3",
+		"@headlessui/react": "^1.7.7",
 		"@iconify/react": "^4.0.1",
 		"@react-three/drei": "^9.32.7",
 		"@react-three/fiber": "^8.8.8",
