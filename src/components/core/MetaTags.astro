@@ -6,7 +6,7 @@ import Fonts from '@atoms/Fonts.astro';
 const {
 	title = SITE.name,
 	description = SITE.name,
-	canonical = SITE.origin,
+	canonical = Astro.url.toString(),
 	noindex = false,
 	nofollow = false,
 	ogTitle = SITE.title,
@@ -23,7 +23,7 @@ const {
 <AstroSeo
 	title={title}
 	description={description}
-	canonical={canonical}
+	canonical={}
 	noindex={noindex}
 	nofollow={nofollow}
 	openGraph={{

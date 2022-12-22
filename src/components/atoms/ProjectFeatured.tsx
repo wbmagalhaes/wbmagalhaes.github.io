@@ -17,7 +17,7 @@ export default function ProjectFeatured({ idx, project }: Props) {
 			>
 				<img
 					src={project.cover}
-					className="min-w-full min-h-full flex place-items-center object-cover"
+					className="min-w-full min-h-full flex place-items-center object-cover hover:scale-125 transition-all duration-500"
 					alt="Project Cover"
 				/>
 			</a>
