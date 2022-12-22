@@ -7,10 +7,12 @@ interface Props {
 }
 
 export default function ProjectCard({ project, noCover = false }: Props) {
+	const aria = `Abrir ${project.title}`;
+
 	return (
 		<article className="w-full max-w-sm flex flex-col bg-wm-carbon-300 rounded text-left overflow-hidden">
 			{!noCover && (
-				<a href={project.url} className="w-full h-48 grid place-items-center overflow-hidden">
+				<a href={project.url} aria-label={aria} className="w-full h-48 grid place-items-center overflow-hidden">
 					<img
 						src={project.cover}
 						className="min-w-full min-h-full object-cover bg-wm-carbon-400 text-wm-hydrogen grid place-items-center"
@@ -22,9 +24,11 @@ export default function ProjectCard({ project, noCover = false }: Props) {
 			<div className="flex-grow p-5">
 				<div className="flex items-center mb-4">
 					<h2 className="font-bold tracking-tight">
-						<a href={project.url}>{project.title}</a>
+						<a href={project.url} aria-label={aria}>
+							{project.title}
+						</a>
 					</h2>
-					{noCover && <OpenProjectButton url={project.url} />}
+					{noCover && <OpenProjectButton url={project.url ?? '#'} aria={aria} />}
 				</div>
 
 				<p className="font-normal">{project.description}</p>
@@ -51,18 +55,19 @@ export default function ProjectCard({ project, noCover = false }: Props) {
 						day: '2-digit',
 					})}
 				</span>
-				{!noCover && <OpenProjectButton url={project.url} />}
+				{!noCover && <OpenProjectButton url={project.url ?? '#'} aria={aria} />}
 			</div>
 		</article>
 	);
 }
 
-function OpenProjectButton({ url }: { url?: string }) {
+function OpenProjectButton({ url, aria }: { url: string; aria: string }) {
 	return (
 		<motion.a
 			initial="normal"
 			whileHover="hover"
 			href={url}
+			aria-label={aria}
 			className="flex gap-2
 					ml-auto items-center
 					text-sm font-medium text-wm-oxygen hover:text-wm-oxygen-200"

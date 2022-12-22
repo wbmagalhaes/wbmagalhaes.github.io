@@ -6,10 +6,13 @@ type Props = {
 };
 
 export default function ProjectFeatured({ idx, project }: Props) {
+	const aria = `Abrir ${project.title}`;
+
 	return (
 		<article className={`w-full flex gap-4 ${idx % 2 == 0 ? 'flex-row' : 'flex-row-reverse'}`}>
 			<a
 				href={project.url}
+				aria-label={aria}
 				className="h-64 aspect-[16/9] grid place-items-center overflow-hidden grow bg-wm-oxygen rounded-md overflow-hidden"
 			>
 				<img
@@ -21,7 +24,9 @@ export default function ProjectFeatured({ idx, project }: Props) {
 			<div className={`grow flex flex-col ${idx % 2 == 0 ? 'items-end' : 'items-start'}`}>
 				<p className="font-mono text-wm-oxygen">Featured Project</p>
 				<h2 className="whitespace-pre-wrap">
-					<a href={project.url}>{project.title}</a>
+					<a href={project.url} aria-label={aria}>
+						{project.title}
+					</a>
 				</h2>
 				<p>{project.description}</p>
 			</div>
