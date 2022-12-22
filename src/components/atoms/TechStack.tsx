@@ -21,7 +21,7 @@ export default function TechStack({ techs }: TechStackProps) {
 			{techs.map(({ title, list }, i) => (
 				<div className="py-2" key={i}>
 					<h2 className="py-2">{title}</h2>
-					<ul className="flex flex-wrap gap-4">
+					<ul className="flex flex-wrap gap-1">
 						{list.map(({ name, icon, color }, i) => (
 							<li
 								key={i}

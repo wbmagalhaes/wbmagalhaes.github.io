@@ -1,5 +1,5 @@
 import { motion, useAnimationControls } from 'framer-motion';
-import { useAnimationOnStart } from '@core/useAnimationOnStart';
+import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 
 type Props = {
 	icon?: string;

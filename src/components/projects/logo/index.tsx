@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useHolderSize } from '@core/useHolderSize';
+import { useHolderSize } from '@hooks/useHolderSize';
 import Loading from '@atoms/Loading';
 
 import { LogoOptions } from './LogoOptions';

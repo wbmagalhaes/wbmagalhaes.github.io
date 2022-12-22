@@ -31,9 +31,9 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 						animate={controls}
 						variants={shadowVariants}
 						stroke="currentColor"
-						strokeWidth={0.4}
+						strokeWidth={0.3}
 						strokeLinecap="round"
-						d="M 3 7 l 1 1 H 28"
+						d="M 4 8 H 27 l 1 -1"
 					/>
 					<motion.path
 						className="text-wm-oxygen"
@@ -41,9 +41,9 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 						animate={controls}
 						variants={variants}
 						stroke="currentColor"
-						strokeWidth={0.5}
+						strokeWidth={0.4}
 						strokeLinecap="round"
-						d="M 3 7 l 1 1 H 28"
+						d="M 4 8 H 27 l 1 -1"
 					/>
 				</svg>
 

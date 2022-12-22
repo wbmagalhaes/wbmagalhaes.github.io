@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
-import { useHolderSize } from '@core/useHolderSize';
+import { useHolderSize } from '@hooks/useHolderSize';
 import Loading from '@atoms/Loading';
 
 import { SteerOptions } from './SteerOptions';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useScroll } from '@core/useScroll';
+import { useScroll } from '@hooks/useScroll';
 import HeaderItem from '@atoms/HeaderItem';
 import Icons from '@atoms/HeaderIcons';
 import Logo from '@atoms/Logo';

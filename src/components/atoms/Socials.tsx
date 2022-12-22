@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { motion, useAnimationControls } from 'framer-motion';
-import { useAnimationOnStart } from '@core/useAnimationOnStart';
+import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 
 type SocialProps = { link: string; icon: string; aria: string };
 
