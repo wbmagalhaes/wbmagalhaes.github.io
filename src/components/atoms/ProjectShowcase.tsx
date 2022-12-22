@@ -1,6 +1,7 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import ProjectFeatured from '@atoms/ProjectFeatured';
 import ProjectCard from '@atoms/ProjectCard';
-import { useState } from 'react';
 
 export type ProjectProps = {
 	url?: string;
@@ -31,11 +32,13 @@ export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 			</div>
 			<div className="flex flex-col gap-4 py-4">
 				<h2 className="mb-8 text-center">Other projects</h2>
-				<div className="grid grid-cols-3 gap-8">
+
+				<motion.div className="grid grid-cols-3 gap-8">
 					{otherToShow.map((project, i) => (
-						<ProjectCard key={i} project={project} noCover />
+						<ProjectCard key={i} project={project} column={i % 3} noCover showAnim />
 					))}
-				</div>
+				</motion.div>
+
 				{cardCount < other.length && (
 					<button
 						className="bg-wm-oxygen text-wm-hydrogen px-6 py-1.5 rounded-full mx-auto"

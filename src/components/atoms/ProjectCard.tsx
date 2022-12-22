@@ -1,16 +1,52 @@
+import { useRef } from 'react';
+import { useInView, motion } from 'framer-motion';
 import { OpenProjectButton } from '@atoms/OpenProjectButton';
 import type { ProjectProps } from '@atoms/ProjectShowcase';
 
 interface Props {
 	project: ProjectProps;
+	column?: number;
 	noCover?: boolean;
+	showAnim?: boolean;
 }
 
-export default function ProjectCard({ project, noCover = false }: Props) {
+const variants = {
+	hidden: {
+		opacity: 0,
+		x: -100,
+	},
+	show: (i: number) => ({
+		opacity: 1,
+		x: 0,
+		transition: {
+			x: {
+				ease: 'backOut',
+				duration: 0.8,
+			},
+			opacity: {
+				ease: 'linear',
+				duration: 0.4,
+			},
+			delay: i * 0.1,
+		},
+	}),
+};
+
+export default function ProjectCard({ project, column, noCover = false, showAnim = false }: Props) {
 	const aria = `Abrir ${project.title}`;
 
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, amount: 0.5 });
+
 	return (
-		<article className="w-full max-w-sm flex flex-col bg-wm-carbon-300 rounded text-left overflow-hidden hover:-translate-y-1 transition-all duration-200 hover:shadow hover:shadow-wm-oxygen-900 ">
+		<motion.article
+			ref={ref}
+			className="w-full max-w-sm flex flex-col bg-wm-carbon-300 rounded text-left overflow-hidden"
+			variants={showAnim ? variants : undefined}
+			initial="hidden"
+			animate={isInView ? 'show' : 'hidden'}
+			custom={column}
+		>
 			{!noCover && (
 				<a href={project.url} aria-label={aria} className="w-full h-48 grid place-items-center overflow-hidden">
 					<img
@@ -57,6 +93,6 @@ export default function ProjectCard({ project, noCover = false }: Props) {
 				</span>
 				{!noCover && <OpenProjectButton url={project.url ?? '#'} aria={aria} />}
 			</div>
-		</article>
+		</motion.article>
 	);
 }
