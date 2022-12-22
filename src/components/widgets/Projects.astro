@@ -39,7 +39,7 @@ const [featuredProjects, otherProjects] = await splitFeatured();
 		<h1 class="section-divider after:bg-wm-oxygen before:bg-wm-oxygen">Projects</h1>
 		<p class="max-w-lg lg:max-w-2xl text-justify py-2">Paragraph about my projects.</p>
 		<div class="md:p-4">
-			<ProjectShowcase featured={featuredProjects} other={otherProjects} client:visible />
+			<ProjectShowcase featured={featuredProjects} other={otherProjects} client:idle />
 		</div>
 	</div>
 </section>
