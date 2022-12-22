@@ -5,25 +5,34 @@ import type { WorkProps } from '@atoms/WorkTabs';
 const work: WorkProps[] = [
 	{
 		name: 'Space Wizard Studios',
-		title: 'Full-Stack Freelancer',
+		title: 'Freelance full-stack Developer',
 		date: 'Aug 2020 - Present',
-		description: 'Does drinking coffee make you smarter?',
-		activities: ['blah', 'blah', 'blah'],
+		description: `
+			Development of applications and games on Unity3D written in C#.
+			Modeling and support of SQL and NoSQL databases.
+			Development of interactive pieces for web using HTML, CSS, JavaScript and React.
+		`,
+		activities: ['Full-stack developement', 'JavaScript', 'C#', 'Python'],
 	},
 	{
-		name: 'Masters Dissertation',
+		name: 'Master in Chemistry',
 		title: 'Arabica coffee defect detection by CNN',
 		date: 'Jan 2018 - Dec 2020',
-		description:
-			'During my masters, I buit and trained a neural network to detect and classify defects in raw coffee beans.',
-		activities: ['Sampling', 'Python', 'TensorFlow'],
+		description: `
+			During my masters, I've buit and trained a neural network with the Python library Tensorflow
+			to classify defects found in imagens of raw Arabica coffee beans.
+		`,
+		activities: ['Machine Learning', 'Python', 'TensorFlow'],
 	},
 	{
-		name: 'Bacharelors Dissertation',
+		name: 'Bacharelor in Chemistry',
 		title: 'Low cost Arduino colorimeter',
 		date: 'Jan - Dec 2014',
-		description: 'Does drinking coffee make you smarter?',
-		activities: ['blah', 'blah', 'blah'],
+		description: `
+			I've developed an Arduino colorimeter using LED and photodiode
+			with op-amp in transimpedance mode, the instrument's user interface was built in C#.
+		`,
+		activities: ['Analytical Instrumentation', 'Arduino', 'C#'],
 	},
 ];
 ---
@@ -31,7 +40,10 @@ const work: WorkProps[] = [
 <section id="experience" class="h-full min-h-screen pt-32">
 	<div class="flex flex-col">
 		<h1 class="section-divider after:bg-wm-oxygen before:bg-wm-oxygen">Experience</h1>
-		<p class="max-w-lg lg:max-w-2xl text-justify py-2">Paragraph about my work.</p>
+		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
+			My academic backgroud is in the development of analitycal instrumentation, an area that lies on the
+			intersection of chemistry, programming and eletronics. blah blah blah. lorem ipsum.
+		</p>
 		<div class="md:p-4">
 			<WorkTabs list={work} client:visible />
 		</div>

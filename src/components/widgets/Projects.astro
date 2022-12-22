@@ -1,7 +1,7 @@
 ---
 import ProjectShowcase from '@atoms/ProjectShowcase';
-import type { ProjectProps } from '@atoms/ProjectShowcase';
 import { getSlugFromURL } from '@core/Path';
+import type { ProjectProps } from '@atoms/ProjectShowcase';
 
 async function getProjects(): Promise<ProjectProps[]> {
 	const all = await Astro.glob('../../data/projects/**/*.mdx');
