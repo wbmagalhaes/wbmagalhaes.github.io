@@ -29,7 +29,12 @@ export function Logo() {
 					className="bg-wm-oxygen rounded text-wm-hydrogen fold-semibold p-2"
 					whileHover={{ background: '#E94957' }}
 					whileTap={{ background: '#DA1B2B' }}
-					onClick={() => setOptions({ ...options, code: textAreaRef.current?.value ?? '' })}
+					onClick={() =>
+						setOptions((prevState) => ({
+							...prevState,
+							code: textAreaRef.current?.value ?? '',
+						}))
+					}
 				>
 					OK
 				</motion.button>

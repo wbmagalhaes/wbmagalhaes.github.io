@@ -23,7 +23,12 @@ export function Fourier() {
 						<div className="place-self-start">Número de Fases: {options.nPhases}</div>
 						<input
 							type="range"
-							onChange={(e) => setOptions({ ...options, nPhases: Number(e.target.value) })}
+							onChange={(e) =>
+								setOptions((prevState) => ({
+									...prevState,
+									nPhases: Number(e.target.value),
+								}))
+							}
 							value={options.nPhases}
 							step={1}
 							min={1}
@@ -35,7 +40,12 @@ export function Fourier() {
 						<div className="place-self-start">Frequency: {options.frequency}</div>
 						<input
 							type="range"
-							onChange={(e) => setOptions({ ...options, frequency: Number(e.target.value) })}
+							onChange={(e) =>
+								setOptions((prevState) => ({
+									...prevState,
+									frequency: Number(e.target.value),
+								}))
+							}
 							value={options.frequency}
 							step={0.1}
 							min={0.1}

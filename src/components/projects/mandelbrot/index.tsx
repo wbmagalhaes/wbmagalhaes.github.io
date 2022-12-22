@@ -47,10 +47,10 @@ function RenderCanvas({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, default
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
-									offset: { ...options.offset, x: Number(e.target.value) },
-								})
+								setOptions((prevState) => ({
+									...prevState,
+									offset: { ...prevState.offset, x: Number(e.target.value) },
+								}))
 							}
 							value={options.offset.x}
 							step={0.0001}
@@ -61,10 +61,10 @@ function RenderCanvas({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, default
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
-									offset: { ...options.offset, y: Number(e.target.value) },
-								})
+								setOptions((prevState) => ({
+									...prevState,
+									offset: { ...prevState.offset, y: Number(e.target.value) },
+								}))
 							}
 							value={options.offset.y}
 							step={0.0001}
@@ -81,10 +81,10 @@ function RenderCanvas({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, default
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
+								setOptions((prevState) => ({
+									...prevState,
 									zoom: Number(e.target.value),
-								})
+								}))
 							}
 							value={options.zoom}
 							step={0.01}
@@ -104,12 +104,12 @@ function RenderCanvas({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, default
 							<input
 								type="range"
 								onChange={(e) =>
-									setOptions({
-										...options,
-										julia_const: options.julia_const
-											? { ...options.julia_const, x: Number(e.target.value) }
+									setOptions((prevState) => ({
+										...prevState,
+										julia_const: prevState.julia_const
+											? { ...prevState.julia_const, x: Number(e.target.value) }
 											: undefined,
-									})
+									}))
 								}
 								value={options.julia_const.x}
 								step={0.0001}
@@ -120,12 +120,12 @@ function RenderCanvas({ defaultZoom = 1, defaultOffset = { x: 0, y: 0 }, default
 							<input
 								type="range"
 								onChange={(e) =>
-									setOptions({
-										...options,
-										julia_const: options.julia_const
-											? { ...options.julia_const, y: Number(e.target.value) }
+									setOptions((prevState) => ({
+										...prevState,
+										julia_const: prevState.julia_const
+											? { ...prevState.julia_const, y: Number(e.target.value) }
 											: undefined,
-									})
+									}))
 								}
 								value={options.julia_const.y}
 								step={0.0001}

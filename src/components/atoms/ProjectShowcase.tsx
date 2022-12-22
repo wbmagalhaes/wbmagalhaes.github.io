@@ -1,5 +1,6 @@
 import ProjectFeatured from '@atoms/ProjectFeatured';
 import ProjectCard from '@atoms/ProjectCard';
+import { useState } from 'react';
 
 export type ProjectProps = {
 	url?: string;
@@ -18,6 +19,9 @@ type ProjectListProps = {
 };
 
 export default function ProjectShowcase({ featured, other }: ProjectListProps) {
+	const [cardCount, setCardCount] = useState(3);
+	const otherToShow = other.slice(0, cardCount);
+
 	return (
 		<>
 			<div className="flex flex-col gap-8 py-4 mb-24">
@@ -28,11 +32,18 @@ export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 			<div className="flex flex-col gap-4 py-4">
 				<h2 className="mb-8 text-center">Other projects</h2>
 				<div className="grid grid-cols-3 gap-8">
-					{other.map((project, i) => (
-						<ProjectCard key={i} project={project} />
+					{otherToShow.map((project, i) => (
+						<ProjectCard key={i} project={project} noCover />
 					))}
 				</div>
-				<button className='bg-wm-oxygen text-wm-hydrogen px-6 py-1.5 rounded-full mx-auto'>See More</button>
+				{cardCount < other.length && (
+					<button
+						className="bg-wm-oxygen text-wm-hydrogen px-6 py-1.5 rounded-full mx-auto"
+						onClick={() => setCardCount(cardCount + 3)}
+					>
+						See More
+					</button>
+				)}
 			</div>
 		</>
 	);

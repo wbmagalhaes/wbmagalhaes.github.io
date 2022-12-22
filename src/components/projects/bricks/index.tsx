@@ -21,7 +21,12 @@ export function Fourier() {
 					<div className="place-self-start">A: {options.a}</div>
 					<input
 						type="range"
-						onChange={(e) => setOptions({ ...options, a: Number(e.target.value) })}
+						onChange={(e) =>
+							setOptions((prevState) => ({
+								...prevState,
+								a: Number(e.target.value),
+							}))
+						}
 						value={options.a}
 						step={0.1}
 						min={0}

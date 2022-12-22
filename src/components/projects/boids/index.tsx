@@ -24,10 +24,10 @@ export function Boids() {
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
+								setOptions((prevState) => ({
+									...prevState,
 									alignmentWeight: Number(e.target.value),
-								})
+								}))
 							}
 							value={options.alignmentWeight}
 							step={0.1}
@@ -42,10 +42,10 @@ export function Boids() {
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
+								setOptions((prevState) => ({
+									...prevState,
 									cohesionWeight: Number(e.target.value),
-								})
+								}))
 							}
 							value={options.cohesionWeight}
 							step={0.1}
@@ -60,10 +60,10 @@ export function Boids() {
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
+								setOptions((prevState) => ({
+									...prevState,
 									repulsionWeight: Number(e.target.value),
-								})
+								}))
 							}
 							value={options.repulsionWeight}
 							step={0.1}
@@ -78,10 +78,10 @@ export function Boids() {
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
+								setOptions((prevState) => ({
+									...prevState,
 									clearWeight: Number(e.target.value),
-								})
+								}))
 							}
 							value={options.clearWeight}
 							step={0.1}
@@ -96,10 +96,10 @@ export function Boids() {
 						<input
 							type="range"
 							onChange={(e) =>
-								setOptions({
-									...options,
+								setOptions((prevState) => ({
+									...prevState,
 									attractionWeight: Number(e.target.value),
-								})
+								}))
 							}
 							value={options.attractionWeight}
 							step={0.1}
