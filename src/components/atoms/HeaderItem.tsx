@@ -33,7 +33,7 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.3}
 						strokeLinecap="round"
-						d="M 4 8 H 27 l 1 -1"
+						d="M 2 8 H 28"
 					/>
 					<motion.path
 						className="text-wm-oxygen"
@@ -43,7 +43,7 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 						stroke="currentColor"
 						strokeWidth={0.4}
 						strokeLinecap="round"
-						d="M 4 8 H 27 l 1 -1"
+						d="M 2 8 H 28"
 					/>
 				</svg>
 

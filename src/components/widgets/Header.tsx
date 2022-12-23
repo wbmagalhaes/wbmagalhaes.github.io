@@ -26,7 +26,7 @@ export default function Header() {
 					<ul slot="nav" className="flex gap-4 lg:gap-0 text-right font-mono">
 						<HeaderItem
 							href="/#about"
-							text="About"
+							text="About Me"
 							icon={<Icons.About className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="About Me"
 						/>

@@ -1,4 +1,4 @@
-import { DownArrow } from '../atoms/DownArrow';
+import { DownArrow } from '@atoms/DownArrow';
 
 export default function Hero() {
 	return (
