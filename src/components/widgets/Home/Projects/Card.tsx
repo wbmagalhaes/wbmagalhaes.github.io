@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { useInView, motion } from 'framer-motion';
 import OpenButton from './OpenButton';
-import type { ProjectProps } from './Showcase';
+import type { Project } from '@services/my_info';
 
 interface Props {
-	project: ProjectProps;
+	project: Project;
 	column?: number;
 	noCover?: boolean;
 	showAnim?: boolean;

@@ -1,21 +1,11 @@
 import { Icon } from '@iconify/react';
+import type { TechList } from '@services/my_info';
 
-type TechProps = {
-	name: string;
-	icon: string;
-	color: string;
+type Props = {
+	techs: TechList[];
 };
 
-export type TechListProps = {
-	title: string;
-	list: TechProps[];
-};
-
-type TechStackProps = {
-	techs: TechListProps[];
-};
-
-export default function TechStack({ techs }: TechStackProps) {
+export default function TechStack({ techs }: Props) {
 	return (
 		<div className="flex flex-col gap-4 mt-2">
 			{techs.map(({ title, list }, i) => (

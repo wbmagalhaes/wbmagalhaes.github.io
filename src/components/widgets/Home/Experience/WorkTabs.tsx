@@ -1,18 +1,11 @@
 import { Tab } from '@headlessui/react';
+import type { Work } from '@services/my_info';
 
-export type WorkProps = {
-	name: string;
-	title: string;
-	date: string;
-	description: string;
-	activities: string[];
+type Props = {
+	list: Work[];
 };
 
-type WorkListProps = {
-	list: WorkProps[];
-};
-
-export default function WorkTabs({ list }: WorkListProps) {
+export default function WorkTabs({ list }: Props) {
 	return (
 		<div className="flex w-full">
 			<Tab.Group>

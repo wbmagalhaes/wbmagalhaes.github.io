@@ -1,15 +1,27 @@
-type TechProps = {
+type Tech = {
 	name: string;
 	icon: string;
 	color: string;
 };
 
-type TechListProps = {
+export type TechList = {
 	title: string;
-	list: TechProps[];
+	list: Tech[];
 };
 
-const techStack: TechListProps[] = [
+export const getTechStacks = () => techStack;
+
+export type Work = {
+	name: string;
+	title: string;
+	date: string;
+	description: string;
+	activities: string[];
+};
+
+export const getWorks = () => work;
+
+const techStack: TechList[] = [
 	{
 		title: 'Languages',
 		list: [
@@ -65,4 +77,47 @@ const techStack: TechListProps[] = [
 	},
 ];
 
-export const getTechStack = () => techStack;
+const work: Work[] = [
+	{
+		name: 'Space Wizard Studios',
+		title: 'Freelance full-stack Developer',
+		date: 'Aug 2020 - Present',
+		description: `
+			Development of applications and games on Unity3D written in C#.
+			Modeling and support of SQL and NoSQL databases.
+			Development of interactive pieces for web using HTML, CSS, JavaScript and React.
+		`,
+		activities: ['Full-stack developement', 'JavaScript', 'C#', 'Python'],
+	},
+	{
+		name: 'Master in Chemistry',
+		title: 'Arabica coffee defect detection by CNN',
+		date: 'Jan 2018 - Dec 2020',
+		description: `
+			During my masters, I've buit and trained a neural network with the Python library Tensorflow
+			to classify defects found in imagens of raw Arabica coffee beans.
+		`,
+		activities: ['Machine Learning', 'Python', 'TensorFlow'],
+	},
+	{
+		name: 'Bacharelor in Chemistry',
+		title: 'Low cost Arduino colorimeter',
+		date: 'Jan - Dec 2014',
+		description: `
+			I've developed an Arduino colorimeter using LED and photodiode
+			with op-amp in transimpedance mode, the instrument's user interface was built in C#.
+		`,
+		activities: ['Analytical Instrumentation', 'Arduino', 'C#'],
+	},
+];
+
+export type Project = {
+	url?: string;
+	cover?: string;
+	title?: string;
+	description?: string;
+	tags?: [string];
+	date?: string;
+	draft?: boolean;
+	featured?: boolean;
+};

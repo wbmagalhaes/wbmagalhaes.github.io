@@ -2,24 +2,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Featured from './Featured';
 import Card from './Card';
+import type { Project } from '@services/my_info';
 
-export type ProjectProps = {
-	url?: string;
-	cover?: string;
-	title?: string;
-	description?: string;
-	tags?: [string];
-	date?: string;
-	draft?: boolean;
-	featured?: boolean;
+type Props = {
+	featured: Project[];
+	other: Project[];
 };
 
-type ProjectListProps = {
-	featured: ProjectProps[];
-	other: ProjectProps[];
-};
-
-export default function Showcase({ featured, other }: ProjectListProps) {
+export default function Showcase({ featured, other }: Props) {
 	const [cardCount, setCardCount] = useState(3);
 	const otherToShow = other.slice(0, cardCount);
 

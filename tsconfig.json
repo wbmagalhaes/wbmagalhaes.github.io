@@ -23,6 +23,7 @@
 			"@projects/*": ["src/components/projects/*"],
 			"@hooks/*": ["src/hooks/*"],
 			"@data/*": ["src/data/*"],
+			"@services/*": ["src/services/*"],
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"~/*": ["src/*"]

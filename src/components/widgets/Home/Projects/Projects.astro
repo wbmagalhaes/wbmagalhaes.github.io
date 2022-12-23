@@ -1,9 +1,9 @@
 ---
 import { getSlugFromURL } from '@core/Path';
 import Showcase from './Showcase';
-import type { ProjectProps } from './Showcase';
+import type { Project } from '@services/my_info';
 
-async function getProjects(): Promise<ProjectProps[]> {
+async function getProjects(): Promise<Project[]> {
 	const all = await Astro.glob('../../../../data/projects/**/*.mdx');
 	return all
 		.filter((page) => !page.frontmatter.draft)
@@ -20,18 +20,14 @@ async function getProjects(): Promise<ProjectProps[]> {
 		});
 }
 
-async function splitFeatured(): Promise<[ProjectProps[], ProjectProps[]]> {
-	const featured: ProjectProps[] = [];
-	const other: ProjectProps[] = [];
-
-	await getProjects().then((all) => {
-		all.forEach((page) => (page.featured ? featured : other).push(page));
-	});
-
+async function splitFeatured(all: Project[]): Promise<[Project[], Project[]]> {
+	const featured: Project[] = [];
+	const other: Project[] = [];
+	all.forEach((page) => (page.featured ? featured : other).push(page));
 	return [featured, other];
 }
 
-const [featuredProjects, otherProjects] = await splitFeatured();
+const [featuredProjects, otherProjects] = await splitFeatured(await getProjects());
 ---
 
 <section id="projects" class="h-full min-h-screen pt-32">
