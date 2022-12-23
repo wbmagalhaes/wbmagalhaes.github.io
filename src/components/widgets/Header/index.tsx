@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useScroll } from '@hooks/useScroll';
-import HeaderItem from '@atoms/HeaderItem';
-import Icons from '@atoms/HeaderIcons';
-import Logo from '@atoms/Logo';
+import Item from './Item';
+import Icons from './Icons';
+import Logo from './Logo';
 
 export default function Header() {
 	const [visible, setVisible] = useState(true);
@@ -24,31 +24,31 @@ export default function Header() {
 				</a>
 				<nav>
 					<ul slot="nav" className="flex gap-4 lg:gap-0 text-right font-mono">
-						<HeaderItem
+						<Item
 							href="/#about"
 							text="About Me"
 							icon={<Icons.About className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="About Me"
 						/>
-						<HeaderItem
+						<Item
 							href="/#experience"
 							text="Experience"
 							icon={<Icons.Experience className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="Work Experience"
 						/>
-						<HeaderItem
+						<Item
 							href="/#projects"
 							text="Projects"
 							icon={<Icons.Projects className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="My Projects"
 						/>
-						<HeaderItem
+						<Item
 							href="/#contact"
 							text="Contact"
 							icon={<Icons.Contact className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="Contact Me"
 						/>
-						<HeaderItem
+						<Item
 							href="/#"
 							text="Resume"
 							icon={<Icons.Resume className="lg:text-wm-oxygen hover:text-wm-oxygen" />}

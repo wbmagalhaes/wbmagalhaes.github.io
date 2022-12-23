@@ -1,8 +1,8 @@
 ---
 import { Icon } from 'astro-icon';
 import Layout from '@layouts/BaseLayout.astro';
-import Socials from '@atoms/Socials';
-import Email from '@atoms/Email';
+import Socials from '@widgets/Home/Socials';
+import Email from '@widgets/Home/Email';
 ---
 
 <Layout>
@@ -19,9 +19,7 @@ import Email from '@atoms/Email';
 		<Icon slot="icon" name="ic:round-alternate-email" />
 	</Email>
 
-	<div
-		class="flex flex-col px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300"
-	>
+	<div class="flex flex-col px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300">
 		<slot />
 	</div>
 </Layout>

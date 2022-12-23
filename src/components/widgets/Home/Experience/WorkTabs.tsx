@@ -38,7 +38,7 @@ export default function WorkTabs({ list }: WorkListProps) {
 							<h2 className="font-bold">{title}</h2>
 							<span className="text-sm font-mono">{date}</span>
 							<p className="py-2">{description}</p>
-							<ul className="p-4 list-['▹'] marker:text-wm-oxygen">
+							<ul className="p-4 list-['⇢'] marker:text-wm-oxygen">
 								{activities.map((activity, i) => (
 									<li key={i} className="p-1">
 										{activity}

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useInView, motion } from 'framer-motion';
-import { OpenProjectButton } from '@atoms/OpenProjectButton';
-import type { ProjectProps } from '@atoms/ProjectShowcase';
+import OpenButton from './OpenButton';
+import type { ProjectProps } from './Showcase';
 
 interface Props {
 	project: ProjectProps;
@@ -32,7 +32,7 @@ const variants = {
 	}),
 };
 
-export default function ProjectCard({ project, column, noCover = false, showAnim = false }: Props) {
+export default function Card({ project, column, noCover = false, showAnim = false }: Props) {
 	const aria = `Abrir ${project.title}`;
 
 	const ref = useRef(null);
@@ -64,7 +64,7 @@ export default function ProjectCard({ project, column, noCover = false, showAnim
 							{project.title}
 						</a>
 					</h2>
-					{noCover && <OpenProjectButton url={project.url ?? '#'} aria={aria} />}
+					{noCover && <OpenButton url={project.url ?? '#'} aria={aria} />}
 				</div>
 
 				<p className="font-normal">{project.description}</p>
@@ -91,7 +91,7 @@ export default function ProjectCard({ project, column, noCover = false, showAnim
 						day: '2-digit',
 					})}
 				</span>
-				{!noCover && <OpenProjectButton url={project.url ?? '#'} aria={aria} />}
+				{!noCover && <OpenButton url={project.url ?? '#'} aria={aria} />}
 			</div>
 		</motion.article>
 	);

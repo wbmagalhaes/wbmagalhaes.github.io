@@ -1,4 +1,4 @@
-export function OpenProjectButton({ url, aria }: { url: string; aria: string }) {
+export default function OpenButton({ url, aria }: { url: string; aria: string }) {
 	return (
 		<a
 			href={url}

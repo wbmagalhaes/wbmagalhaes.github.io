@@ -1,8 +1,15 @@
----
-import TechStack from '@atoms/TechStack';
-import type { TechListProps } from '@atoms/TechStack';
+type TechProps = {
+	name: string;
+	icon: string;
+	color: string;
+};
 
-const techs: TechListProps[] = [
+type TechListProps = {
+	title: string;
+	list: TechProps[];
+};
+
+const techStack: TechListProps[] = [
 	{
 		title: 'Languages',
 		list: [
@@ -57,28 +64,5 @@ const techs: TechListProps[] = [
 		],
 	},
 ];
----
 
-<section id="about" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<h1 class="section-divider after:bg-wm-oxygen before:bg-wm-oxygen">About Me</h1>
-		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
-			Paragragh about what I did. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-			laboris nisi ut aliquip ex ea commodo consequat.
-		</p>
-		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
-			Paragraph about what I'm doing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-			ullamco laboris nisi ut aliquip ex ea commodo consequat.
-		</p>
-
-		<p class="max-w-lg lg:max-w-2xl text-justify py-2">
-			Here are a some technologies I've experience working with:
-		</p>
-
-		<div class="max-w-lg lg:max-w-xl flex flex-col px-4">
-			<TechStack techs={techs} client:visible />
-		</div>
-	</div>
-</section>
+export const getTechStack = () => techStack;

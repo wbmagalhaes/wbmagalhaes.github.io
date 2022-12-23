@@ -1,12 +1,12 @@
-import { OpenProjectButton } from '@atoms/OpenProjectButton';
-import type { ProjectProps } from '@atoms/ProjectShowcase';
+import OpenButton from './OpenButton';
+import type { ProjectProps } from './Showcase';
 
 type Props = {
 	idx: number;
 	project: ProjectProps;
 };
 
-export default function ProjectFeatured({ idx, project }: Props) {
+export default function Featured({ idx, project }: Props) {
 	const aria = `Abrir ${project.title}`;
 
 	return (
@@ -31,7 +31,7 @@ export default function ProjectFeatured({ idx, project }: Props) {
 							{project.title}
 						</a>
 					</h2>
-					<OpenProjectButton url={project.url ?? '#'} aria={aria} />
+					<OpenButton url={project.url ?? '#'} aria={aria} />
 				</div>
 
 				<p>{project.description}</p>

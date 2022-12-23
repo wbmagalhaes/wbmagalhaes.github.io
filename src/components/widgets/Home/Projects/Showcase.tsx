@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import ProjectFeatured from '@atoms/ProjectFeatured';
-import ProjectCard from '@atoms/ProjectCard';
+import Featured from './Featured';
+import Card from './Card';
 
 export type ProjectProps = {
 	url?: string;
@@ -19,7 +19,7 @@ type ProjectListProps = {
 	other: ProjectProps[];
 };
 
-export default function ProjectShowcase({ featured, other }: ProjectListProps) {
+export default function Showcase({ featured, other }: ProjectListProps) {
 	const [cardCount, setCardCount] = useState(3);
 	const otherToShow = other.slice(0, cardCount);
 
@@ -27,7 +27,7 @@ export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 		<>
 			<div className="flex flex-col gap-8 py-4 mb-24">
 				{featured.map((project, i) => (
-					<ProjectFeatured key={i} idx={i} project={project} />
+					<Featured key={i} idx={i} project={project} />
 				))}
 			</div>
 			<div className="flex flex-col gap-4 py-4">
@@ -35,7 +35,7 @@ export default function ProjectShowcase({ featured, other }: ProjectListProps) {
 
 				<motion.div className="grid grid-cols-3 gap-8">
 					{otherToShow.map((project, i) => (
-						<ProjectCard key={i} project={project} column={i % 3} noCover showAnim />
+						<Card key={i} project={project} column={i % 3} noCover showAnim />
 					))}
 				</motion.div>
 
