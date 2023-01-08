@@ -22,7 +22,7 @@ export function Logo() {
 			</div>
 
 			<div className="w-full h-full max-w-4xl flex flex-col mx-auto gap-2">
-				<label className="text-sm font-medium">
+				<label className="text-sm font-medium text-wm-carbon">
 					<textarea ref={textAreaRef} defaultValue={options.code} className="w-full h-36 rounded" />
 				</label>
 				<motion.button
