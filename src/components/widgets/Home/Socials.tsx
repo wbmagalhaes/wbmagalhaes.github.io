@@ -19,7 +19,7 @@ export default function Socials({ socials }: Props) {
 					))}
 				</ul>
 				<motion.span
-					className="w-[1px] h-64 origin-bottom bg-wm-oxygen"
+					className="w-[1px] h-64 origin-bottom bg-wm-oxygen-400"
 					initial="hidden"
 					animate="show"
 					variants={lineVariants}
@@ -36,7 +36,7 @@ function SocialItem({ index, link, icon, name }: { index: number } & Social) {
 	return (
 		<motion.li
 			custom={index}
-			className="text-wm-oxygen hover:text-wm-oxygen-200 hover:red-neon"
+			className="text-wm-oxygen-400 hover:text-wm-oxygen-200 hover:red-neon"
 			initial="hidden"
 			animate={controls}
 			onHoverStart={() => controls.start('hover')}

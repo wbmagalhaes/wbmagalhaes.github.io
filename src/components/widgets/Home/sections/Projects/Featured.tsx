@@ -1,16 +1,34 @@
 import OpenButton from './OpenButton';
-import type { ProjectProps } from './Showcase';
+import type { Project } from '@services/my_info';
 
 type Props = {
 	idx: number;
-	project: ProjectProps;
+	project: Project;
 };
 
 export default function Featured({ idx, project }: Props) {
 	const aria = `Abrir ${project.title}`;
 
 	return (
-		<article className={`w-full flex gap-4 ${idx % 2 == 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+		<article
+			className={`w-full flex flex-col place-items-center sm:place-items-start gap-4 ${
+				idx % 2 == 0 ? 'sm:flex-row-reverse' : 'sm:flex-row'
+			}`}
+		>
+			<div className={`grow flex flex-col ${idx % 2 == 0 ? 'sm:items-start sm:text-left' : 'sm:items-end sm:text-right'}`}>
+				<p className="font-mono text-wm-oxygen">Featured Project</p>
+
+				<div className="flex items-center gap-2 mb-2 mr-auto sm:mr-0">
+					<h2 className="whitespace-nowrap">
+						<a href={project.url} aria-label={aria}>
+							{project.title}
+						</a>
+					</h2>
+					<OpenButton url={project.url ?? '#'} aria={aria} />
+				</div>
+
+				<p>{project.description}</p>
+			</div>
 			<a
 				href={project.url}
 				aria-label={aria}
@@ -22,20 +40,6 @@ export default function Featured({ idx, project }: Props) {
 					alt="Project Cover"
 				/>
 			</a>
-			<div className={`grow flex flex-col ${idx % 2 == 0 ? 'items-end text-right' : 'items-start text-left'}`}>
-				<p className="font-mono text-wm-oxygen">Featured Project</p>
-
-				<div className="flex items-center gap-2 mb-2">
-					<h2 className="whitespace-nowrap">
-						<a href={project.url} aria-label={aria}>
-							{project.title}
-						</a>
-					</h2>
-					<OpenButton url={project.url ?? '#'} aria={aria} />
-				</div>
-
-				<p>{project.description}</p>
-			</div>
 		</article>
 	);
 }

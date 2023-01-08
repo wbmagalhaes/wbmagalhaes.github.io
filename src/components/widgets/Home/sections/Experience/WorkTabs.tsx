@@ -7,14 +7,14 @@ type Props = {
 
 export default function WorkTabs({ list }: Props) {
 	return (
-		<div className="flex w-full">
+		<div className="flex flex-col md:flex-row w-full">
 			<Tab.Group>
-				<Tab.List className="flex flex-col h-full pr-2">
+				<Tab.List className="flex md:flex-col h-full pb-2 md:pb-0 md:pr-2 overflow-x-auto md:overflow-x-visible">
 					{list.map(({ name }) => (
 						<Tab
 							key={name}
 							className={({ selected }) =>
-								`w-full p-4 text-sm md:whitespace-nowrap font-mono ${
+								`w-full p-4 text-sm whitespace-nowrap font-mono ${
 									selected
 										? 'text-wm-carbon bg-wm-oxygen'
 										: 'text-wm-hydrogen hover:bg-wm-carbon-600 hover:text-wm-hydrogen'
@@ -25,7 +25,7 @@ export default function WorkTabs({ list }: Props) {
 						</Tab>
 					))}
 				</Tab.List>
-				<Tab.Panels className="border-l border-wm-carbon-600 pl-2">
+				<Tab.Panels className="border-t md:border-t-0 md:border-l border-wm-carbon-600 pt-2 md:pt-0 md:pl-2">
 					{list.map(({ name, title, at, atURL, description, date, activities }) => (
 						<Tab.Panel key={name}>
 							<h2 className="font-bold">
@@ -41,7 +41,7 @@ export default function WorkTabs({ list }: Props) {
 							</h2>
 							<span className="text-sm font-mono">{date}</span>
 							<p className="py-2">{description}</p>
-							<p className="py-2">
+							<div className="py-2">
 								Relevant skills:
 								<ul className="px-4 list-['⇢'] marker:text-wm-oxygen">
 									{activities.map((activity, i) => (
@@ -50,7 +50,7 @@ export default function WorkTabs({ list }: Props) {
 										</li>
 									))}
 								</ul>
-							</p>
+							</div>
 						</Tab.Panel>
 					))}
 				</Tab.Panels>
