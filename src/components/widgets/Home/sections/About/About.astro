@@ -1,0 +1,19 @@
+---
+import Content from '@data/home/about.mdx';
+import { components } from '@widgets/Home/components/Components.astro';
+
+import TechStack from './TechStack';
+import { getTechStacks } from '@services/my_info';
+
+const techs = getTechStacks();
+---
+
+<section id="about" class="h-full min-h-screen pt-32">
+	<div class="flex flex-col">
+		<Content components={components} />
+
+		<div class="max-w-lg lg:max-w-xl flex flex-col">
+			<TechStack techs={techs} client:visible />
+		</div>
+	</div>
+</section>

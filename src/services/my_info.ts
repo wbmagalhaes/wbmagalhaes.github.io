@@ -1,3 +1,29 @@
+const email = 'william.b.magalhaes@gmail.com';
+
+export type Social = {
+	name: string;
+	link: string;
+	icon: string;
+};
+
+const socials: Social[] = [
+	{
+		name: 'GitHub',
+		link: 'https://github.com/wbmagalhaes/',
+		icon: 'ri:github-line',
+	},
+	{
+		name: 'LinkedIn',
+		link: 'https://www.linkedin.com/in/wbmagalhaes/',
+		icon: 'eva:linkedin-outline',
+	},
+	{
+		name: 'Instagram',
+		link: 'https://www.instagram.com/wbmagalhaes/',
+		icon: 'ri:instagram-line',
+	},
+];
+
 type Tech = {
 	name: string;
 	icon: string;
@@ -9,17 +35,15 @@ export type TechList = {
 	list: Tech[];
 };
 
-export const getTechStacks = () => techStack;
-
 export type Work = {
 	name: string;
+	at: string;
+	atURL: string;
 	title: string;
 	date: string;
 	description: string;
 	activities: string[];
 };
-
-export const getWorks = () => work;
 
 const techStack: TechList[] = [
 	{
@@ -80,32 +104,40 @@ const techStack: TechList[] = [
 const work: Work[] = [
 	{
 		name: 'Space Wizard Studios',
-		title: 'Freelance full-stack Developer',
+		at: 'SpaceWizard',
+		atURL: 'https://spacewiz.dev/',
+		title: 'Freelance full-stack developer',
 		date: 'Aug 2020 - Present',
 		description: `
 			Development of applications and games on Unity3D written in C#.
 			Modeling and support of SQL and NoSQL databases.
-			Development of interactive pieces for web using HTML, CSS, JavaScript and React.
+			Development of websites using HTML, CSS, JavaScript and React.
 		`,
-		activities: ['Full-stack developement', 'JavaScript', 'C#', 'Python'],
+		activities: ['Full-stack development', 'JavaScript', 'C#', 'Python'],
 	},
 	{
 		name: 'Master in Chemistry',
+		at: 'UEL',
+		atURL: 'https://portal.uel.br/home/',
 		title: 'Arabica coffee defect detection by CNN',
 		date: 'Jan 2018 - Dec 2020',
 		description: `
-			During my masters, I've buit and trained a neural network with the Python library Tensorflow
-			to classify defects found in imagens of raw Arabica coffee beans.
+			During my masters, I've built and trained a convolutional neural network
+			model with the Python library Tensorflow to classify common defects found
+			in images of raw Arabica coffee beans.
 		`,
 		activities: ['Machine Learning', 'Python', 'TensorFlow'],
 	},
 	{
-		name: 'Bacharelor in Chemistry',
+		name: 'Bachelor in Chemistry',
+		at: 'UEL',
+		atURL: 'https://portal.uel.br/home/',
 		title: 'Low cost Arduino colorimeter',
 		date: 'Jan - Dec 2014',
 		description: `
 			I've developed an Arduino colorimeter using LED and photodiode
-			with op-amp in transimpedance mode, the instrument's user interface was built in C#.
+			with an op-amp in transimpedance mode.
+			All the instrument parts was developed by me, since the circuitry to the user interface in C#.
 		`,
 		activities: ['Analytical Instrumentation', 'Arduino', 'C#'],
 	},
@@ -121,3 +153,8 @@ export type Project = {
 	draft?: boolean;
 	featured?: boolean;
 };
+
+export const getEmail = () => email;
+export const getSocials = () => socials;
+export const getTechStacks = () => techStack;
+export const getWorks = () => work;

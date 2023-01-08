@@ -18,7 +18,7 @@ import { Logo } from '@projects/logo';
 -   **bk :amount** move a caneta `:amount` pixels para trás, riscando se a caneta estiver abaixada.
 -   **rt :amount** gira a direção `:amount` graus no sentido horário
 -   **lt :amount** gira a direção `:amount` graus no sentido anti-horário
--   **thickness :amount** altera a espessura do traço
+-   **thickness :amount** altera a espessura do traço```turtle
 -   **rgb :r :g :b** define a cor do traço
 -   **randomColor** deixa o traço com cor aleatória
 -   **repeat :n [ :code ]** repete o código entre colchetes `:n` vezes
@@ -28,13 +28,13 @@ import { Logo } from '@projects/logo';
 
 ### Logo
 
-```logo
+```turtle
 repeat 36 [ repeat 180 [ fd 2.5 rt 2 ] rt 10 ]
 ```
 
 ### Coração
 
-```logo
+```turtle
 rgb 255 0 0
 lt 50
 fd 111.65
@@ -46,7 +46,7 @@ fd 111.65
 
 ### Polígonos
 
-```logo
+```turtle
 to poly :sides :size
 	repeat :sides [ fd :size rt 360/:sides ]
 end
@@ -60,7 +60,7 @@ square 50
 
 ### Flor
 
-```logo
+```turtle
 to petal :size
 	repeat 2 [ repeat :size [fd 2 rt 1] rt 180-:size ]
 end

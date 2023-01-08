@@ -1,5 +1,3 @@
-@import "footer";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,6 +41,18 @@
 
 		&::before {
 			@apply w-12;
+		}
+	}
+
+	center .section-divider {
+		@apply justify-center;
+
+		&::after {
+			@apply w-16;
+		}
+
+		&::before {
+			@apply w-16;
 		}
 	}
 

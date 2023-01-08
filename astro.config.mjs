@@ -17,6 +17,11 @@ export default defineConfig({
 
 	output: 'static',
 
+	markdown: {
+		syntaxHighlight: 'prism',
+		gfm: true,
+	},
+
 	integrations: [
 		react(),
 		mdx({

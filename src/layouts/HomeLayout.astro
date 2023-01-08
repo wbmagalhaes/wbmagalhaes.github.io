@@ -3,19 +3,17 @@ import { Icon } from 'astro-icon';
 import Layout from '@layouts/BaseLayout.astro';
 import Socials from '@widgets/Home/Socials';
 import Email from '@widgets/Home/Email';
+
+import { getEmail, getSocials } from '@services/my_info';
+
+const email = getEmail();
+const socials = getSocials();
 ---
 
 <Layout>
-	<Socials
-		socials={[
-			{ link: 'https://github.com/wbmagalhaes/', icon: 'ri:github-line', aria: 'GitHub' },
-			{ link: 'https://www.linkedin.com/in/wbmagalhaes/', icon: 'eva:linkedin-outline', aria: 'LinkedIn' },
-			{ link: 'https://www.instagram.com/wbmagalhaes/', icon: 'ri:instagram-line', aria: 'Instagram' },
-		]}
-		client:idle
-	/>
+	<Socials socials={socials} client:idle />
 
-	<Email email="william.b.magalhaes@gmail.com" client:idle>
+	<Email email={email} client:idle>
 		<Icon slot="icon" name="ic:round-alternate-email" />
 	</Email>
 
