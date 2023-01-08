@@ -14,7 +14,7 @@ export default function WorkTabs({ list }: Props) {
 						<Tab
 							key={name}
 							className={({ selected }) =>
-								`w-full p-4 text-sm whitespace-nowrap font-mono ${
+								`w-full p-2 sm:p-4 rounded-sm text-sm whitespace-nowrap font-mono ${
 									selected
 										? 'text-wm-carbon bg-wm-oxygen'
 										: 'text-wm-hydrogen hover:bg-wm-carbon-600 hover:text-wm-hydrogen'
