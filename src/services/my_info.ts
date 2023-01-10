@@ -109,9 +109,10 @@ const work: Work[] = [
 		title: 'Freelance full-stack developer',
 		date: 'Aug 2020 - Present',
 		description: `
-			Development of applications and games on Unity3D written in C#.
-			Modeling and support of SQL and NoSQL databases.
+			Development of applications and games written in C# in the Unity3D framework.
 			Development of websites using HTML, CSS, JavaScript and React.
+			Maintenance and configuration of git platform and repositories.
+			Modeling and support of SQL and NoSQL databases.
 		`,
 		activities: ['Full-stack development', 'JavaScript', 'C#', 'Python'],
 	},
@@ -122,9 +123,11 @@ const work: Work[] = [
 		title: 'Arabica coffee defect detection by CNN',
 		date: 'Jan 2018 - Dec 2020',
 		description: `
-			During my masters, I've built and trained a convolutional neural network
-			model with the Python library Tensorflow to classify common defects found
-			in images of raw Arabica coffee beans.
+			Built and trained a convolutional neural network model with the Python framework TensorFlow,
+			to classify images of coffee beans.
+			Our dataset was composed by 5000 images of raw Arabica coffee beans, classified as perfect
+			and 9 types of common defects found in coffees sold in the Brazilian internal market.
+			After training, the neural network had a ~80% accuracy on the testing data.
 		`,
 		activities: ['Machine Learning', 'Python', 'TensorFlow'],
 	},
@@ -135,9 +138,10 @@ const work: Work[] = [
 		title: 'Low cost Arduino colorimeter',
 		date: 'Jan - Dec 2014',
 		description: `
-			I've developed an Arduino colorimeter using LED and photodiode
-			with an op-amp in transimpedance mode.
-			All the instrument parts was developed by me, since the circuitry to the user interface in C#.
+			Developed an Arduino colorimeter using LED and photodiode with an op-amp in transimpedance mode.
+			All the instrument parts were developed by myself, including the circuitry and the user interface in C#.
+			Validation was made against a commercial spectrometer by the phenanthroline method for iron quantification
+			in fortified wheat flour, and the low-cost colorimeter showed good sensitivity.
 		`,
 		activities: ['Analytical Instrumentation', 'Arduino', 'C#'],
 	},
