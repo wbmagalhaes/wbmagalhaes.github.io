@@ -62,10 +62,12 @@
 
 	.sides-fade {
 		mask-image:
-			linear-gradient(to right,
+			linear-gradient(
+				to right,
 				rgb(0 0 0 / 0) 0%,
 				rgb(0 0 0 / 1) 20%,
 				rgb(0 0 0 / 1) 80%,
-				rgb(0 0 0 / 0) 100%);
+				rgb(0 0 0 / 0) 100%
+			);
 	}
 }
