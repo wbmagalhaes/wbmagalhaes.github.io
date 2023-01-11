@@ -30,7 +30,7 @@ const projects = await getProjects();
 		{
 			projects.map((page) => (
 				<ProjectCard
-					client:idle
+					client:visible
 					project={{
 						url: `/projects/${page.slug}`,
 						cover: page.frontmatter.cover,
@@ -42,6 +42,6 @@ const projects = await getProjects();
 				/>
 			))
 		}
-		<ToTopButton client:idle />
+		<ToTopButton client:visible />
 	</section>
 </Layout>

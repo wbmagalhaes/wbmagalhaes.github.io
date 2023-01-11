@@ -11,9 +11,6 @@ const work = getWorks();
 <section id="experience" class="h-full min-h-screen pt-32">
 	<div class="flex flex-col">
 		<Content components={components} />
-
-		<div class="md:p-4">
-			<WorkTabs list={work} client:idle />
-		</div>
+		<WorkTabs list={work} client:visible />
 	</div>
 </section>

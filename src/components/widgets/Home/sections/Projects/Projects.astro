@@ -36,9 +36,6 @@ const [featuredProjects, otherProjects] = await splitFeatured(await getProjects(
 <section id="projects" class="h-full min-h-screen pt-32">
 	<div class="flex flex-col">
 		<Content components={components} />
-
-		<div class="md:p-4">
-			<Showcase featured={featuredProjects} other={otherProjects} client:visible />
-		</div>
+		<Showcase featured={featuredProjects} other={otherProjects} client:visible />
 	</div>
 </section>

@@ -11,9 +11,9 @@ const socials = getSocials();
 ---
 
 <Layout>
-	<Socials socials={socials} client:idle />
+	<Socials socials={socials} client:visible />
 
-	<Email email={email} client:idle>
+	<Email email={email} client:visible>
 		<Icon slot="icon" name="ic:round-alternate-email" />
 	</Email>
 

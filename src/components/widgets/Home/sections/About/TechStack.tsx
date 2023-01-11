@@ -11,7 +11,7 @@ export default function TechStack({ techs }: Props) {
 			{techs.map(({ title, list }, i) => (
 				<div className="flex flex-col gap-2" key={i}>
 					<h2 className="text-wm-oxygen-300 font-mono">{title}</h2>
-					<ul className="flex flex-wrap gap-1 p-2">
+					<ul className="flex flex-wrap gap-1">
 						{list.map(({ name, icon, color }, i) => (
 							<li
 								key={i}
