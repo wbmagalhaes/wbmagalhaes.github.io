@@ -125,9 +125,8 @@ const work: Work[] = [
 		description: `
 			Built and trained a convolutional neural network model with the Python framework TensorFlow,
 			to classify images of coffee beans.
-			Our dataset was composed by 5000 images of raw Arabica coffee beans, classified as perfect
+			Our dataset was composed of 5000 images of raw Arabica coffee beans, classified as perfect
 			and 9 types of common defects found in coffees sold in the Brazilian internal market.
-			After training, the neural network had a ~80% accuracy on the testing data.
 		`,
 		activities: ['Machine Learning', 'Python', 'TensorFlow'],
 	},
