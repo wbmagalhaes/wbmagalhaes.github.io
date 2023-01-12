@@ -5,9 +5,10 @@ type Props = {
 	icon: JSX.Element;
 	text: string;
 	aria: string;
+	target?: React.HTMLAttributeAnchorTarget;
 };
 
-export default function HeaderItem({ href, icon, text, aria }: Props) {
+export default function HeaderItem({ href, icon, text, aria, target='_self' }: Props) {
 	const controls = useAnimationControls();
 
 	return (
@@ -17,6 +18,7 @@ export default function HeaderItem({ href, icon, text, aria }: Props) {
 				aria-label={aria}
 				onHoverStart={() => controls.start('show')}
 				onHoverEnd={() => controls.start('hide')}
+				target={target}
 			>
 				<svg
 					className="absolute w-full h-full top-0 left-0 hidden lg:block"

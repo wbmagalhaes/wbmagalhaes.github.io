@@ -53,6 +53,7 @@ export default function Header() {
 							text="Resume"
 							icon={<Icons.Resume className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="Resume"
+							target="_blank"
 						/>
 					</ul>
 				</nav>
