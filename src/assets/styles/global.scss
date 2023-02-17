@@ -28,7 +28,7 @@
 	}
 
 	.section-divider {
-		@apply relative whitespace-nowrap flex items-center gap-4 md:gap-8 font-mono font-bold mt-10 mb-16;
+		@apply relative whitespace-nowrap flex items-center gap-4 md:gap-8 font-mono font-bold mb-16;
 
 		&::after,
 		&::before {
