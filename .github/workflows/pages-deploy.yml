@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 permissions:
+  id-token: write
   contents: read
-  id-token: read
   pages: write
 
 jobs:
