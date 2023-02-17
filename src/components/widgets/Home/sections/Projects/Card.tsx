@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useInView, motion } from 'framer-motion';
 import OpenButton from './OpenButton';
-import type { Project } from '@services/my_info';
+import type Project from 'types/project';
 
 interface Props {
 	project: Project;

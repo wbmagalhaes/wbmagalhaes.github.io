@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useHolderSize } from '@hooks/useHolderSize';
-import Loading from '@atoms/Loading';
+import Loading from '@common/Loading';
 
 import { LogoOptions } from './LogoOptions';
 const Sketch = lazy(() => import('./sketch'));

@@ -1,9 +1,9 @@
 ---
-import Content from '@data/home/about.mdx';
+import Content from '@collections/home/about.mdx';
 import { components } from '@widgets/Home/components/Components.astro';
 
 import TechStack from './TechStack';
-import { getTechStacks } from '@services/my_info';
+import { getTechStacks } from '@services/myData';
 
 const techs = getTechStacks();
 ---

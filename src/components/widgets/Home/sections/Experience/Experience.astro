@@ -1,9 +1,9 @@
 ---
-import Content from '@data/home/experience.mdx';
+import Content from '@collections/home/experience.mdx';
 import { components } from '@widgets/Home/components/Components.astro';
 
 import WorkTabs from './WorkTabs';
-import { getWorks } from '@services/my_info';
+import { getWorks } from '@services/myData';
 
 const work = getWorks();
 ---

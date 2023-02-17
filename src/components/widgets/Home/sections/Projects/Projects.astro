@@ -1,13 +1,13 @@
 ---
-import Content from '@data/home/projects.mdx';
+import Content from '@collections/home/projects.mdx';
 import { components } from '@widgets/Home/components/Components.astro';
 
-import { getSlugFromURL } from '@core/Path';
+import { getSlugFromURL } from '@common/Path';
 import Showcase from './Showcase';
-import type { Project } from '@services/my_info';
+import type Project from 'types/project';
 
 async function getProjects(): Promise<Project[]> {
-	const all = await Astro.glob('../../../../../data/projects/**/*.mdx');
+	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');
 	return all
 		.filter((page) => !page.frontmatter.draft)
 		.sort((pageA, pageB) => {
@@ -17,8 +17,8 @@ async function getProjects(): Promise<Project[]> {
 		})
 		.map((page) => {
 			return {
-				url: '/projects/' + getSlugFromURL(page.file),
 				...page.frontmatter,
+				url: '/projects/' + getSlugFromURL(page.file),
 			};
 		});
 }
@@ -26,7 +26,7 @@ async function getProjects(): Promise<Project[]> {
 async function splitFeatured(all: Project[]): Promise<[Project[], Project[]]> {
 	const featured: Project[] = [];
 	const other: Project[] = [];
-	all.forEach((page) => (page.featured ? featured : other).push(page));
+	all.forEach((project) => (project.featured ? featured : other).push(project));
 	return [featured, other];
 }
 

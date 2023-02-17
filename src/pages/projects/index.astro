@@ -1,11 +1,12 @@
 ---
 import Layout from '@layouts/PageLayout.astro';
 import ProjectCard from '@widgets/Home/sections/Projects/Card';
-import ToTopButton from '@atoms/ToTopButton';
-import { getSlugFromURL } from '@core/Path';
+import ToTopButton from '@common/ToTopButton';
+import { getSlugFromURL } from '@common/Path';
+import type Project from 'types/project';
 
 async function getProjects() {
-	const all = await Astro.glob('../../data/projects/**/*.mdx');
+	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');
 	return all
 		.filter((page) => !page.frontmatter.draft)
 		.sort((pageA, pageB) => {
@@ -15,8 +16,8 @@ async function getProjects() {
 		})
 		.map((page) => {
 			return {
-				slug: getSlugFromURL(page.file),
-				...page,
+				...page.frontmatter,
+				url: '/projects/' + getSlugFromURL(page.file),
 			};
 		});
 }
@@ -27,21 +28,7 @@ const projects = await getProjects();
 <Layout>
 	<h1 class="font-mono font-bold">Projetos</h1>
 	<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between justify-items-center gap-12 my-6">
-		{
-			projects.map((page) => (
-				<ProjectCard
-					client:visible
-					project={{
-						url: `/projects/${page.slug}`,
-						cover: page.frontmatter.cover,
-						title: page.frontmatter.title,
-						description: page.frontmatter.description,
-						tags: page.frontmatter.tags,
-						date: page.frontmatter.date,
-					}}
-				/>
-			))
-		}
+		{projects.map((project) => <ProjectCard client:visible project={project} />)}
 		<ToTopButton client:visible />
 	</section>
 </Layout>

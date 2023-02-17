@@ -1,8 +1,9 @@
 import { motion, useAnimationControls } from 'framer-motion';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
+import { ReactNode } from 'react';
 
 type Props = {
-	icon?: string;
+	icon?: ReactNode;
 	email: string;
 };
 

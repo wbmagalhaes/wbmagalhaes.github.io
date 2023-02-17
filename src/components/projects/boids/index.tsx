@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from 'react';
 import { useHolderSize } from '@hooks/useHolderSize';
-import Loading from '@atoms/Loading';
+import Loading from '@common/Loading';
 
 import { SteerOptions } from './SteerOptions';
 const Sketch = lazy(() => import('./sketch'));

@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from 'react';
 import { useHolderSize } from '@hooks/useHolderSize';
-import Loading from '@atoms/Loading';
+import Loading from '@common/Loading';
 
 import { FourierOptions } from './FourierOptions';
 const Sketch = lazy(() => import('./sketch'));

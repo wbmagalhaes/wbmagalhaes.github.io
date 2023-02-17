@@ -16,17 +16,21 @@
 		"paths": {
 			"@images/*": ["src/assets/images/*"],
 			"@styles/*": ["src/assets/styles/*"],
-			"@atoms/*": ["src/components/atoms/*"],
-			"@core/*": ["src/components/core/*"],
+			"@icons/*": ["src/assets/icons/*"],
+			"@assets/*": ["src/assets/*"],
+
+			"@common/*": ["src/components/common/*"],
 			"@widgets/*": ["src/components/widgets/*"],
-			"@icons/*": ["src/components/icons/*"],
 			"@projects/*": ["src/components/projects/*"],
-			"@hooks/*": ["src/hooks/*"],
-			"@data/*": ["src/data/*"],
-			"@services/*": ["src/services/*"],
+
 			"@components/*": ["src/components/*"],
+
+      "@collections/*": ["src/collections/*"],
+			"@services/*": ["src/services/*"],
 			"@layouts/*": ["src/layouts/*"],
-			"~/*": ["src/*"]
+			"@hooks/*": ["src/hooks/*"],
+			"types/*": ["src/types/*"],
+			"@*": ["src/*"]
 		}
 	}
 }

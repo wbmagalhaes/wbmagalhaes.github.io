@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Featured from './Featured';
 import Card from './Card';
-import type { Project } from '@services/my_info';
+import type Project from 'types/project';
 
 type Props = {
 	featured: Project[];

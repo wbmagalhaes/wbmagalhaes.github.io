@@ -1,10 +1,8 @@
-const email = 'william.b.magalhaes@gmail.com';
+import Social from 'types/social';
+import TechList from 'types/tech';
+import Work from 'types/work';
 
-export type Social = {
-	name: string;
-	link: string;
-	icon: string;
-};
+const email = 'william.b.magalhaes@gmail.com';
 
 const socials: Social[] = [
 	{
@@ -23,27 +21,6 @@ const socials: Social[] = [
 		icon: 'ri:instagram-line',
 	},
 ];
-
-type Tech = {
-	name: string;
-	icon: string;
-	color: string;
-};
-
-export type TechList = {
-	title: string;
-	list: Tech[];
-};
-
-export type Work = {
-	name: string;
-	at: string;
-	atURL: string;
-	title: string;
-	date: string;
-	description: string;
-	activities: string[];
-};
 
 const techStack: TechList[] = [
 	{
@@ -146,18 +123,7 @@ const work: Work[] = [
 	},
 ];
 
-export type Project = {
-	url?: string;
-	cover?: string;
-	title?: string;
-	description?: string;
-	tags?: [string];
-	date?: string;
-	draft?: boolean;
-	featured?: boolean;
-};
-
-export const getEmail = () => email;
-export const getSocials = () => socials;
-export const getTechStacks = () => techStack;
-export const getWorks = () => work;
+export const getEmail = (): string => email;
+export const getSocials = (): Social[] => socials;
+export const getTechStacks = (): TechList[] => techStack;
+export const getWorks = (): Work[] => work;

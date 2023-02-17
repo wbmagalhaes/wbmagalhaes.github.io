@@ -1,5 +1,5 @@
 import { P5CanvasInstance } from 'react-p5-wrapper';
-import { Vector2 } from '@core/Vector';
+import { Vector2 } from '@common/Vector';
 
 export class Phase {
 	private id: number;

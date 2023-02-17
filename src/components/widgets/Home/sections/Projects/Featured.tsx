@@ -1,5 +1,5 @@
 import OpenButton from './OpenButton';
-import type { Project } from '@services/my_info';
+import type Project from 'types/project';
 
 type Props = {
 	idx: number;

@@ -16,7 +16,7 @@ export default function Header() {
 
 	return (
 		<header
-			className={`fixed top-0 z-40 w-full backdrop-blur ${visible ? 'h-32' : 'h-16'} transition-all duration-500`}
+			className={`fixed top-0 z-40 w-full backdrop-blur ${visible ? 'h-32' : 'h-16'} bg-wm-carbon-900 transition-all duration-500`}
 		>
 			<div className="flex items-center justify-between h-full px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300">
 				<a href="/#" aria-label="home">

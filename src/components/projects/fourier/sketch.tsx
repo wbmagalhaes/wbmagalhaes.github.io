@@ -4,7 +4,7 @@ import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
 import { Phase } from './Phase';
 import { FourierOptions } from './FourierOptions';
 
-import { Vector2 } from '@core/Vector';
+import { Vector2 } from '@common/Vector';
 
 interface Props {
 	size: { w: number; h: number };
