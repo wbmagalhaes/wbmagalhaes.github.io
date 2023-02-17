@@ -9,14 +9,14 @@ export default function WorkTabs({ list }: Props) {
 	return (
 		<div className="flex flex-col md:flex-row w-full">
 			<Tab.Group>
-				<Tab.List className="flex md:flex-col h-full pb-2 md:pb-0 md:pr-2 overflow-x-auto md:overflow-x-visible">
+				<Tab.List className="flex md:flex-col h-full md:basis-1/4 pb-2 md:pb-0 md:pr-2 overflow-x-auto md:overflow-x-visible">
 					{list.map(({ name }) => (
 						<Tab
 							key={name}
 							className={({ selected }) =>
-								`w-full p-2 sm:p-4 rounded-sm text-sm whitespace-nowrap font-mono ${
+								`w-full p-2 sm:p-4 rounded text-sm font-mono ${
 									selected
-										? 'text-wm-carbon bg-wm-oxygen'
+										? 'text-wm-carbon bg-wm-oxygen font-semibold'
 										: 'text-wm-hydrogen hover:bg-wm-carbon-600 hover:text-wm-hydrogen'
 								}`
 							}
@@ -25,7 +25,7 @@ export default function WorkTabs({ list }: Props) {
 						</Tab>
 					))}
 				</Tab.List>
-				<Tab.Panels className="border-t md:border-t-0 md:border-l border-wm-carbon-600 pt-2 md:pt-0 md:pl-2">
+				<Tab.Panels className="border-t md:basis-3/4 md:border-t-0 md:border-l border-wm-carbon-600 pt-2 md:pt-0 md:pl-2">
 					{list.map(({ name, title, at, atURL, description, date, activities }) => (
 						<Tab.Panel key={name}>
 							<h2 className="font-bold">
