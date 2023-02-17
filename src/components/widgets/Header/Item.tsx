@@ -8,7 +8,7 @@ type Props = {
 	target?: React.HTMLAttributeAnchorTarget;
 };
 
-export default function HeaderItem({ href, icon, text, aria, target='_self' }: Props) {
+export default function HeaderItem({ href, icon, text, aria, target = '_self' }: Props) {
 	const controls = useAnimationControls();
 
 	return (
@@ -35,7 +35,7 @@ export default function HeaderItem({ href, icon, text, aria, target='_self' }: P
 						stroke="currentColor"
 						strokeWidth={0.3}
 						strokeLinecap="round"
-						d="M 2 8 H 28"
+						d="M 2 8 H 28 Z"
 					/>
 					<motion.path
 						className="text-wm-oxygen"
@@ -45,7 +45,7 @@ export default function HeaderItem({ href, icon, text, aria, target='_self' }: P
 						stroke="currentColor"
 						strokeWidth={0.4}
 						strokeLinecap="round"
-						d="M 2 8 H 28"
+						d="M 2 8 H 28 Z"
 					/>
 				</svg>
 
@@ -81,7 +81,7 @@ const variants = {
 	hide: {
 		opacity: 1,
 		pathLength: [1, 0],
-		pathOffset: [0, 0.99],
+		pathOffset: [0, 0.5],
 		transition: {
 			duration: 0.4,
 			ease: 'easeInOut',
@@ -107,7 +107,7 @@ const shadowVariants = {
 	hide: {
 		opacity: [1, 1],
 		pathLength: [1, 0],
-		pathOffset: [0, 0.99],
+		pathOffset: [0, 0.5],
 		transition: {
 			duration: 0.6,
 			ease: 'easeInOut',
