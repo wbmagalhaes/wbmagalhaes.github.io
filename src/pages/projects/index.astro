@@ -28,7 +28,7 @@ const projects = await getProjects();
 <Layout>
 	<h1 class="font-mono font-bold">Projetos</h1>
 	<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between justify-items-center gap-12 my-6">
-		{projects.map((project) => <ProjectCard client:visible project={project} />)}
-		<ToTopButton client:visible />
+		{projects.map((project) => <ProjectCard client:idle project={project} />)}
+		<ToTopButton client:idle />
 	</section>
 </Layout>

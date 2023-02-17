@@ -19,9 +19,9 @@ const { meta } = Astro.props as Props;
 ---
 
 <Layout meta={meta}>
-	<Socials socials={socials} client:visible />
+	<Socials socials={socials} client:idle />
 
-	<Email email={email} client:visible>
+	<Email email={email} client:idle>
 		<Icon slot="icon" name="ic:round-alternate-email" />
 	</Email>
 

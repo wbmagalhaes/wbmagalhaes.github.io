@@ -21,7 +21,7 @@ const { meta } = Astro.props as Props;
 	</head>
 
 	<body class="antialiased bg-wm-carbon-800 text-wm-hydrogen align-middle">
-		<Header client:visible />
+		<Header client:idle />
 
 		<main class="overflow-x-hidden min-h-screen pt-32">
 			<slot />
