@@ -40,10 +40,11 @@ const techStack: TechList[] = [
 			{ name: 'Unity3D', icon: 'simple-icons:unity', color: '#FFFFFF' },
 			{ name: '.NET', icon: 'simple-icons:dotnet', color: '#512BD4' },
 			{ name: 'React', icon: 'simple-icons:react', color: '#61DAFB' },
+			{ name: 'Angular', icon: 'simple-icons:angular', color: '#DD0031' },
 			{ name: 'TailwindCSS', icon: 'simple-icons:tailwindcss', color: '#06B6D4' },
+			{ name: 'Bootstrap', icon: 'simple-icons:bootstrap', color: '#7952B3' },
 			{ name: 'jQuery', icon: 'simple-icons:jquery', color: '#0769AD' },
 			{ name: 'THREE.js', icon: 'simple-icons:threedotjs', color: '#FFFFFF' },
-			{ name: 'Bootstrap', icon: 'simple-icons:bootstrap', color: '#7952B3' },
 		],
 	},
 	{
@@ -79,6 +80,17 @@ const techStack: TechList[] = [
 ];
 
 const work: Work[] = [
+  {
+		name: 'Greenole',
+		at: 'Greenole',
+		atURL: 'https://greenole.com/',
+		title: 'Full-stack developer',
+		date: 'Jan 2023 - Present',
+		description: `
+
+		`,
+		activities: ['Full-stack development', 'Git', 'Angular', 'Bootstrap'],
+	},
 	{
 		name: 'Space Wizard Studios',
 		at: 'SpaceWizard',
