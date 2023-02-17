@@ -2,10 +2,16 @@
 import '@styles/global.scss';
 
 import MetaTags from '@common/MetaTags.astro';
+import type MetaSEO from 'types/metaseo';
+
 import Header from '@widgets/Header';
 import Footer from '@widgets/Footer.astro';
 
-const { meta = {} } = Astro.props;
+type Props = {
+	meta?: MetaSEO;
+};
+
+const { meta } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>

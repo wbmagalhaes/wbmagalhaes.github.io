@@ -1,17 +1,21 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
 import { SITE } from '@config.mjs';
+import type MetaSEO from 'types/metaseo';
 import Fonts from '@common/Fonts.astro';
 
 const {
 	title = SITE.name,
 	description = SITE.description,
+
 	canonical = Astro.url.toString(),
+
 	noindex = false,
 	nofollow = false,
+
 	ogTitle = SITE.title,
 	ogType = 'website',
-} = Astro.props;
+} = Astro.props as MetaSEO;
 ---
 
 <meta charset="UTF-8" />
@@ -23,11 +27,11 @@ const {
 <AstroSeo
 	title={title}
 	description={description}
-	canonical={canonical}
+	canonical={String(canonical)}
 	noindex={noindex}
 	nofollow={nofollow}
 	openGraph={{
-		url: canonical,
+		url: String(canonical),
 		title: ogTitle,
 		description: description,
 		type: ogType,

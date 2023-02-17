@@ -1,8 +1,15 @@
 ---
 import Layout from '@layouts/BaseLayout.astro';
+import type MetaSEO from 'types/metaseo';
+
+type Props = {
+	meta?: MetaSEO;
+};
+
+const { meta } = Astro.props as Props;
 ---
 
-<Layout>
+<Layout meta={meta}>
 	<section class="px-4 sm:px-6 py-6 sm:py-10 lg:max-w-6xl lg:mx-auto mb-12 sm:mb-8 text-justify">
 		<slot />
 	</section>

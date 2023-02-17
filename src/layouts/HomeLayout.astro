@@ -1,6 +1,8 @@
 ---
-import { Icon } from 'astro-icon';
 import Layout from '@layouts/BaseLayout.astro';
+import type MetaSEO from 'types/metaseo';
+
+import { Icon } from 'astro-icon';
 import Socials from '@widgets/Home/Socials';
 import Email from '@widgets/Home/Email';
 
@@ -8,9 +10,15 @@ import { getEmail, getSocials } from '@services/myData';
 
 const email = getEmail();
 const socials = getSocials();
+
+type Props = {
+	meta?: MetaSEO;
+};
+
+const { meta } = Astro.props as Props;
 ---
 
-<Layout>
+<Layout meta={meta}>
 	<Socials socials={socials} client:visible />
 
 	<Email email={email} client:visible>
