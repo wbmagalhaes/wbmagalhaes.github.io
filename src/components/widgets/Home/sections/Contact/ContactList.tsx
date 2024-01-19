@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
-import type Social from 'types/social';
+import type { Social } from 'types/social';
 
 type Props = {
 	email: string;

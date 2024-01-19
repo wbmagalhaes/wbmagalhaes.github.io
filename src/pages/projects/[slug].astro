@@ -1,7 +1,7 @@
 ---
 import Layout from '@layouts/ProjectLayout.astro';
 import { getSlugFromURL } from '@common/Path';
-import type Project from 'types/project';
+import type { Project } from 'types/project';
 
 export async function getStaticPaths() {
 	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');

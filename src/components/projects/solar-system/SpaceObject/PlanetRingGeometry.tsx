@@ -1,10 +1,10 @@
 import { BufferGeometry, Vector3, Float32BufferAttribute, Sphere } from 'three';
 
 export class PlanetRingGeometry extends BufferGeometry {
+	readonly type = 'PlanetRingGeometry';
+
 	constructor(innerRadius: number, outerRadius: number, thetaSegments: number) {
 		super();
-
-		this.type = 'PlanetRingGeometry';
 
 		innerRadius = innerRadius || 0;
 		outerRadius = outerRadius || 50;

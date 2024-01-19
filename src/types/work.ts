@@ -1,4 +1,4 @@
-type Work = {
+export type Work = {
 	name: string;
 	at: string;
 	atURL: string;
@@ -7,5 +7,3 @@ type Work = {
 	description: string;
 	activities: string[];
 };
-
-export default Work;

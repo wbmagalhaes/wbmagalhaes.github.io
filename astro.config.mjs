@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
 
 import tailwind from '@astrojs/tailwind';
-import image from '@astrojs/image';
+import icon from "astro-icon";
 
 import { SITE } from './src/config.mjs';
 
@@ -33,7 +33,7 @@ export default defineConfig({
 				applyBaseStyles: false,
 			},
 		}),
-		image(),
+		icon(),
 	],
 
 	vite: {

@@ -10,6 +10,7 @@
 		"outDir": "dist",
 		"strict": true,
 		"target": "es2022",
+		"jsx": "react-jsx",
 		"types": ["astro/client"],
 		"allowJs": true,
 		"baseUrl": ".",
@@ -25,7 +26,7 @@
 
 			"@components/*": ["src/components/*"],
 
-      "@collections/*": ["src/collections/*"],
+			"@collections/*": ["src/collections/*"],
 			"@services/*": ["src/services/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@hooks/*": ["src/hooks/*"],

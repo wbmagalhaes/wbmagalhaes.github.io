@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import type TechList from 'types/tech';
+import type { TechList } from 'types/tech';
 
 type Props = {
 	techs: TechList[];

@@ -2,7 +2,7 @@
 import '@styles/global.scss';
 
 import MetaTags from '@common/MetaTags.astro';
-import type MetaSEO from 'types/metaseo';
+import type { MetaSEO } from 'types/metaseo';
 
 import Header from '@widgets/Header';
 import Footer from '@widgets/Footer.astro';
@@ -14,7 +14,7 @@ type Props = {
 const { meta } = Astro.props as Props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br" class="scroll-smooth box-border w-full">
 	<head>
 		<MetaTags {...meta} />

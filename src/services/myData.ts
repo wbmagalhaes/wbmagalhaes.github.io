@@ -1,6 +1,6 @@
-import Social from 'types/social';
-import TechList from 'types/tech';
-import Work from 'types/work';
+import { type Social } from 'types/social';
+import { type TechList } from 'types/tech';
+import { type Work } from 'types/work';
 
 const email = 'william.b.magalhaes@gmail.com';
 
@@ -80,7 +80,7 @@ const techStack: TechList[] = [
 ];
 
 const work: Work[] = [
-  {
+	{
 		name: 'Greenole',
 		at: 'Greenole',
 		atURL: 'https://greenole.com/',

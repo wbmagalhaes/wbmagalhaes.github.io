@@ -1,5 +1,5 @@
 import { Tab } from '@headlessui/react';
-import type Work from 'types/work';
+import type { Work } from 'types/work';
 
 type Props = {
 	list: Work[];

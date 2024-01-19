@@ -1,4 +1,4 @@
-import { P5CanvasInstance } from 'react-p5-wrapper';
+import { type P5CanvasInstance } from 'react-p5-wrapper';
 import { Vector2 } from '@common/Vector';
 
 export class Phase {

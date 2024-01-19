@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { motion, useAnimationControls } from 'framer-motion';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
-import type Social from 'types/social';
+import type { Social } from 'types/social';
 
 type Props = {
 	socials: Social[];

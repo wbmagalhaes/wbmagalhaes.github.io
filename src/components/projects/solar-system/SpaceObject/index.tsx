@@ -38,9 +38,9 @@ export function SpaceObject({
 	ring = undefined,
 	atmosphere = undefined,
 	emissive = undefined,
-	onSelect,
+	onSelect = undefined,
 }: SpaceObjectProps & {
-	onSelect: (name: string) => void;
+	onSelect?: (name: string) => void;
 }) {
 	const [hover, setHover] = useState(false);
 	const [startingAngle, _] = useState(Math.random() * 2 * Math.PI);
@@ -73,7 +73,7 @@ export function SpaceObject({
 				<group position={[distance, 0, 0]}>
 					{name && (
 						<mesh
-							onClick={() => onSelect(name)}
+							onClick={() => onSelect?.(name)}
 							onPointerEnter={() => setHover(true)}
 							onPointerLeave={() => setHover(false)}
 						>

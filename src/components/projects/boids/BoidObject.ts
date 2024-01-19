@@ -1,4 +1,4 @@
-import { P5CanvasInstance } from 'react-p5-wrapper';
+import { type P5CanvasInstance } from 'react-p5-wrapper';
 import { SteerOptions } from './SteerOptions';
 import { Food } from './Food';
 

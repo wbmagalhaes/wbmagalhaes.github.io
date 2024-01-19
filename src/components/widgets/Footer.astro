@@ -1,6 +1,6 @@
 ---
 import '@styles/footer.scss';
-import { Icon } from 'astro-icon';
+import Icon from 'astro-icon';
 
 type ToolProp = { name: string; icon: string; link?: string };
 
@@ -29,7 +29,7 @@ const tools: ToolProp[] = [
 					return (
 						<a class="relative after:absolute" href={link} target="_blank">
 							<div class="inline-flex align-text-bottom">
-								<Icon class="w-4 h-4 sm:w-5 sm:h-5" name={icon} />
+								<Icon name={icon} class="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
 							{name}
 						</a>
@@ -39,7 +39,7 @@ const tools: ToolProp[] = [
 			e
 			<span>
 				<div class="inline-flex align-text-bottom">
-					<Icon class="w-4 h-4 sm:w-5 sm:h-5" name="ant-design:heart-filled" />
+					<Icon name="ant-design:heart-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
 				</div>
 				Amor
 			</span>

@@ -1,4 +1,4 @@
-type Project = {
+export type Project = {
 	url: string;
 	cover: string;
 	title: string;
@@ -8,5 +8,3 @@ type Project = {
 	draft: boolean;
 	featured: boolean;
 };
-
-export default Project;

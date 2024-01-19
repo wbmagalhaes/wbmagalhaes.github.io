@@ -1,4 +1,4 @@
-type MetaSEO = {
+export type MetaSEO = {
 	title?: string;
 	description?: string;
 	image?: string;
@@ -10,5 +10,3 @@ type MetaSEO = {
 	ogTitle?: string;
 	ogType?: string;
 }
-
-export default MetaSEO;

@@ -1,6 +1,6 @@
 import { motion, useAnimationControls } from 'framer-motion';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 type Props = {
 	icon?: ReactNode;

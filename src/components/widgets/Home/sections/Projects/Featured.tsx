@@ -1,5 +1,5 @@
 import OpenButton from './OpenButton';
-import type Project from 'types/project';
+import type { Project } from 'types/project';
 
 type Props = {
 	idx: number;
@@ -32,7 +32,7 @@ export default function Featured({ idx, project }: Props) {
 			<a
 				href={project.url}
 				aria-label={aria}
-				className="max-w-lg h-auto grid place-items-center overflow-hidden bg-wm-oxygen rounded-md overflow-hidden"
+				className="max-w-lg h-auto grid place-items-center overflow-hidden bg-wm-oxygen rounded-md"
 			>
 				<img
 					src={project.cover}

@@ -4,7 +4,7 @@ import { components } from '@widgets/Home/components/Components.astro';
 
 import { getSlugFromURL } from '@common/Path';
 import Showcase from './Showcase';
-import type Project from 'types/project';
+import type { Project } from 'types/project';
 
 async function getProjects(): Promise<Project[]> {
 	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');

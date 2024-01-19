@@ -1,17 +1,40 @@
 {
 	"cSpell.words": [
+		"astrojs",
+		"astrolib",
 		"boid",
 		"Boid",
 		"boids",
 		"drei",
+		"fontsource",
 		"fourier",
+		"headlessui",
 		"iconify",
 		"julia",
+		"katex",
 		"Lensflare",
+		"mathjax",
+		"mononoki",
 		"mult",
-		"Phong"
+		"Phong",
+		"rehype",
+		"stylelint",
+		"tailwindcss",
+		"wbmagalhaes"
 	],
 	"files.associations": {
-		"*.mdx": "markdown"
-	}
+		"*.mdx": "markdown",
+		"*.css": "tailwindcss",
+		"*.scss": "tailwindcss"
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/node_modules": true
+	},
+	"explorerExclude.backup": {}
 }

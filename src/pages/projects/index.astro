@@ -3,7 +3,7 @@ import Layout from '@layouts/PageLayout.astro';
 import ProjectCard from '@widgets/Home/sections/Projects/Card';
 import ToTopButton from '@common/ToTopButton';
 import { getSlugFromURL } from '@common/Path';
-import type Project from 'types/project';
+import type { Project } from 'types/project';
 
 async function getProjects() {
 	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');
