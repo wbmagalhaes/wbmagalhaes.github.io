@@ -6,7 +6,7 @@ import { getSlugFromURL } from '@common/Path';
 import type { Project } from 'types/project';
 
 async function getProjects() {
-	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');
+	const all = await Astro.glob<Project>('../../collections/projects/*.mdx');
 	return all
 		.filter((page) => !page.frontmatter.draft)
 		.sort((pageA, pageB) => {

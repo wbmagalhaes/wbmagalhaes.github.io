@@ -1,7 +1,5 @@
-import { Grid } from './Grid';
-import { Stars } from './Stars';
-import type { GridProps } from './Grid';
-import type { StarsProps } from './Stars';
+import { Grid, type GridProps } from './Grid';
+import { Stars, type StarsProps } from './Stars';
 
 export type EnvironmentProps = {
 	lightIntensity: number;

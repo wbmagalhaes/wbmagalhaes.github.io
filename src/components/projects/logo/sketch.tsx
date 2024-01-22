@@ -1,10 +1,8 @@
-import { ReactP5Wrapper } from 'react-p5-wrapper';
+import { ReactP5Wrapper, type P5CanvasInstance, type SketchProps } from '@p5-wrapper/react';
+import Action, { type ActionsDictProp } from './Action';
 import { LogoOptions } from './LogoOptions';
 import LogoParser from './LogoParser';
-import Action from './Action';
 
-import type { ActionsDictProp } from './Action';
-import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
 
 interface Props {
 	size: { w: number; h: number };

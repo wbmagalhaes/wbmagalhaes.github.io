@@ -4,7 +4,7 @@ import { getSlugFromURL } from '@common/Path';
 import type { Project } from 'types/project';
 
 export async function getStaticPaths() {
-	const all = await Astro.glob<Project>('/src/collections/projects/*.mdx');
+	const all = await Astro.glob<Project>('../../collections/projects/*.mdx');
 	return all.map(({ file, ...page }) => {
 		return {
 			params: {

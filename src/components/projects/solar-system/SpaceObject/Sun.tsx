@@ -1,5 +1,4 @@
-import { SpaceObject } from './';
-import type { SpaceObjectProps } from './';
+import { SpaceObject, type SpaceObjectProps } from './';
 import type { AtmosphereProps } from './PlanetAtmosphere';
 import type { ColorRepresentation } from 'three';
 

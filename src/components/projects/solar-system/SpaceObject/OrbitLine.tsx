@@ -1,6 +1,5 @@
 import { useRef, useLayoutEffect } from 'react';
-import { Path } from 'three';
-import type { ColorRepresentation, LineLoop } from 'three';
+import { Path, type ColorRepresentation, type LineLoop } from 'three';
 
 type Props = {
 	radius: number;

@@ -1,5 +1,4 @@
-import { ReactP5Wrapper } from 'react-p5-wrapper';
-import type { P5CanvasInstance, SketchProps } from 'react-p5-wrapper';
+import { ReactP5Wrapper, type P5CanvasInstance, type SketchProps } from '@p5-wrapper/react';
 
 import { Phase } from './Phase';
 import { FourierOptions } from './FourierOptions';

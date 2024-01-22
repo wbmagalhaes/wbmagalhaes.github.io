@@ -1,6 +1,5 @@
 import Command from './Command';
-import Action from './Action';
-import type { ActionsDictProp } from './Action';
+import Action, { type ActionsDictProp } from './Action';
 
 export default class LogoParser {
 	private index: number = 0;

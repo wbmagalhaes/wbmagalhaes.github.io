@@ -39,6 +39,7 @@ export default defineConfig({
 	vite: {
 		build: {
 			target: 'es2021',
+			chunkSizeWarningLimit: 1024,
 		},
 	},
 });

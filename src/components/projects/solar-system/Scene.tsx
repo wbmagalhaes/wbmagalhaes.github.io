@@ -1,7 +1,5 @@
-import { SpaceObject } from './SpaceObject';
-import { Sun } from './SpaceObject/Sun';
-import type { SpaceObjectProps } from './SpaceObject';
-import type { SunProps } from './SpaceObject/Sun';
+import { SpaceObject, type SpaceObjectProps } from './SpaceObject';
+import { Sun, type SunProps } from './SpaceObject/Sun';
 
 export type SceneProps = {
 	sunProps: SunProps;

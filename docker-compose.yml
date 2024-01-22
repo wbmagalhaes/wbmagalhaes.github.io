@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+
+    ports:
+      - 4321:4321
+
+    command: npm run dev

@@ -1,4 +1,4 @@
-import { type P5CanvasInstance } from 'react-p5-wrapper';
+import { type P5CanvasInstance } from '@p5-wrapper/react';
 
 export class Food {
 	position: any;

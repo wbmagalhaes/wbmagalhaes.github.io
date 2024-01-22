@@ -2,11 +2,9 @@ import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, Html, useTexture } from '@react-three/drei';
 import { OrbitLine } from './OrbitLine';
-import { PlanetRing } from './PlanetRing';
-import { PlanetAtmosphere } from './PlanetAtmosphere';
+import { PlanetRing, type RingProps } from './PlanetRing';
+import { PlanetAtmosphere, type AtmosphereProps } from './PlanetAtmosphere';
 import type { Group, Mesh, ColorRepresentation } from 'three';
-import type { RingProps } from './PlanetRing';
-import type { AtmosphereProps } from './PlanetAtmosphere';
 
 const BASE_SPEED = 0.15;
 const BASE_INCLINATION = 1.5;
