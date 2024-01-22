@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { useScroll } from '@hooks/useScroll';
 
-const variants = {
+const variants: Variants = {
 	hidden: {
 		scale: 0,
 		opacity: 0,

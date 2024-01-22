@@ -1,4 +1,4 @@
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'framer-motion';
 import { useEffect } from 'react';
 
 type Props = { href: string };
@@ -59,7 +59,7 @@ export function DownArrow({ href }: Props) {
 	);
 }
 
-const all = {
+const all: Variants = {
 	hidden: { display: 'none' },
 	show: { display: 'block' },
 	hide: {
@@ -78,7 +78,7 @@ const all = {
 	},
 };
 
-const circle = {
+const circle: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
@@ -110,7 +110,7 @@ const circle = {
 	},
 };
 
-const arrow = {
+const arrow: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
@@ -141,7 +141,7 @@ const arrow = {
 	},
 };
 
-const arrowPoint = {
+const arrowPoint: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,

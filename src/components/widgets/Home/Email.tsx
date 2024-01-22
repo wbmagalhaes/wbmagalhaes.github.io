@@ -1,4 +1,4 @@
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'framer-motion';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 import { type ReactNode } from 'react';
 
@@ -39,7 +39,7 @@ export default function Email({ icon, email }: Props) {
 	);
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
 	hidden: { y: -40, opacity: 0 },
 	show: {
 		y: 0,
@@ -52,7 +52,7 @@ const itemVariants = {
 	hover: { y: 4 },
 };
 
-const lineVariants = {
+const lineVariants: Variants = {
 	hidden: { scale: 0 },
 	show: {
 		scale: 1,

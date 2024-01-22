@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 interface Props {
 	active: boolean;
@@ -58,7 +58,7 @@ export function Button({ active, setActive }: Props) {
 	);
 }
 
-const soundVariants = {
+const soundVariants: Variants = {
 	hidden: {
 		opacity: 0,
 		transition: {
@@ -79,7 +79,7 @@ const soundVariants = {
 	},
 };
 
-const noSoundVariants = {
+const noSoundVariants: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: [1, 0],

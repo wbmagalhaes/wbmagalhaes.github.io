@@ -1,4 +1,4 @@
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'framer-motion';
 
 type Props = {
 	href: string;
@@ -60,7 +60,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 	);
 }
 
-const variants = {
+const variants: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
@@ -92,7 +92,7 @@ const variants = {
 	},
 };
 
-const shadowVariants = {
+const shadowVariants: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,

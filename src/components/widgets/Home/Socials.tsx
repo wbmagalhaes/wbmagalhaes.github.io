@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'framer-motion';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 import type { Social } from 'types/social';
 
@@ -50,7 +50,7 @@ function SocialItem({ index, link, icon, name }: { index: number } & Social) {
 	);
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
 	hidden: { y: 40, opacity: 0 },
 	show: (i: number) => ({
 		y: 0,
@@ -63,7 +63,7 @@ const itemVariants = {
 	hover: { y: -4 },
 };
 
-const lineVariants = {
+const lineVariants: Variants = {
 	hidden: { scale: 0 },
 	show: {
 		scale: 1,

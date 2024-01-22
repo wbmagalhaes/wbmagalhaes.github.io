@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useInView, motion } from 'framer-motion';
+import { useInView, motion, type Variants } from 'framer-motion';
 import OpenButton from './OpenButton';
 import type { Project } from 'types/project';
 
@@ -10,7 +10,7 @@ interface Props {
 	showAnim?: boolean;
 }
 
-const variants = {
+const variants: Variants = {
 	hidden: {
 		opacity: 0,
 		x: -100,

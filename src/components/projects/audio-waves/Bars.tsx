@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 interface Props {
 	active: boolean;
@@ -26,7 +26,7 @@ export function Bars({ active, direction, wave, barWidth }: Props) {
 	);
 }
 
-const barContainerVariants = {
+const barContainerVariants: Variants = {
 	stopped: {
 		opacity: 1,
 	},
@@ -36,7 +36,7 @@ const barContainerVariants = {
 	},
 };
 
-const barsVariants = {
+const barsVariants: Variants = {
 	stopped: {
 		scaleY: 0,
 		transition: {

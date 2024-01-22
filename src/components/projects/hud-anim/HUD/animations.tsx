@@ -1,4 +1,6 @@
-const pulse = {
+import { type Variants } from 'framer-motion';
+
+const pulse: Variants = {
 	hidden: {
 		opacity: 0,
 	},
@@ -13,7 +15,7 @@ const pulse = {
 	}),
 };
 
-const rotate = {
+const rotate: Variants = {
 	hidden: {
 		rotate: 0,
 	},
@@ -27,7 +29,7 @@ const rotate = {
 	},
 };
 
-const fillRect = {
+const fillRect: Variants = {
 	hidden: {
 		scaleX: 0.15,
 		originX: 0,
@@ -44,7 +46,7 @@ const fillRect = {
 	}),
 };
 
-const flash = {
+const flash: Variants = {
 	hidden: {
 		opacity: 0,
 	},
@@ -58,7 +60,7 @@ const flash = {
 	}),
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
 	hidden: {
 		opacity: 0,
 	},
@@ -72,7 +74,7 @@ const fadeIn = {
 	}),
 };
 
-const fillPath = {
+const fillPath: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
@@ -91,7 +93,7 @@ const fillPath = {
 	}),
 };
 
-const fillPathMiddle = {
+const fillPathMiddle: Variants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
@@ -112,7 +114,7 @@ const fillPathMiddle = {
 	}),
 };
 
-const slideFromLeft = {
+const slideFromLeft: Variants = {
 	hidden: {
 		x: -50,
 	},
@@ -126,7 +128,7 @@ const slideFromLeft = {
 	}),
 };
 
-const slideFromRight = {
+const slideFromRight: Variants = {
 	hidden: {
 		x: 50,
 	},
