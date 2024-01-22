@@ -23,3 +23,6 @@ pnpm-lock.yaml
 
 #watch-sass folder (VS Code)
 .watch
+
+# astro generated code
+.astro/
