@@ -1,6 +1,6 @@
 ---
 import '@styles/footer.scss';
-import Icon from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 
 type ToolProp = { name: string; icon: string; link?: string };
 
@@ -22,7 +22,7 @@ const tools: ToolProp[] = [
 		<a class="relative after:absolute" href="https://github.com/bchiang7/v4" target="_blank"> Brittany Chiang</a>.
 	</section>
 
-	<section class="py-2 border-t border-wm-carbon-400">
+	<section class="py-4 border-t border-wm-carbon-400">
 		<div class="tool-list flex flex-row flex-wrap gap-2 justify-center text-sm sm:text-base font-mono">
 			{
 				tools.map(({ name, icon, link }) => {

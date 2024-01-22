@@ -14,6 +14,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 	return (
 		<li className="relative text-wm-hydrogen-600 transition-all duration-200 p-0 lg:p-4">
 			<motion.a
+				className='block h-full'
 				href={href}
 				aria-label={aria}
 				onHoverStart={() => controls.start('show')}
@@ -21,7 +22,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 				target={target}
 			>
 				<svg
-					className="absolute w-full h-full top-0 left-0 hidden lg:block"
+					className="absolute inset-0 h-full w-full hidden lg:block"
 					xmlns="http://www.w3.org/2000/svg"
 					preserveAspectRatio="none"
 					viewBox="0 0 30 10"
@@ -75,7 +76,6 @@ const variants = {
 			},
 			duration: 0.3,
 			ease: 'easeInOut',
-			type: 'spring',
 		},
 	},
 	hide: {
@@ -83,9 +83,8 @@ const variants = {
 		pathLength: [1, 0],
 		pathOffset: [0, 0.5],
 		transition: {
-			duration: 0.4,
-			ease: 'easeInOut',
-			type: 'spring',
+			duration: 0.2,
+			ease: 'easeOut',
 		},
 		transitionEnd: {
 			opacity: 0,
@@ -109,9 +108,8 @@ const shadowVariants = {
 		pathLength: [1, 0],
 		pathOffset: [0, 0.5],
 		transition: {
-			duration: 0.6,
-			ease: 'easeInOut',
-			type: 'spring',
+			duration: 0.4,
+			ease: 'easeOut',
 		},
 		transitionEnd: {
 			opacity: 0,

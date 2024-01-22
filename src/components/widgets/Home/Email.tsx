@@ -31,7 +31,7 @@ export default function Email({ icon, email }: Props) {
 					variants={itemVariants}
 					aria-label="Send me an e-mail"
 				>
-					<div className="w-6 h-6 mb-2 rotate-90">{icon}</div>
+					<div className="mb-1 rotate-90">{icon}</div>
 					<span className="[writing-mode:vertical-rl]">{email}</span>
 				</motion.a>
 			</div>

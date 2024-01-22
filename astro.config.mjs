@@ -33,7 +33,16 @@ export default defineConfig({
 				applyBaseStyles: false,
 			},
 		}),
-		icon(),
+		icon({
+			include: {
+				ic: [
+					'outline-email',
+					'round-alternate-email'
+				],
+				'ant-design': ['heart-filled'],
+				'simple-icons': ['*'],
+			},
+		}),
 	],
 
 	vite: {

@@ -2,7 +2,7 @@
 import Layout from '@layouts/BaseLayout.astro';
 import type { MetaSEO } from 'types/metaseo';
 
-import Icon from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 import Socials from '@widgets/Home/Socials';
 import Email from '@widgets/Home/Email';
 
@@ -22,7 +22,7 @@ const { meta } = Astro.props as Props;
 	<Socials socials={socials} client:idle />
 
 	<Email email={email} client:idle>
-		<Icon slot="icon" name="ic:round-alternate-email" />
+		<Icon slot="icon" class="w-5 h-5" name="ic:round-alternate-email" />
 	</Email>
 
 	<div class="flex flex-col px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300">
