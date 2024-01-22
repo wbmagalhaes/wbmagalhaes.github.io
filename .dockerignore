@@ -1,19 +1,35 @@
-.DS_Store
-node_modules
-npm-debug.log
-dist
+# build output
+dist/
+.output/
 
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS-specific files
+.DS_Store
+
+# dockerfiles
 Dockerfile*
 docker-compose*
 .dockerignore
 
+#git files
 .git
 .gitignore
 README.md
 LICENSE
 
-.vscode
+# vscode configs
+.vscode/
 
+# vscode configs
+.astro/
+
+# lock files
 package-lock.json
-
-.astro

@@ -18,11 +18,12 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-package-lock.json
-pnpm-lock.yaml
-
 #watch-sass folder (VS Code)
 .watch
 
 # astro generated code
 .astro/
+
+# lock files
+package-lock.json
+pnpm-lock.yaml
