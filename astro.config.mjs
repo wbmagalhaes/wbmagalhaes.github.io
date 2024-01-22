@@ -50,5 +50,11 @@ export default defineConfig({
 			target: 'es2021',
 			chunkSizeWarningLimit: 1024,
 		},
+		server:{
+			host: "0.0.0.0",
+			hmr: { clientPort: 4321 },
+			port: 4321,
+			watch: { usePolling: true }
+		},
 	},
 });

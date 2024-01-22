@@ -1,10 +1,11 @@
-FROM node:lts
+FROM oven/bun
 
 WORKDIR /app
 
 COPY . .
-RUN npm i
+RUN bun install
+RUN bun add -d @types/bun
 
 EXPOSE 4321
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "bun", "run", "dev" ]

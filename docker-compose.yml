@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  app:
+  web:
     build: .
     restart: unless-stopped
     volumes:
@@ -9,4 +9,4 @@ services:
       - /app/node_modules
     ports:
       - 4321:4321
-    command: npm run dev
+    command: bun run dev
