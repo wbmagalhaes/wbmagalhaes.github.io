@@ -23,7 +23,7 @@ export default function Header() {
 					<Logo />
 				</a>
 				<nav>
-					<ul className="flex gap-4 lg:gap-0 text-right font-mono">
+					<ul className="flex gap-4 text-right font-mono">
 						<Item
 							href="/#about"
 							text="About Me"

@@ -37,6 +37,7 @@ const techStack: TechList[] = [
 	{
 		title: 'Frameworks, Platforms & Libraries',
 		list: [
+			{ name: 'Firebase', icon: 'simple-icons:firebase', color: '#FFCA28' },
 			{ name: 'Unity3D', icon: 'simple-icons:unity', color: '#FFFFFF' },
 			{ name: '.NET', icon: 'simple-icons:dotnet', color: '#512BD4' },
 			{ name: 'React', icon: 'simple-icons:react', color: '#61DAFB' },
@@ -45,6 +46,7 @@ const techStack: TechList[] = [
 			{ name: 'Bootstrap', icon: 'simple-icons:bootstrap', color: '#7952B3' },
 			{ name: 'jQuery', icon: 'simple-icons:jquery', color: '#0769AD' },
 			{ name: 'THREE.js', icon: 'simple-icons:threedotjs', color: '#FFFFFF' },
+			{ name: 'Django', icon: 'simple-icons:django', color: '#092E20' },
 		],
 	},
 	{
@@ -87,9 +89,11 @@ const work: Work[] = [
 		title: 'Full-stack developer',
 		date: 'Jan 2023 - Present',
 		description: `
-
+			Developed dynamic dashboards using HTML, CSS, JavaScript and Angular.
+			Simultaneously, I harnessed my proficiency in Python and PostgreSQL to build backend microservices and RESTful API endpoints.
+			Throughout these projects, I collaborated actively with cross-functional teams, ensuring seamless integration between frontend and backend components.
 		`,
-		activities: ['Full-stack development', 'Git', 'Angular', 'Bootstrap'],
+		activities: ['Full-stack development', 'Git', 'Angular', 'Django'],
 	},
 	{
 		name: 'Space Wizard Studios',

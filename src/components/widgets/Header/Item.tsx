@@ -12,7 +12,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 	const controls = useAnimationControls();
 
 	return (
-		<li className="relative text-wm-hydrogen-600 transition-all duration-200 p-0 lg:p-4">
+		<li className="relative text-wm-hydrogen-600 transition-all duration-200">
 			<motion.a
 				className='block h-full'
 				href={href}
@@ -22,7 +22,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 				target={target}
 			>
 				<svg
-					className="absolute inset-0 h-full w-full hidden lg:block"
+					className="absolute inset-0 h-full w-full hidden lg:block mt-4"
 					xmlns="http://www.w3.org/2000/svg"
 					preserveAspectRatio="none"
 					viewBox="0 0 30 10"
@@ -34,9 +34,9 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 						animate={controls}
 						variants={shadowVariants}
 						stroke="currentColor"
-						strokeWidth={0.3}
+						strokeWidth={1}
 						strokeLinecap="round"
-						d="M 2 8 H 28 Z"
+						d="M 0 5 H 30 Z"
 					/>
 					<motion.path
 						className="text-wm-oxygen"
@@ -44,14 +44,14 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self' }:
 						animate={controls}
 						variants={variants}
 						stroke="currentColor"
-						strokeWidth={0.4}
+						strokeWidth={1}
 						strokeLinecap="round"
-						d="M 2 8 H 28 Z"
+						d="M 0 5 H 30 Z"
 					/>
 				</svg>
 
 				<span className="inline-flex align-middle sm:align-top sm:mr-1">
-					<div className="p-0 lg:p-1 w-6 h-6">{icon}</div>
+					<div className="w-6 h-6">{icon}</div>
 				</span>
 
 				<span className="hidden lg:inline-flex">{text}</span>
