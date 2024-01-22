@@ -45,7 +45,6 @@ export default function Card({ project, column, noCover = false, showAnim = fals
 			variants={showAnim ? variants : undefined}
 			initial="hidden"
 			animate={isInView ? 'show' : 'hidden'}
-			whileHover={{ y: -3 }}
 			custom={column}
 		>
 			{!noCover && (

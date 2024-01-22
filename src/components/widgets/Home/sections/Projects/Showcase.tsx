@@ -22,14 +22,14 @@ export default function Showcase({ featured, other }: Props) {
 					<Featured key={i} idx={i} project={project} />
 				))}
 			</div>
-			<div className="flex flex-col gap-4 py-4">
+			<div className="flex flex-col gap-8 py-4">
 				<h2 className="mb-8 text-center">Other projects</h2>
 
-				<motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-between justify-items-center gap-8">
+				<div className="flex flex-wrap justify-center justify-items-center gap-4">
 					{otherToShow.map((project, i) => (
 						<Card key={i} project={project} column={i % columns} noCover showAnim />
 					))}
-				</motion.div>
+				</div>
 
 				{cardCount < other.length && (
 					<button

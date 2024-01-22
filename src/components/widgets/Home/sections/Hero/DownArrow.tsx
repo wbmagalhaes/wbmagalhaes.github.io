@@ -10,21 +10,20 @@ export function DownArrow({ href }: Props) {
 
 	const controls = useAnimationControls();
 
-	async function playAnimation(animation: string) {
-		await controls.start(animation);
+	async function playDownAnimation() {
+		await controls.start('down');
+		await timeout(3);
 
-		if (animation == 'show') {
-			await controls.start('down');
-			await playAnimation('hide');
-		} else {
-			await timeout(1.5);
-			await playAnimation('show');
-		}
+		await playDownAnimation();
 	}
 
 	async function start() {
-		await timeout(4);
-		await playAnimation('show');
+		await timeout(3);
+
+		await controls.start('show');
+		await timeout(1.5);
+
+		await playDownAnimation();
 	}
 
 	useEffect(() => {
@@ -122,6 +121,7 @@ const arrow = {
 		transition: {
 			opacity: {
 				duration: 0.01,
+				delay: 1,
 			},
 			duration: 0.5,
 			delay: 1,
@@ -154,6 +154,7 @@ const arrowPoint = {
 		transition: {
 			opacity: {
 				duration: 0.01,
+				delay: 1.5,
 			},
 			duration: 0.5,
 			delay: 1.5,
