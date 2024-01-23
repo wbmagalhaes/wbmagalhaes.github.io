@@ -33,3 +33,4 @@ LICENSE
 
 # lock files
 package-lock.json
+bun.lockb
