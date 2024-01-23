@@ -1,5 +1,6 @@
 ---
 import { SITE } from '@config.mjs';
+import { SEO } from 'astro-seo';
 import type { MetaSEO } from 'types/metaseo';
 import Fonts from '@common/Fonts.astro';
 
@@ -9,11 +10,9 @@ const {
 
 	canonical = Astro.url.toString(),
 
-	noindex = false,
-	nofollow = false,
+	noIndex = false,
+	noFollow = false,
 
-	ogTitle = SITE.title,
-	ogType = 'website',
 } = Astro.props as MetaSEO;
 ---
 
@@ -22,17 +21,11 @@ const {
 <link rel="icon" href="/favicon.ico" sizes="any" type="image/ico" />
 
 <Fonts />
-<!--
-<AstroSeo
+
+<SEO
 	title={title}
 	description={description}
 	canonical={String(canonical)}
-	noindex={noindex}
-	nofollow={nofollow}
-	openGraph={{
-		url: String(canonical),
-		title: ogTitle,
-		description: description,
-		type: ogType,
-	}}
-/> -->
+	noindex={noIndex}
+	nofollow={noFollow}
+/>

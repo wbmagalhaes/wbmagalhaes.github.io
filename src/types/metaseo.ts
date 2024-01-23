@@ -4,9 +4,6 @@ export type MetaSEO = {
 	image?: string;
 
 	canonical?: string | URL;
-	nofollow?: boolean;
-	noindex?: boolean;
-
-	ogTitle?: string;
-	ogType?: string;
+	noFollow?: boolean;
+	noIndex?: boolean;
 }
