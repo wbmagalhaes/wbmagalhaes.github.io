@@ -8,4 +8,4 @@ RUN bun add -d @types/bun
 
 EXPOSE 4321
 
-CMD [ "bun", "run", "--bun", "dev" ]
+CMD [ "bun", "run", "--bun", "build" ]
