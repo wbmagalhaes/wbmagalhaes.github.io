@@ -21,6 +21,9 @@ pnpm-debug.log*
 #watch-sass folder (VS Code)
 .watch
 
+# vscode configs
+.vscode/
+
 # astro generated code
 .astro/
 
