@@ -35,10 +35,7 @@ export default defineConfig({
 		}),
 		icon({
 			include: {
-				ic: [
-					'outline-email',
-					'round-alternate-email'
-				],
+				ic: ['*'],
 				'ant-design': ['heart-filled'],
 				'simple-icons': ['*'],
 			},

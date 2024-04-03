@@ -6,192 +6,188 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <Layout>
-	<section class='px-36 pt-8 min-h-full'>
-		<div class='grid grid-cols-3 items-start p-24 gap-8 bg-gray-100 min-h-full'>
-			<div style='rotate: 0.015rad;'>
-				<Card>
-					<Card.Header title={'Teste Header'} bgColor='#f00'>
-						<Card.Thumbnail slot='left'>
-							<span class='p-1'>
-								<Icon name='ic:outline-email' size={28} />
-							</span>
-						</Card.Thumbnail>
-						<Icon name='ic:outline-email' size={22} slot='right' />
-					</Card.Header>
-					<Card.Media>
-						<img
-							src='./images/placeholder.jpg'
-							height='100'
-							class='object-none object-center h-24 w-full'
-						/>
-					</Card.Media>
-					<Card.Content>
-						<p>
-							Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda
-							sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd
-							asasdasdasdasd asd asd as asd
-						</p>
-					</Card.Content>
-					<Card.Footer>
-						<div class='flex justify-end'>
-							<Button bgColor='#14e'>
-								<Icon name='ic:outline-email' size={22} />
-								Button 1
-							</Button>
-						</div>
-					</Card.Footer>
-				</Card>
-			</div>
-			<div>
-				<Card>
-					<Card.Header
-						title={'Teste Header really really long header and title'}
-						subtitle={'Teste Subheader'}
-						bgColor='#0f0'
-					>
-						<div class='relative' slot='left'>
-							<svg
-								class='hard-shadow'
-								width='44'
-								height='44'
-								viewBox='-24 -24 224 224'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
-							>
-								<g transform='translate(-12, -12)'>
-									<path
-										d='M29.2893 29.2893C19.2658 39.3128 15.6458 53.315 18.4294 66.2123C7.34132 73.3638 0 85.8246 0 100C-1.74156e-06 114.175 7.34132 126.636 18.4294 133.788C15.6458 146.685 19.2658 160.687 29.2893 170.711C39.3129 180.734 53.315 184.354 66.2123 181.571C73.3639 192.659 85.8246 200 100 200C114.175 200 126.636 192.659 133.788 181.571C146.685 184.354 160.687 180.734 170.711 170.711C180.734 160.687 184.354 146.685 181.571 133.788C192.659 126.636 200 114.175 200 100C200 85.8246 192.659 73.3638 181.571 66.2123C184.354 53.315 180.734 39.3129 170.711 29.2893C160.687 19.2658 146.685 15.6458 133.788 18.4294C126.636 7.34133 114.175 0 100 0C85.8246 0 73.3638 7.34131 66.2123 18.4293C53.315 15.6458 39.3129 19.2658 29.2893 29.2893Z'
-										fill='whitesmoke'
-									>
-									</path>
-								</g>
-							</svg>
-							<Icon class='absolute inset-0 m-auto' name='ic:outline-email' size={28} />
-						</div>
+	<section class='px-36 pt-8 min-h-full bg-gray-100'>
+		<div class='flex gap-4 px-24'>
+			<Button bgColor='#14e'>
+				<Icon name='ic:unarchive' size={22} />
+				<span>Button 1</span>
+			</Button>
+			<Button bgColor='#f00'>
+				<Icon name='ic:outline-unarchive' size={22} />
+				<span>Button 2</span>
+			</Button>
+			<Button bgColor='#0f0'>
+				<Icon name='ic:outline-arrow-outward' size={22} />
+				<span>Button 3</span>
+			</Button>
+		</div>
+		<div class='grid grid-cols-3 items-start p-24 gap-8 min-h-full'>
+			<Card rotation={0.015}>
+				<Card.Header title={'Teste Header'} bgColor='#f00'>
+					<Card.Thumbnail slot='left'>
+						<span class='p-1'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+					<Icon name='ic:outline-email' size={22} slot='right' />
+				</Card.Header>
+				<Card.Media>
+					<img src='./images/placeholder.jpg' height='100' class='object-none object-center h-24 w-full' />
+				</Card.Media>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
+				<Card.Footer>
+					<div class='flex justify-end'>
+						<Button bgColor='#14e'>
+							<Icon name='ic:outline-email' size={22} />
+							<span>Button 1</span>
+						</Button>
+					</div>
+				</Card.Footer>
+			</Card>
+			<Card translation={[-3.25, -8.25]}>
+				<Card.Header
+					title={'Teste Header really really long header and title'}
+					subtitle={'Teste Subheader'}
+					bgColor='#0f0'
+				>
+					<div class='relative' slot='left'>
+						<svg
+							class='hard-shadow'
+							width='44'
+							height='44'
+							viewBox='-24 -24 224 224'
+							fill='none'
+							xmlns='http://www.w3.org/2000/svg'
+						>
+							<g transform='translate(-12, -12)'>
+								<path
+									d='M29.2893 29.2893C19.2658 39.3128 15.6458 53.315 18.4294 66.2123C7.34132 73.3638 0 85.8246 0 100C-1.74156e-06 114.175 7.34132 126.636 18.4294 133.788C15.6458 146.685 19.2658 160.687 29.2893 170.711C39.3129 180.734 53.315 184.354 66.2123 181.571C73.3639 192.659 85.8246 200 100 200C114.175 200 126.636 192.659 133.788 181.571C146.685 184.354 160.687 180.734 170.711 170.711C180.734 160.687 184.354 146.685 181.571 133.788C192.659 126.636 200 114.175 200 100C200 85.8246 192.659 73.3638 181.571 66.2123C184.354 53.315 180.734 39.3129 170.711 29.2893C160.687 19.2658 146.685 15.6458 133.788 18.4294C126.636 7.34133 114.175 0 100 0C85.8246 0 73.3638 7.34131 66.2123 18.4293C53.315 15.6458 39.3129 19.2658 29.2893 29.2893Z'
+									fill='whitesmoke'
+								>
+								</path>
+							</g>
+						</svg>
+						<Icon class='absolute inset-0 m-auto' name='ic:outline-email' size={28} />
+					</div>
 
-						<Icon name='ic:outline-email' size={22} slot='right' />
-					</Card.Header>
-					<Card.Content>
-						<p>
-							Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda
-							sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd
-							asasdasdasdasd asd asd as asd
-						</p>
-					</Card.Content>
-					<Card.Footer>
-						<div class='flex flex-wrap flex-row gap-2'>
-							<Button bgColor='#0ff'>Button 1</Button>
-							<div style='translate: -2.5px -2px;'>
-								<Button bgColor='#ff0'>Button 2</Button>
-							</div>
-							<Button bgColor='#f0f'>Button 3</Button>
-						</div>
-					</Card.Footer>
-				</Card>
-			</div>
-			<div>
-				<Card>
-					<Card.Header title={'Teste Header'} bgColor='#00f'>
-						<Card.Thumbnail slot='left'>
-							<span class='p-1'>
-								<Icon name='ic:outline-email' size={28} />
-							</span>
-						</Card.Thumbnail>
-						<div class='flex gap-2' slot='right'>
-							<Icon name='simple-icons:minutemailer' size={22} />
-							<Icon name='simple-icons:gmail' size={22} />
-							<Icon name='simple-icons:mailgun' size={22} />
-						</div>
-					</Card.Header>
-					<Card.Content>
-						<p>
-							Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda
-							sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd
-							asasdasdasdasd asd asd as asd
-						</p>
-					</Card.Content>
-				</Card>
-			</div>
-			<div>
-				<Card>
-					<Card.Media>
-						<img src='./images/placeholder.jpg' class='object-none object-center h-48 w-full' />
-					</Card.Media>
-					<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#0df'>
-						<Card.Thumbnail slot='left'>
-							<span class='p-1'>
-								<Icon name='ic:outline-email' size={28} />
-							</span>
-						</Card.Thumbnail>
-					</Card.Header>
-					<Card.Content>
-						<p>
-							Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda
-							sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd
-							asasdasdasdasd asd asd as asd
-						</p>
-					</Card.Content>
-					<Card.Footer>
-						<div class='flex flex-row items-center justify-between gap-2'>
-							<span class='text-sm'>Texto de footer</span>
-							<Button bgColor='#fe1'>Button 3</Button>
-						</div>
-					</Card.Footer>
-				</Card>
-			</div>
-			<div style='rotate: -0.0125rad;'>
-				<Card>
-					<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#d0f'>
-						<div class='relative' slot='left'>
-							<svg
-								class='hard-shadow'
-								width='44'
-								height='44'
-								viewBox='-24 -24 224 224'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
-							>
-								<g transform='translate(-12, -12)'>
-									<path
-										d='M99.9937 200V184.439C49.0583 184.439 0 150.932 0 100H15.5495C15.5495 49.0678 49.0583 0 99.9937 0V15.5612C150.929 15.5612 200 49.0678 200 100H184.451C184.451 150.932 150.929 200 99.9937 200Z'
-										fill='whitesmoke'
-									>
-									</path>
-								</g>
-							</svg>
-							<Icon class='absolute inset-0 m-auto' name='ic:outline-email' size={28} />
-						</div>
-					</Card.Header>
-					<Card.Content>
-						<p>
-							Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda
-							sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd
-							asasdasdasdasd asd asd as asd
-						</p>
-					</Card.Content>
-				</Card>
-			</div>
-			<div>
-				<Card>
-					<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#fd0'>
-						<Card.Thumbnail slot='left'>
-							<span class='p-1'>
-								<Icon name='ic:outline-email' size={28} />
-							</span>
-						</Card.Thumbnail>
-					</Card.Header>
-					<Card.Content>
-						<p>
-							Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda
-							sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd
-							asasdasdasdasd asd asd as asd
-						</p>
-					</Card.Content>
-					<Card.Footer>
+					<Icon name='ic:outline-email' size={22} slot='right' />
+				</Card.Header>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
+				<Card.Footer>
+					<div class='flex flex-wrap flex-row gap-2'>
+						<Button bgColor='#0ff'>Button 1</Button>
+						<Button bgColor='#ff0' translation={[-2.5, -2]}>Button 2</Button>
+						<Button bgColor='#f0f'>Button 3</Button>
+					</div>
+				</Card.Footer>
+			</Card>
+			<Card>
+				<Card.Header title={'Teste Header'} bgColor='#00f'>
+					<Card.Thumbnail slot='left'>
+						<span class='p-1'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+					<div class='flex gap-2' slot='right'>
+						<Icon name='simple-icons:minutemailer' size={22} />
+						<Icon name='simple-icons:gmail' size={22} />
+						<Icon name='simple-icons:mailgun' size={22} />
+					</div>
+				</Card.Header>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
+			</Card>
+			<Card>
+				<Card.Media>
+					<img src='./images/placeholder.jpg' class='object-none object-center h-48 w-full' />
+				</Card.Media>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#0df'>
+					<Card.Thumbnail slot='left'>
+						<span class='p-1'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+				</Card.Header>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
+				<Card.Footer>
+					<div class='flex flex-row items-center justify-between gap-2'>
 						<span class='text-sm'>Texto de footer</span>
-					</Card.Footer>
-				</Card>
-			</div>
+						<Button bgColor='#fe1'>Button 3</Button>
+					</div>
+				</Card.Footer>
+			</Card>
+			<Card rotation={-0.0125}>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#d0f'>
+					<div class='relative' slot='left'>
+						<svg
+							class='hard-shadow'
+							width='44'
+							height='44'
+							viewBox='-24 -24 224 224'
+							fill='none'
+							xmlns='http://www.w3.org/2000/svg'
+						>
+							<g transform='translate(-12, -12)'>
+								<path
+									d='M99.9937 200V184.439C49.0583 184.439 0 150.932 0 100H15.5495C15.5495 49.0678 49.0583 0 99.9937 0V15.5612C150.929 15.5612 200 49.0678 200 100H184.451C184.451 150.932 150.929 200 99.9937 200Z'
+									fill='whitesmoke'
+								>
+								</path>
+							</g>
+						</svg>
+						<Icon class='absolute inset-0 m-auto' name='ic:outline-email' size={28} />
+					</div>
+				</Card.Header>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
+			</Card>
+			<Card>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#fd0'>
+					<Card.Thumbnail slot='left'>
+						<span class='p-1'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+				</Card.Header>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
+				<Card.Footer>
+					<span class='text-sm'>Texto de footer</span>
+				</Card.Footer>
+			</Card>
 		</div>
 	</section>
 </Layout>
