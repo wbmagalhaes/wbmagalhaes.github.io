@@ -82,7 +82,7 @@ module.exports = {
 				}
 			},
 			fontFamily: {
-				sans: ["'Inter'", 'sans-serif', ...defaultTheme.fontFamily.sans],
+				sans: ["'Space Grotesk Variable'", 'sans-serif', ...defaultTheme.fontFamily.sans],
 				mono: ["'Mononoki'", 'mono', ...defaultTheme.fontFamily.mono],
 			}
 		}

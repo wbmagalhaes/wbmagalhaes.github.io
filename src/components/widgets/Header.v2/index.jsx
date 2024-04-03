@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useScroll } from '@hooks/useScroll';
+import { Icon } from '@iconify/react';
 import Logo from './Logo';
 import Item from './Item';
+import Button from '@common/Button';
 
 export default function Header() {
 	const [visible, setVisible] = useState(true);
@@ -24,13 +26,18 @@ export default function Header() {
 				<a href="/#" aria-label="home">
 					<Logo />
 				</a>
-				<nav class="h-full">
-					<ul className="flex h-full text-right font-mono border-r-2 border-black">
-						<Item href="/#about" text="About Me" aria="About Me" />
-						<Item href="/#experience" text="Experience" aria="Work Experience" />
-						<Item href="/#projects" text="Projects" aria="My Projects" />
-						<Item href="/#contact" text="Contact" aria="Contact Me" />
-						<Item href="/resume.pdf" text="Resume" aria="Resume" target="_blank" />
+				<nav className="h-full">
+					<ul className="flex h-full text-right font-bold">
+						<Item href="/#about" text="About Me" aria="About Me" hoverBgColor="red" />
+						<Item href="/#experience" text="Experience" aria="Work Experience" hoverBgColor="lime" />
+						<Item href="/#projects" text="Projects" aria="My Projects" hoverBgColor="blue" />
+						<Item href="/#contact" text="Contact" aria="Contact Me" hoverBgColor="#fd3" />
+						<li className="h-full border-l-2 border-black pl-4 flex place-items-center">
+							<Button bgColor="#7fd6c2">
+								<span>Resume</span>
+								<Icon icon="ic:arrow-forward" />
+							</Button>
+						</li>
 					</ul>
 				</nav>
 			</div>
