@@ -32,7 +32,7 @@ export default function Header() {
 						<Item href="/#experience" text="Experience" aria="Work Experience" hoverBgColor="lime" />
 						<Item href="/#projects" text="Projects" aria="My Projects" hoverBgColor="blue" />
 						<Item href="/#contact" text="Contact" aria="Contact Me" hoverBgColor="#fd3" />
-						<li className="h-full border-l-2 border-black pl-4 flex place-items-center">
+						<li className="h-full border-l-2 border-black pl-8 flex place-items-center">
 							<Button bgColor="#7fd6c2">
 								<span>Resume</span>
 								<Icon icon="ic:arrow-forward" />

@@ -35,6 +35,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self', h
 				aria-label={aria}
 				target={target}
 				onHoverEnd={() => randomizePosition()}
+				initial="initial"
 				whileHover="hover"
 			>
 				<motion.span
@@ -46,6 +47,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self', h
 						translate: `${150 * startPos[0]}% ${150 * startPos[1]}%`,
 					}}
 					variants={{
+						initial: { translate: `${150 * startPos[0]}% ${150 * startPos[1]}%` },
 						hover: { translate: '0' },
 					}}
 				/>
