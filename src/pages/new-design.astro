@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/BaseLayout.astro';
 import Card from '@common/Card';
+import Button from '@common/Button';
 import { Icon } from 'astro-icon/components';
 ---
 
@@ -16,11 +17,11 @@ import { Icon } from 'astro-icon/components';
 					</Card.Thumbnail>
 					<Icon name='ic:outline-email' size={18} slot='right' />
 				</Card.Header>
-				<Card.Content>Teste Content</Card.Content>
+				<Card.Content>
+					<p>Teste Content</p>
+				</Card.Content>
 				<Card.Footer>
-					<button>Button 1</button>
-					<button>Button 2</button>
-					<button>Button 3</button>
+					<Button>Button 1</Button>
 				</Card.Footer>
 			</Card>
 
@@ -33,11 +34,15 @@ import { Icon } from 'astro-icon/components';
 					</Card.Thumbnail>
 					<Icon name='ic:outline-email' size={18} slot='right' />
 				</Card.Header>
-				<Card.Content>Teste Content</Card.Content>
+				<Card.Content>
+					<p>Teste Content</p>
+				</Card.Content>
 				<Card.Footer>
-					<button>Button 1</button>
-					<button>Button 2</button>
-					<button>Button 3</button>
+					<div class='flex flex-row gap-2'>
+						<Button>Button 1</Button>
+						<Button>Button 2</Button>
+						<Button>Button 3</Button>
+					</div>
 				</Card.Footer>
 			</Card>
 
@@ -49,7 +54,9 @@ import { Icon } from 'astro-icon/components';
 						</span>
 					</Card.Thumbnail>
 				</Card.Header>
-				<Card.Content>Teste Content</Card.Content>
+				<Card.Content>
+					<p>Teste Content</p>
+				</Card.Content>
 			</Card>
 
 			<Card bgColor='#0df'>
@@ -60,11 +67,14 @@ import { Icon } from 'astro-icon/components';
 						</span>
 					</Card.Thumbnail>
 				</Card.Header>
-				<Card.Content>Teste Content</Card.Content>
+				<Card.Content>
+					<p>Teste Content</p>
+				</Card.Content>
 				<Card.Footer>
-					<button>Button 1</button>
-					<button>Button 2</button>
-					<button>Button 3</button>
+					<div class='flex flex-row gap-2'>
+						<span>Texto de footer</span>
+						<Button>Button 3</Button>
+					</div>
 				</Card.Footer>
 			</Card>
 
@@ -76,7 +86,13 @@ import { Icon } from 'astro-icon/components';
 						</span>
 					</Card.Thumbnail>
 				</Card.Header>
-				<Card.Content>Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as asd </Card.Content>
+				<Card.Content>
+					<p>
+						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
+						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
+						asd
+					</p>
+				</Card.Content>
 			</Card>
 
 			<Card bgColor='#fd0'>
@@ -87,11 +103,11 @@ import { Icon } from 'astro-icon/components';
 						</span>
 					</Card.Thumbnail>
 				</Card.Header>
-				<Card.Content>Teste Content</Card.Content>
+				<Card.Content>
+					<p>Teste Content</p>
+				</Card.Content>
 				<Card.Footer>
-					<button>Button 1</button>
-					<button>Button 2</button>
-					<button>Button 3</button>
+					<div>Texto de footer</div>
 				</Card.Footer>
 			</Card>
 		</div>

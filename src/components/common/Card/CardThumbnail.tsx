@@ -1,5 +1,3 @@
-import { type DataType } from 'csstype';
-
 interface BaseCardThumbnail {}
 
 interface CardThumbnailIcon extends BaseCardThumbnail {
@@ -18,7 +16,7 @@ interface CardThumbnailImage extends BaseCardThumbnail {
 export type CardThumbnail = CardThumbnailIcon | CardThumbnailImage;
 
 type Props = {
-	bgColor?: DataType.Color;
+	bgColor?: string;
 	children: React.ReactNode;
 };
 

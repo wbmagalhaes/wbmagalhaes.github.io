@@ -4,12 +4,10 @@ import CardMedia from './CardMedia';
 import CardContent from './CardContent';
 import CardFooter from './CardFooter';
 
-import { type DataType } from 'csstype';
-
 import '@styles/card.scss';
 
 type Props = {
-	bgColor?: DataType.Color;
+	bgColor?: string;
 	children: React.ReactNode;
 };
 
