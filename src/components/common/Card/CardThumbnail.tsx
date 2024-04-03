@@ -23,7 +23,7 @@ type Props = {
 export default function CardThumbnail({ bgColor = 'whitesmoke', children }: Props) {
 	return (
 		<span
-			className="grid place-items-center aspect-square overflow-hidden rounded-full"
+			className="grid place-items-center aspect-square overflow-hidden rounded-full border-2 border-black hard-shadow"
 			style={{ backgroundColor: bgColor }}
 		>
 			{children}

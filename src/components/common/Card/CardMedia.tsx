@@ -3,5 +3,5 @@ type Props = {
 };
 
 export default function CardMedia({ children }: Props) {
-	return <div className='card-media'>{children}</div>;
+	return <div className="border-b-2 border-black">{children}</div>;
 }

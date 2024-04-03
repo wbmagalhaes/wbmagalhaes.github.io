@@ -61,13 +61,25 @@
 	}
 
 	.sides-fade {
-		mask-image:
-			linear-gradient(
-				to right,
-				rgb(0 0 0 / 0) 0%,
-				rgb(0 0 0 / 1) 20%,
-				rgb(0 0 0 / 1) 80%,
-				rgb(0 0 0 / 0) 100%
-			);
+		mask-image: linear-gradient(
+			to right,
+			rgb(0 0 0 / 0) 0%,
+			rgb(0 0 0 / 1) 20%,
+			rgb(0 0 0 / 1) 80%,
+			rgb(0 0 0 / 0) 100%
+		);
+	}
+
+	.hard-shadow {
+		filter: drop-shadow(2px 2px 0 rgb(0 0 0));
+	}
+
+	.hard-shadow-4 {
+		filter: drop-shadow(4px 4px 0 rgb(0 0 0));
+	}
+
+	svg.hard-shadow {
+		stroke: black;
+		stroke-width: 12;
 	}
 }

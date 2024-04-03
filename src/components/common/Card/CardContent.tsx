@@ -3,5 +3,5 @@ type Props = {
 };
 
 export default function CardContent({ children }: Props) {
-	return <div className='px-4 mb-4'>{children}</div>;
+	return <div className='p-4'>{children}</div>;
 }
