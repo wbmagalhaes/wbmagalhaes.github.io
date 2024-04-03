@@ -1,0 +1,99 @@
+---
+import Layout from '@layouts/BaseLayout.astro';
+import Card from '@common/Card';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout>
+	<section class='px-36 pt-8 min-h-full'>
+		<div class='grid grid-cols-3 items-start p-24 gap-8 bg-white min-h-full'>
+			<Card bgColor='#f00'>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'}>
+					<Card.Thumbnail slot='left'>
+						<span class='p-2'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+					<Icon name='ic:outline-email' size={18} slot='right' />
+				</Card.Header>
+				<Card.Content>Teste Content</Card.Content>
+				<Card.Footer>
+					<button>Button 1</button>
+					<button>Button 2</button>
+					<button>Button 3</button>
+				</Card.Footer>
+			</Card>
+
+			<Card bgColor='#0f0'>
+				<Card.Header title={'Teste Header really really long header and title'} subtitle={'Teste Subheader'}>
+					<Card.Thumbnail slot='left'>
+						<span class='p-2'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+					<Icon name='ic:outline-email' size={18} slot='right' />
+				</Card.Header>
+				<Card.Content>Teste Content</Card.Content>
+				<Card.Footer>
+					<button>Button 1</button>
+					<button>Button 2</button>
+					<button>Button 3</button>
+				</Card.Footer>
+			</Card>
+
+			<Card bgColor='#00f'>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'}>
+					<Card.Thumbnail slot='left'>
+						<span class='p-2'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+				</Card.Header>
+				<Card.Content>Teste Content</Card.Content>
+			</Card>
+
+			<Card bgColor='#0df'>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'}>
+					<Card.Thumbnail slot='left'>
+						<span class='p-2'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+				</Card.Header>
+				<Card.Content>Teste Content</Card.Content>
+				<Card.Footer>
+					<button>Button 1</button>
+					<button>Button 2</button>
+					<button>Button 3</button>
+				</Card.Footer>
+			</Card>
+
+			<Card bgColor='#d0f'>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'}>
+					<Card.Thumbnail slot='left'>
+						<span class='p-2'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+				</Card.Header>
+				<Card.Content>Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as asd </Card.Content>
+			</Card>
+
+			<Card bgColor='#fd0'>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'}>
+					<Card.Thumbnail slot='left'>
+						<span class='p-2'>
+							<Icon name='ic:outline-email' size={28} />
+						</span>
+					</Card.Thumbnail>
+				</Card.Header>
+				<Card.Content>Teste Content</Card.Content>
+				<Card.Footer>
+					<button>Button 1</button>
+					<button>Button 2</button>
+					<button>Button 3</button>
+				</Card.Footer>
+			</Card>
+		</div>
+	</section>
+</Layout>
