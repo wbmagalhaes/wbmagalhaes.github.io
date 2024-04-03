@@ -1,60 +1,61 @@
 ---
-import Layout from '@layouts/BaseLayout.astro';
+import Layout from '@layouts/BaseLayout.v2.astro';
 import Card from '@common/Card';
 import Button from '@common/Button';
 import { Icon } from 'astro-icon/components';
 ---
 
 <Layout>
-	<section class='px-36 pt-8 min-h-full bg-gray-100'>
-		<div class='flex gap-4 px-24'>
-			<Button bgColor='#14e'>
+	<section class='px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 pt-8 min-h-full'>
+		<div class='flex gap-4 py-8'>
+			<Button bgColor='#14e' client:idle>
 				<Icon name='ic:unarchive' size={22} />
 				<span>Button 1</span>
 			</Button>
-			<Button bgColor='#f00'>
+			<Button bgColor='#f00' client:idle>
 				<Icon name='ic:outline-unarchive' size={22} />
 				<span>Button 2</span>
 			</Button>
-			<Button bgColor='#0f0'>
+			<Button bgColor='#0f0' client:idle>
 				<Icon name='ic:outline-arrow-outward' size={22} />
 				<span>Button 3</span>
 			</Button>
 		</div>
-		<div class='grid grid-cols-3 items-start p-24 gap-8 min-h-full'>
-			<Card rotation={0.015}>
-				<Card.Header title={'Teste Header'} bgColor='#f00'>
-					<Card.Thumbnail slot='left'>
+		<div class='grid grid-cols-3 items-start py-24 gap-8 min-h-full'>
+			<Card rotation={0.015} client:idle>
+				<Card.Header title={'Teste Header'} bgColor='#f00' client:idle>
+					<Card.Thumbnail slot='left' client:idle>
 						<span class='p-1'>
 							<Icon name='ic:outline-email' size={28} />
 						</span>
 					</Card.Thumbnail>
 					<Icon name='ic:outline-email' size={22} slot='right' />
 				</Card.Header>
-				<Card.Media>
+				<Card.Media client:idle>
 					<img src='./images/placeholder.jpg' height='100' class='object-none object-center h-24 w-full' />
 				</Card.Media>
-				<Card.Content>
+				<Card.Content client:idle>
 					<p>
 						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
 						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
 						asd
 					</p>
 				</Card.Content>
-				<Card.Footer>
+				<Card.Footer client:idle>
 					<div class='flex justify-end'>
-						<Button bgColor='#14e'>
+						<Button bgColor='#14e' client:idle>
 							<Icon name='ic:outline-email' size={22} />
 							<span>Button 1</span>
 						</Button>
 					</div>
 				</Card.Footer>
 			</Card>
-			<Card translation={[-3.25, -8.25]}>
+			<Card translation={[-3.25, -8.25]} client:idle>
 				<Card.Header
 					title={'Teste Header really really long header and title'}
 					subtitle={'Teste Subheader'}
 					bgColor='#0f0'
+					client:idle
 				>
 					<div class='relative' slot='left'>
 						<svg
@@ -78,14 +79,14 @@ import { Icon } from 'astro-icon/components';
 
 					<Icon name='ic:outline-email' size={22} slot='right' />
 				</Card.Header>
-				<Card.Content>
+				<Card.Content client:idle>
 					<p>
 						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
 						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
 						asd
 					</p>
 				</Card.Content>
-				<Card.Footer>
+				<Card.Footer client:idle>
 					<div class='flex flex-wrap flex-row gap-2'>
 						<Button bgColor='#0ff'>Button 1</Button>
 						<Button bgColor='#ff0' translation={[-2.5, -2]}>Button 2</Button>
@@ -93,9 +94,9 @@ import { Icon } from 'astro-icon/components';
 					</div>
 				</Card.Footer>
 			</Card>
-			<Card>
-				<Card.Header title={'Teste Header'} bgColor='#00f'>
-					<Card.Thumbnail slot='left'>
+			<Card client:idle>
+				<Card.Header title={'Teste Header'} bgColor='#00f' client:idle>
+					<Card.Thumbnail slot='left' client:idle>
 						<span class='p-1'>
 							<Icon name='ic:outline-email' size={28} />
 						</span>
@@ -106,7 +107,7 @@ import { Icon } from 'astro-icon/components';
 						<Icon name='simple-icons:mailgun' size={22} />
 					</div>
 				</Card.Header>
-				<Card.Content>
+				<Card.Content client:idle>
 					<p>
 						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
 						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
@@ -114,33 +115,33 @@ import { Icon } from 'astro-icon/components';
 					</p>
 				</Card.Content>
 			</Card>
-			<Card>
-				<Card.Media>
+			<Card client:idle>
+				<Card.Media client:idle>
 					<img src='./images/placeholder.jpg' class='object-none object-center h-48 w-full' />
 				</Card.Media>
-				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#0df'>
-					<Card.Thumbnail slot='left'>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#0df' client:idle>
+					<Card.Thumbnail slot='left' client:idle>
 						<span class='p-1'>
 							<Icon name='ic:outline-email' size={28} />
 						</span>
 					</Card.Thumbnail>
 				</Card.Header>
-				<Card.Content>
+				<Card.Content client:idle>
 					<p>
 						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
 						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
 						asd
 					</p>
 				</Card.Content>
-				<Card.Footer>
+				<Card.Footer client:idle>
 					<div class='flex flex-row items-center justify-between gap-2'>
 						<span class='text-sm'>Texto de footer</span>
 						<Button bgColor='#fe1'>Button 3</Button>
 					</div>
 				</Card.Footer>
 			</Card>
-			<Card rotation={-0.0125}>
-				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#d0f'>
+			<Card rotation={-0.0125} client:idle>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#d0f' client:idle>
 					<div class='relative' slot='left'>
 						<svg
 							class='hard-shadow'
@@ -161,7 +162,7 @@ import { Icon } from 'astro-icon/components';
 						<Icon class='absolute inset-0 m-auto' name='ic:outline-email' size={28} />
 					</div>
 				</Card.Header>
-				<Card.Content>
+				<Card.Content client:idle>
 					<p>
 						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
 						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
@@ -169,22 +170,22 @@ import { Icon } from 'astro-icon/components';
 					</p>
 				</Card.Content>
 			</Card>
-			<Card>
-				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#fd0'>
-					<Card.Thumbnail slot='left'>
+			<Card client:idle>
+				<Card.Header title={'Teste Header'} subtitle={'Teste Subheader'} bgColor='#fd0' client:idle>
+					<Card.Thumbnail slot='left' client:idle>
 						<span class='p-1'>
 							<Icon name='ic:outline-email' size={28} />
 						</span>
 					</Card.Thumbnail>
 				</Card.Header>
-				<Card.Content>
+				<Card.Content client:idle>
 					<p>
 						Teste Content asd asd asd asdasdasdasd asd asda sda sdas dasdasdasd asd asd asd asda sdasdasd
 						asd asdasd asdasd asd asd as asd asd asd asdas das das dasd asd as asd asasdasdasdasd asd asd as
 						asd
 					</p>
 				</Card.Content>
-				<Card.Footer>
+				<Card.Footer client:idle>
 					<span class='text-sm'>Texto de footer</span>
 				</Card.Footer>
 			</Card>

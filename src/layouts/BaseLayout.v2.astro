@@ -1,0 +1,32 @@
+---
+import '@styles/global.scss';
+
+import MetaTags from '@common/MetaTags.astro';
+import type { MetaSEO } from 'types/metaseo';
+
+import Header from '@widgets/Header.v2';
+import Footer from '@widgets/Footer.v2.astro';
+
+type Props = {
+	meta?: MetaSEO;
+};
+
+const { meta } = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang='pt-br' class='scroll-smooth box-border w-full'>
+	<head>
+		<MetaTags {...meta} />
+	</head>
+
+	<body class='antialiased bg-gray-100 text-black align-middle'>
+		<Header client:idle />
+
+		<main class='overflow-x-hidden min-h-screen pt-32'>
+			<slot />
+		</main>
+
+		<Footer />
+	</body>
+</html>

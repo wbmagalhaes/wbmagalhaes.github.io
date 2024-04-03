@@ -1,3 +1,5 @@
+import { motion, useDragControls } from 'framer-motion';
+
 import CardThumbnail from './CardThumbnail';
 import CardHeader from './CardHeader';
 import CardMedia from './CardMedia';
@@ -12,8 +14,13 @@ type Props = {
 };
 
 export default function Card({ bgColor = 'white', rotation = 0, translation = [0, 0], children }: Props) {
+	const controls = useDragControls();
+
 	return (
-		<article
+		<motion.article
+			drag
+			dragMomentum={false}
+			dragControls={controls}
 			className="card rounded-sm overflow-hidden border-2 border-black hard-shadow-4 text-black"
 			style={{
 				backgroundColor: bgColor,
@@ -22,7 +29,7 @@ export default function Card({ bgColor = 'white', rotation = 0, translation = [0
 			}}
 		>
 			{children}
-		</article>
+		</motion.article>
 	);
 }
 
