@@ -4,22 +4,35 @@ import CardHeader from './CardHeader';
 import CardMedia from './CardMedia';
 import CardContent from './CardContent';
 import CardFooter from './CardFooter';
+import type { RefObject } from 'react';
 
 type Props = {
 	bgColor?: string;
 	rotation?: number;
 	translation?: [number, number];
+	dragConstraint?: RefObject<Element>;
+	onDragEnd?: () => void;
 	children: React.ReactNode;
 };
 
-export default function Card({ bgColor = 'white', rotation = 0, translation = [0, 0], children }: Props) {
+export default function Card({
+	bgColor = 'white',
+	rotation = 0,
+	translation = [0, 0],
+	dragConstraint,
+	onDragEnd,
+	children,
+}: Props) {
 	const controls = useDragControls();
 
 	return (
 		<motion.article
 			drag
+			dragConstraints={dragConstraint}
+			dragElastic={0.1}
 			dragMomentum={false}
 			dragControls={controls}
+			onDragEnd={() => onDragEnd?.call(0)}
 			initial="initial"
 			whileDrag="drag"
 			variants={variants}
@@ -49,7 +62,7 @@ const variants: Variants = {
 	},
 	drag: {
 		scale: 1.05,
-		zIndex: 100,
+		zIndex: 9999,
 		filter: 'drop-shadow(6px 6px black)',
 	},
 };
