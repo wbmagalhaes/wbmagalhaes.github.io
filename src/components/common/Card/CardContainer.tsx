@@ -1,31 +1,35 @@
 import Button from '@common/Button';
 import Card from '.';
 import { Icon } from '@iconify/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function CardContainer() {
 	const dragConstraint = useRef<HTMLDivElement>(null);
+	const [cards, setCards] = useState<number[]>([0, 1, 2, 3, 4, 5]);
+
+	function sendToTop(index: number) {
+		setCards((prev) => {
+			const old = prev[index];
+			const newCards = prev.map((z) => (z > old ? z - 1 : z));
+			newCards[index] = 5;
+			return newCards;
+		});
+	}
 
 	return (
 		<div ref={dragConstraint} className="grid grid-cols-3 items-start pt-24 mb-24 gap-8 min-h-full">
-			<Card
-				rotation={0.015}
-				dragConstraint={dragConstraint}
-				onDragEnd={() => {
-					console.log('end');
-				}}
-			>
+			<Card zIndex={cards[0]} rotation={0.015} dragConstraint={dragConstraint} onDragStart={() => sendToTop(0)}>
 				<Card.Header
 					title={'Teste Header'}
 					bgColor="#f00"
 					left={
 						<Card.Thumbnail>
 							<span className="p-1">
-								<Icon icon="ic:outline-email" />
+								<Icon icon="ic:outline-email" width={28} />
 							</span>
 						</Card.Thumbnail>
 					}
-					right={<Icon icon="ic:outline-email" />}
+					right={<Icon icon="ic:outline-email" width={22} />}
 				/>
 				<Card.Media>
 					<img
@@ -44,13 +48,18 @@ export default function CardContainer() {
 				<Card.Footer>
 					<div className="flex justify-end">
 						<Button bgColor="#14e">
-							<Icon icon="ic:outline-email" />
+							<Icon icon="ic:outline-email" width={20} />
 							<span>Button 1</span>
 						</Button>
 					</div>
 				</Card.Footer>
 			</Card>
-			<Card translation={[-3.25, -8.25]} dragConstraint={dragConstraint}>
+			<Card
+				zIndex={cards[1]}
+				translation={[-3.25, -8.25]}
+				dragConstraint={dragConstraint}
+				onDragStart={() => sendToTop(1)}
+			>
 				<Card.Header
 					title={'Teste Header really really long header and title'}
 					subtitle={'Teste Subheader'}
@@ -72,10 +81,10 @@ export default function CardContainer() {
 									></path>
 								</g>
 							</svg>
-							<Icon className="absolute inset-0 m-auto" icon="ic:outline-email" />
+							<Icon className="absolute inset-0 m-auto" icon="ic:outline-email" width={28} />
 						</div>
 					}
-					right={<Icon icon="ic:outline-email" />}
+					right={<Icon icon="ic:outline-email" width={22} />}
 				/>
 				<Card.Content>
 					<p>
@@ -94,22 +103,22 @@ export default function CardContainer() {
 					</div>
 				</Card.Footer>
 			</Card>
-			<Card dragConstraint={dragConstraint}>
+			<Card zIndex={cards[2]} dragConstraint={dragConstraint} onDragStart={() => sendToTop(2)}>
 				<Card.Header
 					title={'Teste Header'}
 					bgColor="#00f"
 					left={
 						<Card.Thumbnail>
 							<span className="p-1">
-								<Icon icon="ic:outline-email" />
+								<Icon icon="ic:outline-email" width={28} />
 							</span>
 						</Card.Thumbnail>
 					}
 					right={
 						<div className="flex gap-2">
-							<Icon icon="simple-icons:minutemailer" />
-							<Icon icon="simple-icons:gmail" />
-							<Icon icon="simple-icons:mailgun" />
+							<Icon icon="simple-icons:minutemailer" width={22} />
+							<Icon icon="simple-icons:gmail" width={22} />
+							<Icon icon="simple-icons:mailgun" width={22} />
 						</div>
 					}
 				/>
@@ -121,7 +130,7 @@ export default function CardContainer() {
 					</p>
 				</Card.Content>
 			</Card>
-			<Card dragConstraint={dragConstraint}>
+			<Card zIndex={cards[3]} dragConstraint={dragConstraint} onDragStart={() => sendToTop(3)}>
 				<Card.Media>
 					<img src="./images/placeholder.jpg" className="object-none object-center h-48 w-full" />
 				</Card.Media>
@@ -132,7 +141,7 @@ export default function CardContainer() {
 					left={
 						<Card.Thumbnail>
 							<span className="p-1">
-								<Icon icon="ic:outline-email" />
+								<Icon icon="ic:outline-email" width={28} />
 							</span>
 						</Card.Thumbnail>
 					}
@@ -151,7 +160,7 @@ export default function CardContainer() {
 					</div>
 				</Card.Footer>
 			</Card>
-			<Card rotation={-0.0125} dragConstraint={dragConstraint}>
+			<Card zIndex={cards[4]} rotation={-0.0125} dragConstraint={dragConstraint} onDragStart={() => sendToTop(4)}>
 				<Card.Header
 					title={'Teste Header'}
 					subtitle={'Teste Subheader'}
@@ -173,7 +182,7 @@ export default function CardContainer() {
 									></path>
 								</g>
 							</svg>
-							<Icon className="absolute inset-0 m-auto" icon="ic:outline-email" />
+							<Icon className="absolute inset-0 m-auto" icon="ic:outline-email" width={28} />
 						</div>
 					}
 				/>
@@ -185,7 +194,7 @@ export default function CardContainer() {
 					</p>
 				</Card.Content>
 			</Card>
-			<Card dragConstraint={dragConstraint}>
+			<Card zIndex={cards[5]} dragConstraint={dragConstraint} onDragStart={() => sendToTop(5)}>
 				<Card.Header
 					title={'Teste Header'}
 					subtitle={'Teste Subheader'}
@@ -193,7 +202,7 @@ export default function CardContainer() {
 					left={
 						<Card.Thumbnail>
 							<span className="p-1">
-								<Icon icon="ic:outline-email" />
+								<Icon icon="ic:outline-email" width={28} />
 							</span>
 						</Card.Thumbnail>
 					}

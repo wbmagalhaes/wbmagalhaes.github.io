@@ -7,20 +7,22 @@ import CardFooter from './CardFooter';
 import type { RefObject } from 'react';
 
 type Props = {
+	zIndex?: number;
 	bgColor?: string;
 	rotation?: number;
 	translation?: [number, number];
 	dragConstraint?: RefObject<Element>;
-	onDragEnd?: () => void;
+	onDragStart?: () => void;
 	children: React.ReactNode;
 };
 
 export default function Card({
+	zIndex,
 	bgColor = 'white',
 	rotation = 0,
 	translation = [0, 0],
 	dragConstraint,
-	onDragEnd,
+	onDragStart,
 	children,
 }: Props) {
 	const controls = useDragControls();
@@ -32,12 +34,13 @@ export default function Card({
 			dragElastic={0.1}
 			dragMomentum={false}
 			dragControls={controls}
-			onDragEnd={() => onDragEnd?.call(0)}
+			onDragStart={() => onDragStart?.call(0)}
 			initial="initial"
 			whileDrag="drag"
 			variants={variants}
 			className="card rounded-sm overflow-hidden border-2 border-black hard-shadow-4 text-black"
 			style={{
+				zIndex: zIndex,
 				backgroundColor: bgColor,
 				rotate: `${rotation}rad`,
 				translate: `${translation[0]}px ${translation[1]}px`,
@@ -57,12 +60,10 @@ Card.Footer = CardFooter;
 const variants: Variants = {
 	initial: {
 		scale: 1,
-		zIndex: 0,
 		filter: 'drop-shadow(4px 4px black)',
 	},
 	drag: {
 		scale: 1.05,
-		zIndex: 9999,
 		filter: 'drop-shadow(6px 6px black)',
 	},
 };
