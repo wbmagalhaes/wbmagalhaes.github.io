@@ -32,7 +32,7 @@ import { Icon } from 'astro-icon/components';
 					<Icon name='ic:outline-email' size={22} slot='right' />
 				</Card.Header>
 				<Card.Media client:idle>
-					<img src='./images/placeholder.jpg' height='100' class='object-none object-center h-24 w-full' />
+					<img src='./images/placeholder.jpg' height='100' class='object-none object-center h-48 w-full' />
 				</Card.Media>
 				<Card.Content client:idle>
 					<p>
@@ -88,9 +88,9 @@ import { Icon } from 'astro-icon/components';
 				</Card.Content>
 				<Card.Footer client:idle>
 					<div class='flex flex-wrap flex-row gap-2'>
-						<Button bgColor='#0ff'>Button 1</Button>
-						<Button bgColor='#ff0' translation={[-2.5, -2]}>Button 2</Button>
-						<Button bgColor='#f0f'>Button 3</Button>
+						<Button bgColor='#0ff' client:idle>Button 1</Button>
+						<Button bgColor='#ff0' translation={[-2.5, -2]} client:idle>Button 2</Button>
+						<Button bgColor='#f0f' client:idle>Button 3</Button>
 					</div>
 				</Card.Footer>
 			</Card>
@@ -136,7 +136,7 @@ import { Icon } from 'astro-icon/components';
 				<Card.Footer client:idle>
 					<div class='flex flex-row items-center justify-between gap-2'>
 						<span class='text-sm'>Texto de footer</span>
-						<Button bgColor='#fe1'>Button 3</Button>
+						<Button bgColor='#fe1' client:idle>Button 3</Button>
 					</div>
 				</Card.Footer>
 			</Card>

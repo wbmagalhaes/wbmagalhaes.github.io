@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 type Props = {
 	bgColor?: string;
 	rotation?: number;
@@ -7,15 +9,36 @@ type Props = {
 
 export default function Button({ bgColor = 'white', rotation = 0, translation = [0, 0], children }: Props) {
 	return (
-		<button
-			className="button rounded-sm border-2 border-black hard-shadow-4 text-black font-semibold"
+		<div
 			style={{
-				backgroundColor: bgColor,
 				rotate: `${rotation}rad`,
 				translate: `${translation[0]}px ${translation[1]}px`,
 			}}
 		>
-			<span className="px-4 py-2 flex items-center gap-2">{children}</span>
-		</button>
+			<motion.button
+				className="button rounded-sm border-2 border-black hard-shadow-4 text-black font-semibold"
+				whileHover={{
+					scale: 1.025,
+					translate: '-2px -2px',
+					filter: 'drop-shadow(6px 6px 0 rgb(0 0 0))',
+					transition: {
+						duration: 0.1,
+					},
+				}}
+				whileTap={{
+					scale: 0.975,
+					translate: '2px 2px',
+					filter: 'drop-shadow(2px 2px 0 rgb(0 0 0))',
+					transition: {
+						duration: 0.1,
+					},
+				}}
+				style={{
+					backgroundColor: bgColor,
+				}}
+			>
+				<span className="px-4 py-2 flex items-center gap-2">{children}</span>
+			</motion.button>
+		</div>
 	);
 }
