@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useScroll } from '@hooks/useScroll';
 import { Icon } from '@iconify/react';
 import Logo from './Logo';
-import Item from './Item';
+import HeaderItem from './HeaderItem';
 import Button from '@common/Button';
 
 export default function Header() {
@@ -28,19 +28,25 @@ export default function Header() {
 				</a>
 				<nav className="h-full">
 					<ul className="flex h-full text-right font-bold">
-						<Item href="/#about" text="About Me" aria="About Me" hoverBgColor="red" />
-						<Item href="/#experience" text="Experience" aria="Work Experience" hoverBgColor="lime" />
-						<Item href="/#projects" text="Projects" aria="My Projects" hoverBgColor="blue" />
-						<Item href="/#contact" text="Contact" aria="Contact Me" hoverBgColor="#fd3" />
+						<HeaderItem href="/#about" text="About Me" aria="About Me" hoverBgColor="red" />
+						<HeaderItem href="/#experience" text="Experience" aria="Work Experience" hoverBgColor="lime" />
+						<HeaderItem href="/#projects" text="Projects" aria="My Projects" hoverBgColor="blue" />
+						<HeaderItem href="/#contact" text="Contact" aria="Contact Me" hoverBgColor="#fd3" />
 						<li className="h-full border-l-2 border-black pl-8 flex place-items-center">
-							<Button bgColor="#7fd6c2">
-								<span>Resume</span>
-								<Icon icon="ic:arrow-forward" />
-							</Button>
+							<ResumeButton />
 						</li>
 					</ul>
 				</nav>
 			</div>
 		</header>
+	);
+}
+
+function ResumeButton() {
+	return (
+		<Button bgColor="#7fd6c2">
+			<span>Resume</span>
+			<Icon icon="ic:arrow-forward" />
+		</Button>
 	);
 }
