@@ -16,7 +16,7 @@ export default function Button({ bgColor = 'white', rotation = 0, translation = 
 			}}
 		>
 			<motion.button
-				className="button rounded-sm border-2 border-black text-black font-semibold"
+				className="rounded-sm border-2 border-black text-black font-semibold"
 				variants={variants}
 				initial="initial"
 				whileHover="hover"

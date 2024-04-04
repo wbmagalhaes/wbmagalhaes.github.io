@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 type Props = {
 	href: string;
-	icon: JSX.Element;
+	icon?: JSX.Element;
 	text: string;
 	aria: string;
 	hoverBgColor?: string;
