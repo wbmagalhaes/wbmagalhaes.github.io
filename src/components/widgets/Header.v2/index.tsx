@@ -56,31 +56,44 @@ function ResumeButton() {
 				strokeWidth="3"
 				strokeLinejoin="round"
 			>
-				<motion.g variants={groupVariants}>
-					<path d="M 96 0 L 0 0 L 0 40 l 96 0 l 16.5 -20 z" />
-					<text x="50" y="20" fill="black" textAnchor="middle" dominantBaseline="central" stroke="none">
+				<motion.path variants={obj1Variants} d="M 20 0 l -12 0 l 0 40 l 12 0 Z"></motion.path>
+
+				<motion.g variants={obj2Variants}>
+					<path d="M 118 0 L 30 0 L 30 40 l 88 0 l 16.5 -20 Z" />
+					<text x="78" y="20" fill="black" textAnchor="middle" dominantBaseline="central" stroke="none">
 						Resume
 					</text>
 				</motion.g>
 
 				<motion.path
-					variants={pathVariants1}
-					d="M 118 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 z"
+					variants={obj3Variants}
+					d="M 144 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 Z"
 				></motion.path>
 				<motion.path
-					variants={pathVariants2}
-					d="M 142 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 z"
-				></motion.path>
-				<motion.path
-					variants={pathVariants3}
-					d="M 166 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 z"
+					variants={obj4Variants}
+					d="M 170 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 Z"
 				></motion.path>
 			</svg>
 		</motion.button>
 	);
 }
 
-const groupVariants: Variants = {
+const obj1Variants: Variants = {
+	initial: {
+		transform: 'translate(0px, 0px)',
+		transition: {
+			ease: 'backInOut',
+		},
+	},
+	hover: {
+		transform: 'translate(-2px, 0px)',
+		transition: {
+			ease: 'easeInOut',
+		},
+	},
+};
+
+const obj2Variants: Variants = {
 	initial: {
 		transform: 'translate(0px, 0px)',
 		transition: {
@@ -90,31 +103,12 @@ const groupVariants: Variants = {
 	hover: {
 		transform: 'translate(4px, 0px)',
 		transition: {
-			ease: 'easeIn',
-			repeat: Infinity,
-			repeatType: 'reverse',
+			ease: 'easeInOut',
 		},
 	},
 };
 
-const pathVariants1: Variants = {
-	initial: {
-		transform: 'translate(0px, 0px)',
-		transition: {
-			ease: 'backInOut',
-		},
-	},
-	hover: {
-		transform: 'translate(6px, 0px)',
-		transition: {
-			ease: 'easeIn',
-			repeat: Infinity,
-			repeatType: 'reverse',
-		},
-	},
-};
-
-const pathVariants2: Variants = {
+const obj3Variants: Variants = {
 	initial: {
 		transform: 'translate(0px, 0px)',
 		transition: {
@@ -124,14 +118,12 @@ const pathVariants2: Variants = {
 	hover: {
 		transform: 'translate(10px, 0px)',
 		transition: {
-			ease: 'easeIn',
-			repeat: Infinity,
-			repeatType: 'reverse',
+			ease: 'easeInOut',
 		},
 	},
 };
 
-const pathVariants3: Variants = {
+const obj4Variants: Variants = {
 	initial: {
 		transform: 'translate(0px, 0px)',
 		transition: {
@@ -141,9 +133,7 @@ const pathVariants3: Variants = {
 	hover: {
 		transform: 'translate(16px, 0px)',
 		transition: {
-			ease: 'easeIn',
-			repeat: Infinity,
-			repeatType: 'reverse',
+			ease: 'easeInOut',
 		},
 	},
 };
