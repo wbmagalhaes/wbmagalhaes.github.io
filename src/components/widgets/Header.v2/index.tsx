@@ -89,6 +89,7 @@ const obj1Variants: Variants = {
 		transform: 'translate(-2px, 0px)',
 		transition: {
 			ease: 'easeInOut',
+			duration: 0.15,
 		},
 	},
 };
@@ -104,6 +105,7 @@ const obj2Variants: Variants = {
 		transform: 'translate(4px, 0px)',
 		transition: {
 			ease: 'easeInOut',
+			duration: 0.15,
 		},
 	},
 };
@@ -119,6 +121,7 @@ const obj3Variants: Variants = {
 		transform: 'translate(10px, 0px)',
 		transition: {
 			ease: 'easeInOut',
+			duration: 0.15,
 		},
 	},
 };
@@ -134,6 +137,7 @@ const obj4Variants: Variants = {
 		transform: 'translate(16px, 0px)',
 		transition: {
 			ease: 'easeInOut',
+			duration: 0.15,
 		},
 	},
 };
