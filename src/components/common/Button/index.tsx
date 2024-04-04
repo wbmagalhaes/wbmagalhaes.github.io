@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 type Props = {
 	bgColor?: string;
@@ -16,23 +16,11 @@ export default function Button({ bgColor = 'white', rotation = 0, translation = 
 			}}
 		>
 			<motion.button
-				className="button rounded-sm border-2 border-black hard-shadow-4 text-black font-semibold"
-				whileHover={{
-					scale: 1.025,
-					translate: '-2px -2px',
-					filter: 'drop-shadow(6px 6px 0 rgb(0 0 0))',
-					transition: {
-						duration: 0.1,
-					},
-				}}
-				whileTap={{
-					scale: 0.975,
-					translate: '2px 2px',
-					filter: 'drop-shadow(2px 2px 0 rgb(0 0 0))',
-					transition: {
-						duration: 0.1,
-					},
-				}}
+				className="button rounded-sm border-2 border-black text-black font-semibold"
+				variants={variants}
+				initial="initial"
+				whileHover="hover"
+				whileTap="tap"
 				style={{
 					backgroundColor: bgColor,
 				}}
@@ -42,3 +30,30 @@ export default function Button({ bgColor = 'white', rotation = 0, translation = 
 		</div>
 	);
 }
+
+const variants: Variants = {
+	initial: {
+		scale: 1.0,
+		translate: '0px 0px',
+		filter: 'drop-shadow(4px 4px black)',
+		transition: {
+			duration: 0.1,
+		},
+	},
+	hover: {
+		scale: 1.025,
+		translate: '-2px -2px',
+		filter: 'drop-shadow(6px 6px black)',
+		transition: {
+			duration: 0.1,
+		},
+	},
+	tap: {
+		scale: 0.975,
+		translate: '2px 2px',
+		filter: 'drop-shadow(2px 2px black)',
+		transition: {
+			duration: 0.1,
+		},
+	},
+};
