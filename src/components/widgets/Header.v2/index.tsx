@@ -90,7 +90,9 @@ const groupVariants: Variants = {
 	hover: {
 		transform: 'translate(4px, 0px)',
 		transition: {
-			ease: 'backInOut',
+			ease: 'easeIn',
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
@@ -105,7 +107,9 @@ const pathVariants1: Variants = {
 	hover: {
 		transform: 'translate(6px, 0px)',
 		transition: {
-			ease: 'backInOut',
+			ease: 'easeIn',
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
@@ -120,7 +124,9 @@ const pathVariants2: Variants = {
 	hover: {
 		transform: 'translate(10px, 0px)',
 		transition: {
-			ease: 'backInOut',
+			ease: 'easeIn',
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
@@ -135,7 +141,9 @@ const pathVariants3: Variants = {
 	hover: {
 		transform: 'translate(16px, 0px)',
 		transition: {
-			ease: 'backInOut',
+			ease: 'easeIn',
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
