@@ -26,7 +26,3 @@ pnpm-debug.log*
 
 # astro generated code
 .astro/
-
-# lock files
-package-lock.json
-pnpm-lock.yaml
