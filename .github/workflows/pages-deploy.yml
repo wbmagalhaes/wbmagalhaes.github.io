@@ -1,8 +1,8 @@
 name: Astro - GitHub Pages Deploy
 
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [published]
 
 permissions:
   id-token: write
@@ -29,8 +29,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
