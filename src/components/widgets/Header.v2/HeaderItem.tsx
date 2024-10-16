@@ -36,7 +36,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self', h
 	return (
 		<li className="h-full border-l-2 border-black">
 			<motion.a
-				className="relative overflow-hidden h-full px-4 flex place-items-center"
+				className="relative overflow-hidden h-full px-4 flex justify-center items-end"
 				href={href}
 				aria-label={aria}
 				target={target}
@@ -51,7 +51,7 @@ export default function HeaderItem({ href, icon, text, aria, target = '_self', h
 					</span>
 				)}
 
-				<span className="inline-flex">{text}</span>
+				<span className="inline-flex items-center h-12 pb-3">{text}</span>
 			</motion.a>
 		</li>
 	);

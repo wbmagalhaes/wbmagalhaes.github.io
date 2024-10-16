@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useScroll } from '@hooks/useScroll';
-import { motion, type Variants, stagger } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 import Logo from './Logo';
 import HeaderItem from './HeaderItem';
@@ -32,7 +32,7 @@ export default function Header() {
 						<HeaderItem href="/#experience" text="Experience" aria="Work Experience" hoverBgColor="lime" />
 						<HeaderItem href="/#projects" text="Projects" aria="My Projects" hoverBgColor="blue" />
 						<HeaderItem href="/#contact" text="Contact" aria="Contact Me" hoverBgColor="#fd3" />
-						<li className="h-full border-l-2 border-black pl-6 flex place-items-center">
+						<li className="h-full border-l-2 border-black pl-6 flex justify-center items-end pb-2">
 							<ResumeButton />
 						</li>
 					</ul>
@@ -44,13 +44,13 @@ export default function Header() {
 
 function ResumeButton() {
 	return (
-		<motion.button className="text-black font-semibold" initial="initial" whileHover="hover">
+		<motion.button className="text-black font-semibold" initial="initial" whileHover="hover" variants={variants}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				className="hard-shadow-4"
 				width="206"
 				height="46"
-				viewBox="-3 -3 206 46"
+				viewBox="-3 -3 210 46"
 				fill="red"
 				stroke="black"
 				strokeWidth="3"
@@ -78,6 +78,23 @@ function ResumeButton() {
 	);
 }
 
+const variants: Variants = {
+	initial: {
+		transformOrigin: 'left',
+		scale: 1,
+		transition: {
+			ease: 'backInOut',
+		},
+	},
+	hover: {
+		transformOrigin: 'left',
+		scale: 1.05,
+		transition: {
+			ease: 'easeInOut',
+		},
+	},
+};
+
 const obj1Variants: Variants = {
 	initial: {
 		transform: 'translate(0px, 0px)',
@@ -86,10 +103,11 @@ const obj1Variants: Variants = {
 		},
 	},
 	hover: {
-		transform: 'translate(-2px, 0px)',
+		transform: 'translate(4px, 0px)',
 		transition: {
 			ease: 'easeInOut',
-			duration: 0.15,
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
@@ -102,10 +120,11 @@ const obj2Variants: Variants = {
 		},
 	},
 	hover: {
-		transform: 'translate(4px, 0px)',
+		transform: 'translate(6px, 0px)',
 		transition: {
 			ease: 'easeInOut',
-			duration: 0.15,
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
@@ -118,10 +137,11 @@ const obj3Variants: Variants = {
 		},
 	},
 	hover: {
-		transform: 'translate(10px, 0px)',
+		transform: 'translate(12px, 0px)',
 		transition: {
 			ease: 'easeInOut',
-			duration: 0.15,
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };
@@ -134,10 +154,11 @@ const obj4Variants: Variants = {
 		},
 	},
 	hover: {
-		transform: 'translate(16px, 0px)',
+		transform: 'translate(18px, 0px)',
 		transition: {
 			ease: 'easeInOut',
-			duration: 0.15,
+			repeat: Infinity,
+			repeatType: 'reverse',
 		},
 	},
 };

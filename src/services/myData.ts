@@ -28,25 +28,28 @@ const techStack: TechList[] = [
 		list: [
 			{ name: 'C#', icon: 'simple-icons:csharp', color: '#239120' },
 			{ name: 'Python', icon: 'simple-icons:python', color: '#3776AB' },
+			{ name: 'Lua', icon: 'simple-icons:lua', color: '#2C2D72' },
 			{ name: 'JavaScript', icon: 'simple-icons:javascript', color: '#F7DF1E' },
 			{ name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178C6' },
 			{ name: 'CSS3', icon: 'simple-icons:css3', color: '#1572B6' },
 			{ name: 'HTML5', icon: 'simple-icons:html5', color: '#E34F26' },
+			{ name: 'Rust', icon: 'simple-icons:rust', color: '#000000' },
+			{ name: 'Go', icon: 'simple-icons:go', color: '#00ADD8' },
 		],
 	},
 	{
 		title: 'Frameworks, Platforms & Libraries',
 		list: [
-			{ name: 'Firebase', icon: 'simple-icons:firebase', color: '#FFCA28' },
-			{ name: 'Unity3D', icon: 'simple-icons:unity', color: '#FFFFFF' },
-			{ name: '.NET', icon: 'simple-icons:dotnet', color: '#512BD4' },
 			{ name: 'React', icon: 'simple-icons:react', color: '#61DAFB' },
-			{ name: 'Angular', icon: 'simple-icons:angular', color: '#DD0031' },
 			{ name: 'TailwindCSS', icon: 'simple-icons:tailwindcss', color: '#06B6D4' },
+			{ name: 'Godot', icon: 'simple-icons:godotengine', color: '#478CBF' },
+			{ name: 'Unity3D', icon: 'simple-icons:unity', color: '#FFFFFF' },
 			{ name: 'Bootstrap', icon: 'simple-icons:bootstrap', color: '#7952B3' },
+			{ name: 'Angular', icon: 'simple-icons:angular', color: '#DD0031' },
 			{ name: 'jQuery', icon: 'simple-icons:jquery', color: '#0769AD' },
-			{ name: 'THREE.js', icon: 'simple-icons:threedotjs', color: '#FFFFFF' },
+			{ name: 'Firebase', icon: 'simple-icons:firebase', color: '#FFCA28' },
 			{ name: 'Django', icon: 'simple-icons:django', color: '#092E20' },
+			{ name: 'THREE.js', icon: 'simple-icons:threedotjs', color: '#FFFFFF' },
 		],
 	},
 	{
@@ -56,7 +59,7 @@ const techStack: TechList[] = [
 			{ name: 'MariaDB', icon: 'simple-icons:mariadb', color: '#003545' },
 			{ name: 'SQLite', icon: 'simple-icons:sqlite', color: '#003B57' },
 			{ name: 'PostgreSQL', icon: 'simple-icons:postgresql', color: '#4169E1' },
-			{ name: 'SQL Server', icon: 'simple-icons:microsoftsqlserver', color: '#CC2927' },
+			{ name: 'Redis', icon: 'simple-icons:redis', color: '#FF4438' },
 		],
 	},
 	{
@@ -89,11 +92,10 @@ const work: Work[] = [
 		title: 'Full-stack developer',
 		date: 'Jan 2023 - Present',
 		description: `
-			Developed dynamic dashboards using HTML, CSS, JavaScript and Angular.
-			Simultaneously, I harnessed my proficiency in Python and PostgreSQL to build backend microservices and RESTful API endpoints.
+			Developed dynamic dashboards using HTML, CSS, JavaScript and Angular. Simultaneously, I've used my proficiency in Python, PostgreSQL and Redis to build a Django RESTful API backend and microservices, such as an user customizable alert system.
 			Throughout these projects, I collaborated actively with cross-functional teams, ensuring seamless integration between frontend and backend components.
 		`,
-		activities: ['Full-stack development', 'Git', 'Angular', 'Django'],
+		activities: ['Full-stack development', 'Angular', 'Django', 'Docker', 'Redis'],
 	},
 	{
 		name: 'Space Wizard Studios',
