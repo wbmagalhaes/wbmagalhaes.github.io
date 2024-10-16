@@ -5,14 +5,37 @@ import { components } from '@widgets/Home/components/Components.astro';
 import TechStack from './TechStack';
 import { getTechStacks } from '@services/myData';
 
+import CardContainer from '@common/Card/CardContainer';
+import Button from '@common/Button';
+import { Icon } from 'astro-icon/components';
+import ContentBox from '@common/ContentBox.astro';
+
 const techs = getTechStacks();
 ---
 
-<section id="about" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<Content components={components} />
-	</div>
-	<div class="max-w-lg lg:max-w-xl flex flex-col">
-		<TechStack techs={techs} client:idle />
-	</div>
+<section id='about' class='bg-green-200'>
+  <ContentBox class='bg-green-300'>
+    <div class='flex gap-4 py-8'>
+      <Button bgColor='#14e' client:idle>
+        <Icon name='ic:unarchive' size={22} />
+        <span>Button 1</span>
+      </Button>
+      <Button bgColor='#f00' translation={[-2, 3]} client:idle>
+        <Icon name='ic:outline-unarchive' size={22} />
+        <span>Button 2</span>
+      </Button>
+      <Button bgColor='#0f0' rotation={0.023} client:idle>
+        <Icon name='ic:outline-arrow-outward' size={22} />
+        <span>Button 3</span>
+      </Button>
+    </div>
+    <CardContainer client:idle />
+  </ContentBox>
 </section>
+<!--
+<div class="flex flex-col">
+	<Content components={components} />
+</div>
+<div class="max-w-lg lg:max-w-xl flex flex-col">
+	<TechStack techs={techs} client:idle />
+</div> -->

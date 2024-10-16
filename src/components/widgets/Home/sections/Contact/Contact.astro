@@ -1,12 +1,15 @@
 ---
 import Content from '@collections/home/contact.mdx';
+import ContentBox from '@common/ContentBox.astro';
 import { components } from '@widgets/Home/components/Components.astro';
 ---
 
-<section id="contact" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<center>
-			<Content components={components} />
-		</center>
-	</div>
+<section id='contact' class='bg-red-200'>
+  <ContentBox class='bg-red-300'>
+    <div class='flex flex-col'>
+      <center>
+        <Content components={components} />
+      </center>
+    </div>
+  </ContentBox>
 </section>

@@ -4,13 +4,16 @@ import { components } from '@widgets/Home/components/Components.astro';
 
 import WorkTabs from './WorkTabs';
 import { getWorks } from '@services/myData';
+import ContentBox from '@common/ContentBox.astro';
 
 const work = getWorks();
 ---
 
-<section id="experience" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<Content components={components} />
-		<WorkTabs list={work} client:idle />
-	</div>
+<section id='experience' class='bg-blue-200'>
+  <ContentBox class='bg-blue-300'>
+    <div class='flex flex-col'>
+      <Content components={components} />
+      <WorkTabs list={work} client:idle />
+    </div>
+  </ContentBox>
 </section>

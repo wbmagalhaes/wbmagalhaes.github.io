@@ -17,7 +17,7 @@ export default function CardContainer() {
 	}
 
 	return (
-		<div ref={dragConstraint} className="grid grid-cols-1 md:grid-cols-3 items-start pt-24 mb-24 gap-8 min-h-full">
+		<div ref={dragConstraint} className="grid grid-cols-1 md:grid-cols-3 items-start gap-8">
 			<Card zIndex={cards[0]} rotation={0.015} dragConstraint={dragConstraint} onDragStart={() => sendToTop(0)}>
 				<Card.Header
 					title={'Teste Header'}

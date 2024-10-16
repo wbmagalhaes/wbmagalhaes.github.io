@@ -5,37 +5,42 @@ import { components } from '@widgets/Home/components/Components.astro';
 import { getSlugFromURL } from '@common/Path';
 import Showcase from './Showcase';
 import type { Project } from 'types/project';
+import ContentBox from '@common/ContentBox.astro';
 
 async function getProjects(): Promise<Project[]> {
-	const all = await Astro.glob<Project>('src/collections/projects/*.mdx');
-	return all
-		.filter((page) => !page.frontmatter.draft)
-		.sort((pageA, pageB) => {
-			const dateA = new Date(pageA.frontmatter.date).getTime();
-			const dateB = new Date(pageB.frontmatter.date).getTime();
-			return dateB - dateA;
-		})
-		.map((page) => {
-			return {
-				...page.frontmatter,
-				url: '/projects/' + getSlugFromURL(page.file),
-			};
-		});
+  const all = await Astro.glob<Project>('src/collections/projects/*.mdx');
+  return all
+    .filter((page) => !page.frontmatter.draft)
+    .sort((pageA, pageB) => {
+      const dateA = new Date(pageA.frontmatter.date).getTime();
+      const dateB = new Date(pageB.frontmatter.date).getTime();
+      return dateB - dateA;
+    })
+    .map((page) => {
+      return {
+        ...page.frontmatter,
+        url: '/projects/' + getSlugFromURL(page.file),
+      };
+    });
 }
 
 async function splitFeatured(all: Project[]): Promise<[Project[], Project[]]> {
-	const featured: Project[] = [];
-	const other: Project[] = [];
-	all.forEach((project) => (project.featured ? featured : other).push(project));
-	return [featured, other];
+  const featured: Project[] = [];
+  const other: Project[] = [];
+  all.forEach((project) => (project.featured ? featured : other).push(project));
+  return [featured, other];
 }
 
-const [featuredProjects, otherProjects] = await splitFeatured(await getProjects());
+const [featuredProjects, otherProjects] = await splitFeatured(
+  await getProjects()
+);
 ---
 
-<section id="portfolio" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<Content components={components} />
-		<Showcase featured={featuredProjects} other={otherProjects} client:idle />
-	</div>
+<section id='portfolio' class='bg-violet-200'>
+  <ContentBox class='bg-violet-300'>
+    <div class='flex flex-col'>
+      <Content components={components} />
+      <Showcase featured={featuredProjects} other={otherProjects} client:idle />
+    </div>
+  </ContentBox>
 </section>

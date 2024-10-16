@@ -1,37 +1,61 @@
 {
 	"extends": "astro/tsconfigs/base",
 	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"declaration": true,
-		"esModuleInterop": true,
-		"lib": ["es2022"],
-		"module": "esnext",
-		"moduleResolution": "node",
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
 		"outDir": "dist",
 		"strict": true,
-		"target": "es2022",
-		"jsx": "react-jsx",
-		"types": ["astro/client"],
-		"allowJs": true,
+		"target": "ES6",
+		"types": [
+			"astro/client"
+		],
 		"baseUrl": ".",
 		"paths": {
-			"@images/*": ["src/assets/images/*"],
-			"@styles/*": ["src/assets/styles/*"],
-			"@icons/*": ["src/assets/icons/*"],
-			"@assets/*": ["src/assets/*"],
-
-			"@common/*": ["src/components/common/*"],
-			"@widgets/*": ["src/components/widgets/*"],
-			"@projects/*": ["src/components/projects/*"],
-
-			"@components/*": ["src/components/*"],
-
-			"@collections/*": ["src/collections/*"],
-			"@services/*": ["src/services/*"],
-			"@layouts/*": ["src/layouts/*"],
-			"@hooks/*": ["src/hooks/*"],
-			"types/*": ["src/types/*"],
-			"@*": ["src/*"]
+			"@images/*": [
+				"src/assets/images/*"
+			],
+			"@styles/*": [
+				"src/assets/styles/*"
+			],
+			"@icons/*": [
+				"src/assets/icons/*"
+			],
+			"@assets/*": [
+				"src/assets/*"
+			],
+			"@common/*": [
+				"src/components/common/*"
+			],
+			"@widgets/*": [
+				"src/components/widgets/*"
+			],
+			"@projects/*": [
+				"src/components/projects/*"
+			],
+			"@components/*": [
+				"src/components/*"
+			],
+			"@collections/*": [
+				"src/collections/*"
+			],
+			"@services/*": [
+				"src/services/*"
+			],
+			"@layouts/*": [
+				"src/layouts/*"
+			],
+			"@hooks/*": [
+				"src/hooks/*"
+			],
+			"types/*": [
+				"src/types/*"
+			],
+			"@*": [
+				"src/*"
+			]
 		}
-	}
+	},
+	"include": [
+		"src/**/*"
+	],
 }
