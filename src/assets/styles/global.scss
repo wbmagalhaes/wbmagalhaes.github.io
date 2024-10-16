@@ -3,83 +3,114 @@
 @tailwind utilities;
 
 @layer base {
-	h1 {
-		@apply text-4xl;
-	}
+  h1 {
+    @apply text-4xl;
+  }
 
-	h2 {
-		@apply text-2xl;
-	}
+  h2 {
+    @apply text-2xl;
+  }
 
-	h3 {
-		@apply text-xl;
-	}
+  h3 {
+    @apply text-xl;
+  }
 
-	h4 {
-		@apply text-lg;
-	}
+  h4 {
+    @apply text-lg;
+  }
 
-	h5 {
-		@apply text-lg;
-	}
+  h5 {
+    @apply text-lg;
+  }
 
-	h6 {
-		@apply text-base;
-	}
+  h6 {
+    @apply text-base;
+  }
 
-	.section-divider {
-		@apply relative whitespace-nowrap flex items-center gap-4 md:gap-8 font-mono font-bold mb-16;
+  .section-divider {
+    @apply relative whitespace-nowrap flex items-center gap-4 md:gap-8 font-mono font-bold mb-16;
 
-		&::after,
-		&::before {
-			@apply block h-[1px];
-		}
+    &::after,
+    &::before {
+      @apply block h-[1px];
+    }
 
-		&::after {
-			@apply w-72;
-		}
+    &::after {
+      @apply w-72;
+    }
 
-		&::before {
-			@apply w-12;
-		}
-	}
+    &::before {
+      @apply w-12;
+    }
+  }
 
-	center .section-divider {
-		@apply justify-center;
+  center .section-divider {
+    @apply justify-center;
 
-		&::after {
-			@apply w-16;
-		}
+    &::after {
+      @apply w-16;
+    }
 
-		&::before {
-			@apply w-16;
-		}
-	}
+    &::before {
+      @apply w-16;
+    }
+  }
 
-	.red-neon {
-		filter: drop-shadow(0 0 12px rgb(230 57 70 / 0.4)) drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
-	}
+  .red-neon {
+    filter: drop-shadow(0 0 12px rgb(230 57 70 / 0.4))
+      drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
+  }
 
-	.sides-fade {
-		mask-image: linear-gradient(
-			to right,
-			rgb(0 0 0 / 0) 0%,
-			rgb(0 0 0 / 1) 20%,
-			rgb(0 0 0 / 1) 80%,
-			rgb(0 0 0 / 0) 100%
-		);
-	}
+  .sides-fade {
+    mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0) 0%,
+      rgb(0 0 0 / 1) 20%,
+      rgb(0 0 0 / 1) 80%,
+      rgb(0 0 0 / 0) 100%
+    );
+  }
 
-	.hard-shadow {
-		filter: drop-shadow(2px 2px 0 rgb(0 0 0));
-	}
+  .hard-shadow {
+    filter: drop-shadow(2px 2px 0 rgb(0 0 0));
+  }
 
-	.hard-shadow-4 {
-		filter: drop-shadow(4px 4px 0 rgb(0 0 0));
-	}
+  .hard-shadow-4 {
+    filter: drop-shadow(4px 4px 0 rgb(0 0 0));
+  }
 
-	svg.hard-shadow {
-		stroke: black;
-		stroke-width: 12;
-	}
+  svg.hard-shadow {
+    stroke: black;
+    stroke-width: 12;
+  }
+
+  .card-header {
+    position: relative;
+    overflow: hidden;
+
+    --bg-rotation: 25deg;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+
+      width: 150%;
+      aspect-ratio: 1;
+      translate: 0 -50%;
+
+      background-image: radial-gradient(rgba(0 0 0 / 0.2) 30%, transparent 30%);
+      background-size: 18px 18px;
+
+      rotate: var(--bg-rotation);
+      transform-origin: center;
+      mask-image: linear-gradient(
+        calc(90deg - var(--bg-rotation)),
+        rgb(0 0 0 / 0) 0%,
+        rgb(0 0 0 / 0) 10%,
+        rgb(0 0 0 / 1) 90%,
+        rgb(0 0 0 / 1) 100%
+      );
+    }
+  }
 }

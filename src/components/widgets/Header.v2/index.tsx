@@ -108,6 +108,7 @@ const obj1Variants: Variants = {
 			ease: 'easeInOut',
 			repeat: Infinity,
 			repeatType: 'reverse',
+			delay: 0.0,
 		},
 	},
 };
@@ -125,6 +126,7 @@ const obj2Variants: Variants = {
 			ease: 'easeInOut',
 			repeat: Infinity,
 			repeatType: 'reverse',
+			delay: 0.0,
 		},
 	},
 };
@@ -142,6 +144,7 @@ const obj3Variants: Variants = {
 			ease: 'easeInOut',
 			repeat: Infinity,
 			repeatType: 'reverse',
+			delay: 0.1,
 		},
 	},
 };
@@ -159,6 +162,7 @@ const obj4Variants: Variants = {
 			ease: 'easeInOut',
 			repeat: Infinity,
 			repeatType: 'reverse',
+			delay: 0.2,
 		},
 	},
 };
