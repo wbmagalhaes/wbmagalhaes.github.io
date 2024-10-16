@@ -30,7 +30,7 @@ export default function Header() {
 					<ul className="flex h-full text-right font-bold">
 						<HeaderItem href="/#about" text="About Me" aria="About Me" hoverBgColor="red" />
 						<HeaderItem href="/#experience" text="Experience" aria="Work Experience" hoverBgColor="lime" />
-						<HeaderItem href="/#projects" text="Projects" aria="My Projects" hoverBgColor="blue" />
+						<HeaderItem href="/#portfolio" text="Portfolio" aria="My Portfolio" hoverBgColor="blue" />
 						<HeaderItem href="/#contact" text="Contact" aria="Contact Me" hoverBgColor="#fd3" />
 						<li className="h-full border-l-2 border-black pl-6 flex justify-center items-end pb-2">
 							<ResumeButton />

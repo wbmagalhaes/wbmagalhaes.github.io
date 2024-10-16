@@ -37,10 +37,10 @@ export default function Header() {
 							aria="Work Experience"
 						/>
 						<Item
-							href="/#projects"
-							text="Projects"
+							href="/#portfolio"
+							text="Portfolio"
 							icon={<Icons.Projects className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
-							aria="My Projects"
+							aria="My Portfolio"
 						/>
 						<Item
 							href="/#contact"
