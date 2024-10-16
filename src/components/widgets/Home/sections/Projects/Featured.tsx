@@ -16,7 +16,7 @@ export default function Featured({ idx, project }: Props) {
 			}`}
 		>
 			<div className={`grow flex flex-col ${idx % 2 == 0 ? 'sm:items-start sm:text-left' : 'sm:items-end sm:text-right'}`}>
-				<p className="font-mono text-wm-oxygen">Featured Project</p>
+				<p className="font-mono text-wm-oxygen">Featured</p>
 
 				<div className="flex items-center gap-2 mb-2 mr-auto sm:mr-0">
 					<h2 className="whitespace-nowrap">
