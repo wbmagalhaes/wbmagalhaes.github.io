@@ -32,7 +32,7 @@
 		"@tailwindcss/typography": "^0.5.10",
 		"@types/react": "^18.2.57",
 		"@types/three": "^0.161.2",
-		"astro": "^4.4.3",
+		"astro": "^4.16.5",
 		"astro-icon": "^1.1.0",
 		"astro-seo": "^0.8.2",
 		"framer-motion": "^11.0.5",
