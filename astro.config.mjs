@@ -9,6 +9,9 @@ import remarkMath from 'remark-math'
 import tailwind from '@astrojs/tailwind';
 import icon from "astro-icon";
 
+import sitemap from '@astrojs/sitemap';
+import partytown from '@astrojs/partytown';
+
 import { SITE } from './src/config.mjs';
 
 export default defineConfig({
@@ -40,18 +43,22 @@ export default defineConfig({
 				'simple-icons': ['*'],
 			},
 		}),
+		sitemap(),
+		partytown({
+			config: {
+				debug: false,
+				forward: ['dataLayer.push', 'gtag'],
+			},
+		}),
 	],
 
 	vite: {
-		build: {
-			target: 'es2021',
-			chunkSizeWarningLimit: 1024,
-		},
-		server:{
-			host: "0.0.0.0",
-			hmr: { clientPort: 4321 },
-			port: 4321,
-			watch: { usePolling: true }
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: "modern-compiler",
+				},
+			},
 		},
 	},
 });
