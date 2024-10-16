@@ -49,7 +49,7 @@ export default function Header() {
 							aria="Contact Me"
 						/>
 						<Item
-							href="/resume.pdf"
+							href="/resume_2024.pdf"
 							text="Resume"
 							icon={<Icons.Resume className="lg:text-wm-oxygen hover:text-wm-oxygen" />}
 							aria="Resume"
