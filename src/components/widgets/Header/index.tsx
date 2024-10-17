@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useScroll } from '@hooks/useScroll';
-import Item from './Item';
-import Icons from './Icons';
+import { motion, type Variants } from 'framer-motion';
+
 import Logo from './Logo';
+import HeaderItem from './HeaderItem';
 
 export default function Header() {
   const [visible, setVisible] = useState(true);
+
   useScroll((y) => {
     if (visible && y > 150) {
       setVisible(false);
@@ -16,58 +18,180 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-40 w-full backdrop-blur ${visible ? 'h-32' : 'h-16'} bg-wm-carbon-900 transition-all duration-500`}
+      className={`sticky top-0 z-40 bg-gray-400 border-b-2 border-black w-full transition-all duration-500 ${
+        visible ? 'h-32' : 'h-16'
+      }`}
     >
-      <div className='flex items-center justify-between h-full px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300'>
-        <a href='/#' aria-label='home'>
-          <Logo />
-        </a>
-        <nav>
-          <ul className='flex gap-4 text-right font-mono'>
-            <Item
-              href='/#about'
-              text='About Me'
-              icon={
-                <Icons.About className='lg:text-wm-oxygen hover:text-wm-oxygen' />
-              }
-              aria='About Me'
-            />
-            <Item
-              href='/#experience'
-              text='Experience'
-              icon={
-                <Icons.Experience className='lg:text-wm-oxygen hover:text-wm-oxygen' />
-              }
-              aria='Work Experience'
-            />
-            <Item
-              href='/#portfolio'
-              text='Portfolio'
-              icon={
-                <Icons.Portfolio className='lg:text-wm-oxygen hover:text-wm-oxygen' />
-              }
-              aria='My Portfolio'
-            />
-            <Item
-              href='/#contact'
-              text='Contact'
-              icon={
-                <Icons.Contact className='lg:text-wm-oxygen hover:text-wm-oxygen' />
-              }
-              aria='Contact Me'
-            />
-            <Item
-              href='/resume_2024.pdf'
-              text='Resume'
-              icon={
-                <Icons.Resume className='lg:text-wm-oxygen hover:text-wm-oxygen' />
-              }
-              aria='Resume'
-              target='_blank'
-            />
-          </ul>
-        </nav>
+      <div className='mx-auto max-w-[68rem] bg-gray-500 px-4 md:px-8 xl:px-0 h-full'>
+        <div className='flex items-center justify-between h-full'>
+          <a href='/#' aria-label='home'>
+            <Logo />
+          </a>
+          <nav className='h-full'>
+            <ul className='flex h-full text-right font-bold'>
+              <HeaderItem
+                href='/#about'
+                text='About Me'
+                aria='About Me'
+                hoverBgColor='red'
+              />
+              <HeaderItem
+                href='/#experience'
+                text='Experience'
+                aria='Work Experience'
+                hoverBgColor='lime'
+              />
+              <HeaderItem
+                href='/#portfolio'
+                text='Portfolio'
+                aria='My Portfolio'
+                hoverBgColor='blue'
+              />
+              <HeaderItem
+                href='/#contact'
+                text='Contact'
+                aria='Contact Me'
+                hoverBgColor='#fd3'
+              />
+              <li className='h-full border-l-2 border-black pl-6 flex justify-center items-end pb-2'>
+                <ResumeButton />
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   );
 }
+
+function ResumeButton() {
+  return (
+    <motion.button
+      className='text-black font-semibold'
+      initial='initial'
+      whileHover='hover'
+      variants={variants}
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        className='hard-shadow-4'
+        width='206'
+        height='46'
+        viewBox='-3 -3 210 46'
+        fill='red'
+        stroke='black'
+        strokeWidth='3'
+        strokeLinejoin='round'
+      >
+        <motion.path
+          variants={obj1Variants}
+          d='M 20 0 l -12 0 l 0 40 l 12 0 Z'
+        ></motion.path>
+
+        <motion.g variants={obj2Variants}>
+          <path d='M 118 0 L 30 0 L 30 40 l 88 0 l 16.5 -20 Z' />
+          <text
+            x='78'
+            y='20'
+            fill='black'
+            textAnchor='middle'
+            dominantBaseline='central'
+            stroke='none'
+          >
+            Resume
+          </text>
+        </motion.g>
+
+        <motion.path
+          variants={obj3Variants}
+          d='M 144 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 Z'
+        ></motion.path>
+        <motion.path
+          variants={obj4Variants}
+          d='M 170 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 Z'
+        ></motion.path>
+      </svg>
+    </motion.button>
+  );
+}
+
+const variants: Variants = {
+  initial: {
+    transformOrigin: 'left',
+    scale: 1,
+    transition: {
+      ease: 'backInOut',
+    },
+  },
+  hover: {
+    transformOrigin: 'left',
+    scale: 1.05,
+    transition: {
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const obj1Variants: Variants = {
+  initial: {
+    transform: 'translate(0px, 0px)',
+    transition: {
+      ease: 'backInOut',
+    },
+  },
+  hover: {
+    transform: 'translate(6px, 0px)',
+    transition: {
+      ease: 'easeInOut',
+      delay: 0.0,
+    },
+  },
+};
+
+const obj2Variants: Variants = {
+  initial: {
+    transform: 'translate(0px, 0px)',
+    transition: {
+      ease: 'backInOut',
+    },
+  },
+  hover: {
+    transform: 'translate(6px, 0px)',
+    transition: {
+      ease: 'easeInOut',
+      delay: 0.0,
+    },
+  },
+};
+
+const obj3Variants: Variants = {
+  initial: {
+    transform: 'translate(0px, 0px)',
+    transition: {
+      ease: 'backInOut',
+    },
+  },
+  hover: {
+    transform: 'translate(12px, 0px)',
+    transition: {
+      ease: 'easeInOut',
+      delay: 0.1,
+    },
+  },
+};
+
+const obj4Variants: Variants = {
+  initial: {
+    transform: 'translate(0px, 0px)',
+    transition: {
+      ease: 'backInOut',
+    },
+  },
+  hover: {
+    transform: 'translate(18px, 0px)',
+    transition: {
+      ease: 'easeInOut',
+      delay: 0.2,
+    },
+  },
+};
