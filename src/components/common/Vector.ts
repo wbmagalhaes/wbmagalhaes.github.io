@@ -1,13 +1,14 @@
 export class Vector2 {
-	x: number;
-	y: number;
+  constructor(
+    public x: number,
+    public y: number
+  ) {}
 
-	constructor(x: number = 0, y: number = 0) {
-		this.x = x;
-		this.y = y;
-	}
+  static zero() {
+    return new Vector2(0, 0);
+  }
 
-	static zero() {
-		return new Vector2();
-	}
+  static one() {
+    return new Vector2(1, 1);
+  }
 }

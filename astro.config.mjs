@@ -12,7 +12,7 @@ import icon from "astro-icon";
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
 
-import { SITE } from './src/config.mjs';
+import { SITE } from './src/config.ts';
 
 export default defineConfig({
 	site: SITE.origin,

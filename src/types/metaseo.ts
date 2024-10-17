@@ -1,9 +1,9 @@
 export type MetaSEO = {
-	title?: string;
-	description?: string;
-	image?: string;
+  title?: string;
+  description?: string;
+  image?: string;
 
-	canonical?: string | URL;
-	noFollow?: boolean;
-	noIndex?: boolean;
-}
+  canonical?: string | URL;
+  noFollow?: boolean;
+  noIndex?: boolean;
+};

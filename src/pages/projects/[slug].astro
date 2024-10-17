@@ -4,25 +4,25 @@ import { getSlugFromURL } from '@common/Path';
 import type { Project } from 'types/project';
 
 export async function getStaticPaths() {
-	const all = await Astro.glob<Project>('../../collections/projects/*.mdx');
-	return all.map(({ file, ...page }) => {
-		return {
-			params: {
-				slug: getSlugFromURL(file),
-			},
+  const all = await Astro.glob<Project>('../../collections/projects/*.mdx');
+  return all.map(({ file, ...page }) => {
+    return {
+      params: {
+        slug: getSlugFromURL(file),
+      },
 
-			props: {
-				page: {
-					...page,
-				},
-			},
-		};
-	});
+      props: {
+        page: {
+          ...page,
+        },
+      },
+    };
+  });
 }
 
 const { page } = Astro.props;
 ---
 
 <Layout title={page.frontmatter.title}>
-	<page.Content />
+  <page.Content />
 </Layout>

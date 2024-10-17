@@ -8,18 +8,14 @@ const { Content } = await entry.render();
 
 <section class='bg-red-200'>
   <ContentBox class='bg-red-300'>
-    <div class='pt-8 lg:pt-16'>
-      <h1
-        class='text-3xl sm:text-4xl md:text-5xl font-bold font-mono leading-none'
-      >
+    <div class='pt-8 md:pt-16 pb-12 md:pb-20'>
+      <h1 class='text-4xl md:text-5xl font-bold font-title leading-none'>
         {entry.data.title}
       </h1>
-      <div
-        class='text-wm-oxygen-600 text-xl sm:text-2xl md:text-3xl font-semibold font-mono pt-2 pb-4'
-      >
+      <div class='text-xl md:text-3xl font-semibold font-title pt-2 pb-8'>
         {entry.data.subtitle}
       </div>
-      <div class='max-w-lg lg:max-w-2xl pb-2'>
+      <div class='max-w-lg md:max-w-2xl pb-2'>
         <Content />
       </div>
     </div>

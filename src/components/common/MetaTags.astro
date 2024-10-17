@@ -1,31 +1,74 @@
 ---
-import { SITE } from '@config.mjs';
 import { SEO } from 'astro-seo';
+import { SITE } from '@config';
+
 import type { MetaSEO } from 'types/metaseo';
 import Fonts from '@common/Fonts.astro';
 
 const {
-	title = SITE.name,
-	description = SITE.description,
+  title = SITE.name,
+  description = SITE.description,
+  image = `${SITE.origin}${SITE.image}`,
 
-	canonical = Astro.url.toString(),
+  canonical = Astro.url.toString(),
 
-	noIndex = false,
-	noFollow = false,
-
+  noIndex = false,
+  noFollow = false,
 } = Astro.props as MetaSEO;
 ---
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="/favicon.ico" sizes="any" type="image/ico" />
+<meta charset='UTF-8' />
+<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<meta name='generator' content={Astro.generator} />
+<link rel='sitemap' href='/sitemap-index.xml' />
 
 <Fonts />
 
 <SEO
-	title={title}
-	description={description}
-	canonical={String(canonical)}
-	noindex={noIndex}
-	nofollow={noFollow}
+  title={title}
+  description={description}
+  canonical={String(canonical)}
+  noindex={noIndex}
+  nofollow={noFollow}
+  openGraph={{
+    basic: {
+      title: title,
+      type: description,
+      image: image,
+    },
+  }}
 />
+
+<script
+  type='text/partytown'
+  src={`https://www.googletagmanager.com/gtag/js?id=${SITE.measurementId}`}
+  is:inline
+  async></script>
+
+<script
+  type='text/partytown'
+  data-ga-measurement-id={SITE.measurementId}
+  id='ga-init'
+  is:inline
+>
+  const measurementId = document
+    .getElementById('ga-init')
+    .getAttribute('data-ga-measurement-id');
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+  gtag('config', measurementId);
+
+  window.gtag = gtag;
+</script>
+
+<script>
+  function onTouchStart() {}
+  document.addEventListener('touchstart', onTouchStart, { passive: true });
+</script>

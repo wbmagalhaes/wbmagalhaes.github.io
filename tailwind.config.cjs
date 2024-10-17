@@ -82,8 +82,8 @@ module.exports = {
 				}
 			},
 			fontFamily: {
-				sans: ["'Space Grotesk Variable'", 'sans-serif', ...defaultTheme.fontFamily.sans],
-				mono: ["'Mononoki'", 'mono', ...defaultTheme.fontFamily.mono],
+				title: ["'JetBrains Mono Variable'", 'monospace', ...defaultTheme.fontFamily.mono],
+				body: ["'Mononoki'", 'monospace', ...defaultTheme.fontFamily.mono],
 			}
 		}
 	},
