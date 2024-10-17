@@ -3,6 +3,7 @@ import HomeSection from '@common/HomeSection/HomeSection.astro';
 import { getEntry } from 'astro:content';
 
 import { getWorks } from '@services/myData';
+import WorkTabs from './WorkTabs';
 
 import { components } from '@common/mdx/Components.astro';
 
@@ -16,6 +17,6 @@ const { Content } = await entry.render();
 
   <Fragment>
     <Content components={components} />
-    <!-- <WorkTabs list={work} client:idle /> -->
+    <WorkTabs list={work} client:idle />
   </Fragment>
 </HomeSection>

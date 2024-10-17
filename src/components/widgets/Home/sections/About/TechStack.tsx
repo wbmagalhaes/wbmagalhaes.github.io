@@ -15,10 +15,10 @@ export default function TechStack({ techs }: Props) {
             {list.map(({ name, icon, color }, i) => (
               <li
                 key={i}
-                className='inline-flex rounded-full px-4 py-1.5 gap-2 items-center bg-wm-carbon-900'
+                className='inline-flex rounded-full px-4 py-1.5 gap-2 items-center bg-wm-carbon-100'
               >
-                <span className='text-sm '>{name}</span>
                 <Icon icon={icon} color={color} />
+                <span className='text-sm text-white'>{name}</span>
               </li>
             ))}
           </ul>
