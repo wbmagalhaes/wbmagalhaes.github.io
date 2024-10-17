@@ -1,13 +1,14 @@
 ---
-import Content from '@collections/home/projects.mdx';
-import { components } from '@widgets/Home/components/Components.astro';
+import { getEntry } from 'astro:content';
 
 import { getSlugFromURL } from '@common/Path';
 import Showcase from './Showcase';
 import type { Project } from 'types/project';
-import ContentBox from '@common/ContentBox.astro';
 
-async function getProjects(): Promise<Project[]> {
+import { components } from '@common/mdx/Components.astro';
+import HomeSection from '@common/HomeSection/HomeSection.astro';
+
+async function getPorfolio(): Promise<Project[]> {
   const all = await Astro.glob<Project>('src/collections/projects/*.mdx');
   return all
     .filter((page) => !page.frontmatter.draft)
@@ -19,7 +20,7 @@ async function getProjects(): Promise<Project[]> {
     .map((page) => {
       return {
         ...page.frontmatter,
-        url: '/projects/' + getSlugFromURL(page.file),
+        url: '/portfolio/' + getSlugFromURL(page.file),
       };
     });
 }
@@ -31,16 +32,16 @@ async function splitFeatured(all: Project[]): Promise<[Project[], Project[]]> {
   return [featured, other];
 }
 
-const [featuredProjects, otherProjects] = await splitFeatured(
-  await getProjects()
-);
+const [featured, other] = await splitFeatured(await getPorfolio());
+
+const entry = await getEntry('home', 'portfolio');
+const { Content } = await entry.render();
 ---
 
-<section id='portfolio' class='bg-violet-200'>
-  <ContentBox class='bg-violet-300'>
-    <div class='flex flex-col'>
-      <Content components={components} />
-      <Showcase featured={featuredProjects} other={otherProjects} client:idle />
-    </div>
-  </ContentBox>
-</section>
+<HomeSection id='portfolio' class='bg-yellow-200'>
+  <Fragment slot='title'>{entry.data.title}</Fragment>
+  <Fragment>
+    <Content components={components} />
+    <Showcase featured={featured} other={other} client:idle />
+  </Fragment>
+</HomeSection>

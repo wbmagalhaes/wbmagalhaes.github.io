@@ -30,7 +30,7 @@ function Experience({ ...props }) {
   );
 }
 
-function Projects({ ...props }) {
+function Portfolio({ ...props }) {
   return (
     <svg
       {...props}
@@ -89,7 +89,7 @@ function Resume({ ...props }) {
 export default {
   About,
   Experience,
-  Projects,
+  Portfolio,
   Contact,
   Resume,
 };

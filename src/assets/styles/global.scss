@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-pt-16;
+  }
+
   h1 {
     @apply text-4xl;
   }

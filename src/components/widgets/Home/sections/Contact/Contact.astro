@@ -17,9 +17,9 @@ const { Content } = await entry.render();
 <HomeSection id='contact' align='center' class='bg-violet-200'>
   <Fragment slot='title'>{entry.data.title}</Fragment>
 
-  <Fragment>
+  <div class='max-w-3xl mx-auto'>
     <Content components={components} />
     <ContactList email={email} socials={socials} client:idle />
     <div>{entry.data.subtitle}</div>
-  </Fragment>
+  </div>
 </HomeSection>

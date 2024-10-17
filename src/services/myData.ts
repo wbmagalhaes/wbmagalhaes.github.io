@@ -33,7 +33,7 @@ const techStack: TechList[] = [
       { name: 'TypeScript', icon: 'simple-icons:typescript', color: '#3178C6' },
       { name: 'CSS3', icon: 'simple-icons:css3', color: '#1572B6' },
       { name: 'HTML5', icon: 'simple-icons:html5', color: '#E34F26' },
-      { name: 'Rust', icon: 'simple-icons:rust', color: '#000000' },
+      { name: 'Rust', icon: 'simple-icons:rust', color: '#181818' },
       { name: 'Go', icon: 'simple-icons:go', color: '#00ADD8' },
     ],
   },

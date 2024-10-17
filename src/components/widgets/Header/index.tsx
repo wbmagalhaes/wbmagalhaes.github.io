@@ -44,7 +44,7 @@ export default function Header() {
               href='/#portfolio'
               text='Portfolio'
               icon={
-                <Icons.Projects className='lg:text-wm-oxygen hover:text-wm-oxygen' />
+                <Icons.Portfolio className='lg:text-wm-oxygen hover:text-wm-oxygen' />
               }
               aria='My Portfolio'
             />

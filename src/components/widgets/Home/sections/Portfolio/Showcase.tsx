@@ -22,7 +22,7 @@ export default function Showcase({ featured, other }: Props) {
         ))}
       </div>
       <div className='flex flex-col gap-8 py-4'>
-        <h2 className='mb-8 text-center'>Other projects</h2>
+        <h2 className='mb-8 text-center'>Other</h2>
 
         <div className='flex flex-wrap justify-center justify-items-center gap-4'>
           {otherToShow.map((project, i) => (
