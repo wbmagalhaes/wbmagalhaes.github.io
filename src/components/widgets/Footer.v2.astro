@@ -1,57 +1,53 @@
 ---
 import '@styles/footer.scss';
+import ContentBox from '@common/ContentBox.astro';
 import { Icon } from 'astro-icon/components';
 
 type ToolProp = { name: string; icon: string; link?: string };
 
 const tools: ToolProp[] = [
   { name: 'Astro', icon: 'simple-icons:astro', link: 'https://astro.build/' },
-  { name: 'React', icon: 'simple-icons:react', link: 'https://reactjs.org/' },
   {
     name: 'Tailwind',
     icon: 'simple-icons:tailwindcss',
     link: 'https://tailwindcss.com/',
   },
+  { name: 'React', icon: 'simple-icons:react', link: 'https://reactjs.org/' },
 ];
+
+const currentYear = new Date().getFullYear();
 ---
 
-<footer
-  class='px-4 md:px-8 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300'
->
-  <section class='credits py-2 text-center'>
-    2024 - Made by
-    <a
-      class='relative after:absolute'
-      href='https://github.com/wbmagalhaes/wbmagalhaes.github.io'
-      target='_blank'
-    >
-      William Magalhães
-    </a>
-  </section>
+<footer class='w-full'>
+  <ContentBox class='py-2'>
+    <section class='credits pb-1 text-center'>
+      © {currentYear} - Made by
+      <a
+        href='https://github.com/wbmagalhaes/wbmagalhaes.github.io'
+        target='_blank'
+      >
+        William Magalhães</a
+      >
+    </section>
 
-  <section class='py-2 border-t border-wm-carbon-400'>
-    <div
-      class='tool-list flex flex-row flex-wrap gap-2 justify-center text-sm sm:text-base font-mono'
-    >
-      {
-        tools.map(({ name, icon, link }) => {
-          return (
-            <a class='relative after:absolute' href={link} target='_blank'>
-              <div class='inline-flex align-text-bottom'>
-                <Icon name={icon} class='w-4 h-4 sm:w-5 sm:h-5' />
-              </div>
-              {name}
-            </a>
-          );
-        })
-      }
-      e
-      <span>
-        <div class='inline-flex align-text-bottom'>
-          <Icon name='ant-design:heart-filled' class='w-4 h-4 sm:w-5 sm:h-5' />
-        </div>
-        Amor
-      </span>
-    </div>
-  </section>
+    <section class='pt-1 border-t border-wm-carbon-400'>
+      <div
+        class='tool-list flex flex-row flex-wrap gap-2 justify-center text-sm sm:text-base font-mono'
+      >
+        <span>with</span>
+        {
+          tools.map(({ name, icon, link }) => {
+            return (
+              <a href={link} target='_blank'>
+                <div class='inline-flex align-text-bottom'>
+                  <Icon name={icon} class='w-4 h-4 sm:w-5 sm:h-5' />
+                </div>
+                {name}
+              </a>
+            );
+          })
+        }
+      </div>
+    </section>
+  </ContentBox>
 </footer>

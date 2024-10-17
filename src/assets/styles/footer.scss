@@ -1,15 +1,19 @@
 footer {
-	a[href] {
-		&::after {
-			@apply bg-wm-oxygen w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
-		}
+  a[href] {
+    @apply relative;
 
-		&:hover::after {
-			@apply w-full;
-		}
+    &::after {
+      @apply absolute;
+      @apply content-[''];
+      @apply bg-wm-oxygen w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
+    }
 
-		&:hover {
-			@apply text-wm-oxygen;
-		}
-	}
+    &:hover::after {
+      @apply w-full;
+    }
+
+    &:hover {
+      @apply text-wm-oxygen;
+    }
+  }
 }
