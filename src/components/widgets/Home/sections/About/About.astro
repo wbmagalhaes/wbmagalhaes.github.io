@@ -1,28 +1,25 @@
 ---
-import Content from '@collections/home/about.mdx';
-import { components } from '@widgets/Home/components/Components.astro';
+import HomeSection from '@common/HomeSection/HomeSection.astro';
+import { getEntry } from 'astro:content';
 
 import TechStack from './TechStack';
 import { getTechStacks } from '@services/myData';
 
-import CardContainer from '@common/Card/CardContainer';
-import Button from '@common/Button';
-import { Icon } from 'astro-icon/components';
-import ContentBox from '@common/ContentBox.astro';
+import { components } from '@common/mdx/Components.astro';
 
 const techs = getTechStacks();
+const entry = await getEntry('home', 'about');
+const { Content } = await entry.render();
 ---
 
-<section id='about' class='bg-green-200'>
-  <ContentBox class='bg-green-300'>
-    <div class='flex flex-col'>
-      <Content components={components} />
-    </div>
-    <div class='max-w-lg lg:max-w-xl flex flex-col'>
-      <TechStack techs={techs} client:idle />
-    </div>
-  </ContentBox>
-</section>
+<HomeSection id='about' class='bg-green-200'>
+  <Fragment slot='title'>{entry.data.title}</Fragment>
+
+  <Fragment>
+    <Content components={components} />
+    <TechStack techs={techs} client:idle />
+  </Fragment>
+</HomeSection>
 
 <!-- <div class='flex gap-4 py-8'>
 	<Button bgColor='#14e' client:idle>

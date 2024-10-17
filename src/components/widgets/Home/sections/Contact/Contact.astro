@@ -1,15 +1,25 @@
 ---
-import Content from '@collections/home/contact.mdx';
-import ContentBox from '@common/ContentBox.astro';
-import { components } from '@widgets/Home/components/Components.astro';
+import HomeSection from '@common/HomeSection/HomeSection.astro';
+import { getEntry } from 'astro:content';
+
+import ContactList from '@widgets/Home/sections/Contact/ContactList';
+import { getEmail, getSocials } from '@services/myData';
+
+import { components } from '@common/mdx/Components.astro';
+
+const email = getEmail();
+const socials = getSocials();
+
+const entry = await getEntry('home', 'contact');
+const { Content } = await entry.render();
 ---
 
-<section id='contact' class='bg-violet-200'>
-  <ContentBox class='bg-violet-300'>
-    <div class='flex flex-col'>
-      <center>
-        <Content components={components} />
-      </center>
-    </div>
-  </ContentBox>
-</section>
+<HomeSection id='contact' align='center' class='bg-violet-200'>
+  <Fragment slot='title'>{entry.data.title}</Fragment>
+
+  <Fragment>
+    <Content components={components} />
+    <ContactList email={email} socials={socials} client:idle />
+    <div>{entry.data.subtitle}</div>
+  </Fragment>
+</HomeSection>

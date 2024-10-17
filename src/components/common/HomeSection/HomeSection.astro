@@ -1,0 +1,30 @@
+---
+import ContentBox from '@common/ContentBox.astro';
+import HomeSectionTitle from '@common/HomeSection/HomeSectionTitle.astro';
+
+type SectionProps = {
+  id: string;
+  class: string;
+  align: 'left' | 'center';
+};
+
+const {
+  id,
+  class: className,
+  align = 'left',
+  ...rest
+} = Astro.props as SectionProps;
+---
+
+<section
+  id={id}
+  class:list={['pt-8', align == 'center' ? 'text-center' : '', className]}
+  {...rest}
+>
+  <ContentBox class='pt-8 pb-20'>
+    <HomeSectionTitle align={align}>
+      <slot name='title' />
+    </HomeSectionTitle>
+    <slot />
+  </ContentBox>
+</section>

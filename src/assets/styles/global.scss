@@ -44,7 +44,7 @@
     }
   }
 
-  center .section-divider {
+  .section-divider.section-center {
     @apply justify-center;
 
     &::after {

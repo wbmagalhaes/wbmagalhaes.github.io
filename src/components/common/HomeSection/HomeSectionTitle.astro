@@ -1,0 +1,19 @@
+---
+type TitleProps = {
+  class: string;
+  align: 'left' | 'center';
+};
+
+const { class: className, align = 'left', ...rest } = Astro.props as TitleProps;
+---
+
+<h2
+  class:list={[
+    'section-divider text-4xl after:bg-wm-oxygen before:bg-wm-oxygen',
+    align == 'center' ? 'section-center' : '',
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</h2>

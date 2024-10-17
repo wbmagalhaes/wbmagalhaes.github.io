@@ -1,19 +1,21 @@
 ---
-import Content from '@collections/home/experience.mdx';
-import { components } from '@widgets/Home/components/Components.astro';
+import HomeSection from '@common/HomeSection/HomeSection.astro';
+import { getEntry } from 'astro:content';
 
-import WorkTabs from './WorkTabs';
 import { getWorks } from '@services/myData';
-import ContentBox from '@common/ContentBox.astro';
+
+import { components } from '@common/mdx/Components.astro';
 
 const work = getWorks();
+const entry = await getEntry('home', 'experience');
+const { Content } = await entry.render();
 ---
 
-<section id='experience' class='bg-blue-200'>
-  <ContentBox class='bg-blue-300'>
-    <div class='flex flex-col'>
-      <Content components={components} />
-      <WorkTabs list={work} client:idle />
-    </div>
-  </ContentBox>
-</section>
+<HomeSection id='experience' class='bg-blue-200'>
+  <Fragment slot='title'>{entry.data.title}</Fragment>
+
+  <Fragment>
+    <Content components={components} />
+    <!-- <WorkTabs list={work} client:idle /> -->
+  </Fragment>
+</HomeSection>
