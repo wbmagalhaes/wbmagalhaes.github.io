@@ -31,6 +31,10 @@
     @apply text-base;
   }
 
+  p {
+    @apply max-w-[80ch];
+  }
+
   .section-divider {
     @apply relative whitespace-nowrap flex items-center gap-4 md:gap-8 font-mono font-bold mb-16;
 
