@@ -20,6 +20,6 @@ const { Content } = await entry.render();
   <div class='max-w-3xl mx-auto'>
     <Content components={components} />
     <ContactList email={email} socials={socials} client:idle />
-    <div>{entry.data.subtitle}</div>
+    <p>{entry.data.subtitle}</p>
   </div>
 </HomeSection>
