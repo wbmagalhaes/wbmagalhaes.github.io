@@ -2,12 +2,8 @@
 import HomeSection from '@common/HomeSection/HomeSection.astro';
 import { getEntry } from 'astro:content';
 
-import TechStack from './TechStack';
-import { getTechStacks } from '@services/myData';
-
 import { components } from '@common/mdx/Components.astro';
 
-const techs = getTechStacks();
 const entry = await getEntry('home', 'about');
 const { Content } = await entry.render();
 ---
@@ -17,22 +13,5 @@ const { Content } = await entry.render();
 
   <Fragment>
     <Content components={components} />
-    <TechStack techs={techs} client:idle />
   </Fragment>
 </HomeSection>
-
-<!-- <div class='flex gap-4 py-8'>
-	<Button bgColor='#14e' client:idle>
-	<Icon name='ic:unarchive' size={22} />
-	<span>Button 1</span>
-	</Button>
-	<Button bgColor='#f00' translation={[-2, 3]} client:idle>
-	<Icon name='ic:outline-unarchive' size={22} />
-	<span>Button 2</span>
-	</Button>
-	<Button bgColor='#0f0' rotation={0.023} client:idle>
-	<Icon name='ic:outline-arrow-outward' size={22} />
-	<span>Button 3</span>
-	</Button>
-</div>
-<CardContainer client:idle /> -->

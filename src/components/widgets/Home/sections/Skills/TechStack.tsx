@@ -7,7 +7,7 @@ type Props = {
 
 export default function TechStack({ techs }: Props) {
   return (
-    <div className='flex flex-col gap-4 mt-4'>
+    <div className='flex flex-col gap-4 mt-8'>
       {techs.map(({ title, list }, i) => (
         <div className='flex flex-col gap-2' key={i}>
           <h2 className='text-wm-oxygen-300 font-mono'>{title}</h2>
