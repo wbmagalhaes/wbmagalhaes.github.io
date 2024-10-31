@@ -43,7 +43,7 @@ export default function HeaderItem({
   return (
     <li className='h-full border-l-2 border-black'>
       <motion.a
-        className='relative overflow-hidden h-full px-4 flex justify-center items-end'
+        className='overflow-hidden h-full px-4 flex justify-center items-end'
         href={href}
         aria-label={aria}
         target={target}
