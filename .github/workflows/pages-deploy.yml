@@ -1,4 +1,4 @@
-name: Astro - GitHub Pages Deploy
+name: Astro - S3 Deploy
 
 on:
   release:
