@@ -7,9 +7,10 @@ import SocialsBanner from '@widgets/Home/SocialsBanner';
 import EmailBanner from '@widgets/Home/EmailBanner';
 
 import { getEmail, getSocials } from '@services/myData';
+import { emailBannerDelay } from '@widgets/Home/introTiming';
 
 const email = getEmail();
-const socials = getSocials();
+const socials = getSocials().filter(({ name }) => name !== 'Instagram');
 
 type Props = {
   meta?: MetaSEO;
@@ -21,7 +22,7 @@ const { meta } = Astro.props as Props;
 <Layout meta={meta}>
   <SocialsBanner socials={socials} client:idle />
 
-  <EmailBanner email={email} client:idle>
+  <EmailBanner email={email} delay={emailBannerDelay(socials.length)} client:idle>
     <Icon slot='icon' class='w-6 h-6' name='ic:outline-email' />
   </EmailBanner>
 

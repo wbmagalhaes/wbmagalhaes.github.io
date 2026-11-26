@@ -1,5 +1,6 @@
-import { motion, type Variants } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { motion, useAnimationControls } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import Halftone from '@common/Halftone';
 
 type Props = {
   href: string;
@@ -7,6 +8,7 @@ type Props = {
   text: string;
   aria: string;
   hoverBgColor?: string;
+  hoverDotColor?: string;
   target?: React.HTMLAttributeAnchorTarget;
 };
 
@@ -16,49 +18,59 @@ export default function HeaderItem({
   text,
   aria,
   target = '_self',
-  hoverBgColor = 'red',
+  hoverBgColor = 'var(--color-wm-oxygen)',
+  hoverDotColor = 'var(--color-wm-oxygen-800)',
 }: Props) {
   const [angle, setAngle] = useState(0);
-
-  function randomizeAngle() {
-    setAngle(Math.random() * 360);
-  }
+  const controls = useAnimationControls();
+  const hovering = useRef(false);
+  const [armed, setArmed] = useState(false);
 
   useEffect(() => {
-    randomizeAngle();
+    setAngle(Math.random() * 360);
   }, []);
 
-  const variants: Variants = {
-    initial: {
-      background: `linear-gradient(${angle}deg, ${hoverBgColor} -1%, transparent 0%)`,
-    },
-    hover: {
-      background: [
-        `linear-gradient(${angle}deg, ${hoverBgColor} -1%,  transparent 0%)`,
-        `linear-gradient(${angle}deg, ${hoverBgColor} 100%,  transparent 101%)`,
-      ],
-    },
-  };
+  const mask = (from: number, to: number) =>
+    `linear-gradient(${angle}deg, black ${from}%, transparent ${to}%)`;
+
+  function reveal() {
+    hovering.current = true;
+    setArmed(true);
+    controls.set({ maskImage: mask(-1, 0) });
+    controls.start({ maskImage: mask(100, 101) });
+  }
+
+  async function conceal() {
+    hovering.current = false;
+    await controls.start({ maskImage: mask(-1, 0) });
+    if (!hovering.current) setAngle(Math.random() * 360);
+  }
 
   return (
     <li className='h-full border-l-2 border-black'>
       <motion.a
-        className='overflow-hidden h-full px-4 flex justify-center items-end'
+        className='group relative overflow-hidden h-full px-4 flex justify-center items-end text-white'
         href={href}
         aria-label={aria}
         target={target}
-        initial='initial'
-        whileHover='hover'
-        variants={variants}
-        onHoverEnd={() => randomizeAngle()}
+        onHoverStart={reveal}
+        onHoverEnd={conceal}
       >
+        <motion.span
+          className='absolute inset-0'
+          style={{ backgroundColor: hoverBgColor, maskImage: mask(-1, 0) }}
+          animate={controls}
+          aria-hidden='true'
+        >
+          {armed && <Halftone className='absolute inset-0 size-full opacity-40' angle={angle} color={hoverDotColor} />}
+        </motion.span>
         {icon && (
-          <span className='inline-flex align-middle sm:align-top sm:mr-1'>
+          <span className='relative inline-flex align-middle sm:align-top sm:mr-1'>
             <div className='w-6 h-6'>{icon}</div>
           </span>
         )}
 
-        <span className='inline-flex items-center h-12 pb-3'>{text}</span>
+        <span className='relative inline-flex items-center h-12 pb-3 font-comic text-xl uppercase tracking-[0.08em] font-normal transition-colors duration-150 group-hover:text-black'>{text}</span>
       </motion.a>
     </li>
   );

@@ -1,21 +1,22 @@
 ---
-import HomeSection from '@common/HomeSection/HomeSection.astro';
+import ContentBox from '@common/ContentBox.astro';
 import { getHomeEntry } from '@services/home';
-
 import { getWorks } from '@services/myData';
-import WorkTabs from './WorkTabs';
+import ExperienceBook from './ExperienceBook';
 
-import { components } from '@common/mdx/Components.astro';
-
-const work = getWorks();
-const { entry, Content } = await getHomeEntry('experience');
+const works = getWorks();
+const { entry } = await getHomeEntry('experience');
 ---
 
-<HomeSection id='experience' class='bg-blue-200'>
-  <Fragment slot='title'>{entry.data.title}</Fragment>
+<section id='experience' class='experience relative pt-4 pb-12 md:pb-16'>
+  <ContentBox>
+    <h2 class='sr-only'>{entry.data.title}</h2>
+    <ExperienceBook works={works} firstPageNumber={2} client:visible />
+  </ContentBox>
+</section>
 
-  <Fragment>
-    <Content components={components} />
-    <WorkTabs list={work} client:idle />
-  </Fragment>
-</HomeSection>
+<style>
+  .experience {
+    background-color: var(--color-wm-nitrogen-700);
+  }
+</style>

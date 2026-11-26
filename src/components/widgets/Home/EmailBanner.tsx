@@ -5,34 +5,43 @@ import { type ReactNode } from 'react';
 type Props = {
   icon?: ReactNode;
   email: string;
+  delay: number;
 };
 
-export default function EmailBanner({ icon, email }: Props) {
+export default function EmailBanner({ icon, email, delay }: Props) {
   const controls = useAnimationControls();
   useAnimationOnStart(controls, 'show');
 
   return (
-    <div className='fixed w-full'>
+    <div className='fixed z-30 w-full'>
       <div className='relative mx-auto max-w-[68rem]'>
         <motion.div
-          className='absolute top-0 -right-36 w-12 bg-yellow-600 rounded-b-full hard-shadow z-10'
+          className='absolute top-0 -right-36 w-11 flex flex-col items-center z-10'
+          custom={delay}
           initial='hidden'
           animate={controls}
-          onHoverStart={() => controls.start('hover')}
-          onHoverEnd={() => controls.start('normal')}
           variants={itemVariants}
         >
-          <span className='absolute h-36 w-full bg-yellow-600 -translate-y-full' />
-          <a
-            className='font-mono text-sm text-black'
+          <span className='flex flex-col items-center h-40 mb-3'>
+            <span className='relative block w-[3px] flex-1 bg-black'>
+              <span className='absolute bottom-full h-40 w-full bg-black' />
+            </span>
+            <svg className='w-4 h-[16px] my-0.5' viewBox='0 0 16 16' aria-hidden='true'>
+              <path d='M2 8.5 L14 1.5 M2 14.5 L14 7.5' stroke='black' strokeWidth='3' strokeLinecap='square' fill='none' />
+            </svg>
+            <span className='block w-[3px] h-10 bg-black' />
+          </span>
+          <motion.a
+            whileHover={{ y: 3, transition: { duration: 0.15 } }}
+            className='font-mono text-sm text-black w-full bg-white bg-clip-padding border-[3px] border-black transition-colors duration-150 hover:bg-wm-oxygen hover:text-white'
             href={`mailto:${email}`}
             aria-label='Send me an e-mail'
           >
-            <div className='flex flex-col place-items-center justify-end gap-2 pt-36 pb-16'>
+            <div className='flex flex-col place-items-center gap-2 py-4'>
               <div className='rotate-90'>{icon}</div>
               <span className='[writing-mode:vertical-rl]'>{email}</span>
             </div>
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </div>
@@ -40,13 +49,10 @@ export default function EmailBanner({ icon, email }: Props) {
 }
 
 const itemVariants: Variants = {
-  hidden: { y: '-100%' },
-  show: {
+  hidden: { y: '-100%', opacity: 0 },
+  show: (delay: number) => ({
     y: '0%',
-    transition: {
-      delay: 1.8,
-    },
-  },
-  normal: { y: 0 },
-  hover: { y: 8 },
+    opacity: 1,
+    transition: { delay, opacity: { delay, duration: 0 } },
+  }),
 };

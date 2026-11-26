@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useScroll } from '@hooks/useScroll';
 
-import Logo from './Logo';
 import HeaderItem from './HeaderItem';
 import ResumeButton from './ResumeButton';
 
@@ -18,14 +17,22 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 bg-gray-400 border-b-2 border-black w-full transition-all duration-500 ${
+      className={`fixed top-0 left-0 z-40 bg-wm-oxygen border-b-[5px] border-black w-full overflow-hidden transition-all duration-500 ${
         visible ? 'h-32' : 'h-16'
       }`}
     >
-      <div className='mx-auto max-w-[68rem] bg-gray-500 px-4 md:px-8 xl:px-0 h-full'>
+      <div className='relative mx-auto max-w-[68rem] px-4 md:px-8 xl:px-0 h-full'>
         <div className='flex items-center justify-between h-full'>
-          <a href='/#' aria-label='home'>
-            <Logo />
+          <a
+            href='/#'
+            aria-label='home'
+            className={`group self-end mb-3.5 ml-2 flex items-end gap-3 origin-bottom-left transition-[scale] duration-500 ${visible ? 'scale-100' : 'scale-[0.7]'}`}
+          >
+            <span className='block -skew-x-12 bg-white px-3 py-1 shadow-[3px_3px_0_0_var(--color-wm-oxygen)]'>
+              <span className='block skew-x-12 font-comic uppercase whitespace-nowrap tracking-[0.1em] text-2xl leading-none text-black'>
+                W.M. <span className='text-wm-oxygen'>Comics</span>
+              </span>
+            </span>
           </a>
           <nav className='h-full'>
             <ul className='flex h-full text-right font-bold'>
@@ -33,25 +40,29 @@ export default function Header() {
                 href='/#about'
                 text='About Me'
                 aria='About Me'
-                hoverBgColor='red'
+                hoverBgColor='var(--color-wm-hydrogen-100)'
+                hoverDotColor='var(--color-wm-hydrogen-600)'
               />
               <HeaderItem
                 href='/#experience'
                 text='Experience'
                 aria='Work Experience'
-                hoverBgColor='lime'
+                hoverBgColor='var(--color-wm-leaf)'
+                hoverDotColor='var(--color-wm-leaf-700)'
               />
               <HeaderItem
                 href='/#portfolio'
                 text='Portfolio'
                 aria='My Portfolio'
-                hoverBgColor='blue'
+                hoverBgColor='var(--color-wm-sky)'
+                hoverDotColor='var(--color-wm-sky-700)'
               />
               <HeaderItem
                 href='/#contact'
                 text='Contact'
                 aria='Contact Me'
-                hoverBgColor='#fd3'
+                hoverBgColor='var(--color-wm-sun)'
+                hoverDotColor='var(--color-wm-sun-700)'
               />
               <li className='h-full border-l-2 border-black pl-6 flex justify-center items-end pb-2'>
                 <ResumeButton />
