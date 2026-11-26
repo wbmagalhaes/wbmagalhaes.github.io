@@ -1,9 +1,9 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion, type Variants } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 type Props = {
   href: string;
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   text: string;
   aria: string;
   hoverBgColor?: string;

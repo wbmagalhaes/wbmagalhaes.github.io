@@ -1,6 +1,6 @@
 ---
 import HomeSection from '@common/HomeSection/HomeSection.astro';
-import { getEntry } from 'astro:content';
+import { getHomeEntry } from '@services/home';
 
 import ContactList from '@widgets/Home/sections/Contact/ContactList';
 import { getEmail, getSocials } from '@services/myData';
@@ -10,8 +10,7 @@ import { components } from '@common/mdx/Components.astro';
 const email = getEmail();
 const socials = getSocials();
 
-const entry = await getEntry('home', 'contact');
-const { Content } = await entry.render();
+const { entry, Content } = await getHomeEntry('contact');
 ---
 
 <HomeSection id='contact' align='center' class='bg-violet-200'>
@@ -20,6 +19,5 @@ const { Content } = await entry.render();
   <div class='max-w-3xl mx-auto'>
     <Content components={components} />
     <ContactList email={email} socials={socials} client:idle />
-    <p>{entry.data.subtitle}</p>
   </div>
 </HomeSection>

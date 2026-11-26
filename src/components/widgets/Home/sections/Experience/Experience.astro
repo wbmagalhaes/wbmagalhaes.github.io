@@ -1,6 +1,6 @@
 ---
 import HomeSection from '@common/HomeSection/HomeSection.astro';
-import { getEntry } from 'astro:content';
+import { getHomeEntry } from '@services/home';
 
 import { getWorks } from '@services/myData';
 import WorkTabs from './WorkTabs';
@@ -8,8 +8,7 @@ import WorkTabs from './WorkTabs';
 import { components } from '@common/mdx/Components.astro';
 
 const work = getWorks();
-const entry = await getEntry('home', 'experience');
-const { Content } = await entry.render();
+const { entry, Content } = await getHomeEntry('experience');
 ---
 
 <HomeSection id='experience' class='bg-blue-200'>

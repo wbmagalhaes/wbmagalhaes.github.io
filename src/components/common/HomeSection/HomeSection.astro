@@ -22,9 +22,7 @@ const {
   {...rest}
 >
   <ContentBox class='pt-8 pb-20'>
-    <HomeSectionTitle align={align}>
-      <slot name='title' />
-    </HomeSectionTitle>
+    <HomeSectionTitle align={align}><slot name='title' /></HomeSectionTitle>
     <slot />
   </ContentBox>
 </section>

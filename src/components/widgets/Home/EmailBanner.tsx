@@ -1,4 +1,4 @@
-import { motion, useAnimationControls, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'motion/react';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 import { type ReactNode } from 'react';
 

@@ -3,10 +3,11 @@ import Layout from '@layouts/PageLayout.astro';
 import ProjectCard from '@widgets/Home/sections/Portfolio/Card';
 import ToTopButton from '@common/ToTopButton';
 import { getSlugFromURL } from '@common/Path';
+import type { MDXInstance } from 'astro';
 import type { Project } from 'types/project';
 
 async function getProjects() {
-  const all = await Astro.glob<Project>('../../collections/projects/*.mdx');
+  const all = Object.values(import.meta.glob<MDXInstance<Project>>('/src/collections/projects/*.mdx', { eager: true }));
   return all
     .filter((page) => !page.frontmatter.draft)
     .sort((pageA, pageB) => {

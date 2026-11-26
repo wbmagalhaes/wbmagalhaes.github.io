@@ -1,4 +1,4 @@
-import { motion, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls } from 'motion/react';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 
 import HUD from './HUD';

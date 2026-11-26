@@ -1,4 +1,4 @@
-import { type P5CanvasInstance } from '@p5-wrapper/react';
+import type P5 from 'p5';
 import { Vector2 } from '@common/Vector';
 
 export class Phase {
@@ -52,7 +52,7 @@ export class Phase {
 		return new Vector2(this.point.x + subPoint.x, this.point.y + subPoint.y);
 	}
 
-	render(p5: P5CanvasInstance) {
+	render(p5: P5) {
 		p5.push();
 
 		p5.strokeWeight(2);
@@ -70,7 +70,7 @@ export class Phase {
 		p5.pop();
 	}
 
-	createSubPhase(p5: P5CanvasInstance) {
+	createSubPhase(p5: P5) {
 		if (!this.subPhase) {
 			this.subPhase = new Phase({
 				i: this.id + 1,

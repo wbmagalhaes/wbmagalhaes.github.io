@@ -1,3 +1,5 @@
+@reference "./global.css";
+
 footer {
   a[href] {
     @apply relative;

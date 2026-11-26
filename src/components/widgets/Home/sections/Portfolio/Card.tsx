@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useInView, motion, type Variants } from 'framer-motion';
+import { useInView, motion, type Variants } from 'motion/react';
 import OpenButton from './OpenButton';
 import type { Project } from 'types/project';
 

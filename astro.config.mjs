@@ -3,10 +3,12 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 
 import mdx from '@astrojs/mdx';
+import { unified } from '@astrojs/markdown-remark';
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
 
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
+import { vendorChunks } from './vite/vendor-chunks.ts';
 import icon from "astro-icon";
 
 import sitemap from '@astrojs/sitemap';
@@ -22,20 +24,15 @@ export default defineConfig({
 
 	markdown: {
 		syntaxHighlight: 'prism',
-		gfm: true,
+		processor: unified({
+			remarkPlugins: [remarkMath],
+			rehypePlugins: [rehypeKatex],
+		}),
 	},
 
 	integrations: [
 		react(),
-		mdx({
-			remarkPlugins: [remarkMath],
-			rehypePlugins: [rehypeKatex]
-		}),
-		tailwind({
-			config: {
-				applyBaseStyles: false,
-			},
-		}),
+		mdx(),
 		icon({
 			include: {
 				ic: ['*'],
@@ -53,12 +50,19 @@ export default defineConfig({
 	],
 
 	vite: {
-		css: {
-			preprocessorOptions: {
-				scss: {
-					api: "modern-compiler",
-				},
-			},
+		plugins: [tailwindcss(), vendorChunks()],
+		ssr: {
+			noExternal: [
+				/^@react-three\//,
+				/^three-/,
+				/^troika-/,
+				'@monogrid/gainmap-js',
+				'camera-controls',
+				'detect-gpu',
+				'maath',
+				'meshline',
+				'stats-gl',
+			],
 		},
 	},
 });

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { pulse, rotate, flash, fillRect } from './animations';
 
 export default function Bottom() {

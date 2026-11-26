@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import type { AnimationControls } from 'framer-motion';
+import type { LegacyAnimationControls } from 'motion/react';
 
-export function useAnimationOnStart(controls: AnimationControls, animationName: string) {
+export function useAnimationOnStart(controls: LegacyAnimationControls, animationName: string) {
 	useEffect(() => {
 		controls.start(animationName);
 	}, [controls]);

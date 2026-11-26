@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { motion, useAnimationControls, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'motion/react';
 import { useAnimationOnStart } from '@hooks/useAnimationOnStart';
 import type { Social } from 'types/social';
 

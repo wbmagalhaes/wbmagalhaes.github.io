@@ -1,3 +1,5 @@
+@reference "../../../assets/styles/global.css";
+
 .neon-card {
 	@apply text-wm-gold-400 rounded-r-lg border-2 border-l-0 border-wm-gold-400;
 

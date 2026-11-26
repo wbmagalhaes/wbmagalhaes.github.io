@@ -4,7 +4,7 @@ import { PerspectiveCamera, OrbitControls, Preload, Plane } from '@react-three/d
 import { Environment } from './Environment';
 import { Scene } from './Scene';
 import { CameraData, OrbitData, EnvironmentData, SceneData } from './data';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { PlanetCard } from './PlanetCard';
 
 export function SolarSystem() {

@@ -1,3 +1,5 @@
+@reference "../../../assets/styles/global.css";
+
 .fill-hud-primary {
 	@apply fill-[#76ff76] stroke-none;
 }

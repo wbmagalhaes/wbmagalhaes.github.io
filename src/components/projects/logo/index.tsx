@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useHolderSize } from '@hooks/useHolderSize';
 import Loading from '@common/Loading';
 

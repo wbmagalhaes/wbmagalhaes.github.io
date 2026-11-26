@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { fillPath, fadeIn, flash } from './animations';
 
 export default function Arrows() {

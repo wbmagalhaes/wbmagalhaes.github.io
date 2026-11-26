@@ -1,4 +1,4 @@
-import { type P5CanvasInstance } from '@p5-wrapper/react';
+import type P5 from 'p5';
 
 export class Food {
 	position: any;
@@ -7,7 +7,7 @@ export class Food {
 	private size: number;
 	private color: any;
 
-	constructor(p5: P5CanvasInstance) {
+	constructor(p5: P5) {
 		this.size = 6;
 		this.color = p5.color(232, 54, 45);
 
@@ -15,7 +15,7 @@ export class Food {
 		this.eaten = false;
 	}
 
-	render(p5: P5CanvasInstance) {
+	render(p5: P5) {
 		if (this.eaten) {
 			return;
 		}
@@ -52,7 +52,7 @@ export class Food {
 		this.eaten = true;
 	}
 
-	recycle(p5: P5CanvasInstance) {
+	recycle(p5: P5) {
 		if (!this.eaten) {
 			return;
 		}

@@ -1,4 +1,4 @@
-import { motion, useDragControls, type Variants } from 'framer-motion';
+import { motion, useDragControls, type Variants } from 'motion/react';
 import CardThumbnail from './CardThumbnail';
 import CardHeader from './CardHeader';
 import CardMedia from './CardMedia';
@@ -11,7 +11,7 @@ type Props = {
   bgColor?: string;
   rotation?: number;
   translation?: [number, number];
-  dragConstraint?: RefObject<Element>;
+  dragConstraint?: RefObject<Element | null>;
   onDragStart?: () => void;
   children: React.ReactNode;
 };

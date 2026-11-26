@@ -1,25 +1,18 @@
 ---
 import ContentBox from '@common/ContentBox.astro';
-import { getEntry } from 'astro:content';
+import { getHomeEntry } from '@services/home';
 
 import { components } from '@common/mdx/Components.astro';
 
-const entry = await getEntry('home', 'hero');
-const { Content } = await entry.render();
+const { entry, Content } = await getHomeEntry('hero');
 ---
 
 <section class='bg-red-200'>
   <ContentBox class='bg-red-300'>
     <div class='pt-8 md:pt-16 pb-12 md:pb-20'>
-      <h1 class='text-4xl md:text-5xl font-bold font-title leading-none'>
-        {entry.data.title}
-      </h1>
-      <div class='text-xl md:text-2xl font-semibold font-title pt-2 pb-8'>
-        {entry.data.subtitle}
-      </div>
-      <div class='max-w-lg md:max-w-2xl pb-2'>
-        <Content components={components} />
-      </div>
+      <h1 class='text-4xl md:text-5xl font-bold font-title leading-none'>{entry.data.title}</h1>
+      <div class='text-xl md:text-2xl font-semibold font-title pt-2 pb-8'>{entry.data.subtitle}</div>
+      <div class='max-w-lg md:max-w-2xl pb-2'><Content components={components} /></div>
     </div>
   </ContentBox>
 </section>

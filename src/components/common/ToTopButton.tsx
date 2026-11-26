@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion, type Variants } from 'motion/react';
 import { useScroll } from '@hooks/useScroll';
 
 const variants: Variants = {

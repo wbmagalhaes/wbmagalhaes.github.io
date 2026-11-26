@@ -9,50 +9,21 @@
 		"types": [
 			"astro/client"
 		],
-		"baseUrl": ".",
 		"paths": {
-			"@images/*": [
-				"src/assets/images/*"
-			],
-			"@styles/*": [
-				"src/assets/styles/*"
-			],
-			"@icons/*": [
-				"src/assets/icons/*"
-			],
-			"@assets/*": [
-				"src/assets/*"
-			],
-			"@common/*": [
-				"src/components/common/*"
-			],
-			"@widgets/*": [
-				"src/components/widgets/*"
-			],
-			"@projects/*": [
-				"src/components/projects/*"
-			],
-			"@components/*": [
-				"src/components/*"
-			],
-			"@collections/*": [
-				"src/collections/*"
-			],
-			"@services/*": [
-				"src/services/*"
-			],
-			"@layouts/*": [
-				"src/layouts/*"
-			],
-			"@hooks/*": [
-				"src/hooks/*"
-			],
-			"types/*": [
-				"src/types/*"
-			],
-			"@*": [
-				"src/*"
-			]
+			"@images/*": ["./src/assets/images/*"],
+			"@styles/*": ["./src/assets/styles/*"],
+			"@icons/*": ["./src/assets/icons/*"],
+			"@assets/*": ["./src/assets/*"],
+			"@common/*": ["./src/components/common/*"],
+			"@widgets/*": ["./src/components/widgets/*"],
+			"@projects/*": ["./src/components/projects/*"],
+			"@components/*": ["./src/components/*"],
+			"@collections/*": ["./src/collections/*"],
+			"@services/*": ["./src/services/*"],
+			"@layouts/*": ["./src/layouts/*"],
+			"@hooks/*": ["./src/hooks/*"],
+			"types/*": ["./src/types/*"],
+			"@*": ["./src/*"]
 		}
 	},
 	"include": [
