@@ -6,6 +6,7 @@ import { getHomeEntry } from '@services/home';
 
 const { entry } = await getHomeEntry('about');
 const [origin, specialization, remote, finale] = entry.data.panels ?? [];
+const [remoteFirst, ...remoteRest] = remote?.text?.split('|') ?? [];
 
 const FLASK = 'M38 10 H62 V48 L90 112 Q92 120 84 120 H16 Q8 120 10 112 L38 48 Z';
 const LIQUID = 'M-40 84 H140 V160 H-40 Z';
@@ -125,7 +126,7 @@ const BUBBLES = [
 
         {
           specialization && (
-            <article class='comic-panel chalkboard relative md:col-span-7 flex flex-col gap-4 px-6 pt-14 pb-6 md:px-8 md:pt-16 md:pb-8' style='--i: 1'>
+            <article class='comic-panel chalkboard relative md:col-span-7 flex flex-col gap-4 px-5 pt-5 pb-10 md:px-6 md:pt-6 md:pb-12' style='--i: 1'>
               <svg class='absolute size-0' aria-hidden='true'>
                 <filter id='chalk' x='-5%' y='-5%' width='110%' height='110%'>
                   <feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='4' result='noise' />
@@ -134,11 +135,11 @@ const BUBBLES = [
                   <feComposite in='rough' in2='grain' operator='in' />
                 </filter>
               </svg>
-              <p class='comic-caption absolute top-0 left-0 border-t-0 border-l-0'>{specialization.caption}</p>
+              <p class='comic-caption self-start'>{specialization.caption}</p>
               <div class='flex-1 grid sm:grid-cols-[1fr_auto] md:grid-cols-[1fr_1.1fr] items-center gap-6'>
-                <div class='flex flex-col gap-4'>
+                <div class='flex flex-col items-start gap-4'>
                   <h3 class='chalk font-comic uppercase tracking-wide leading-[0.95] text-white text-3xl md:text-4xl'>{specialization.title}</h3>
-                  <p class='chalk font-lettering font-bold leading-snug text-white/90 border-l-4 border-white/50 pl-3'>{specialization.text}</p>
+                  <p class='chalk font-lettering font-bold leading-snug text-white/90 text-[18px] border-l-4 border-white/50 pl-3'>{specialization.text}</p>
                 </div>
                 <svg class='chalk w-60 md:w-full max-w-72 mx-auto overflow-visible' viewBox='0 -12 200 214' role='img' aria-label='Chemistry, Programming and Electronics overlap'>
                   <g fill='none' stroke-width='3.5' stroke-linecap='round'>
@@ -190,11 +191,17 @@ const BUBBLES = [
                   <svg class='absolute bottom-full left-10 -mb-3 w-10 h-10' viewBox='0 0 40 40' aria-hidden='true'>
                     <path d='M6 40 L14 2 L30 40 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
                   </svg>
-                  <p class='comic-balloon relative'>{remote.text}</p>
+                  <p class='comic-balloon relative'>{remoteFirst}</p>
                   <svg class='absolute bottom-full left-10 -mb-3 w-10 h-10' viewBox='0 0 40 40' aria-hidden='true'>
                     <path d='M6 40 L14 2 L30 40 Z' fill='white' />
                   </svg>
                 </div>
+                {remoteRest.map((line) => (
+                  <div class='relative ml-auto mt-3 w-fit max-w-[85%]'>
+                    <p class='comic-balloon relative'>{line}</p>
+                    <span class='absolute bottom-full right-12 -mb-[3px] h-[18px] w-5 bg-white border-x-[3px] border-black' aria-hidden='true'></span>
+                  </div>
+                ))}
               </div>
             </article>
           )
@@ -215,15 +222,6 @@ const BUBBLES = [
                     ]}>{line}</span>
                   ))}
                 </h3>
-                <div class='relative'>
-                  <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
-                    <path d='M0 9 L54 20 L0 31 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
-                  </svg>
-                  <p class='comic-balloon relative md:whitespace-nowrap'>{finale.text}</p>
-                  <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
-                    <path d='M0 9 L54 20 L0 31 Z' fill='white' />
-                  </svg>
-                </div>
               </div>
               <div class='relative w-56 md:w-80 mx-auto md:-mb-16 md:-mr-8 rotate-4'>
               <svg class='relative w-full' viewBox='0 0 160 122' role='img' aria-label='Laptop showing code'>

@@ -8,7 +8,7 @@ const homeCollection = defineCollection({
     title: z.string(),
     subtitle: z.optional(z.string()),
     balloons: z.optional(z.array(z.string())),
-    panels: z.optional(z.array(z.object({ caption: z.string(), title: z.string(), text: z.string() }))),
+    panels: z.optional(z.array(z.object({ caption: z.string(), title: z.string(), text: z.string().optional() }))),
   }),
 });
 
