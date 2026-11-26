@@ -26,8 +26,8 @@ const stamps = [
   <div class='contact-paper absolute inset-0 -z-10' aria-hidden='true'></div>
   <ContentBox>
     <div class='comic-page'>
-      <div class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
-        <header class='comic-panel zigzag md:col-span-12 bg-wm-sun p-5 md:p-8 grid lg:grid-cols-[auto_1fr] items-center gap-6 lg:gap-10'>
+      <div data-stagger class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
+        <header data-stagger-item class='comic-panel zigzag md:col-span-12 bg-wm-sun p-5 md:p-8 grid lg:grid-cols-[auto_1fr] items-center gap-6 lg:gap-10'>
           <div class='flex flex-col items-start gap-3'>
             <p class='comic-caption bg-white'>Letters to the editor</p>
             <h2 class='comic-headline text-5xl md:text-7xl'>{entry.data.title}</h2>
@@ -38,7 +38,8 @@ const stamps = [
         </header>
 
 
-        <div class='comic-panel desk md:col-span-12 lg:col-span-7 p-5 md:p-6 flex flex-col justify-center gap-5'>
+        <div data-stagger-item class='comic-panel desk relative md:col-span-12 lg:col-span-7 p-5 md:p-6 flex flex-col justify-center gap-5'>
+          <span class='sent-sfx absolute top-3 right-4 md:top-5 md:right-8 z-10 rotate-6 pointer-events-none' aria-hidden='true'>Sent!</span>
           <svg data-envelope class='envelope w-full max-w-md self-center -rotate-2 [filter:drop-shadow(5px_5px_0_#000)] transition-[scale] duration-150' viewBox='0 0 300 190' role='img' aria-label='Air mail envelope addressed to William Magalhães'>
             <defs>
               <pattern id='airmail' width='28' height='28' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'>
@@ -54,7 +55,7 @@ const stamps = [
               <text x='24' y='46' font-size='9' letter-spacing='1'>SOMEWHERE ON EARTH</text>
             </g>
 
-            <g transform='translate(228 22) rotate(3)'>
+            <g data-slot transform='translate(228 22) rotate(3)'>
               <rect width='46' height='56' fill='white' stroke='black' stroke-width='1.5' stroke-dasharray='3 2' />
               <rect x='5' y='5' width='36' height='46' class='fill-wm-sun' stroke='black' stroke-width='2' />
               <text x='23' y='34' text-anchor='middle' class='font-comic' font-size='16'>42¢</text>
@@ -81,7 +82,7 @@ const stamps = [
           </svg>
         </div>
 
-        <div class='comic-panel album md:col-span-12 lg:col-span-5 p-5 md:p-6 flex flex-col gap-4'>
+        <div data-stagger-item class='comic-panel album md:col-span-12 lg:col-span-5 p-5 md:p-6 flex flex-col gap-4'>
           <p class='comic-caption self-start'>Pick a stamp</p>
           <ul class='flex-1 w-full max-w-md lg:max-w-none mx-auto grid grid-cols-3 items-center gap-3 md:gap-4'>
             {
@@ -108,7 +109,7 @@ const stamps = [
 
         {
           entry.data.subtitle && (
-            <div class='comic-panel hatched md:col-span-12 bg-wm-nitrogen flex justify-center px-5 py-8 md:py-10'>
+            <div data-stagger-item class='comic-panel hatched md:col-span-12 bg-wm-nitrogen flex justify-center px-5 py-8 md:py-10'>
               <p class='comic-headline text-center text-3xl md:text-5xl'>{entry.data.subtitle}</p>
             </div>
           )
@@ -122,6 +123,42 @@ const stamps = [
 
 <script>
   const envelope = document.querySelector<SVGElement>('[data-envelope]');
+  const slot = envelope?.querySelector<SVGGElement>('[data-slot]');
+  const sentSfx = document.querySelector<HTMLElement>('.sent-sfx');
+  let landing = false;
+
+  function land(stamp: HTMLElement, offset: { x: number; y: number }) {
+    if (!slot) {
+      send(stamp);
+      return;
+    }
+    landing = true;
+    const from = stamp.getBoundingClientRect();
+    const to = slot.getBoundingClientRect();
+    const dx = offset.x + to.left + to.width / 2 - (from.left + from.width / 2);
+    const dy = offset.y + to.top + to.height / 2 - (from.top + from.height / 2);
+    stamp.classList.add('landing');
+    stamp.style.translate = `${dx}px ${dy}px`;
+    stamp.style.scale = String((to.height / from.height) * 1.15);
+
+    window.setTimeout(() => {
+      envelope?.classList.add('stamped');
+      sentSfx?.classList.add('show');
+    }, 380);
+
+    window.setTimeout(() => send(stamp), 900);
+
+    window.setTimeout(() => {
+      stamp.classList.remove('landing');
+      stamp.style.translate = '';
+      stamp.style.scale = '';
+      stamp.closest('li')?.classList.remove('lifted');
+      stamp.closest('.comic-panel')?.classList.remove('lifted');
+      envelope?.classList.remove('stamped');
+      sentSfx?.classList.remove('show');
+      landing = false;
+    }, 1300);
+  }
 
   function send(stamp: HTMLElement) {
     const href = stamp.dataset.href;
@@ -141,6 +178,7 @@ const stamps = [
     let dragging = false;
 
     stamp.addEventListener('pointerdown', (event) => {
+      if (landing) return;
       dragging = true;
       start = { x: event.clientX, y: event.clientY };
       stamp.setPointerCapture(event.pointerId);
@@ -159,12 +197,14 @@ const stamps = [
       if (!dragging) return;
       dragging = false;
       stamp.classList.remove('dragging');
+      envelope?.classList.remove('drop-ready');
+      if (overEnvelope(event.clientX, event.clientY)) {
+        land(stamp, { x: event.clientX - start.x, y: event.clientY - start.y });
+        return;
+      }
       stamp.closest('li')?.classList.remove('lifted');
       stamp.closest('.comic-panel')?.classList.remove('lifted');
-      envelope?.classList.remove('drop-ready');
-      const dropped = overEnvelope(event.clientX, event.clientY);
       stamp.style.translate = '';
-      if (dropped) send(stamp);
     });
 
     stamp.addEventListener('keydown', (event) => {
@@ -272,6 +312,71 @@ const stamps = [
   .lifted {
     position: relative;
     z-index: 50;
+  }
+
+  .stamp-link.landing {
+    position: relative;
+    z-index: 50;
+    transition:
+      translate 0.38s cubic-bezier(0.3, 1.25, 0.5, 1),
+      scale 0.38s cubic-bezier(0.3, 1.25, 0.5, 1);
+  }
+
+  .envelope.stamped {
+    animation: envelope-thunk 0.35s ease-out;
+  }
+
+  @keyframes envelope-thunk {
+    30% {
+      scale: 0.95;
+    }
+    65% {
+      scale: 1.03;
+    }
+  }
+
+  .sent-sfx {
+    font-family: var(--font-comic);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--color-wm-sun);
+    -webkit-text-stroke: 1.5px black;
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 black;
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  .sent-sfx.show {
+    animation: sent-pop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes sent-pop {
+    0% {
+      opacity: 0;
+      scale: 0.5;
+    }
+    30%,
+    80% {
+      opacity: 1;
+      scale: 1.1;
+    }
+    100% {
+      opacity: 0;
+      scale: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stamp-link.landing {
+      transition: none;
+    }
+
+    .envelope.stamped {
+      animation: none;
+    }
   }
 
   .envelope.drop-ready {

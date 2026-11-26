@@ -281,3 +281,38 @@
     radial-gradient(ellipse 45% 160% at 0% 0%, var(--color-wm-oxygen-800), transparent 100%),
     radial-gradient(ellipse 45% 160% at 100% 0%, var(--color-wm-oxygen-800), transparent 100%);
 }
+
+[data-stagger] [data-stagger-item] {
+  opacity: 0;
+  scale: 0.94;
+  translate: 0 18px;
+  transition:
+    opacity 0.45s ease-out,
+    scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    translate 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: calc(var(--stagger, 0) * 90ms);
+}
+
+[data-stagger].revealed [data-stagger-item] {
+  opacity: 1;
+  scale: 1;
+  translate: 0 0;
+}
+
+.comic-headline {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-stagger] [data-stagger-item] {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+    transition: none;
+  }
+}
+
+:where(a, button):focus-visible {
+  outline: 3px dashed currentColor;
+  outline-offset: 3px;
+}

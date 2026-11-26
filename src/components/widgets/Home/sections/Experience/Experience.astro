@@ -69,11 +69,16 @@ const sentences = (description: string) =>
               inert={index > 0}
               style={`--theme: ${theme.color}`}
             >
-              <div class='grid flex-1 grid-cols-1 md:grid-cols-12 auto-rows-auto md:grid-rows-[auto_1fr_auto] gap-3 md:gap-4'>
-                <header class='comic-panel splash md:col-span-12 relative grid lg:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 overflow-hidden'>
+              <div data-stagger class='grid flex-1 grid-cols-1 md:grid-cols-12 auto-rows-auto md:grid-rows-[auto_1fr_auto] gap-3 md:gap-4'>
+                <header data-stagger-item class='comic-panel splash md:col-span-12 relative grid lg:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 overflow-hidden'>
                   <div class='relative flex flex-col items-start gap-3'>
                     <p class='comic-caption'>{work.date}</p>
-                    <h3 class='comic-headline text-4xl md:text-6xl'>{work.title}</h3>
+                    <h3 class='comic-headline text-4xl md:text-6xl'>{work.title.split(' ').map((word, w) => (
+                        <>
+                          {w > 0 && ' '}
+                          <span class='whitespace-nowrap'>{word}</span>
+                        </>
+                      ))}</h3>
                     <a href={work.atURL} target='_blank' rel='noreferrer' class='comic-balloon py-1.5 text-wm-oxygen hover:bg-wm-sun-300'>
                       @ {work.name}
                     </a>
@@ -82,7 +87,7 @@ const sentences = (description: string) =>
                 </header>
 
                 {lines.map((line, i) => (
-                  <div class:list={['comic-panel narration relative flex flex-col justify-between gap-2 md:gap-4 p-4 md:p-5 md:min-h-40', narrationSpan(lines.length, i)]}>
+                  <div data-stagger-item class:list={['comic-panel narration relative flex flex-col justify-between gap-2 md:gap-4 p-4 md:p-5 md:min-h-40', narrationSpan(lines.length, i)]}>
                     <p class='comic-caption rounded-md text-[0.8rem] leading-snug self-start'>{line}</p>
                     <span class:list={['sfx self-end text-3xl md:text-4xl', i % 2 ? 'rotate-6' : '-rotate-6']} aria-hidden='true'>
                       {theme.sfx[i % theme.sfx.length]}
@@ -90,7 +95,7 @@ const sentences = (description: string) =>
                   </div>
                 ))}
 
-                <div class='comic-panel md:col-span-12 bg-wm-nitrogen p-4 md:p-5 flex flex-col lg:flex-row lg:items-center gap-4'>
+                <div data-stagger-item class='comic-panel md:col-span-12 bg-wm-nitrogen p-4 md:p-5 flex flex-col lg:flex-row lg:items-center gap-4'>
                   <p class='comic-caption self-start lg:self-center shrink-0'>Power-ups unlocked</p>
                   <ul class='flex flex-wrap gap-3'>
                     {work.activities.map((activity, i) => (
@@ -170,6 +175,14 @@ const sentences = (description: string) =>
     });
   }
 
+  function replayPanels(page: HTMLElement) {
+    const grid = page.querySelector<HTMLElement>('[data-stagger]');
+    if (!grid) return;
+    grid.classList.remove('revealed');
+    void grid.offsetWidth;
+    requestAnimationFrame(() => grid.classList.add('revealed'));
+  }
+
   async function goTo(target: number) {
     if (busy || target === current || target < 0 || target >= pages.length) return;
     const direction = target > current ? 1 : -1;
@@ -190,6 +203,7 @@ const sentences = (description: string) =>
     top.style.zIndex = '2';
     bottom.style.zIndex = '1';
     setVisible(incoming, true);
+    replayPanels(incoming);
 
     const away = { transform: 'translateX(-115%) translateY(2rem) rotate(-9deg)' };
     const rest = { transform: 'none' };
@@ -270,6 +284,7 @@ const sentences = (description: string) =>
   .tab {
     box-shadow: 3px 3px 0 0 black;
     transition:
+      scale 0.12s ease-out,
       translate 0.15s ease-out,
       box-shadow 0.15s ease-out,
       background-color 0.15s ease-out;
@@ -288,6 +303,7 @@ const sentences = (description: string) =>
   .turn {
     filter: drop-shadow(4px 4px 0 black);
     transition:
+      scale 0.12s ease-out,
       translate 0.2s ease-out,
       opacity 0.2s ease-out;
   }
@@ -326,6 +342,11 @@ const sentences = (description: string) =>
 
   .turn:not(:disabled) {
     cursor: pointer;
+  }
+
+  .tab:active,
+  .turn:not(:disabled):active {
+    scale: 0.96;
   }
 
   .turn:disabled {

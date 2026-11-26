@@ -28,5 +28,25 @@ const { meta } = Astro.props as Props;
     </main>
 
     <Footer />
+
+    <script>
+      const groups = document.querySelectorAll<HTMLElement>('[data-stagger]');
+      groups.forEach((group) => {
+        group.querySelectorAll<HTMLElement>('[data-stagger-item]').forEach((item, index) => {
+          item.style.setProperty('--stagger', String(index));
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12 },
+      );
+      groups.forEach((group) => observer.observe(group));
+    </script>
   </body>
 </html>
