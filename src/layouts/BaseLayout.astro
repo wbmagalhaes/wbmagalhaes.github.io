@@ -15,15 +15,15 @@ const { meta } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang='en-us' class='scroll-smooth box-border w-full'>
+<html lang='en-us' class='scroll-smooth box-border w-full bg-wm-nitrogen-800'>
   <head>
     <MetaTags {...meta} />
   </head>
 
-  <body class='antialiased bg-gray-100 text-black font-body'>
+  <body class='antialiased bg-wm-nitrogen-800 text-black font-body'>
     <Header client:idle />
 
-    <main class='overflow-x-hidden min-h-screen pt-32'>
+    <main class='overflow-x-clip min-h-screen pt-32'>
       <slot />
     </main>
 

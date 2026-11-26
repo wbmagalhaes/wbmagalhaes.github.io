@@ -1,11 +1,20 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useScroll } from '@hooks/useScroll';
 
 import HeaderItem from './HeaderItem';
 import ResumeButton from './ResumeButton';
 
+const MOBILE_LINKS = [
+  { href: '/#about', text: 'About Me', color: 'bg-wm-hydrogen-100' },
+  { href: '/#skills', text: 'Skills', color: 'bg-wm-sky' },
+  { href: '/#experience', text: 'Experience', color: 'bg-wm-leaf' },
+  { href: '/#contact', text: 'Contact', color: 'bg-wm-sun' },
+];
+
 export default function Header() {
   const [visible, setVisible] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useScroll((y) => {
     if (visible && y > 150) {
@@ -16,8 +25,9 @@ export default function Header() {
   });
 
   return (
+    <>
     <header
-      className={`fixed top-0 left-0 z-40 bg-wm-oxygen border-b-[5px] border-black w-full overflow-hidden transition-all duration-500 ${
+      className={`fixed top-0 left-0 z-40 header-bar border-b-[5px] border-black w-full overflow-hidden transition-all duration-500 ${
         visible ? 'h-32' : 'h-16'
       }`}
     >
@@ -34,7 +44,24 @@ export default function Header() {
               </span>
             </span>
           </a>
-          <nav className='h-full'>
+          <button
+            type='button'
+            onClick={() => setOpen((value) => !value)}
+            aria-expanded={open}
+            aria-controls='mobile-menu'
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className='lg:hidden self-end mb-2.5 flex items-center gap-2 bg-wm-sun border-[3px] border-black px-3 py-1.5 shadow-[3px_3px_0_0_black] font-comic uppercase tracking-wider text-lg leading-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none'
+          >
+            <svg className='size-5' viewBox='0 0 20 20' aria-hidden='true' stroke='black' strokeWidth='3' strokeLinecap='square'>
+              {open ? (
+                <path d='M4 4 L16 16 M16 4 L4 16' />
+              ) : (
+                <path d='M3 5 H17 M3 10 H17 M3 15 H17' />
+              )}
+            </svg>
+            {open ? 'Close' : 'Menu'}
+          </button>
+          <nav className='hidden lg:block h-full'>
             <ul className='flex h-full text-right font-bold'>
               <HeaderItem
                 href='/#about'
@@ -72,5 +99,54 @@ export default function Header() {
         </div>
       </div>
     </header>
+    <AnimatePresence>
+      {open && (
+        <motion.nav
+          id='mobile-menu'
+          aria-label='Mobile'
+          initial={{ clipPath: 'inset(0 0 100% 0)' }}
+          animate={{ clipPath: 'inset(0 0 -20% 0)', transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+          exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.25, ease: [0.55, 0, 0.8, 0.4], delay: 0.1 } }}
+          className={`lg:hidden fixed left-0 z-40 w-full header-bar border-b-[5px] border-black px-4 pt-4 pb-5 transition-[top] duration-500 ${
+            visible ? 'top-32' : 'top-16'
+          }`}
+        >
+          <ul className='flex flex-col gap-3 max-w-md mx-auto'>
+            {MOBILE_LINKS.map(({ href, text, color }, index) => (
+              <motion.li
+                key={href}
+                initial={{ x: -60, rotate: -8, opacity: 0 }}
+                animate={{
+                  x: 0,
+                  rotate: index % 2 ? 1 : -1,
+                  opacity: 1,
+                  transition: { type: 'spring', stiffness: 420, damping: 18, delay: 0.08 + index * 0.06 },
+                }}
+                exit={{ x: -40, opacity: 0, transition: { duration: 0.15, delay: (MOBILE_LINKS.length - index) * 0.03 } }}
+              >
+                <a
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className={`flex items-center gap-3 border-[3px] border-black px-4 py-2.5 shadow-[4px_4px_0_0_black] font-comic uppercase tracking-wider text-2xl leading-none text-black ${color}`}
+                >
+                  <span className='text-wm-oxygen [text-shadow:1px_1px_0_#000]'>{index + 1}.</span>
+                  {text}
+                </a>
+              </motion.li>
+            ))}
+            <motion.li
+              className='pt-2 flex justify-center'
+              onClick={() => setOpen(false)}
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 380, damping: 14, delay: 0.08 + MOBILE_LINKS.length * 0.06 } }}
+              exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.12 } }}
+            >
+              <ResumeButton />
+            </motion.li>
+          </ul>
+        </motion.nav>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

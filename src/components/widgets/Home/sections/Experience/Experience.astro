@@ -1,24 +1,334 @@
 ---
+import { Icon } from 'astro-icon/components';
 import ContentBox from '@common/ContentBox.astro';
 import BurstDivider from '@common/BurstDivider.astro';
+import Scene from './Scene.astro';
 import { getHomeEntry } from '@services/home';
-import { getWorks } from '@services/myData';
-import ExperienceBook from './ExperienceBook';
+import { getTechStacks, getWorks } from '@services/myData';
+import type { WorkScene } from 'types/work';
 
 const works = getWorks();
 const { entry } = await getHomeEntry('experience');
+const FIRST_PAGE = 3;
+
+const THEMES: Record<WorkScene, { color: string; sfx: string[] }> = {
+  dashboard: { color: 'var(--color-wm-leaf)', sfx: ['Deploy!', 'Connect!', 'Compile!', 'Stream!'] },
+  wizard: { color: 'var(--color-wm-lilac)', sfx: ['Zap!', 'Click!', 'Push!', 'Query!'] },
+  coffee: { color: 'var(--color-wm-sun)', sfx: ['Train!', 'Snap!', 'Crunch!'] },
+  colorimeter: { color: 'var(--color-wm-tangerine)', sfx: ['Bzzt!', 'Solder!', 'Beep!'] },
+};
+
+const narrationSpan = (count: number, index: number) => {
+  if (count === 1) return 'md:col-span-12';
+  if (count === 2) return 'md:col-span-6';
+  if (count === 3) return index === 2 ? 'md:col-span-12 lg:col-span-4' : 'md:col-span-6 lg:col-span-4';
+  return 'md:col-span-6 xl:col-span-3';
+};
+
+const EXTRA_ICONS: Record<string, string> = {
+  javascript: 'simple-icons:javascript',
+  typescript: 'simple-icons:typescript',
+  unity: 'simple-icons:unity',
+  r: 'simple-icons:r',
+  matlab: 'ic:outline-functions',
+  tensorflow: 'simple-icons:tensorflow',
+  'machine learning': 'ic:outline-psychology',
+  'analytical instrumentation': 'ic:outline-science',
+};
+const TECH_ICONS = new Map(
+  getTechStacks()
+    .flatMap((stack) => stack.list)
+    .map((tech) => [tech.name.toLowerCase(), tech.icon] as const),
+);
+const iconFor = (name: string) => TECH_ICONS.get(name.toLowerCase()) ?? EXTRA_ICONS[name.toLowerCase()] ?? 'ic:outline-star';
+
+const sentences = (description: string) =>
+  description
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .join(' ')
+    .split(/(?<=\.)\s+/);
 ---
 
-<section id='experience' class='experience relative z-10 pt-10 md:pt-12 pb-10 md:pb-12'>
+<section id='experience' class='experience relative z-10 overflow-x-clip pt-10 md:pt-12 pb-10 md:pb-12'>
   <BurstDivider color='var(--color-wm-nitrogen-700)' seed={9} />
   <ContentBox>
     <h2 class='sr-only'>{entry.data.title}</h2>
-    <ExperienceBook works={works} firstPageNumber={3} client:visible />
+
+    <div class='book grid' data-book>
+      {
+        works.map((work, index) => {
+          const theme = THEMES[work.scene];
+          const lines = sentences(work.description);
+          return (
+            <article
+              class:list={['page comic-page [grid-area:1/1] flex flex-col', index > 0 && 'is-hidden']}
+              data-page={index}
+              aria-hidden={index > 0 ? 'true' : undefined}
+              inert={index > 0}
+              style={`--theme: ${theme.color}`}
+            >
+              <div class='grid flex-1 grid-cols-1 md:grid-cols-12 auto-rows-auto md:grid-rows-[auto_1fr_auto] gap-3 md:gap-4'>
+                <header class='comic-panel splash md:col-span-12 relative grid lg:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 overflow-hidden'>
+                  <div class='relative flex flex-col items-start gap-3'>
+                    <p class='comic-caption'>{work.date}</p>
+                    <h3 class='comic-headline text-4xl md:text-6xl'>{work.title}</h3>
+                    <a href={work.atURL} target='_blank' rel='noreferrer' class='comic-balloon py-1.5 text-wm-oxygen hover:bg-wm-sun-300'>
+                      @ {work.name}
+                    </a>
+                  </div>
+                  <Scene scene={work.scene} class:list={['relative justify-self-center', work.scene === 'dashboard' ? 'w-[calc(100%+1.5rem)] max-w-[25.33rem] -mx-3 translate-x-2 md:translate-x-0 md:mx-0 md:w-[25.33rem] lg:mr-6' : 'w-64 md:w-80 lg:mr-4']} />
+                </header>
+
+                {lines.map((line, i) => (
+                  <div class:list={['comic-panel narration relative flex flex-col justify-between gap-2 md:gap-4 p-4 md:p-5 md:min-h-40', narrationSpan(lines.length, i)]}>
+                    <p class='comic-caption rounded-md text-[0.8rem] leading-snug self-start'>{line}</p>
+                    <span class:list={['sfx self-end text-3xl md:text-4xl', i % 2 ? 'rotate-6' : '-rotate-6']} aria-hidden='true'>
+                      {theme.sfx[i % theme.sfx.length]}
+                    </span>
+                  </div>
+                ))}
+
+                <div class='comic-panel md:col-span-12 bg-wm-nitrogen p-4 md:p-5 flex flex-col lg:flex-row lg:items-center gap-4'>
+                  <p class='comic-caption self-start lg:self-center shrink-0'>Power-ups unlocked</p>
+                  <ul class='flex flex-wrap gap-3'>
+                    {work.activities.map((activity, i) => (
+                      <li class:list={['item flex items-center gap-2 bg-white bg-clip-padding border-[3px] border-black px-3 py-1.5', i % 2 ? 'rotate-1' : '-rotate-1']}>
+                        <Icon name={iconFor(activity)} class='size-5 shrink-0' />
+                        <span class='font-comic uppercase tracking-wider text-base leading-none'>{activity}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <footer class='pt-2 md:pt-3 text-right font-comic tracking-widest text-lg leading-none'>{FIRST_PAGE + index}</footer>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <nav class='mt-8 flex items-center justify-center gap-2 sm:gap-4 md:gap-6' aria-label='Experience pages'>
+      <button type='button' class='turn turn-prev relative shrink-0 px-3 py-2 pl-8 sm:px-5 sm:py-2.5 sm:pl-10' data-turn='-1' aria-label='Previous page' disabled>
+        <span class='turn-edge absolute inset-0' aria-hidden='true'><span class='turn-fill absolute inset-[3px]'></span></span>
+        <span class='relative font-comic uppercase tracking-[0.08em] text-xl md:text-2xl leading-none text-wm-hydrogen-100 [text-shadow:2px_2px_0_#000]'>Prev</span>
+      </button>
+
+      <ol class='flex gap-1.5 sm:gap-2'>
+        {
+          works.map((work, index) => (
+            <li>
+              <button
+                type='button'
+                class='tab border-[3px] border-black bg-white px-2 sm:px-3 py-1.5 font-comic uppercase tracking-wider leading-none'
+                data-goto={index}
+                aria-label={`Page ${FIRST_PAGE + index}: ${work.name}`}
+                aria-current={index === 0 ? 'page' : undefined}
+              >
+                <span class='text-lg'>{FIRST_PAGE + index}</span>
+                <span class='hidden lg:inline text-sm ml-1.5'>{work.at}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ol>
+
+      <button type='button' class='turn turn-next relative shrink-0 px-3 py-2 pr-8 sm:px-5 sm:py-2.5 sm:pr-10' data-turn='1' aria-label='Next page'>
+        <span class='turn-edge absolute inset-0' aria-hidden='true'><span class='turn-fill absolute inset-[3px]'></span></span>
+        <span class='relative font-comic uppercase tracking-[0.08em] text-xl md:text-2xl leading-none text-wm-hydrogen-100 [text-shadow:2px_2px_0_#000]'>Next</span>
+      </button>
+    </nav>
   </ContentBox>
 </section>
+
+<script>
+  const book = document.querySelector<HTMLElement>('[data-book]');
+  const pages = Array.from(document.querySelectorAll<HTMLElement>('[data-page]'));
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-goto]'));
+  const prev = document.querySelector<HTMLButtonElement>('[data-turn="-1"]');
+  const next = document.querySelector<HTMLButtonElement>('[data-turn="1"]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let current = 0;
+  let busy = false;
+
+  function setVisible(page: HTMLElement, visible: boolean) {
+    page.classList.toggle('is-hidden', !visible);
+    page.inert = !visible;
+    if (visible) page.removeAttribute('aria-hidden');
+    else page.setAttribute('aria-hidden', 'true');
+  }
+
+  function syncControls() {
+    if (prev) prev.disabled = current === 0;
+    if (next) next.disabled = current === pages.length - 1;
+    tabs.forEach((tab, i) => {
+      if (i === current) tab.setAttribute('aria-current', 'page');
+      else tab.removeAttribute('aria-current');
+    });
+  }
+
+  async function goTo(target: number) {
+    if (busy || target === current || target < 0 || target >= pages.length) return;
+    const direction = target > current ? 1 : -1;
+    const outgoing = pages[current];
+    const incoming = pages[target];
+    current = target;
+    syncControls();
+
+    if (reduceMotion) {
+      setVisible(outgoing, false);
+      setVisible(incoming, true);
+      return;
+    }
+
+    busy = true;
+    const top = direction > 0 ? outgoing : incoming;
+    const bottom = direction > 0 ? incoming : outgoing;
+    top.style.zIndex = '2';
+    bottom.style.zIndex = '1';
+    setVisible(incoming, true);
+
+    const away = { transform: 'translateX(-115%) translateY(2rem) rotate(-9deg)' };
+    const rest = { transform: 'none' };
+    const slide = top.animate(direction > 0 ? [rest, away] : [away, rest], {
+      duration: 520,
+      easing: direction > 0 ? 'cubic-bezier(0.55, 0, 0.8, 0.4)' : 'cubic-bezier(0.2, 0.7, 0.3, 1.15)',
+    });
+    const settle = bottom.animate(
+      direction > 0
+        ? [{ transform: 'scale(0.97)' }, { transform: 'none' }]
+        : [{ transform: 'none' }, { transform: 'scale(0.97)' }],
+      { duration: 520, easing: 'ease-out' },
+    );
+
+    await Promise.all([slide.finished, settle.finished]);
+    setVisible(outgoing, false);
+    outgoing.style.zIndex = '';
+    incoming.style.zIndex = '';
+    busy = false;
+  }
+
+  prev?.addEventListener('click', () => goTo(current - 1));
+  next?.addEventListener('click', () => goTo(current + 1));
+  tabs.forEach((tab) => tab.addEventListener('click', () => goTo(Number(tab.dataset.goto))));
+  book?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') goTo(current + 1);
+    if (event.key === 'ArrowLeft') goTo(current - 1);
+  });
+</script>
 
 <style>
   .experience {
     background-color: var(--color-wm-nitrogen-700);
+  }
+
+  .page.is-hidden {
+    visibility: hidden;
+  }
+
+  .splash {
+    background-color: var(--theme);
+    background-image: repeating-conic-gradient(
+      from 0deg at var(--rays-at, 50% 75%),
+      rgb(255 255 255 / 0.18) 0deg 6deg,
+      transparent 6deg 12deg
+    );
+
+    @media (width >= 48rem) {
+      --rays-at: 50% 72%;
+    }
+
+    @media (width >= 64rem) {
+      --rays-at: calc(100% - 13rem) 50%;
+    }
+  }
+
+  .narration {
+    background-color: white;
+    background-image: radial-gradient(color-mix(in srgb, var(--theme) 55%, transparent) 1.6px, transparent 2px);
+    background-size: 11px 11px;
+  }
+
+  .sfx {
+    font-family: var(--font-comic);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--color-wm-sun);
+    -webkit-text-stroke: 1.5px black;
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 black;
+  }
+
+  .item {
+    box-shadow: 3px 3px 0 0 black;
+  }
+
+  .tab {
+    box-shadow: 3px 3px 0 0 black;
+    transition:
+      translate 0.15s ease-out,
+      box-shadow 0.15s ease-out,
+      background-color 0.15s ease-out;
+  }
+
+  .tab:hover {
+    background-color: var(--color-wm-sun-300);
+  }
+
+  .tab[aria-current='page'] {
+    background-color: var(--color-wm-sun);
+    translate: -2px -2px;
+    box-shadow: 5px 5px 0 0 black;
+  }
+
+  .turn {
+    filter: drop-shadow(4px 4px 0 black);
+    transition:
+      translate 0.2s ease-out,
+      opacity 0.2s ease-out;
+  }
+
+  .turn-edge {
+    background: black;
+  }
+
+  .turn-fill {
+    background: var(--color-wm-oxygen);
+  }
+
+  .turn-next .turn-edge {
+    clip-path: polygon(0 0, calc(100% - 1.75rem) 0, 100% 50%, calc(100% - 1.75rem) 100%, 0 100%);
+  }
+
+  .turn-next .turn-fill {
+    clip-path: polygon(0 0, calc(100% - 1.65rem) 0, calc(100% - 0.2rem) 50%, calc(100% - 1.65rem) 100%, 0 100%);
+  }
+
+  .turn-prev .turn-edge {
+    clip-path: polygon(1.75rem 0, 100% 0, 100% 100%, 1.75rem 100%, 0 50%);
+  }
+
+  .turn-prev .turn-fill {
+    clip-path: polygon(1.65rem 0, 100% 0, 100% 100%, 1.65rem 100%, 0.2rem 50%);
+  }
+
+  .turn-next:not(:disabled):hover {
+    translate: 6px 0;
+  }
+
+  .turn-prev:not(:disabled):hover {
+    translate: -6px 0;
+  }
+
+  .turn:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .turn:disabled {
+    opacity: 0.35;
   }
 </style>

@@ -36,7 +36,7 @@ const CODE_LINES = [
   { x1: 76, x2: 96, y: 66, color: 'stroke-wm-sky' },
   { x1: 36, x2: 50, y: 72, color: 'stroke-wm-oxygen-200' },
 ];
-const RAYS = 'repeating-conic-gradient(from 0deg at 85% 55%, var(--color-wm-oxygen) 0deg 6deg, var(--color-wm-oxygen-600) 6deg 12deg)';
+const RAYS = 'repeating-conic-gradient(from 0deg at var(--rays-at, 50% 78%), var(--color-wm-oxygen) 0deg 6deg, var(--color-wm-oxygen-600) 6deg 12deg)';
 const PUFF = [
   { cx: 0, cy: 0, r: 11 },
   { cx: -12, cy: 4, r: 8 },
@@ -66,7 +66,7 @@ const BUBBLES = [
       <div class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
         {
           origin && (
-            <article class='comic-panel relative md:col-span-12 bg-wm-sky flex items-center gap-6 p-5 md:p-8 min-h-56 overflow-hidden' style='--i: 0'>
+            <article class='comic-panel relative md:col-span-12 bg-wm-sky flex flex-col sm:flex-row items-start sm:items-center gap-6 p-5 md:p-8 min-h-56 overflow-hidden' style='--i: 0'>
               <Hydrocarbons class='absolute inset-0 size-full pointer-events-none opacity-50' color='var(--color-wm-sky-700)' />
               <div class='relative z-10 flex-1'>
                 <p class='comic-caption'>{origin.caption}</p>
@@ -76,13 +76,13 @@ const BUBBLES = [
                 <span class='sfx-pop'>Blub</span>
                 <span class='sfx-pop -translate-y-3' style='animation-delay: 0.9s'>blub!</span>
               </span>
-              <div class='relative flex flex-col sm:flex-row items-center'>
-                  <div class='relative z-10 max-w-64 md:max-w-72 mr-2'>
-                    <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
+              <div class='relative w-full sm:w-auto flex flex-col sm:flex-row items-center'>
+                  <div class='relative z-10 w-full sm:w-auto sm:max-w-64 md:max-w-72 sm:mr-2'>
+                    <svg class='hidden sm:block absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
                       <path d='M0 9 L54 20 L0 31 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
                     </svg>
                     <p class='comic-balloon relative'>{origin.text}</p>
-                    <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
+                    <svg class='hidden sm:block absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
                       <path d='M0 9 L54 20 L0 31 Z' fill='white' />
                     </svg>
                   </div>
@@ -138,12 +138,12 @@ const BUBBLES = [
                 </filter>
               </svg>
               <p class='comic-caption self-start'>{specialization.caption}</p>
-              <div class='flex-1 grid sm:grid-cols-[1fr_auto] md:grid-cols-[1fr_1.1fr] items-center gap-6'>
+              <div class='flex-1 grid sm:grid-cols-[1fr_auto] md:grid-cols-1 lg:grid-cols-[1fr_1.1fr] items-center gap-6'>
                 <div class='flex flex-col items-start gap-4'>
                   <h3 class='chalk font-comic uppercase tracking-wide leading-[0.95] text-white text-3xl md:text-4xl'>{specialization.title}</h3>
                   <p class='chalk font-lettering font-bold leading-snug text-white/90 text-[18px] border-l-4 border-white/50 pl-3'>{specialization.text}</p>
                 </div>
-                <svg class='chalk w-60 md:w-full max-w-72 mx-auto overflow-visible' viewBox='0 -12 200 214' role='img' aria-label='Chemistry, Programming and Electronics overlap'>
+                <svg class='chalk w-60 md:w-56 lg:w-full max-w-72 mx-auto overflow-visible' viewBox='0 -12 200 214' role='img' aria-label='Chemistry, Programming and Electronics overlap'>
                   <g fill='none' stroke-width='3.5' stroke-linecap='round'>
                     <circle cx='72' cy='72' r='58' class='stroke-wm-sun-300' />
                     <circle cx='128' cy='72' r='58' class='stroke-wm-sky-300' />
@@ -211,7 +211,7 @@ const BUBBLES = [
 
         {
           finale && (
-            <article class='comic-panel relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8' style={`--i: 3; background-image: ${RAYS}`}>
+            <article class='comic-panel relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 md:[--rays-at:calc(100%-10rem)_60%] lg:[--rays-at:calc(100%-16rem)_60%]' style={`--i: 3; background-image: ${RAYS}`}>
               <div class='relative flex flex-col items-start gap-4'>
                 <p class='comic-caption'>{finale.caption}</p>
                 <h3 class='comic-headline flex flex-col items-start'>
@@ -219,13 +219,13 @@ const BUBBLES = [
                     <span class:list={[
                       'block',
                       i === 0 && 'text-3xl md:text-4xl',
-                      i === 1 && 'text-5xl md:text-7xl',
-                      i === 2 && 'text-4xl md:text-6xl text-wm-sun',
+                      i === 1 && 'text-5xl md:text-6xl lg:text-7xl',
+                      i === 2 && 'text-4xl md:text-5xl lg:text-6xl text-wm-sun',
                     ]}>{line}</span>
                   ))}
                 </h3>
               </div>
-              <div class='relative w-56 md:w-80 mx-auto md:-mb-16 md:-mr-8 rotate-4'>
+              <div class='relative w-56 md:w-64 lg:w-80 mx-auto md:-mb-16 lg:mr-16 rotate-4'>
               <svg class='relative w-full' viewBox='0 0 160 122' role='img' aria-label='Laptop showing code'>
                 <rect x='20' y='6' width='120' height='80' rx='5' class='fill-wm-nitrogen-800' stroke='black' stroke-width='4' />
                 <rect x='28' y='14' width='104' height='64' rx='2' class='fill-wm-nitrogen' />

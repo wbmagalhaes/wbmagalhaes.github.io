@@ -1,3 +1,5 @@
+export type WorkScene = 'dashboard' | 'wizard' | 'coffee' | 'colorimeter';
+
 export type Work = {
   name: string;
   at: string;
@@ -6,4 +8,5 @@ export type Work = {
   date: string;
   description: string;
   activities: string[];
+  scene: WorkScene;
 };

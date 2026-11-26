@@ -13,7 +13,7 @@ const balloonStyles = [
     tail: null,
   },
   {
-    place: 'self-start md:ml-28',
+    place: 'self-start md:ml-12 lg:ml-28',
     box: 'bg-white max-w-md rounded-[1.25rem] px-5 py-3',
     tail: 'left-16 -bottom-[34px]',
   },
@@ -58,9 +58,9 @@ const burst = Array.from({ length: BURST_SPIKES * 2 }, (_, i) => {
 ---
 
 <section class='hero relative overflow-hidden -mt-32 pt-32 pb-20 md:pb-26'>
-  <ContentBox class='relative md:h-[calc(100svh-14.5rem)] md:min-h-[38rem] py-3 md:py-4 md:pt-8'>
-    <div class='page relative h-full'>
-      <div class='panel panel-title relative isolate h-full bg-wm-nitrogen flex flex-col p-3 pb-14 md:p-4 md:pb-16'>
+  <ContentBox class='relative flex flex-col md:min-h-[max(38rem,calc(100svh-14.5rem))] py-3 md:py-4 md:pt-8'>
+    <div class='page relative flex-1 flex flex-col'>
+      <div class='panel panel-title relative isolate flex-1 bg-wm-nitrogen flex flex-col p-3 pb-14 md:p-4 md:pb-16'>
         <div class='absolute inset-0 -z-10 overflow-hidden'>
           <CoverCircuit />
         </div>
@@ -102,18 +102,18 @@ const burst = Array.from({ length: BURST_SPIKES * 2 }, (_, i) => {
           </div>
         </div>
 
-        <div class='title-block flex flex-col mt-4 md:-mt-12 md:px-24'>
-          <h1 class='name font-comic uppercase text-center whitespace-nowrap leading-[0.9] tracking-wide text-wm-sun text-[clamp(2.5rem,7.6vw,7rem)]'>
+        <div class='title-block flex flex-col -mt-10 md:-mt-12 md:px-24'>
+          <h1 class='name font-comic uppercase text-center md:whitespace-nowrap leading-[0.9] tracking-wide text-wm-sun text-[3.25rem] md:text-[clamp(2.5rem,7.6vw,7rem)]'>
             {entry.data.title}
           </h1>
-          <div class='tagline -skew-x-12 bg-black px-4 py-1 md:px-6 md:py-1.5 -mt-4 ml-auto'>
+          <div class='tagline -skew-x-12 bg-black px-4 py-1 md:px-6 md:py-1.5 mt-4 md:mt-3 mx-auto md:mr-0'>
             <div class='skew-x-12 font-comic uppercase tracking-[0.12em] text-base md:text-2xl leading-none text-white'>
               The <span class='text-wm-sun'>full-stack</span> adventures begin!
             </div>
           </div>
         </div>
 
-        <div class='flex-1 min-h-0 flex flex-col items-start gap-6 pt-6 md:pt-16 pb-4 md:pb-2 md:pl-[5.75rem] md:w-[64%]'>
+        <div class='flex-1 min-h-0 flex flex-col items-start gap-6 pt-6 md:pt-16 pb-12 md:pb-10 md:pl-12 lg:pl-[5.75rem] md:w-[64%]'>
 
           <ul class='balloons flex flex-col gap-9 md:gap-10 w-full'>
             {balloons.map((text, i) => {
@@ -160,7 +160,7 @@ const burst = Array.from({ length: BURST_SPIKES * 2 }, (_, i) => {
               </svg>
             </div>
             <svg viewBox='0 0 100 100' class='absolute inset-0 size-full overflow-visible'>
-              <g class='font-terminal' font-size='17' text-anchor='middle' fill='white'>
+              <g class='font-terminal' font-size='17' text-anchor='middle' fill='white' stroke='white' stroke-width='0.7' stroke-linejoin='miter'>
                 <text x='50' y='47'>HELLO,</text>
                 <text x='50' y='62'>WORLD!</text>
               </g>

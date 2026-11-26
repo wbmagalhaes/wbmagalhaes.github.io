@@ -1,0 +1,451 @@
+---
+import type { WorkScene } from 'types/work';
+
+type Props = {
+  scene: WorkScene;
+  class?: string;
+};
+
+const { scene, class: className } = Astro.props;
+
+const BARS = [
+  { x: 44, h: 30, color: 'fill-wm-leaf' },
+  { x: 66, h: 46, color: 'fill-wm-sky' },
+  { x: 88, h: 24, color: 'fill-wm-sun' },
+  { x: 110, h: 54, color: 'fill-wm-leaf' },
+  { x: 132, h: 38, color: 'fill-wm-oxygen-200' },
+  { x: 154, h: 50, color: 'fill-wm-sky' },
+];
+
+const PACKETS = [
+  { color: 'fill-wm-sky', delay: 0 },
+  { color: 'fill-wm-leaf', delay: 0.6 },
+  { color: 'fill-wm-oxygen-200', delay: 1.2 },
+];
+
+const GEAR = Array.from({ length: 32 }, (_, i) => {
+  const tooth = Math.floor(i / 2) % 2 === 0;
+  const angle = ((i - 0.5 + (i % 2)) / 32) * Math.PI * 2;
+  const radius = tooth ? 12 : 8.5;
+  return `${(Math.cos(angle) * radius).toFixed(1)},${(Math.sin(angle) * radius).toFixed(1)}`;
+}).join(' ');
+
+const star = (cx: number, cy: number, r: number) =>
+  Array.from({ length: 10 }, (_, i) => {
+    const angle = -Math.PI / 2 + (i * Math.PI) / 5;
+    const radius = i % 2 ? r * 0.45 : r;
+    return `${(cx + Math.cos(angle) * radius).toFixed(1)},${(cy + Math.sin(angle) * radius).toFixed(1)}`;
+  }).join(' ');
+
+const sparkle = (cx: number, cy: number, r: number) =>
+  `M${cx} ${cy - r} Q${cx} ${cy} ${cx + r} ${cy} Q${cx} ${cy} ${cx} ${cy + r} Q${cx} ${cy} ${cx - r} ${cy} Q${cx} ${cy} ${cx} ${cy - r} Z`;
+
+const SPARKLES = [
+  { x: 36, y: 34, r: 10, delay: 0 },
+  { x: 188, y: 26, r: 8, delay: 0.7 },
+  { x: 214, y: 70, r: 11, delay: 1.3 },
+  { x: 30, y: 96, r: 7, delay: 1.9 },
+];
+
+const LAYERS = [
+  { x: 26, ys: [40, 70, 100, 130] },
+  { x: 62, ys: [28, 58, 88, 118, 148] },
+  { x: 98, ys: [55, 85, 115] },
+];
+const SYNAPSES = LAYERS.slice(0, -1).flatMap((layer, l) =>
+  layer.ys.flatMap((y1) => LAYERS[l + 1].ys.map((y2) => ({ x1: layer.x, y1, x2: LAYERS[l + 1].x, y2 }))),
+);
+
+const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
+---
+
+<svg class:list={['scene overflow-visible', className]} viewBox={scene === 'dashboard' ? '-64 0 304 160' : '0 0 240 160'} aria-hidden='true'>
+  {
+    scene === 'dashboard' && (
+      <g>
+        <g transform='translate(-64 0)'>
+        <rect x='24' y='63' width='60' height='11' class='fill-wm-hydrogen-100' stroke='black' stroke-width='3' />
+        {PACKETS.map(({ color, delay }) => (
+          <rect class:list={['packet', color]} x='26' y='66' width='7' height='5' rx='1' stroke='black' stroke-width='1.5' style={`animation-delay: ${delay}s`} />
+        ))}
+        <g class='radio' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'>
+          <path d='M7 30 Q16 22 25 30' />
+          <path d='M2 24 Q16 12 30 24' style='animation-delay: 0.4s' />
+        </g>
+        <line x1='16' y1='54' x2='16' y2='38' stroke='black' stroke-width='3' />
+        <circle cx='16' cy='36' r='3.5' class='fill-wm-oxygen' stroke='black' stroke-width='2.5' />
+        <rect x='4' y='54' width='24' height='30' rx='4' class='fill-wm-hydrogen-100' stroke='black' stroke-width='3.5' />
+        <rect x='9' y='60' width='14' height='8' rx='1' class='fill-wm-nitrogen' />
+        <circle class='sensor-led fill-wm-leaf' cx='16' cy='76' r='3' stroke='black' stroke-width='1.5' />
+        <g transform='translate(54 68.5) scale(1.6)'>
+          <polygon class='gear fill-wm-sun' points={GEAR} stroke='black' stroke-width='2' stroke-linejoin='round' />
+          <circle r='3.5' fill='white' stroke='black' stroke-width='1.5' />
+        </g>
+        </g>
+        <g class='monitor-group'>
+          <path d='M92 122 L84 146 H134 L126 122 Z' class='fill-wm-hydrogen-400' stroke='black' stroke-width='4' stroke-linejoin='round' />
+          <rect x='66' y='144' width='86' height='8' rx='3' class='fill-wm-hydrogen-400' stroke='black' stroke-width='4' />
+          <rect x='20' y='12' width='178' height='112' rx='7' class='fill-wm-nitrogen-800' stroke='black' stroke-width='5' />
+          <rect x='30' y='22' width='158' height='92' rx='2' class='fill-wm-nitrogen' />
+          <g stroke='black' stroke-width='2.5'>
+            {BARS.map(({ x, h, color }, i) => (
+              <rect class:list={['bar', color]} x={x} y={104 - h} width='16' height={h} style={`animation-delay: ${i * 0.15}s`} />
+            ))}
+          </g>
+          <polyline class='trend' points='40,52 70,44 96,58 122,34 150,42 178,30' fill='none' pathLength='1' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' />
+          <line x1='38' y1='104' x2='180' y2='104' class='stroke-wm-hydrogen-100' stroke-width='2' />
+          <g class='bell' transform='translate(212 34)'>
+            <g class='bell-swing'>
+              <circle cx='0' cy='-17' r='4' class='fill-wm-sun' stroke='black' stroke-width='3' />
+              <circle cx='0' cy='19' r='5' class='fill-wm-sun' stroke='black' stroke-width='3' />
+              <path d='M-15 12 Q-15 -14 0 -14 Q15 -14 15 12 L20 17 H-20 Z' class='fill-wm-sun' stroke='black' stroke-width='3.5' stroke-linejoin='round' />
+            </g>
+          </g>
+          <text class='sfx-svg sfx-ding' x='212' y='86' text-anchor='middle' font-size='22'>Ding!</text>
+        </g>
+      </g>
+    )
+  }
+
+  {
+    scene === 'wizard' && (
+      <g>
+        <g class='hat'>
+          <ellipse cx='100' cy='124' rx='76' ry='15' class='fill-wm-nitrogen-700' stroke='black' stroke-width='5' />
+          <path d='M50 122 L104 22 Q114 2 136 12 Q118 18 116 34 L152 122 Z' class='fill-wm-nitrogen' stroke='black' stroke-width='5' stroke-linejoin='round' />
+          <path d='M58 106 Q100 116 145 106 L150 120 Q100 130 52 120 Z' class='fill-wm-sun' stroke='black' stroke-width='4' stroke-linejoin='round' />
+          <polygon points={star(98, 70, 11)} class='fill-wm-sun' stroke='black' stroke-width='2.5' stroke-linejoin='round' />
+          <polygon points={star(122, 88, 6)} class='fill-wm-sun' stroke='black' stroke-width='2' stroke-linejoin='round' />
+          <polygon points={star(108, 40, 5)} class='fill-wm-sun' stroke='black' stroke-width='2' stroke-linejoin='round' />
+        </g>
+        <g transform='translate(150 104) rotate(-10)'>
+          <path d='M8 0 H70 Q86 0 88 18 L90 36 Q90 48 78 46 L64 32 H14 L0 46 Q-12 48 -12 36 L-10 18 Q-8 0 8 0 Z' class='fill-wm-hydrogen-100' stroke='black' stroke-width='4.5' stroke-linejoin='round' />
+          <path d='M14 10 h6 v6 h6 v6 h-6 v6 h-6 v-6 h-6 v-6 h6 Z' fill='black' />
+          <circle cx='62' cy='12' r='4' class='fill-wm-oxygen' stroke='black' stroke-width='2' />
+          <circle cx='69.5' cy='19' r='4' class='fill-wm-leaf' stroke='black' stroke-width='2' />
+          <circle cx='54.5' cy='19' r='4' class='fill-wm-sky' stroke='black' stroke-width='2' />
+          <circle cx='62' cy='26' r='4' class='fill-wm-sun' stroke='black' stroke-width='2' />
+        </g>
+        {SPARKLES.map(({ x, y, r, delay }) => (
+          <path class='sparkle fill-wm-hydrogen-100' d={sparkle(x, y, r)} stroke='black' stroke-width='2' stroke-linejoin='round' style={`animation-delay: ${delay}s`} />
+        ))}
+        <text class='sfx-svg sfx-ding' x='196' y='52' text-anchor='middle' font-size='24'>Zap!</text>
+      </g>
+    )
+  }
+
+  {
+    scene === 'coffee' && (
+      <g>
+        <g stroke='black' stroke-width='1.5' opacity='0.45'>
+          {SYNAPSES.map(({ x1, y1, x2, y2 }) => <line x1={x1} y1={y1} x2={x2} y2={y2} />)}
+          {LAYERS.at(-1)!.ys.map((y) => <line x1='98' y1={y} x2='128' y2='80' />)}
+        </g>
+        {LAYERS.map(({ x, ys }, l) =>
+          ys.map((y) => <circle class='neuron' cx={x} cy={y} r='7' stroke='black' stroke-width='3' style={`animation-delay: ${l * 0.35}s`} />),
+        )}
+        <g transform='rotate(18 178 80)'>
+          <ellipse cx='178' cy='80' rx='40' ry='56' class='fill-wm-wood' stroke='black' stroke-width='5' />
+          <path d='M178 26 Q160 52 178 80 Q196 108 178 134' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' />
+          <ellipse cx='162' cy='54' rx='7' ry='14' fill='white' opacity='0.35' />
+        </g>
+        <g fill='none' stroke='black' stroke-width='5' stroke-linecap='square'>
+          <path d='M128 18 h-0 v18 M128 18 h18' />
+          <path d='M228 18 v18 M228 18 h-18' />
+          <path d='M128 142 v-18 M128 142 h18' />
+          <path d='M228 142 v-18 M228 142 h-18' />
+        </g>
+        <g class='scanline'>
+          <rect x='130' y='20' width='96' height='4' class='fill-wm-oxygen' />
+          <rect x='130' y='24' width='96' height='10' class='fill-wm-oxygen' opacity='0.25' />
+        </g>
+        <text class='sfx-svg sfx-ding' x='200' y='14' text-anchor='middle' font-size='20'>Scan!</text>
+      </g>
+    )
+  }
+
+  {
+    scene === 'colorimeter' && (
+      <g>
+        <polygon class='beam fill-wm-leaf' points='48,40 112,36 112,62 48,58' />
+        <polygon class='beam beam-out fill-wm-leaf' points='136,40 186,42 186,56 136,58' />
+        <rect x='20' y='100' width='204' height='48' rx='6' class='fill-wm-sky-700' stroke='black' stroke-width='4.5' />
+        {PINS.map((x) => <rect x={x} y='104' width='6' height='8' fill='black' />)}
+        <rect x='96' y='120' width='52' height='18' rx='2' fill='black' />
+        <circle cx='38' cy='124' r='7' class='fill-wm-hydrogen-400' stroke='black' stroke-width='3' />
+        <rect class='power-led fill-wm-oxygen' x='196' y='120' width='10' height='6' stroke='black' stroke-width='2' />
+        <g stroke='black' stroke-width='3'>
+          <line x1='34' y1='66' x2='34' y2='100' />
+          <line x1='44' y1='66' x2='44' y2='100' />
+          <line x1='194' y1='66' x2='194' y2='100' />
+          <line x1='204' y1='66' x2='204' y2='100' />
+        </g>
+        <path d='M26 68 V44 Q26 28 39 28 Q52 28 52 44 V68 Z' class='fill-wm-leaf' stroke='black' stroke-width='4' stroke-linejoin='round' />
+        <rect x='22' y='64' width='34' height='6' rx='2' class='fill-wm-leaf' stroke='black' stroke-width='3' />
+        <rect x='110' y='18' width='28' height='70' rx='2' fill='white' stroke='black' stroke-width='4' />
+        <rect x='112' y='38' width='24' height='48' class='fill-wm-oxygen' />
+        <line x1='110' y1='38' x2='138' y2='38' stroke='black' stroke-width='2.5' />
+        <rect x='186' y='34' width='26' height='32' rx='3' class='fill-wm-nitrogen' stroke='black' stroke-width='4' />
+        <rect x='190' y='42' width='8' height='16' class='fill-wm-hydrogen-400' stroke='black' stroke-width='2' />
+        <text class='sfx-svg sfx-ding' x='160' y='24' text-anchor='middle' font-size='22'>Beep!</text>
+      </g>
+    )
+  }
+</svg>
+
+<style>
+  .scene :global(.sfx-svg) {
+    font-family: var(--font-comic);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    fill: var(--color-wm-sun);
+    stroke: black;
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    paint-order: stroke fill;
+  }
+
+  .sfx-ding {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sfx-ding 2.4s ease-out infinite;
+  }
+
+  @keyframes sfx-ding {
+    0%,
+    100% {
+      opacity: 0;
+      scale: 0.6;
+    }
+    12% {
+      opacity: 1;
+      scale: 1.15;
+    }
+    20%,
+    55% {
+      opacity: 1;
+      scale: 1;
+    }
+    70% {
+      opacity: 0;
+      scale: 1;
+    }
+  }
+
+  .bar {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: bar-grow 2.4s ease-in-out infinite alternate;
+  }
+
+  @keyframes bar-grow {
+    from {
+      scale: 1 0.55;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+
+  .trend {
+    stroke: var(--color-wm-sun);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: trend-draw 4.8s ease-in-out infinite;
+  }
+
+  @keyframes trend-draw {
+    0% {
+      stroke-dashoffset: 1;
+    }
+    40%,
+    85% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -1;
+    }
+  }
+
+  .bell-swing {
+    transform-origin: 0 -17px;
+    animation: bell-swing 2.4s ease-in-out infinite;
+  }
+
+  @keyframes bell-swing {
+    0%,
+    40%,
+    100% {
+      rotate: 0deg;
+    }
+    5% {
+      rotate: 22deg;
+    }
+    12% {
+      rotate: -18deg;
+    }
+    19% {
+      rotate: 12deg;
+    }
+    26% {
+      rotate: -6deg;
+    }
+  }
+
+  @media (width < 48rem) {
+    .monitor-group {
+      transform-origin: 20px 68px;
+      scale: 0.84;
+    }
+  }
+
+  .packet {
+    animation: packet 1.8s linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes packet {
+    0% {
+      translate: 0 0;
+      opacity: 0;
+    }
+    10%,
+    85% {
+      opacity: 1;
+    }
+    100% {
+      translate: 50px 0;
+      opacity: 0;
+    }
+  }
+
+  .gear {
+    animation: gear-spin 3s linear infinite;
+  }
+
+  @keyframes gear-spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  .radio path {
+    animation: radio 1.6s ease-out infinite;
+  }
+
+  @keyframes radio {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  .sensor-led {
+    animation: power-led 1.2s steps(1, end) infinite;
+  }
+
+  .hat {
+    animation: hat-bob 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes hat-bob {
+    from {
+      translate: 0 0;
+    }
+    to {
+      translate: 0 -6px;
+    }
+  }
+
+  .sparkle {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sparkle 2.6s ease-in-out infinite;
+  }
+
+  @keyframes sparkle {
+    0%,
+    100% {
+      scale: 0.3;
+      rotate: 0deg;
+    }
+    50% {
+      scale: 1;
+      rotate: 45deg;
+    }
+  }
+
+  .neuron {
+    fill: white;
+    animation: neuron 1.8s steps(1, end) infinite;
+  }
+
+  @keyframes neuron {
+    0%,
+    60% {
+      fill: white;
+    }
+    20%,
+    40% {
+      fill: var(--color-wm-sun);
+    }
+  }
+
+  .scanline {
+    animation: scan 2.2s ease-in-out infinite alternate;
+  }
+
+  @keyframes scan {
+    from {
+      translate: 0 0;
+    }
+    to {
+      translate: 0 104px;
+    }
+  }
+
+  .beam {
+    opacity: 0.75;
+    animation: beam 1.6s ease-in-out infinite alternate;
+  }
+
+  .beam-out {
+    opacity: 0.35;
+  }
+
+  @keyframes beam {
+    from {
+      fill-opacity: 0.55;
+    }
+    to {
+      fill-opacity: 1;
+    }
+  }
+
+  .power-led {
+    animation: power-led 1s steps(1, end) infinite;
+  }
+
+  @keyframes power-led {
+    50% {
+      fill: var(--color-wm-hydrogen-100);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene * {
+      animation: none !important;
+    }
+
+    .trend {
+      stroke-dashoffset: 0;
+    }
+
+    .sfx-ding {
+      opacity: 1;
+    }
+  }
+</style>

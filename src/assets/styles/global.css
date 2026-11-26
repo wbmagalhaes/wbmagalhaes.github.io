@@ -274,3 +274,10 @@
     letter-spacing: 0.03em;
   }
 }
+
+.header-bar {
+  background-color: var(--color-wm-oxygen);
+  background-image:
+    radial-gradient(ellipse 45% 160% at 0% 0%, var(--color-wm-oxygen-800), transparent 100%),
+    radial-gradient(ellipse 45% 160% at 100% 0%, var(--color-wm-oxygen-800), transparent 100%);
+}

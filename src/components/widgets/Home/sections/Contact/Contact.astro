@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 import ContentBox from '@common/ContentBox.astro';
-import BurstDivider from '@common/BurstDivider.astro';
 import PostageStamp from '@common/PostageStamp.astro';
 import { getHomeEntry } from '@services/home';
 import { getEmail, getSocials, getWorks } from '@services/myData';
@@ -23,12 +22,12 @@ const stamps = [
 ];
 ---
 
-<section id='contact' class='contact relative pt-20 md:pt-26 pb-20 md:pb-26'>
-  <BurstDivider color='var(--color-wm-nitrogen-700)' seed={13} flip />
+<section id='contact' class='contact relative z-10 pt-20 md:pt-26 pb-20 md:pb-26'>
+  <div class='contact-paper absolute inset-0 -z-10' aria-hidden='true'></div>
   <ContentBox>
     <div class='comic-page'>
       <div class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
-        <header class='comic-panel zigzag md:col-span-12 bg-wm-sun p-5 md:p-8 grid md:grid-cols-[auto_1fr] items-center gap-6 md:gap-10'>
+        <header class='comic-panel zigzag md:col-span-12 bg-wm-sun p-5 md:p-8 grid lg:grid-cols-[auto_1fr] items-center gap-6 lg:gap-10'>
           <div class='flex flex-col items-start gap-3'>
             <p class='comic-caption bg-white'>Letters to the editor</p>
             <h2 class='comic-headline text-5xl md:text-7xl'>{entry.data.title}</h2>
@@ -39,7 +38,7 @@ const stamps = [
         </header>
 
 
-        <div class='comic-panel desk md:col-span-7 p-5 md:p-6 flex flex-col justify-center gap-5'>
+        <div class='comic-panel desk md:col-span-12 lg:col-span-7 p-5 md:p-6 flex flex-col justify-center gap-5'>
           <svg data-envelope class='envelope w-full max-w-md self-center -rotate-2 [filter:drop-shadow(5px_5px_0_#000)] transition-[scale] duration-150' viewBox='0 0 300 190' role='img' aria-label='Air mail envelope addressed to William Magalhães'>
             <defs>
               <pattern id='airmail' width='28' height='28' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'>
@@ -82,9 +81,9 @@ const stamps = [
           </svg>
         </div>
 
-        <div class='comic-panel album md:col-span-5 p-5 md:p-6 flex flex-col gap-4'>
+        <div class='comic-panel album md:col-span-12 lg:col-span-5 p-5 md:p-6 flex flex-col gap-4'>
           <p class='comic-caption self-start'>Pick a stamp</p>
-          <ul class='flex-1 grid grid-cols-3 items-center gap-3 md:gap-4'>
+          <ul class='flex-1 w-full max-w-md lg:max-w-none mx-auto grid grid-cols-3 items-center gap-3 md:gap-4'>
             {
               stamps.map(({ name, link, icon, color, external }, index) => (
                 <li class:list={[index % 2 ? 'rotate-3' : '-rotate-3']}>
@@ -179,6 +178,16 @@ const stamps = [
 
 <style>
   .contact {
+    background: linear-gradient(var(--color-wm-nitrogen-700) 50%, var(--color-wm-nitrogen-800) 50%);
+  }
+
+  .contact-paper {
+    transform: skewY(-1.5deg);
+    box-shadow:
+      0 -4px 0 black,
+      0 4px 0 black,
+      0 -12px 0 rgb(0 0 0 / 0.4),
+      0 12px 0 rgb(0 0 0 / 0.4);
     background-color: var(--color-wm-hydrogen-100);
     background-image: repeating-linear-gradient(
       -45deg,
@@ -187,6 +196,25 @@ const stamps = [
       rgb(29 53 87 / 0.35) 80px 120px,
       transparent 120px 160px
     );
+  }
+
+  .contact-paper::before,
+  .contact-paper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    border-top: 3px dashed black;
+    pointer-events: none;
+  }
+
+  .contact-paper::before {
+    top: 14px;
+  }
+
+  .contact-paper::after {
+    bottom: 14px;
   }
 
   .letter :global(p + p) {

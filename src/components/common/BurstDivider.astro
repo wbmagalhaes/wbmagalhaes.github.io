@@ -6,7 +6,7 @@ type Props = {
   flip?: boolean;
 };
 
-const { color, spikes = 48, seed = 3, flip = false } = Astro.props;
+const { color, spikes = 62, seed = 3, flip = false } = Astro.props;
 
 let state = seed;
 const random = () => {
@@ -14,7 +14,7 @@ const random = () => {
   return state / 2147483647;
 };
 
-const WIDTH = 1000;
+const WIDTH = 3000;
 const HEIGHT = 60;
 const step = WIDTH / spikes;
 
@@ -33,7 +33,7 @@ const edge = Array.from({ length: spikes + 1 }, (_, i) => {
     flip ? 'top-0 -translate-y-px rotate-180' : 'bottom-full translate-y-px',
   ]}
   viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-  preserveAspectRatio='none'
+  preserveAspectRatio='xMidYMax slice'
   aria-hidden='true'
 >
   <polygon points={`0,${HEIGHT} ${edge} ${WIDTH},${HEIGHT}`} fill={color} />
