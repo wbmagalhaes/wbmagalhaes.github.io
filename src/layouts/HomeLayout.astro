@@ -3,29 +3,28 @@ import Layout from '@layouts/BaseLayout.astro';
 import type { MetaSEO } from 'types/metaseo';
 
 import { Icon } from 'astro-icon/components';
-import Socials from '@widgets/Home/Socials';
-import Email from '@widgets/Home/Email';
+import SocialsBanner from '@widgets/Home/SocialsBanner';
+import EmailBanner from '@widgets/Home/EmailBanner';
 
 import { getEmail, getSocials } from '@services/myData';
+import { emailBannerDelay } from '@widgets/Home/introTiming';
 
 const email = getEmail();
 const socials = getSocials();
 
 type Props = {
-	meta?: MetaSEO;
+  meta?: MetaSEO;
 };
 
 const { meta } = Astro.props as Props;
 ---
 
 <Layout meta={meta}>
-	<Socials socials={socials} client:idle />
+  <SocialsBanner socials={socials} client:idle />
 
-	<Email email={email} client:idle>
-		<Icon slot="icon" class="w-5 h-5" name="ic:round-alternate-email" />
-	</Email>
+  <EmailBanner email={email} delay={emailBannerDelay(socials.length)} client:idle>
+    <Icon slot='icon' class='w-6 h-6' name='ic:outline-email' />
+  </EmailBanner>
 
-	<div class="flex flex-col px-4 md:px-0 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 transition-all duration-300">
-		<slot />
-	</div>
+  <slot />
 </Layout>

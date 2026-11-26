@@ -1,5 +1,5 @@
 ---
-import '@styles/global.scss';
+import '@styles/global.css';
 
 import MetaTags from '@common/MetaTags.astro';
 import type { MetaSEO } from 'types/metaseo';
@@ -8,25 +8,25 @@ import Header from '@widgets/Header';
 import Footer from '@widgets/Footer.astro';
 
 type Props = {
-	meta?: MetaSEO;
+  meta?: MetaSEO;
 };
 
 const { meta } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="pt-br" class="scroll-smooth box-border w-full">
-	<head>
-		<MetaTags {...meta} />
-	</head>
+<html lang='en-us' class='scroll-smooth box-border w-full'>
+  <head>
+    <MetaTags {...meta} />
+  </head>
 
-	<body class="antialiased bg-wm-carbon-800 text-wm-hydrogen align-middle">
-		<Header client:idle />
+  <body class='antialiased bg-gray-100 text-black font-body'>
+    <Header client:idle />
 
-		<main class="overflow-x-hidden min-h-screen pt-32">
-			<slot />
-		</main>
+    <main class='overflow-x-hidden min-h-screen pt-32'>
+      <slot />
+    </main>
 
-		<Footer />
-	</body>
+    <Footer />
+  </body>
 </html>

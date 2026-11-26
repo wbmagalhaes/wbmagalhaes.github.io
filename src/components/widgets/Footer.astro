@@ -1,48 +1,107 @@
 ---
-import '@styles/footer.scss';
+import { execSync } from 'node:child_process';
 import { Icon } from 'astro-icon/components';
+import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
+import { getEmail, getSocials } from '@services/myData';
 
-type ToolProp = { name: string; icon: string; link?: string };
+const REPOSITORY = 'https://github.com/wbmagalhaes/wbmagalhaes.github.io';
 
-const tools: ToolProp[] = [
-	{ name: 'Astro', icon: 'simple-icons:astro', link: 'https://astro.build/' },
-	{ name: 'React', icon: 'simple-icons:react', link: 'https://reactjs.org/' },
-	{ name: 'Tailwind', icon: 'simple-icons:tailwindcss', link: 'https://tailwindcss.com/' },
+function buildCommit() {
+  try {
+    return execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
+  } catch {
+    return import.meta.env.GITHUB_SHA ?? process.env.GITHUB_SHA ?? '';
+  }
+}
+
+const commit = buildCommit();
+const email = getEmail();
+const socials = getSocials();
+
+const sections = [
+  { name: 'About me', href: '/#about' },
+  { name: 'Skills', href: '/#skills' },
+  { name: 'Experience', href: '/#experience' },
+  { name: 'Contact', href: '/#contact' },
+];
+
+const tools = [
+  { name: 'Astro', icon: 'simple-icons:astro', link: 'https://astro.build/' },
+  { name: 'Tailwind', icon: 'simple-icons:tailwindcss', link: 'https://tailwindcss.com/' },
+  { name: 'React', icon: 'simple-icons:react', link: 'https://react.dev/' },
 ];
 ---
 
-<footer
-	class="px-4 md:px-8 mx-0 sm:mx-8 md:mx-24 lg:mx-32 xl:mx-64 text-wm-hydrogen transition-all duration-300"
->
-	<section class="credits py-2 text-center">
-		2024 - Made by
-		<a class="relative after:absolute" href="https://github.com/wbmagalhaes/wbmagalhaes.github.io" target="_blank">
-			William Magalhães</a
-		>. Heavily inspired by the portfolio of
-		<a class="relative after:absolute" href="https://github.com/bchiang7/v4" target="_blank"> Brittany Chiang</a>.
-	</section>
+<footer class='site-footer relative text-wm-hydrogen-100 pt-10 md:pt-12 pb-8'>
+  <BurstDivider color='var(--color-wm-nitrogen-800)' seed={8} />
+  <ContentBox>
+    <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-8 md:gap-12'>
+      <div class='flex flex-col items-start gap-4'>
+        <a href='/#' class='block -skew-x-12 bg-white px-3 py-1 shadow-[3px_3px_0_0_var(--color-wm-oxygen)]'>
+          <span class='block skew-x-12 font-comic uppercase whitespace-nowrap tracking-[0.1em] text-3xl leading-none text-black'>
+            W.M. <span class='text-wm-oxygen'>Comics</span>
+          </span>
+        </a>
+        <p class='font-lettering font-bold leading-snug text-wm-hydrogen-400 max-w-xs'>
+          The full-stack adventures of William Magalhães. New issues whenever the compiler allows.
+        </p>
+      </div>
 
-	<section class="py-2 border-t border-wm-carbon-400">
-		<div class="tool-list flex flex-row flex-wrap gap-2 justify-center text-sm sm:text-base font-mono">
-			{
-				tools.map(({ name, icon, link }) => {
-					return (
-						<a class="relative after:absolute" href={link} target="_blank">
-							<div class="inline-flex align-text-bottom">
-								<Icon name={icon} class="w-4 h-4 sm:w-5 sm:h-5" />
-							</div>
-							{name}
-						</a>
-					);
-				})
-			}
-			e
-			<span>
-				<div class="inline-flex align-text-bottom">
-					<Icon name="ant-design:heart-filled" class="w-4 h-4 sm:w-5 sm:h-5" />
-				</div>
-				Amor
-			</span>
-		</div>
-	</section>
+      <nav aria-label='Footer'>
+        <h2 class='font-comic uppercase tracking-widest text-xl text-wm-sun [text-shadow:2px_2px_0_#000]'>Chapters</h2>
+        <ul class='mt-3 flex flex-col gap-2 font-lettering font-bold'>
+          {sections.map(({ name, href }, index) => (
+            <li>
+              <a href={href} class='group inline-flex items-baseline gap-2 hover:text-wm-sun'>
+                <span class='font-comic text-wm-oxygen group-hover:text-wm-sun'>{index + 1}.</span>
+                {name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class='font-comic uppercase tracking-widest text-xl text-wm-sun [text-shadow:2px_2px_0_#000]'>Find me</h2>
+        <ul class='mt-3 flex flex-col gap-2 font-lettering font-bold'>
+          <li>
+            <a href={`mailto:${email}`} class='inline-flex items-center gap-2 hover:text-wm-sun'>
+              <Icon name='ic:outline-email' class='size-5' />Email
+            </a>
+          </li>
+          {socials.map(({ name, link }) => (
+            <li>
+              <a href={link} target='_blank' rel='noreferrer' class='inline-flex items-center gap-2 hover:text-wm-sun'>
+                <Icon name={`simple-icons:${name.toLowerCase()}`} class='size-5' />{name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class='mt-10 pt-5 border-t-2 border-wm-hydrogen-100/15 flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm font-lettering font-bold text-wm-hydrogen-500'>
+      <p>© {new Date().getFullYear()} William Magalhães</p>
+      <p class='flex flex-wrap items-center gap-x-3 gap-y-1'>
+        <span>Built with</span>
+        {tools.map(({ name, icon, link }) => (
+          <a href={link} target='_blank' rel='noreferrer' class='inline-flex items-center gap-1 hover:text-wm-sun'>
+            <Icon name={icon} class='size-4' />{name}
+          </a>
+        ))}
+        {commit && (
+          <a href={`${REPOSITORY}/commit/${commit}`} target='_blank' rel='noreferrer' class='inline-flex items-center gap-1 font-mono hover:text-wm-sun'>
+            v{commit.slice(0, 7)}
+          </a>
+        )}
+      </p>
+    </div>
+  </ContentBox>
 </footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-wm-nitrogen-800);
+  }
+</style>

@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-title: 'Mononoki', monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-body: 'JetBrains Mono Variable', monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-comic: 'Bangers', 'Impact', sans-serif;
+  --font-lettering: 'Comic Neue', 'Comic Sans MS', cursive;
+  --font-terminal: 'VT323', ui-monospace, monospace;
+
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+
+  --background-image-footer-texture: url('/images/pattern-diagonal-stripes.svg');
+
+  --color-wm-carbon: #141414;
+  --color-wm-carbon-100: #5C5C5C;
+  --color-wm-carbon-200: #525252;
+  --color-wm-carbon-300: #474747;
+  --color-wm-carbon-400: #3D3D3D;
+  --color-wm-carbon-500: #333333;
+  --color-wm-carbon-600: #292929;
+  --color-wm-carbon-700: #1F1F1F;
+  --color-wm-carbon-800: #141414;
+  --color-wm-carbon-900: #0A0A0A;
+
+  --color-wm-hydrogen: #EAEAEA;
+  --color-wm-hydrogen-100: #F5F5F5;
+  --color-wm-hydrogen-200: #EAEAEA;
+  --color-wm-hydrogen-300: #E0E0E0;
+  --color-wm-hydrogen-400: #D6D6D6;
+  --color-wm-hydrogen-500: #CCCCCC;
+  --color-wm-hydrogen-600: #C2C2C2;
+  --color-wm-hydrogen-700: #B8B8B8;
+  --color-wm-hydrogen-800: #ADADAD;
+  --color-wm-hydrogen-900: #A3A3A3;
+
+  --color-wm-oxygen: #E63946;
+  --color-wm-oxygen-100: #F4A4AB;
+  --color-wm-oxygen-200: #EF8089;
+  --color-wm-oxygen-300: #EB5C68;
+  --color-wm-oxygen-400: #E94957;
+  --color-wm-oxygen-500: #E53935;
+  --color-wm-oxygen-600: #E42535;
+  --color-wm-oxygen-700: #DA1B2B;
+  --color-wm-oxygen-800: #A31420;
+  --color-wm-oxygen-900: #7F1019;
+
+  --color-wm-nitrogen: #1D3557;
+  --color-wm-nitrogen-100: #335D99;
+  --color-wm-nitrogen-200: #2E548A;
+  --color-wm-nitrogen-300: #294B7A;
+  --color-wm-nitrogen-400: #24416B;
+  --color-wm-nitrogen-500: #1D3557;
+  --color-wm-nitrogen-600: #192F4D;
+  --color-wm-nitrogen-700: #14253D;
+  --color-wm-nitrogen-800: #0F1C2E;
+  --color-wm-nitrogen-900: #0A131F;
+
+  --color-wm-sun: #FFD23F;
+  --color-wm-sun-300: #FFE58A;
+  --color-wm-sun-700: #D99A00;
+  --color-wm-sky: #4CC9F0;
+  --color-wm-sky-300: #A6E4F7;
+  --color-wm-tangerine: #FF8C42;
+  --color-wm-lilac: #B9A7F0;
+  --color-wm-paper: #F3E9D2;
+  --color-wm-board: #2F4A3B;
+  --color-wm-wood: #8A5A35;
+  --color-wm-sky-700: #1A7FA8;
+  --color-wm-leaf: #7BC950;
+  --color-wm-leaf-700: #3F8A23;
+
+  --color-wm-gold: #C6B42A;
+  --color-wm-gold-100: #E2D678;
+  --color-wm-gold-200: #DBCC57;
+  --color-wm-gold-300: #D8C746;
+  --color-wm-gold-400: #D4C235;
+  --color-wm-gold-500: #C6B42A;
+  --color-wm-gold-600: #B9A827;
+  --color-wm-gold-700: #A89924;
+  --color-wm-gold-800: #978A20;
+  --color-wm-gold-900: #766B19;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-pt-16;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  h5 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-base;
+  }
+
+  p {
+    @apply max-w-[80ch];
+  }
+
+  .section-divider {
+    @apply relative whitespace-nowrap flex items-center gap-4 md:gap-8 font-mono font-bold mb-16;
+
+    &::after,
+    &::before {
+      @apply block h-[1px];
+    }
+
+    &::after {
+      @apply w-72;
+    }
+
+    &::before {
+      @apply w-12;
+    }
+  }
+
+  .section-divider.section-center {
+    @apply justify-center;
+
+    &::after {
+      @apply w-16;
+    }
+
+    &::before {
+      @apply w-16;
+    }
+  }
+
+  .red-neon {
+    filter: drop-shadow(0 0 12px rgb(230 57 70 / 0.4))
+      drop-shadow(0 0 4px rgb(230 57 70 / 0.8));
+  }
+
+  .sides-fade {
+    mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0) 0%,
+      rgb(0 0 0 / 1) 20%,
+      rgb(0 0 0 / 1) 80%,
+      rgb(0 0 0 / 0) 100%
+    );
+  }
+
+  .hard-shadow {
+    filter: drop-shadow(2px 2px 0 black);
+  }
+
+  .hard-shadow-4 {
+    filter: drop-shadow(4px 4px 0 black);
+  }
+
+  svg.hard-shadow {
+    stroke: black;
+    stroke-width: 12;
+  }
+
+  .card-header {
+    position: relative;
+    overflow: hidden;
+
+    --bg-rotation: 25deg;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+
+      width: 150%;
+      aspect-ratio: 1;
+      translate: 0 -50%;
+
+      background-image: radial-gradient(rgba(0 0 0 / 0.2) 30%, transparent 30%);
+      background-size: 18px 18px;
+
+      rotate: var(--bg-rotation);
+      transform-origin: center;
+      mask-image: linear-gradient(
+        calc(90deg - var(--bg-rotation)),
+        rgb(0 0 0 / 0) 0%,
+        rgb(0 0 0 / 0) 10%,
+        rgb(0 0 0 / 1) 90%,
+        rgb(0 0 0 / 1) 100%
+      );
+    }
+  }
+
+  .comic-page {
+    background: white;
+    border: 3px solid black;
+    padding: 0.75rem;
+    box-shadow: 8px 8px 0 0 black;
+
+    @media (width >= 48rem) {
+      padding: 1.25rem;
+    }
+  }
+
+  .comic-panel {
+    border: 3px solid black;
+  }
+
+  .comic-caption {
+    display: inline-block;
+    background: var(--color-wm-sun);
+    border: 3px solid black;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-lettering);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  .comic-headline {
+    font-family: var(--font-comic);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: white;
+    text-shadow: 3px 3px 0 black;
+    -webkit-text-stroke: 1.5px black;
+    paint-order: stroke fill;
+  }
+
+  .comic-balloon {
+    background: white;
+    border: 3px solid black;
+    border-radius: 1.25rem;
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-lettering);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+  }
+}

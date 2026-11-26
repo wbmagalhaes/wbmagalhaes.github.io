@@ -3,13 +3,18 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 
 import mdx from '@astrojs/mdx';
+import { unified } from '@astrojs/markdown-remark';
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
 
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
+import { vendorChunks } from './vite/vendor-chunks.ts';
 import icon from "astro-icon";
 
-import { SITE } from './src/config.mjs';
+import sitemap from '@astrojs/sitemap';
+import partytown from '@astrojs/partytown';
+
+import { SITE } from './src/config.ts';
 
 export default defineConfig({
 	site: SITE.origin,
@@ -19,20 +24,15 @@ export default defineConfig({
 
 	markdown: {
 		syntaxHighlight: 'prism',
-		gfm: true,
+		processor: unified({
+			remarkPlugins: [remarkMath],
+			rehypePlugins: [rehypeKatex],
+		}),
 	},
 
 	integrations: [
 		react(),
-		mdx({
-			remarkPlugins: [remarkMath],
-			rehypePlugins: [rehypeKatex]
-		}),
-		tailwind({
-			config: {
-				applyBaseStyles: false,
-			},
-		}),
+		mdx(),
 		icon({
 			include: {
 				ic: ['*'],
@@ -40,18 +40,29 @@ export default defineConfig({
 				'simple-icons': ['*'],
 			},
 		}),
+		sitemap(),
+		partytown({
+			config: {
+				debug: false,
+				forward: ['dataLayer.push', 'gtag'],
+			},
+		}),
 	],
 
 	vite: {
-		build: {
-			target: 'es2021',
-			chunkSizeWarningLimit: 1024,
-		},
-		server:{
-			host: "0.0.0.0",
-			hmr: { clientPort: 4321 },
-			port: 4321,
-			watch: { usePolling: true }
+		plugins: [tailwindcss(), vendorChunks()],
+		ssr: {
+			noExternal: [
+				/^@react-three\//,
+				/^three-/,
+				/^troika-/,
+				'@monogrid/gainmap-js',
+				'camera-controls',
+				'detect-gpu',
+				'maath',
+				'meshline',
+				'stats-gl',
+			],
 		},
 	},
 });

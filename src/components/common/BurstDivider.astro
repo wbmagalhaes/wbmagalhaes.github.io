@@ -1,0 +1,42 @@
+---
+type Props = {
+  color: string;
+  spikes?: number;
+  seed?: number;
+  flip?: boolean;
+};
+
+const { color, spikes = 48, seed = 3, flip = false } = Astro.props;
+
+let state = seed;
+const random = () => {
+  state = (state * 16807) % 2147483647;
+  return state / 2147483647;
+};
+
+const WIDTH = 1000;
+const HEIGHT = 60;
+const step = WIDTH / spikes;
+
+const edge = Array.from({ length: spikes + 1 }, (_, i) => {
+  const x = i * step;
+  const valley = HEIGHT - 6 - random() * 10;
+  const peakX = x + step * (0.3 + random() * 0.4);
+  const peakY = 4 + random() * 22;
+  return i === spikes ? `${x},${valley}` : `${x},${valley} ${peakX.toFixed(1)},${peakY.toFixed(1)}`;
+}).join(' ');
+---
+
+<svg
+  class:list={[
+    'pointer-events-none absolute inset-x-0 z-10 w-full h-10 md:h-14',
+    flip ? 'top-0 -translate-y-px rotate-180' : 'bottom-full translate-y-px',
+  ]}
+  viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+  preserveAspectRatio='none'
+  aria-hidden='true'
+>
+  <polygon points={`0,${HEIGHT} ${edge} ${WIDTH},${HEIGHT}`} fill={color} />
+  <polyline points={edge} transform='translate(0 5)' fill='none' stroke='black' stroke-opacity='0.35' stroke-width='6' vector-effect='non-scaling-stroke' />
+  <polyline points={edge} fill='none' stroke='black' stroke-width='3' stroke-linejoin='round' vector-effect='non-scaling-stroke' />
+</svg>

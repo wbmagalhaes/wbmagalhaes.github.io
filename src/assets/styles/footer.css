@@ -1,0 +1,21 @@
+@reference "./global.css";
+
+footer {
+  a[href] {
+    @apply relative;
+
+    &::after {
+      @apply absolute;
+      @apply content-[''];
+      @apply bg-wm-oxygen w-0 h-[1px] bottom-0 left-0 transition-all duration-300;
+    }
+
+    &:hover::after {
+      @apply w-full;
+    }
+
+    &:hover {
+      @apply text-wm-oxygen;
+    }
+  }
+}

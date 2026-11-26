@@ -1,16 +1,24 @@
 ---
-import Content from '@collections/home/experience.mdx';
-import { components } from '@widgets/Home/components/Components.astro';
-
-import WorkTabs from './WorkTabs';
+import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
+import { getHomeEntry } from '@services/home';
 import { getWorks } from '@services/myData';
+import ExperienceBook from './ExperienceBook';
 
-const work = getWorks();
+const works = getWorks();
+const { entry } = await getHomeEntry('experience');
 ---
 
-<section id="experience" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<Content components={components} />
-		<WorkTabs list={work} client:idle />
-	</div>
+<section id='experience' class='experience relative z-10 pt-10 md:pt-12 pb-10 md:pb-12'>
+  <BurstDivider color='var(--color-wm-nitrogen-700)' seed={9} />
+  <ContentBox>
+    <h2 class='sr-only'>{entry.data.title}</h2>
+    <ExperienceBook works={works} firstPageNumber={3} client:visible />
+  </ContentBox>
 </section>
+
+<style>
+  .experience {
+    background-color: var(--color-wm-nitrogen-700);
+  }
+</style>

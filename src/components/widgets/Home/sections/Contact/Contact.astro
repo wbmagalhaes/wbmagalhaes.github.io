@@ -1,12 +1,256 @@
 ---
-import Content from '@collections/home/contact.mdx';
-import { components } from '@widgets/Home/components/Components.astro';
+import { Icon } from 'astro-icon/components';
+import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
+import PostageStamp from '@common/PostageStamp.astro';
+import { getHomeEntry } from '@services/home';
+import { getEmail, getSocials, getWorks } from '@services/myData';
+
+const email = getEmail();
+const socials = getSocials();
+const { entry, Content } = await getHomeEntry('contact');
+const pageNumber = 3 + getWorks().length;
+
+const stamps = [
+  { name: 'Email', link: `mailto:${email}`, icon: 'ic:outline-email', color: 'var(--color-wm-oxygen)', external: false },
+  ...socials.map((social, index) => ({
+    name: social.name,
+    link: social.link,
+    icon: `simple-icons:${social.name.toLowerCase()}`,
+    color: ['var(--color-wm-sky)', 'var(--color-wm-leaf)', 'var(--color-wm-sun)'][index % 3],
+    external: true,
+  })),
+];
 ---
 
-<section id="contact" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<center>
-			<Content components={components} />
-		</center>
-	</div>
+<section id='contact' class='contact relative pt-20 md:pt-26 pb-20 md:pb-26'>
+  <BurstDivider color='var(--color-wm-nitrogen-700)' seed={13} flip />
+  <ContentBox>
+    <div class='comic-page'>
+      <div class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
+        <header class='comic-panel zigzag md:col-span-12 bg-wm-sun p-5 md:p-8 grid md:grid-cols-[auto_1fr] items-center gap-6 md:gap-10'>
+          <div class='flex flex-col items-start gap-3'>
+            <p class='comic-caption bg-white'>Letters to the editor</p>
+            <h2 class='comic-headline text-5xl md:text-7xl'>{entry.data.title}</h2>
+          </div>
+          <div class='letter bg-white border-[3px] border-black p-4 md:p-5 font-lettering font-bold leading-snug -rotate-1'>
+            <Content />
+          </div>
+        </header>
+
+
+        <div class='comic-panel desk md:col-span-7 p-5 md:p-6 flex flex-col justify-center gap-5'>
+          <svg data-envelope class='envelope w-full max-w-md self-center -rotate-2 [filter:drop-shadow(5px_5px_0_#000)] transition-[scale] duration-150' viewBox='0 0 300 190' role='img' aria-label='Air mail envelope addressed to William Magalhães'>
+            <defs>
+              <pattern id='airmail' width='28' height='28' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'>
+                <rect width='14' height='28' class='fill-wm-oxygen' />
+                <rect x='14' width='14' height='28' class='fill-wm-nitrogen' />
+              </pattern>
+            </defs>
+            <rect x='2' y='2' width='296' height='186' rx='4' fill='url(#airmail)' stroke='black' stroke-width='4' />
+            <rect x='12' y='12' width='276' height='166' fill='white' stroke='black' stroke-width='2' />
+
+            <g class='font-lettering' font-weight='700' fill='black'>
+              <text x='24' y='34' font-size='9' letter-spacing='1'>FROM: YOU</text>
+              <text x='24' y='46' font-size='9' letter-spacing='1'>SOMEWHERE ON EARTH</text>
+            </g>
+
+            <g transform='translate(228 22) rotate(3)'>
+              <rect width='46' height='56' fill='white' stroke='black' stroke-width='1.5' stroke-dasharray='3 2' />
+              <rect x='5' y='5' width='36' height='46' class='fill-wm-sun' stroke='black' stroke-width='2' />
+              <text x='23' y='34' text-anchor='middle' class='font-comic' font-size='16'>42¢</text>
+            </g>
+            <g fill='none' stroke='black' stroke-width='1.5' opacity='0.75'>
+              <circle cx='214' cy='56' r='19' />
+              <circle cx='214' cy='56' r='14' />
+              <path d='M236 44 q6 -4 12 0 t12 0 t12 0 M236 52 q6 -4 12 0 t12 0 t12 0 M236 60 q6 -4 12 0 t12 0 t12 0' />
+            </g>
+            <text x='214' y='59' text-anchor='middle' class='font-comic' font-size='8' opacity='0.75'>W.M.</text>
+
+            <text x='22' y='88' class='font-comic' font-size='14' letter-spacing='2' fill='var(--color-wm-oxygen)'>PAR AVION · AIR MAIL</text>
+
+            <g class='font-lettering' font-weight='700' font-size='13' letter-spacing='0.5'>
+              <text x='96' y='122'>TO: WILLIAM MAGALHÃES</text>
+              <text x='96' y='140'>W.M. COMICS HQ</text>
+              <text x='96' y='158'>THE INTERNET</text>
+            </g>
+            <g stroke='black' stroke-width='1' opacity='0.35'>
+              <line x1='96' y1='126' x2='276' y2='126' />
+              <line x1='96' y1='144' x2='276' y2='144' />
+              <line x1='96' y1='162' x2='276' y2='162' />
+            </g>
+          </svg>
+        </div>
+
+        <div class='comic-panel album md:col-span-5 p-5 md:p-6 flex flex-col gap-4'>
+          <p class='comic-caption self-start'>Pick a stamp</p>
+          <ul class='flex-1 grid grid-cols-3 items-center gap-3 md:gap-4'>
+            {
+              stamps.map(({ name, link, icon, color, external }, index) => (
+                <li class:list={[index % 2 ? 'rotate-3' : '-rotate-3']}>
+                  <button
+                    type='button'
+                    data-stamp
+                    data-href={link}
+                    data-external={external ? 'true' : undefined}
+                    aria-label={`Send via ${name}`}
+                    class='stamp-link block w-full touch-none cursor-grab active:cursor-grabbing'
+                  >
+                    <PostageStamp color={color}>
+                      <Icon name={icon} class='size-8 md:size-9' />
+                      <span class='font-comic uppercase tracking-wider text-sm md:text-base leading-none'>{name}</span>
+                    </PostageStamp>
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        {
+          entry.data.subtitle && (
+            <div class='comic-panel hatched md:col-span-12 bg-wm-nitrogen flex justify-center px-5 py-8 md:py-10'>
+              <p class='comic-headline text-center text-3xl md:text-5xl'>{entry.data.subtitle}</p>
+            </div>
+          )
+        }
+      </div>
+
+      <footer class='pt-2 md:pt-3 text-right font-comic tracking-widest text-lg leading-none'>{pageNumber}</footer>
+    </div>
+  </ContentBox>
 </section>
+
+<script>
+  const envelope = document.querySelector<SVGElement>('[data-envelope]');
+
+  function send(stamp: HTMLElement) {
+    const href = stamp.dataset.href;
+    if (!href) return;
+    if (stamp.dataset.external) window.open(href, '_blank', 'noopener');
+    else window.location.href = href;
+  }
+
+  function overEnvelope(x: number, y: number) {
+    if (!envelope) return false;
+    const rect = envelope.getBoundingClientRect();
+    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-stamp]').forEach((stamp) => {
+    let start = { x: 0, y: 0 };
+    let dragging = false;
+
+    stamp.addEventListener('pointerdown', (event) => {
+      dragging = true;
+      start = { x: event.clientX, y: event.clientY };
+      stamp.setPointerCapture(event.pointerId);
+      stamp.classList.add('dragging');
+      stamp.closest('li')?.classList.add('lifted');
+      stamp.closest('.comic-panel')?.classList.add('lifted');
+    });
+
+    stamp.addEventListener('pointermove', (event) => {
+      if (!dragging) return;
+      stamp.style.translate = `${event.clientX - start.x}px ${event.clientY - start.y}px`;
+      envelope?.classList.toggle('drop-ready', overEnvelope(event.clientX, event.clientY));
+    });
+
+    stamp.addEventListener('pointerup', (event) => {
+      if (!dragging) return;
+      dragging = false;
+      stamp.classList.remove('dragging');
+      stamp.closest('li')?.classList.remove('lifted');
+      stamp.closest('.comic-panel')?.classList.remove('lifted');
+      envelope?.classList.remove('drop-ready');
+      const dropped = overEnvelope(event.clientX, event.clientY);
+      stamp.style.translate = '';
+      if (dropped) send(stamp);
+    });
+
+    stamp.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        send(stamp);
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact {
+    background-color: var(--color-wm-hydrogen-100);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgb(230 57 70 / 0.35) 0 40px,
+      transparent 40px 80px,
+      rgb(29 53 87 / 0.35) 80px 120px,
+      transparent 120px 160px
+    );
+  }
+
+  .letter :global(p + p) {
+    margin-top: 0.75rem;
+  }
+
+  .zigzag {
+    --zig: rgb(217 154 0 / 0.35);
+    background-image:
+      linear-gradient(135deg, var(--zig) 25%, transparent 25%),
+      linear-gradient(225deg, var(--zig) 25%, transparent 25%),
+      linear-gradient(315deg, var(--zig) 25%, transparent 25%),
+      linear-gradient(45deg, var(--zig) 25%, transparent 25%);
+    background-position: -12px 0, -12px 0, 0 0, 0 0;
+    background-size: 24px 24px;
+  }
+
+  .hatched {
+    background-image: repeating-linear-gradient(-45deg, var(--color-wm-nitrogen-700) 0 2px, transparent 2px 9px);
+  }
+
+  .desk {
+    background-color: #b7804f;
+    background-image:
+      repeating-linear-gradient(
+        180deg,
+        rgb(92 52 20 / 0) 0,
+        rgb(92 52 20 / 0.16) 1.5px,
+        rgb(92 52 20 / 0) 3px 10px,
+        rgb(92 52 20 / 0.09) 11px,
+        rgb(92 52 20 / 0) 12px 23px
+      ),
+      linear-gradient(90deg, rgb(0 0 0 / 0.06), transparent 30%, transparent 70%, rgb(0 0 0 / 0.06));
+  }
+
+  .album {
+    background-color: var(--color-wm-paper);
+    background-image:
+      linear-gradient(rgb(92 64 30 / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(92 64 30 / 0.12) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .stamp-link {
+    transition: translate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .stamp-link.dragging {
+    position: relative;
+    z-index: 50;
+    transition: none;
+    scale: 1.1;
+  }
+
+  .lifted {
+    position: relative;
+    z-index: 50;
+  }
+
+  .envelope.drop-ready {
+    scale: 1.04;
+  }
+
+  .stamp-link {
+    filter: drop-shadow(3px 3px 0 rgb(0 0 0 / 0.5));
+  }
+</style>

@@ -1,4 +1,4 @@
-import { type P5CanvasInstance } from '@p5-wrapper/react';
+import type P5 from 'p5';
 import { SteerOptions } from './SteerOptions';
 import { Food } from './Food';
 
@@ -29,7 +29,7 @@ export class Boid {
 	private totalClear: any;
 	private totalAttraction: any;
 
-	constructor(p5: P5CanvasInstance) {
+	constructor(p5: P5) {
 		this.position = p5.createVector(p5.random(-1, 1), p5.random(-1, 1)).mult(250);
 		this.velocity = p5.createVector(p5.random(-1, 1), p5.random(-1, 1)).mult(100);
 		this.acceleration = p5.createVector(0);
@@ -176,7 +176,7 @@ export class Boid {
 		else if (this.position.y > limY) this.position.y = -limY;
 	}
 
-	render(p5: P5CanvasInstance) {
+	render(p5: P5) {
 		p5.push();
 
 		p5.translate(this.position);

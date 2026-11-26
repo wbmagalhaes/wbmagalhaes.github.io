@@ -1,8 +1,7 @@
 import { Vector3 } from 'three';
 import type { SceneProps } from './Scene';
 import type { EnvironmentProps } from './Environment';
-import type { OrbitControlsProps } from '@react-three/drei';
-import type { PerspectiveCameraProps } from '@react-three/fiber';
+import type { OrbitControlsProps, PerspectiveCameraProps } from '@react-three/drei';
 
 export const CameraData: PerspectiveCameraProps = {
 	position: [6, 6, 20],

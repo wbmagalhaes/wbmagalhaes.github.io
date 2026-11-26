@@ -1,4 +1,4 @@
-import { ReactP5Wrapper, type P5CanvasInstance, type SketchProps } from '@p5-wrapper/react';
+import { P5Canvas, type P5CanvasInstance, type SketchProps } from '@p5-wrapper/react';
 
 import { Boid } from './BoidObject';
 import { Food } from './Food';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function Sketch({ size, options }: Props) {
-	return <ReactP5Wrapper sketch={sketch} size={size} options={options} />;
+	return <P5Canvas sketch={sketch} size={size} options={options} />;
 }
 
 function sketch(p5: P5CanvasInstance<SketchProps & Props>) {

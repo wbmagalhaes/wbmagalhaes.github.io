@@ -1,18 +1,504 @@
 ---
-import Content from '@collections/home/about.mdx';
-import { components } from '@widgets/Home/components/Components.astro';
+import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
+import Hydrocarbons from './Hydrocarbons.astro';
+import { getHomeEntry } from '@services/home';
 
-import TechStack from './TechStack';
-import { getTechStacks } from '@services/myData';
+const { entry } = await getHomeEntry('about');
+const [origin, specialization, remote, finale] = entry.data.panels ?? [];
+const [remoteFirst, ...remoteRest] = remote?.text?.split('|') ?? [];
 
-const techs = getTechStacks();
+const FLASK = 'M38 10 H62 V48 L90 112 Q92 120 84 120 H16 Q8 120 10 112 L38 48 Z';
+const LIQUID = 'M-40 84 H140 V160 H-40 Z';
+const CALENDAR_DAYS = Array.from({ length: 4 }, (_, row) =>
+  Array.from({ length: 7 }, (_, col) => ({ x: 20 + col * 18, y: 96 + row * 11 })),
+)
+  .flat()
+  .filter(({ x, y }) => !(x === 74 && y === 107));
+const LAPTOP_KEYS = [
+  { y: 91, count: 12, inset: 0 },
+  { y: 95.5, count: 12, inset: 3 },
+  { y: 100, count: 11, inset: 6 },
+].flatMap(({ y, count, inset }) => {
+  const left = 22 - (y - 88) * 0.67 + inset;
+  const right = 138 + (y - 88) * 0.67 - inset;
+  const gap = 1.6;
+  const width = (right - left - gap * (count - 1)) / count;
+  return Array.from({ length: count }, (_, i) => {
+    const x = left + i * (width + gap);
+    return `M${x.toFixed(1)} ${y} h${width.toFixed(1)} l0.4 3.2 h-${(width + 0.8).toFixed(1)} Z`;
+  });
+});
+const CODE_LINES = [
+  { x1: 36, x2: 58, y: 24, color: 'stroke-wm-sky' },
+  { x1: 62, x2: 76, y: 24, color: 'stroke-wm-oxygen-200' },
+  { x1: 44, x2: 72, y: 66, color: 'stroke-wm-leaf' },
+  { x1: 76, x2: 96, y: 66, color: 'stroke-wm-sky' },
+  { x1: 36, x2: 50, y: 72, color: 'stroke-wm-oxygen-200' },
+];
+const RAYS = 'repeating-conic-gradient(from 0deg at 85% 55%, var(--color-wm-oxygen) 0deg 6deg, var(--color-wm-oxygen-600) 6deg 12deg)';
+const PUFF = [
+  { cx: 0, cy: 0, r: 11 },
+  { cx: -12, cy: 4, r: 8 },
+  { cx: 12, cy: 4, r: 9 },
+  { cx: 2, cy: -9, r: 8 },
+  { cx: -6, cy: -5, r: 7 },
+];
+const PUFFS = [
+  { drift: -34, spin: -70, delay: 0 },
+  { drift: 30, spin: 95, delay: 1.1 },
+  { drift: -22, spin: -40, delay: 2.2 },
+];
+const BUBBLES = [
+  { x: 44, r: 4, delay: 0 },
+  { x: 56, r: 3, delay: 0.9 },
+  { x: 50, r: 5, delay: 1.7 },
+  { x: 60, r: 2.5, delay: 2.5 },
+];
 ---
 
-<section id="about" class="h-full min-h-screen pt-32">
-	<div class="flex flex-col">
-		<Content components={components} />
-	</div>
-	<div class="max-w-lg lg:max-w-xl flex flex-col">
-		<TechStack techs={techs} client:idle />
-	</div>
+<section id='about' class='about relative z-10 pt-10 md:pt-12 pb-10 md:pb-12'>
+  <BurstDivider color='var(--color-wm-nitrogen-700)' />
+  <ContentBox class='relative'>
+    <div class='comic-page' data-reveal>
+      <h2 class='sr-only'>{entry.data.title}</h2>
+
+      <div class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
+        {
+          origin && (
+            <article class='comic-panel relative md:col-span-12 bg-wm-sky flex items-center gap-6 p-5 md:p-8 min-h-56 overflow-hidden' style='--i: 0'>
+              <Hydrocarbons class='absolute inset-0 size-full pointer-events-none opacity-50' color='var(--color-wm-sky-700)' />
+              <div class='relative z-10 flex-1'>
+                <p class='comic-caption'>{origin.caption}</p>
+                <h3 class='comic-headline text-4xl md:text-6xl mt-3'>{origin.title}</h3>
+              </div>
+              <span class='sfx hidden sm:flex absolute bottom-3 md:bottom-4 right-3 md:right-6 -rotate-12 items-end gap-2 text-3xl md:text-4xl' aria-hidden='true'>
+                <span class='sfx-pop'>Blub</span>
+                <span class='sfx-pop -translate-y-3' style='animation-delay: 0.9s'>blub!</span>
+              </span>
+              <div class='relative flex flex-col sm:flex-row items-center'>
+                  <div class='relative z-10 max-w-64 md:max-w-72 mr-2'>
+                    <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
+                      <path d='M0 9 L54 20 L0 31 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
+                    </svg>
+                    <p class='comic-balloon relative'>{origin.text}</p>
+                    <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
+                      <path d='M0 9 L54 20 L0 31 Z' fill='white' />
+                    </svg>
+                  </div>
+                  <svg class='flask relative hidden sm:block shrink-0 w-28 md:w-40 overflow-visible' viewBox='0 0 100 130' aria-hidden='true'>
+                  <defs>
+                    <clipPath id='flask-inside'>
+                      <path d={FLASK} />
+                    </clipPath>
+                    <clipPath id='flask-liquid-area'>
+                      <path class='flask-liquid' d={LIQUID} />
+                    </clipPath>
+                  </defs>
+                  <path d={FLASK} fill='white' />
+                  <g clip-path='url(#flask-inside)'>
+                    <g class='flask-liquid'>
+                      <path class='fill-wm-oxygen' d={LIQUID} />
+                    </g>
+                    <g class='fill-wm-oxygen'>
+                      {BUBBLES.map(({ x, r, delay }) => (
+                        <circle class='flask-bubble' cx={x} cy='112' r={r} style={`animation-delay: ${delay}s`} />
+                      ))}
+                    </g>
+                    <g fill='white' clip-path='url(#flask-liquid-area)'>
+                      {BUBBLES.map(({ x, r, delay }) => (
+                        <circle class='flask-bubble' cx={x} cy='112' r={r} style={`animation-delay: ${delay}s`} />
+                      ))}
+                    </g>
+                  </g>
+                  <path d={FLASK} fill='none' stroke='black' stroke-width='4' stroke-linejoin='round' />
+                  <line x1='32' y1='10' x2='68' y2='10' stroke='black' stroke-width='4' stroke-linecap='round' />
+                  {PUFFS.map(({ drift, spin, delay }) => (
+                    <g class='flask-puff' style={`--drift: ${drift}px; animation-delay: ${delay}s`}>
+                      <g transform={`translate(50 2) rotate(${spin})`}>
+                        {PUFF.map((c) => <circle cx={c.cx} cy={c.cy} r={c.r} class='fill-wm-oxygen-200' />)}
+                      </g>
+                    </g>
+                  ))}
+                </svg>
+              </div>
+            </article>
+          )
+        }
+
+        {
+          specialization && (
+            <article class='comic-panel chalkboard relative md:col-span-7 flex flex-col gap-4 px-5 pt-5 pb-10 md:px-6 md:pt-6 md:pb-12' style='--i: 1'>
+              <svg class='absolute size-0' aria-hidden='true'>
+                <filter id='chalk' x='-5%' y='-5%' width='110%' height='110%'>
+                  <feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='4' result='noise' />
+                  <feDisplacementMap in='SourceGraphic' in2='noise' scale='3' xChannelSelector='R' yChannelSelector='G' result='rough' />
+                  <feColorMatrix in='noise' type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -1.6 1.25' result='grain' />
+                  <feComposite in='rough' in2='grain' operator='in' />
+                </filter>
+              </svg>
+              <p class='comic-caption self-start'>{specialization.caption}</p>
+              <div class='flex-1 grid sm:grid-cols-[1fr_auto] md:grid-cols-[1fr_1.1fr] items-center gap-6'>
+                <div class='flex flex-col items-start gap-4'>
+                  <h3 class='chalk font-comic uppercase tracking-wide leading-[0.95] text-white text-3xl md:text-4xl'>{specialization.title}</h3>
+                  <p class='chalk font-lettering font-bold leading-snug text-white/90 text-[18px] border-l-4 border-white/50 pl-3'>{specialization.text}</p>
+                </div>
+                <svg class='chalk w-60 md:w-full max-w-72 mx-auto overflow-visible' viewBox='0 -12 200 214' role='img' aria-label='Chemistry, Programming and Electronics overlap'>
+                  <g fill='none' stroke-width='3.5' stroke-linecap='round'>
+                    <circle cx='72' cy='72' r='58' class='stroke-wm-sun-300' />
+                    <circle cx='128' cy='72' r='58' class='stroke-wm-sky-300' />
+                    <circle cx='100' cy='120' r='58' class='stroke-wm-oxygen-100' />
+                  </g>
+                  <g class='font-lettering' font-weight='700' font-size='14' letter-spacing='1' text-anchor='middle'>
+                    <path id='venn-arc-chemistry' d='M8.3 54.9 A66 66 0 0 1 89.1 8.3' fill='none' />
+                    <path id='venn-arc-code' d='M110.9 8.3 A66 66 0 0 1 191.7 54.9' fill='none' />
+                    <text class='fill-wm-sun-300'><textPath href='#venn-arc-chemistry' startOffset='50%'>CHEMISTRY</textPath></text>
+                    <text class='fill-wm-sky-300'><textPath href='#venn-arc-code' startOffset='50%'>CODE</textPath></text>
+                    <path id='venn-arc-electronics' d='M31.1 152.1 A76 76 0 0 0 168.9 152.1' fill='none' />
+                    <text class='fill-wm-oxygen-100'><textPath href='#venn-arc-electronics' startOffset='50%'>ELECTRONICS</textPath></text>
+                  </g>
+                  <path d='M100 70 l6 13 14 1.5 -10.5 9.5 3 14 -12.5 -7 -12.5 7 3 -14 -10.5 -9.5 14 -1.5 Z' transform='translate(100 89) scale(0.55) translate(-100 -89)' fill='none' stroke='white' stroke-width='5' stroke-linejoin='round' />
+                </svg>
+              </div>
+              <div class='absolute inset-x-0 bottom-0 h-4 bg-wm-wood border-t-[3px] border-black/50' aria-hidden='true'></div>
+              <svg class='absolute bottom-3 right-6 md:right-10 w-32 h-7' viewBox='0 0 128 28' aria-hidden='true'>
+                <rect x='4' y='4' width='52' height='14' rx='2' class='fill-wm-wood' stroke='black' stroke-width='2.5' />
+                <rect x='4' y='16' width='52' height='9' rx='1.5' class='fill-wm-hydrogen-600' stroke='black' stroke-width='2.5' />
+                <rect x='72' y='18' width='30' height='7' rx='3.5' fill='white' stroke='black' stroke-width='2' />
+                <rect x='108' y='19' width='14' height='6' rx='3' class='fill-wm-sun-300' stroke='black' stroke-width='2' />
+              </svg>
+            </article>
+          )
+        }
+
+        {
+          remote && (
+            <article class='comic-panel hatched relative md:col-span-5 bg-wm-nitrogen flex flex-col justify-between gap-4 p-5 md:p-6 overflow-hidden' style='--i: 2'>
+              <p class='comic-caption self-start'>{remote.caption}</p>
+              <svg class='w-44 md:w-52 self-center' viewBox='0 0 160 150' role='img' aria-label='Calendar page: 2020'>
+                <rect x='8' y='14' width='144' height='130' rx='4' fill='white' stroke='black' stroke-width='4' />
+                <path d='M8 18 Q8 14 12 14 H148 Q152 14 152 18 V44 H8 Z' class='fill-wm-oxygen' stroke='black' stroke-width='4' stroke-linejoin='round' />
+                <text x='80' y='84' text-anchor='middle' class='font-comic' font-size='40' letter-spacing='2'>2020</text>
+                <g class='fill-wm-hydrogen-500'>
+                  {CALENDAR_DAYS.map(({ x, y }) => <rect x={x} y={y} width='11' height='7' rx='1' />)}
+                </g>
+                <path d='M71 105.5 l13 9 M84 105.5 l-13 9' class='stroke-wm-oxygen' stroke-width='3.5' stroke-linecap='round' />
+                <g fill='white' stroke='black' stroke-width='3'>
+                  {[34, 62, 98, 126].map((x) => <rect x={x - 4} y='4' width='8' height='20' rx='4' />)}
+                </g>
+              </svg>
+              <div>
+                <h3 class='comic-headline text-3xl md:text-4xl text-white text-center max-w-64 mx-auto'>{remote.title}</h3>
+                <div class='relative mt-8'>
+                  <svg class='absolute bottom-full left-10 -mb-3 w-10 h-10' viewBox='0 0 40 40' aria-hidden='true'>
+                    <path d='M6 40 L14 2 L30 40 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
+                  </svg>
+                  <p class='comic-balloon relative'>{remoteFirst}</p>
+                  <svg class='absolute bottom-full left-10 -mb-3 w-10 h-10' viewBox='0 0 40 40' aria-hidden='true'>
+                    <path d='M6 40 L14 2 L30 40 Z' fill='white' />
+                  </svg>
+                </div>
+                {remoteRest.map((line) => (
+                  <div class='relative ml-auto mt-3 w-fit max-w-[85%]'>
+                    <p class='comic-balloon relative'>{line}</p>
+                    <span class='absolute bottom-full right-12 -mb-[3px] h-[18px] w-5 bg-white border-x-[3px] border-black' aria-hidden='true'></span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          )
+        }
+
+        {
+          finale && (
+            <article class='comic-panel relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8' style={`--i: 3; background-image: ${RAYS}`}>
+              <div class='relative flex flex-col items-start gap-4'>
+                <p class='comic-caption'>{finale.caption}</p>
+                <h3 class='comic-headline flex flex-col items-start'>
+                  {finale.title.split('|').map((line, i) => (
+                    <span class:list={[
+                      'block',
+                      i === 0 && 'text-3xl md:text-4xl',
+                      i === 1 && 'text-5xl md:text-7xl',
+                      i === 2 && 'text-4xl md:text-6xl text-wm-sun',
+                    ]}>{line}</span>
+                  ))}
+                </h3>
+              </div>
+              <div class='relative w-56 md:w-80 mx-auto md:-mb-16 md:-mr-8 rotate-4'>
+              <svg class='relative w-full' viewBox='0 0 160 122' role='img' aria-label='Laptop showing code'>
+                <rect x='20' y='6' width='120' height='80' rx='5' class='fill-wm-nitrogen-800' stroke='black' stroke-width='4' />
+                <rect x='28' y='14' width='104' height='64' rx='2' class='fill-wm-nitrogen' />
+                <text x='80' y='52' text-anchor='middle' class='font-comic fill-wm-sun' font-size='28' letter-spacing='2'>&lt;/&gt;</text>
+                <g stroke-width='3' stroke-linecap='round'>
+                  {CODE_LINES.map(({ x1, x2, y, color }, i) => (
+                    <line x1={x1} y1={y} x2={x2} y2={y} class:list={['code-line', color]} pathLength='1' style={`animation-delay: ${i * 0.45}s`} />
+                  ))}
+                </g>
+                <path d='M18 88 H142 L158 112 H2 Z' class='fill-wm-hydrogen-300' stroke='black' stroke-width='4' stroke-linejoin='round' />
+                <g class='fill-wm-hydrogen-600'>
+                  {LAPTOP_KEYS.map((d) => <path d={d} />)}
+                </g>
+                <path d='M66 106 H94 L95 110 H65 Z' class='fill-wm-hydrogen-500' />
+                <path d='M2 112 H158 V114 Q158 118 154 118 H6 Q2 118 2 114 Z' class='fill-wm-hydrogen-500' stroke='black' stroke-width='4' stroke-linejoin='round' />
+              </svg>
+                <span class='sfx sfx-click absolute left-[8%] bottom-[30%] -rotate-12 text-2xl md:text-3xl' style='--dx: -18px' aria-hidden='true'>Click!</span>
+                <span class='sfx sfx-click absolute right-[6%] bottom-[34%] rotate-12 text-2xl md:text-3xl' style='--dx: 18px; animation-delay: 0.4s' aria-hidden='true'>Clack!</span>
+              </div>
+            </article>
+          )
+        }
+      </div>
+
+      <footer class='pt-2 md:pt-3 text-right font-comic tracking-widest text-lg leading-none'>1</footer>
+    </div>
+  </ContentBox>
 </section>
+
+<script>
+  const pages = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.15 },
+  );
+  pages.forEach((page) => observer.observe(page));
+</script>
+
+<style>
+  .hatched {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-wm-nitrogen-700) 0 2px,
+      transparent 2px 9px
+    );
+  }
+
+  .sfx {
+    font-family: var(--font-comic);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--color-wm-sun);
+    -webkit-text-stroke: 1.5px black;
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 black;
+    z-index: 1;
+  }
+
+  .code-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: code-typing 4.5s steps(6, end) infinite;
+  }
+
+  .sfx-click {
+    opacity: 0;
+    animation: sfx-click 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) infinite;
+  }
+
+  @keyframes sfx-click {
+    0% {
+      opacity: 0;
+      scale: 0.5;
+      translate: 0 0;
+    }
+    15% {
+      opacity: 1;
+      scale: 1.2;
+    }
+    100% {
+      opacity: 0;
+      scale: 1;
+      translate: var(--dx) -20px;
+    }
+  }
+
+  @keyframes code-typing {
+    0% {
+      stroke-dashoffset: 1;
+    }
+    12%,
+    80% {
+      stroke-dashoffset: 0;
+    }
+    90%,
+    100% {
+      stroke-dashoffset: 1;
+    }
+  }
+
+  .sfx-pop {
+    display: inline-block;
+    opacity: 0;
+    animation: sfx-pop 3.4s ease-in-out infinite;
+  }
+
+  @keyframes sfx-pop {
+    0% {
+      opacity: 0;
+      scale: 0.7;
+      translate: 0 10px;
+    }
+    30% {
+      opacity: 1;
+      scale: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      scale: 1;
+      translate: 0 -28px;
+    }
+  }
+
+  [data-reveal] .comic-panel {
+    opacity: 0;
+    scale: 0.94;
+    translate: 0 18px;
+    transition:
+      opacity 0.45s ease-out,
+      scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+      translate 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: calc(var(--i) * 0.18s);
+  }
+
+  [data-reveal].revealed .comic-panel {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] .comic-panel {
+      opacity: 1;
+      scale: 1;
+      translate: 0 0;
+      transition: none;
+    }
+
+    .code-line,
+    .sfx-click,
+    .sfx-pop {
+      animation: none;
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  .chalkboard {
+    background-color: var(--color-wm-board);
+    background-image:
+      radial-gradient(ellipse at 25% 30%, rgb(255 255 255 / 0.06), transparent 45%),
+      radial-gradient(ellipse at 80% 75%, rgb(255 255 255 / 0.05), transparent 40%);
+    box-shadow: inset 0 0 0 8px var(--color-wm-wood);
+  }
+
+  .chalk {
+    filter: url(#chalk);
+  }
+
+  .flask {
+    transform-origin: 50% 92%;
+    animation: flask-sway 3s ease-in-out infinite alternate;
+  }
+
+  .flask-liquid {
+    transform-box: view-box;
+    transform-origin: 50px 100px;
+    animation: flask-slosh 3s ease-in-out -0.45s infinite alternate;
+  }
+
+  .flask-bubble {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: flask-bubble 3.4s ease-in infinite;
+    opacity: 0;
+  }
+
+  .flask-puff {
+    transform-box: view-box;
+    transform-origin: 50px 4px;
+    opacity: 0;
+    animation: flask-puff 3.3s ease-out infinite;
+  }
+
+  @keyframes flask-puff {
+    0% {
+      opacity: 0;
+      translate: 0 0;
+      scale: 0.3;
+    }
+    20% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0;
+      translate: var(--drift) -22px;
+      scale: 1.8;
+    }
+  }
+
+  @keyframes flask-sway {
+    from {
+      rotate: -5deg;
+    }
+    to {
+      rotate: 5deg;
+    }
+  }
+
+  @keyframes flask-slosh {
+    from {
+      rotate: 14deg;
+    }
+    to {
+      rotate: -14deg;
+    }
+  }
+
+  @keyframes flask-bubble {
+    0% {
+      opacity: 0;
+      translate: 0 0;
+      scale: 0.4;
+    }
+    15% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      translate: 0 -95px;
+      scale: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flask,
+    .flask-liquid,
+    .flask-bubble,
+    .flask-puff {
+      animation: none;
+    }
+
+    .flask-bubble {
+      opacity: 1;
+    }
+  }
+
+  .about {
+    background-color: var(--color-wm-nitrogen-700);
+  }
+
+
+</style>

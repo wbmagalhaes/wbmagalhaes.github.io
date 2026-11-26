@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 
-export function useHolderSize(): [React.RefObject<HTMLDivElement>, { w: number; h: number }] {
+export function useHolderSize(): [React.RefObject<HTMLDivElement | null>, { w: number; h: number }] {
 	const holderEl = useRef<HTMLDivElement>(null);
 	const [size, setSize] = useState({ w: 800, h: 600 });
 
