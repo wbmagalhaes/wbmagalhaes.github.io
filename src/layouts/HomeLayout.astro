@@ -10,7 +10,7 @@ import { getEmail, getSocials } from '@services/myData';
 import { emailBannerDelay } from '@widgets/Home/introTiming';
 
 const email = getEmail();
-const socials = getSocials().filter(({ name }) => name !== 'Instagram');
+const socials = getSocials();
 
 type Props = {
   meta?: MetaSEO;

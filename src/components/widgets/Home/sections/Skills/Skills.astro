@@ -1,37 +1,306 @@
 ---
-import HomeSection from '@common/HomeSection/HomeSection.astro';
+import { Icon } from 'astro-icon/components';
+import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
 import { getHomeEntry } from '@services/home';
-
-import TechStack from './TechStack';
 import { getTechStacks } from '@services/myData';
 
-import { components } from '@common/mdx/Components.astro';
+const stacks = getTechStacks();
+const { entry } = await getHomeEntry('skills');
 
-const techs = getTechStacks();
-const { entry, Content } = await getHomeEntry('skills');
+const MAX_LEVEL = 5;
+const MAX_ITEMS = Math.max(...stacks.map((stack) => stack.list.length));
+const CARD_THEMES = [
+  { frame: 'bg-wm-oxygen', type: 'Code class' },
+  { frame: 'bg-wm-sky', type: 'Interface class' },
+  { frame: 'bg-wm-tangerine', type: 'Server class' },
+  { frame: 'bg-wm-leaf', type: 'Science class' },
+  { frame: 'bg-wm-sun', type: 'Infra class' },
+  { frame: 'bg-wm-lilac', type: 'Maker class' },
+];
+
+const cardNumber = (index: number) =>
+  `#${String(index + 1).padStart(2, '0')}/${String(stacks.length).padStart(2, '0')}`;
 ---
 
-<HomeSection id='about' class='bg-purple-200'>
-  <Fragment slot='title'>{entry.data.title}</Fragment>
+<section id='skills' class='skills relative pt-20 md:pt-26 pb-20 md:pb-26'>
+  <BurstDivider color='var(--color-wm-nitrogen-700)' seed={5} flip />
+  <ContentBox>
+    <h2 class='sr-only'>{entry.data.title}</h2>
+    <div class='comic-page'>
+      <div class='ad relative border-[3px] border-black p-4 md:p-8 flex flex-col gap-6 md:gap-8'>
+        <div class='price-tag hidden md:grid absolute top-4 right-4 z-10 size-28 place-items-center rotate-12 font-comic text-center leading-none'>
+            <span>Only<br /><span class='text-3xl'>$9.99</span><br />each<sup class='ml-0.5'>*</sup></span>
+          </div>
+        <header class='relative text-center'>
+          <p class='comic-caption'>Attention, developers!</p>
+          <p class='ad-headline font-comic uppercase leading-[0.9] mt-4 text-5xl md:text-7xl'>
+            New! The official <span class='text-wm-oxygen'>W.M. Skill Cards</span>
+          </p>
+          <p class='font-comic uppercase tracking-widest text-xl md:text-3xl mt-2'>Collect them all!<sup class='text-base md:text-xl ml-0.5'>**</sup></p>
+        </header>
 
-  <Fragment>
-    <Content components={components} />
-    <TechStack techs={techs} client:idle />
-  </Fragment>
-</HomeSection>
+        <ul class='flex flex-wrap justify-center gap-4 md:gap-5'>
+          {
+            stacks.map((stack, index) => {
+              const theme = CARD_THEMES[index % CARD_THEMES.length];
+              return (
+                <li class='card-slot relative w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'>
+                  <div class:list={['card comic-panel h-full rounded-xl p-2.5', theme.frame]}>
+                  <article class='h-full flex flex-col rounded-lg border-[3px] border-black bg-white overflow-hidden'>
+                    <header class='h-11 flex items-start justify-between gap-2 border-b-[3px] border-black px-3 pt-2.5'>
+                      <h3 class='font-comic uppercase tracking-wide leading-[1.05] text-xl truncate'>{stack.title}</h3>
+                      <span class='shrink-0 font-comic text-sm leading-none text-wm-hydrogen-800'>{cardNumber(index)}</span>
+                    </header>
+                    <p class:list={['border-b-[3px] border-black px-3 py-1 font-lettering font-bold uppercase text-xs tracking-widest', theme.frame]}>{theme.type}</p>
+                    <ul class='flex flex-col gap-1.5 px-3 py-3' style={`height: calc(${MAX_ITEMS} * 1.25rem + ${MAX_ITEMS - 1} * 0.375rem + 1.5rem)`}>
+                      {stack.list.map((tech) => (
+                        <li class='h-5 grid grid-cols-[1.25rem_1fr_auto] items-center gap-2'>
+                          <Icon name={tech.icon} class='size-5' />
+                          <span class='font-lettering font-bold text-sm leading-none'>{tech.name}</span>
+                          <span class:list={['flex gap-0.5', tech.level === MAX_LEVEL && 'maxed']} aria-label={`Power ${tech.level} of ${MAX_LEVEL}`}>
+                            {Array.from({ length: MAX_LEVEL }, (_, pip) => (
+                              <span
+                                class:list={['pip size-2.5 border-2 border-black', pip < tech.level ? 'bg-wm-oxygen' : 'bg-white']}
+                                style={`--pip: ${pip}`}
+                              />
+                            ))}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                  </div>
+                </li>
+              );
+            })
+          }
+        </ul>
 
-<!-- <div class='flex gap-4 py-8'>
-	<Button bgColor='#14e' client:idle>
-	<Icon name='ic:unarchive' size={22} />
-	<span>Button 1</span>
-	</Button>
-	<Button bgColor='#f00' translation={[-2, 3]} client:idle>
-	<Icon name='ic:outline-unarchive' size={22} />
-	<span>Button 2</span>
-	</Button>
-	<Button bgColor='#0f0' rotation={0.023} client:idle>
-	<Icon name='ic:outline-arrow-outward' size={22} />
-	<span>Button 3</span>
-	</Button>
-</div>
-<CardContainer client:idle /> -->
+        <a href='#contact' class='coupon group block border-[3px] border-dashed border-black bg-white p-4 md:p-6'>
+          <div class='grid md:grid-cols-[1fr_auto] items-center gap-4'>
+            <div>
+              <p class='font-comic uppercase tracking-wide text-2xl md:text-4xl leading-none'>Want the whole collection?</p>
+              <p class='font-lettering font-bold uppercase text-sm mt-2'>
+                Got a project or a job opening? Send me a message and let's talk.
+              </p>
+              <div class='mt-3 w-4/5 grid grid-cols-[auto_1fr] items-end gap-x-2 gap-y-2.5 font-lettering font-bold uppercase text-xs leading-none'>
+                <span>Name</span>
+                <span class='h-0.5 mb-px bg-black'></span>
+                <span>Project</span>
+                <span class='h-0.5 mb-px bg-black'></span>
+              </div>
+            </div>
+            <span class='rubber-stamp justify-self-start md:justify-self-end -rotate-6'>
+              <span class='block border-2 border-current px-4 py-2 text-center'>
+                <span class='block font-comic uppercase tracking-[0.12em] text-3xl leading-none'>Claim now!</span>
+                <span class='block font-lettering font-bold uppercase text-[0.65rem] tracking-[0.2em] mt-1'>Offer valid while stocks last***</span>
+              </span>
+            </span>
+          </div>
+        </a>
+
+        <ul class='-mt-3 md:-mt-4 font-lettering text-[0.65rem] leading-snug text-wm-hydrogen-800'>
+          <li>* Cards not sold separately.</li>
+          <li>** Power levels are self-assessed and may vary with coffee intake.</li>
+          <li>*** Stock limited to one developer. No refunds on bugs already in production.</li>
+        </ul>
+      </div>
+
+      <footer class='pt-2 md:pt-3 text-right font-comic tracking-widest text-lg leading-none'>2</footer>
+    </div>
+  </ContentBox>
+</section>
+
+<script>
+  const MAX_TILT = 12;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const EASING = 0.12;
+
+  document.querySelectorAll<HTMLElement>('#skills .card-slot').forEach((slot) => {
+    const found = slot.querySelector<HTMLElement>('.card');
+    if (!found) return;
+    const card = found;
+    if (reduceMotion) return;
+
+    const target = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+    let frame = 0;
+
+    function render() {
+      current.x += (target.x - current.x) * EASING;
+      current.y += (target.y - current.y) * EASING;
+      card.style.setProperty('--tilt-x', `${(-current.y * MAX_TILT).toFixed(2)}deg`);
+      card.style.setProperty('--tilt-y', `${(current.x * MAX_TILT).toFixed(2)}deg`);
+      const settled = Math.abs(target.x - current.x) < 0.001 && Math.abs(target.y - current.y) < 0.001;
+      frame = settled ? 0 : requestAnimationFrame(render);
+    }
+
+    function animate() {
+      if (!frame) frame = requestAnimationFrame(render);
+    }
+
+    slot.addEventListener('pointermove', (event) => {
+      const rect = slot.getBoundingClientRect();
+      target.x = (event.clientX - rect.left) / rect.width - 0.5;
+      target.y = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty('--glare-x', `${((target.x + 0.5) * 100).toFixed(1)}%`);
+      card.style.setProperty('--glare-y', `${((target.y + 0.5) * 100).toFixed(1)}%`);
+      animate();
+    });
+
+    slot.addEventListener('pointerleave', () => {
+      target.x = 0;
+      target.y = 0;
+      animate();
+    });
+  });
+</script>
+
+<style>
+  .skills {
+    background-color: var(--color-wm-paper);
+    background-image:
+      radial-gradient(ellipse 70% 60% at 50% 40%, var(--color-wm-paper) 30%, rgb(243 233 210 / 0) 100%),
+      repeating-linear-gradient(-45deg, rgb(92 64 30 / 0.16) 0 1.5px, rgb(92 64 30 / 0) 2.5px 12px),
+      repeating-linear-gradient(45deg, rgb(92 64 30 / 0.12) 0 1.5px, rgb(92 64 30 / 0) 2.5px 12px);
+  }
+
+  .ad {
+    background-color: var(--color-wm-hydrogen-100);
+    background-image:
+      radial-gradient(rgb(0 0 0 / 0.1) 1.4px, transparent 1.8px),
+      radial-gradient(rgb(0 0 0 / 0.1) 1.4px, transparent 1.8px);
+    background-size: 12px 12px;
+    background-position: 0 0, 6px 6px;
+  }
+
+  .ad-headline {
+    -webkit-text-stroke: 1.5px black;
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 var(--color-wm-sun);
+  }
+
+  .rubber-stamp {
+    color: var(--color-wm-oxygen);
+    background-color: rgb(230 57 70 / 0.08);
+    transition:
+      color 0.15s ease-out,
+      background-color 0.15s ease-out;
+    border: 4px solid currentColor;
+    padding: 4px;
+    border-radius: 6px;
+    mask-image: radial-gradient(circle at 30% 40%, black 60%, rgb(0 0 0 / 0.75) 61%, black 75%);
+  }
+
+  .coupon:hover .rubber-stamp {
+    color: var(--color-wm-oxygen-800);
+    background-color: rgb(163 20 32 / 0.14);
+  }
+
+  .price-tag {
+    position: absolute;
+    background: var(--color-wm-sun);
+    border: 3px solid black;
+    border-radius: 9999px;
+    box-shadow: 4px 4px 0 0 black;
+    transition: scale 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: scale;
+    backface-visibility: hidden;
+  }
+
+  .price-tag::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(105deg, transparent 40%, rgb(255 255 255 / 0.8) 50%, transparent 60%) no-repeat;
+    background-size: 250% 100%;
+    background-position: 150% 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .price-tag:hover {
+    scale: 1.12;
+  }
+
+  .price-tag:hover::after {
+    animation: price-shine 0.6s ease-out forwards;
+  }
+
+  @keyframes price-shine {
+    from {
+      opacity: 1;
+      background-position: 150% 0;
+    }
+    to {
+      opacity: 1;
+      background-position: -50% 0;
+    }
+  }
+
+  .maxed .pip {
+    background-color: var(--color-wm-sun);
+    animation: pip-shine 2.4s ease-in-out infinite;
+    animation-delay: calc(var(--pip) * 0.08s);
+  }
+
+  @keyframes pip-shine {
+    0%,
+    60%,
+    100% {
+      background-color: var(--color-wm-sun);
+      box-shadow: 0 0 0 0 rgb(255 210 63 / 0);
+    }
+    70% {
+      background-color: white;
+      box-shadow: 0 0 6px 2px rgb(255 210 63 / 0.9);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .maxed .pip {
+      animation: none;
+    }
+  }
+
+  .card-slot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    background: black;
+    translate: 5px 5px;
+  }
+
+  .card-slot:hover {
+    z-index: 1;
+  }
+
+  .card {
+    position: relative;
+    transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: translate 0.25s ease-out;
+  }
+
+  .card-slot:hover .card {
+    translate: -3px -3px;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgb(255 255 255 / 0.35), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+    pointer-events: none;
+  }
+
+  .card-slot:hover .card::after {
+    opacity: 1;
+  }
+</style>

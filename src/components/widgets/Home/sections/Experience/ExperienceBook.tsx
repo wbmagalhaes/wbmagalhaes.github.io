@@ -49,9 +49,9 @@ function PageFold({ side, label, onClick }: { side: 'left' | 'right'; label: str
 
 function ExperiencePage({ work, pageNumber }: { work: Work; pageNumber: number }) {
   return (
-    <div className='comic-page h-full flex flex-col'>
-      <div className='grid flex-1 grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
-        <div className='comic-panel md:col-span-12 bg-wm-nitrogen p-5 md:p-8 flex flex-col items-start gap-3'>
+    <div className='comic-page h-full md:min-h-[52rem] flex flex-col'>
+      <div className='grid flex-1 grid-cols-1 md:grid-cols-12 md:grid-rows-[minmax(0,2fr)_minmax(0,3fr)] gap-3 md:gap-4'>
+        <div className='comic-panel md:col-span-12 bg-wm-nitrogen p-5 md:p-8 flex flex-col justify-end items-start gap-3'>
           <span className='comic-caption'>{work.date}</span>
           <h3 className='comic-headline text-4xl md:text-6xl'>{work.title}</h3>
           <a

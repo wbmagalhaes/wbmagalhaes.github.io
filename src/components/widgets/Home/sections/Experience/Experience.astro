@@ -1,5 +1,6 @@
 ---
 import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
 import { getHomeEntry } from '@services/home';
 import { getWorks } from '@services/myData';
 import ExperienceBook from './ExperienceBook';
@@ -8,10 +9,11 @@ const works = getWorks();
 const { entry } = await getHomeEntry('experience');
 ---
 
-<section id='experience' class='experience relative pt-4 pb-12 md:pb-16'>
+<section id='experience' class='experience relative z-10 pt-10 md:pt-12 pb-10 md:pb-12'>
+  <BurstDivider color='var(--color-wm-nitrogen-700)' seed={9} />
   <ContentBox>
     <h2 class='sr-only'>{entry.data.title}</h2>
-    <ExperienceBook works={works} firstPageNumber={2} client:visible />
+    <ExperienceBook works={works} firstPageNumber={3} client:visible />
   </ContentBox>
 </section>
 

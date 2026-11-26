@@ -26,10 +26,10 @@ export default function Header() {
           <a
             href='/#'
             aria-label='home'
-            className={`group self-end mb-3.5 ml-2 flex items-end gap-3 origin-bottom-left transition-[scale] duration-500 ${visible ? 'scale-100' : 'scale-[0.7]'}`}
+            className='group self-end mb-2.5 ml-2 flex items-end gap-3'
           >
             <span className='block -skew-x-12 bg-white px-3 py-1 shadow-[3px_3px_0_0_var(--color-wm-oxygen)]'>
-              <span className='block skew-x-12 font-comic uppercase whitespace-nowrap tracking-[0.1em] text-2xl leading-none text-black'>
+              <span className='block skew-x-12 font-comic uppercase whitespace-nowrap tracking-[0.1em] text-3xl leading-none text-black'>
                 W.M. <span className='text-wm-oxygen'>Comics</span>
               </span>
             </span>
@@ -41,30 +41,30 @@ export default function Header() {
                 text='About Me'
                 aria='About Me'
                 hoverBgColor='var(--color-wm-hydrogen-100)'
-                hoverDotColor='var(--color-wm-hydrogen-600)'
+                hoverDotColor='var(--color-wm-lilac)'
+              />
+              <HeaderItem
+                href='/#skills'
+                text='Skills'
+                aria='My Skills'
+                hoverBgColor='var(--color-wm-sky)'
+                hoverDotColor='var(--color-wm-gold-700)'
               />
               <HeaderItem
                 href='/#experience'
                 text='Experience'
                 aria='Work Experience'
                 hoverBgColor='var(--color-wm-leaf)'
-                hoverDotColor='var(--color-wm-leaf-700)'
-              />
-              <HeaderItem
-                href='/#portfolio'
-                text='Portfolio'
-                aria='My Portfolio'
-                hoverBgColor='var(--color-wm-sky)'
-                hoverDotColor='var(--color-wm-sky-700)'
+                hoverDotColor='var(--color-wm-nitrogen)'
               />
               <HeaderItem
                 href='/#contact'
                 text='Contact'
                 aria='Contact Me'
                 hoverBgColor='var(--color-wm-sun)'
-                hoverDotColor='var(--color-wm-sun-700)'
+                hoverDotColor='var(--color-wm-tangerine)'
               />
-              <li className='h-full border-l-2 border-black pl-6 flex justify-center items-end pb-2'>
+              <li className='h-full border-l-2 border-black pl-6 flex justify-center items-end pb-1.5'>
                 <ResumeButton />
               </li>
             </ul>

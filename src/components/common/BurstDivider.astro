@@ -3,9 +3,10 @@ type Props = {
   color: string;
   spikes?: number;
   seed?: number;
+  flip?: boolean;
 };
 
-const { color, spikes = 48, seed = 3 } = Astro.props;
+const { color, spikes = 48, seed = 3, flip = false } = Astro.props;
 
 let state = seed;
 const random = () => {
@@ -27,7 +28,10 @@ const edge = Array.from({ length: spikes + 1 }, (_, i) => {
 ---
 
 <svg
-  class='pointer-events-none absolute inset-x-0 bottom-full w-full h-10 md:h-14 translate-y-px'
+  class:list={[
+    'pointer-events-none absolute inset-x-0 z-10 w-full h-10 md:h-14',
+    flip ? 'top-0 -translate-y-px rotate-180' : 'bottom-full translate-y-px',
+  ]}
   viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
   preserveAspectRatio='none'
   aria-hidden='true'

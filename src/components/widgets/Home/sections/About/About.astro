@@ -57,9 +57,9 @@ const BUBBLES = [
 ];
 ---
 
-<section id='about' class='about relative z-10 pt-10 md:pt-14 pb-12 md:pb-16'>
+<section id='about' class='about relative z-10 pt-10 md:pt-12 pb-10 md:pb-12'>
   <BurstDivider color='var(--color-wm-nitrogen-700)' />
-  <ContentBox>
+  <ContentBox class='relative'>
     <div class='comic-page' data-reveal>
       <h2 class='sr-only'>{entry.data.title}</h2>
 
@@ -71,55 +71,57 @@ const BUBBLES = [
               <div class='relative z-10 flex-1'>
                 <p class='comic-caption'>{origin.caption}</p>
                 <h3 class='comic-headline text-4xl md:text-6xl mt-3'>{origin.title}</h3>
-                <div class='relative mt-5 max-w-md'>
-                  <svg class='absolute left-full bottom-1 -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
-                    <path d='M0 4 L54 26 L0 26 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
-                  </svg>
-                  <p class='comic-balloon relative'>{origin.text}</p>
-                  <svg class='absolute left-full bottom-1 -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
-                    <path d='M0 4 L54 26 L0 26 Z' fill='white' />
-                  </svg>
-                </div>
               </div>
-              <span class='sfx hidden sm:flex absolute bottom-12 md:bottom-16 right-24 md:right-32 -rotate-12 items-end gap-2 text-3xl md:text-4xl' aria-hidden='true'>
+              <span class='sfx hidden sm:flex absolute bottom-3 md:bottom-4 right-3 md:right-6 -rotate-12 items-end gap-2 text-3xl md:text-4xl' aria-hidden='true'>
                 <span class='sfx-pop'>Blub</span>
                 <span class='sfx-pop -translate-y-3' style='animation-delay: 0.9s'>blub!</span>
               </span>
-              <svg class='flask relative hidden sm:block shrink-0 w-28 md:w-40 overflow-visible' viewBox='0 0 100 130' aria-hidden='true'>
-                <defs>
-                  <clipPath id='flask-inside'>
-                    <path d={FLASK} />
-                  </clipPath>
-                  <clipPath id='flask-liquid-area'>
-                    <path class='flask-liquid' d={LIQUID} />
-                  </clipPath>
-                </defs>
-                <path d={FLASK} fill='white' />
-                <g clip-path='url(#flask-inside)'>
-                  <g class='flask-liquid'>
-                    <path class='fill-wm-oxygen' d={LIQUID} />
-                  </g>
-                  <g class='fill-wm-oxygen'>
-                    {BUBBLES.map(({ x, r, delay }) => (
-                      <circle class='flask-bubble' cx={x} cy='112' r={r} style={`animation-delay: ${delay}s`} />
-                    ))}
-                  </g>
-                  <g fill='white' clip-path='url(#flask-liquid-area)'>
-                    {BUBBLES.map(({ x, r, delay }) => (
-                      <circle class='flask-bubble' cx={x} cy='112' r={r} style={`animation-delay: ${delay}s`} />
-                    ))}
-                  </g>
-                </g>
-                <path d={FLASK} fill='none' stroke='black' stroke-width='4' stroke-linejoin='round' />
-                <line x1='32' y1='10' x2='68' y2='10' stroke='black' stroke-width='4' stroke-linecap='round' />
-                {PUFFS.map(({ drift, spin, delay }) => (
-                  <g class='flask-puff' style={`--drift: ${drift}px; animation-delay: ${delay}s`}>
-                    <g transform={`translate(50 2) rotate(${spin})`}>
-                      {PUFF.map((c) => <circle cx={c.cx} cy={c.cy} r={c.r} class='fill-wm-oxygen-200' />)}
+              <div class='relative flex flex-col sm:flex-row items-center'>
+                  <div class='relative z-10 max-w-64 md:max-w-72 mr-2'>
+                    <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
+                      <path d='M0 9 L54 20 L0 31 Z' fill='white' stroke='black' stroke-width='6' stroke-linejoin='round' />
+                    </svg>
+                    <p class='comic-balloon relative'>{origin.text}</p>
+                    <svg class='absolute left-full inset-y-0 my-auto -ml-4 w-14 h-10' viewBox='0 0 56 40' aria-hidden='true'>
+                      <path d='M0 9 L54 20 L0 31 Z' fill='white' />
+                    </svg>
+                  </div>
+                  <svg class='flask relative hidden sm:block shrink-0 w-28 md:w-40 overflow-visible' viewBox='0 0 100 130' aria-hidden='true'>
+                  <defs>
+                    <clipPath id='flask-inside'>
+                      <path d={FLASK} />
+                    </clipPath>
+                    <clipPath id='flask-liquid-area'>
+                      <path class='flask-liquid' d={LIQUID} />
+                    </clipPath>
+                  </defs>
+                  <path d={FLASK} fill='white' />
+                  <g clip-path='url(#flask-inside)'>
+                    <g class='flask-liquid'>
+                      <path class='fill-wm-oxygen' d={LIQUID} />
+                    </g>
+                    <g class='fill-wm-oxygen'>
+                      {BUBBLES.map(({ x, r, delay }) => (
+                        <circle class='flask-bubble' cx={x} cy='112' r={r} style={`animation-delay: ${delay}s`} />
+                      ))}
+                    </g>
+                    <g fill='white' clip-path='url(#flask-liquid-area)'>
+                      {BUBBLES.map(({ x, r, delay }) => (
+                        <circle class='flask-bubble' cx={x} cy='112' r={r} style={`animation-delay: ${delay}s`} />
+                      ))}
                     </g>
                   </g>
-                ))}
-              </svg>
+                  <path d={FLASK} fill='none' stroke='black' stroke-width='4' stroke-linejoin='round' />
+                  <line x1='32' y1='10' x2='68' y2='10' stroke='black' stroke-width='4' stroke-linecap='round' />
+                  {PUFFS.map(({ drift, spin, delay }) => (
+                    <g class='flask-puff' style={`--drift: ${drift}px; animation-delay: ${delay}s`}>
+                      <g transform={`translate(50 2) rotate(${spin})`}>
+                        {PUFF.map((c) => <circle cx={c.cx} cy={c.cy} r={c.r} class='fill-wm-oxygen-200' />)}
+                      </g>
+                    </g>
+                  ))}
+                </svg>
+              </div>
             </article>
           )
         }

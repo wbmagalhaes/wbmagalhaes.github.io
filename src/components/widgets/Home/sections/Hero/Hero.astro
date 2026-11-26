@@ -1,6 +1,5 @@
 ---
 import ContentBox from '@common/ContentBox.astro';
-import Halftone from '@common/Halftone';
 import CoverCircuit from './CoverCircuit';
 import { getHomeEntry } from '@services/home';
 
@@ -58,18 +57,8 @@ const burst = Array.from({ length: BURST_SPIKES * 2 }, (_, i) => {
 }).join(' ');
 ---
 
-<section class='hero relative overflow-hidden -mt-32 pt-32 pb-12 md:pb-16'>
-  <Halftone
-    className='absolute inset-0 size-full pointer-events-none'
-    radial
-    fadeStart={0.72}
-    minRadius={2}
-    color='color-mix(in srgb, var(--color-wm-sun-700) 40%, transparent)'
-    spacing={16}
-    width={1600}
-    height={900}
-  />
-  <ContentBox class='relative md:h-[85svh] md:min-h-[38rem] py-3 md:py-4'>
+<section class='hero relative overflow-hidden -mt-32 pt-32 pb-20 md:pb-26'>
+  <ContentBox class='relative md:h-[calc(100svh-14.5rem)] md:min-h-[38rem] py-3 md:py-4'>
     <div class='page relative h-full'>
       <div class='panel panel-title relative isolate h-full bg-wm-nitrogen flex flex-col p-3 pb-14 md:p-4 md:pb-16'>
         <div class='absolute inset-0 -z-10 overflow-hidden'>
@@ -171,7 +160,7 @@ const burst = Array.from({ length: BURST_SPIKES * 2 }, (_, i) => {
               </svg>
             </div>
             <svg viewBox='0 0 100 100' class='absolute inset-0 size-full overflow-visible'>
-              <g class='font-terminal' font-size='17' text-anchor='middle' fill='white' stroke='black' stroke-width='3' paint-order='stroke'>
+              <g class='font-terminal' font-size='17' text-anchor='middle' fill='white'>
                 <text x='50' y='47'>HELLO,</text>
                 <text x='50' y='62'>WORLD!</text>
               </g>
@@ -201,7 +190,9 @@ const burst = Array.from({ length: BURST_SPIKES * 2 }, (_, i) => {
 <style>
   .hero {
     background-color: var(--color-wm-sun-300);
-    background-image: repeating-conic-gradient(
+    background-image:
+      radial-gradient(ellipse farthest-corner at 50% 45%, rgb(255 229 138 / 0) 0%, var(--color-wm-sun-300) 100%),
+      repeating-conic-gradient(
       from 0deg at 50% 45%,
       var(--color-wm-sun-300) 0deg 5deg,
       var(--color-wm-sun) 5deg 10deg

@@ -2,14 +2,16 @@ import { motion, type Variants } from 'motion/react';
 
 export default function ResumeButton() {
   return (
-    <motion.button
-      className='text-black'
+    <motion.a
+      href='/resume_2024.pdf'
+      download='William Magalhães - Resume.pdf'
+      aria-label='Download resume (PDF)'
+      className='block text-black'
       initial='initial'
       whileHover='hover'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        className='hard-shadow-4'
         width='206'
         height='46'
         viewBox='-3 -3 210 46'
@@ -48,7 +50,7 @@ export default function ResumeButton() {
           <motion.path variants={wobbleVariants} custom={3} fill='black' d='M 170 0 l -12 0 l 16.5 20 l -16.5 20 l 12 0 l 16.5 -20 Z' />
         </motion.g>
       </svg>
-    </motion.button>
+    </motion.a>
   );
 }
 
