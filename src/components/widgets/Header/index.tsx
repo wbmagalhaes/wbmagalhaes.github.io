@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useScroll } from '@hooks/useScroll';
 
@@ -15,6 +15,18 @@ const MOBILE_LINKS = [
 export default function Header() {
   const [visible, setVisible] = useState(true);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
 
   useScroll((y) => {
     if (visible && y > 150) {
@@ -105,13 +117,13 @@ export default function Header() {
           id='mobile-menu'
           aria-label='Mobile'
           initial={{ clipPath: 'inset(0 0 100% 0)' }}
-          animate={{ clipPath: 'inset(0 0 -20% 0)', transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+          animate={{ clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
           exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.25, ease: [0.55, 0, 0.8, 0.4], delay: 0.1 } }}
-          className={`lg:hidden fixed left-0 z-40 w-full header-bar border-b-[5px] border-black px-4 pt-4 pb-5 transition-[top] duration-500 ${
+          className={`menu-panel lg:hidden fixed inset-x-0 bottom-0 z-40 flex flex-col justify-center px-6 py-8 overflow-y-auto transition-[top] duration-500 ${
             visible ? 'top-32' : 'top-16'
           }`}
         >
-          <ul className='flex flex-col gap-3 max-w-md mx-auto'>
+          <ul className='flex flex-col gap-4 w-full max-w-sm mx-auto'>
             {MOBILE_LINKS.map(({ href, text, color }, index) => (
               <motion.li
                 key={href}
@@ -127,7 +139,7 @@ export default function Header() {
                 <a
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={`flex items-center gap-3 border-[3px] border-black px-4 py-2.5 shadow-[4px_4px_0_0_black] font-comic uppercase tracking-wider text-2xl leading-none text-black ${color}`}
+                  className={`flex items-center gap-3 border-[3px] border-black px-5 py-3.5 shadow-[5px_5px_0_0_black] font-comic uppercase tracking-wider text-3xl leading-none text-black active:scale-[0.96] transition-[scale] duration-100 ${color}`}
                 >
                   <span className='text-wm-oxygen [text-shadow:1px_1px_0_#000]'>{index + 1}.</span>
                   {text}
@@ -135,7 +147,7 @@ export default function Header() {
               </motion.li>
             ))}
             <motion.li
-              className='pt-2 flex justify-center'
+              className='pt-6 flex justify-center'
               onClick={() => setOpen(false)}
               initial={{ scale: 0.6, opacity: 0 }}
               animate={{ scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 380, damping: 14, delay: 0.08 + MOBILE_LINKS.length * 0.06 } }}

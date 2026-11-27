@@ -325,3 +325,12 @@
 .page.is-hidden *::after {
   animation-play-state: paused !important;
 }
+
+.menu-panel {
+  background-color: var(--color-wm-oxygen);
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% 110%,
+    rgb(255 255 255 / 0.08) 0deg 6deg,
+    transparent 6deg 12deg
+  );
+}

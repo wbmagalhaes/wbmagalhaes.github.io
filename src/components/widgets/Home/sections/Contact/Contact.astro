@@ -187,15 +187,32 @@ const stamps = [
       stamp.closest('.comic-panel')?.classList.add('lifted');
     });
 
+    let pointer = { x: 0, y: 0 };
+    let frame = 0;
+    let wasReady = false;
+
+    function follow() {
+      frame = 0;
+      stamp.style.translate = `${pointer.x - start.x}px ${pointer.y - start.y}px`;
+      const ready = overEnvelope(pointer.x, pointer.y);
+      if (ready !== wasReady) {
+        envelope?.classList.toggle('drop-ready', ready);
+        wasReady = ready;
+      }
+    }
+
     stamp.addEventListener('pointermove', (event) => {
       if (!dragging) return;
-      stamp.style.translate = `${event.clientX - start.x}px ${event.clientY - start.y}px`;
-      envelope?.classList.toggle('drop-ready', overEnvelope(event.clientX, event.clientY));
+      pointer = { x: event.clientX, y: event.clientY };
+      if (!frame) frame = requestAnimationFrame(follow);
     });
 
     stamp.addEventListener('pointerup', (event) => {
       if (!dragging) return;
       dragging = false;
+      cancelAnimationFrame(frame);
+      frame = 0;
+      wasReady = false;
       stamp.classList.remove('dragging');
       envelope?.classList.remove('drop-ready');
       if (overEnvelope(event.clientX, event.clientY)) {
@@ -300,6 +317,11 @@ const stamps = [
 
   .stamp-link {
     transition: translate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .stamp-link.dragging,
+  .stamp-link.landing {
+    will-change: translate, scale;
   }
 
   .stamp-link.dragging {

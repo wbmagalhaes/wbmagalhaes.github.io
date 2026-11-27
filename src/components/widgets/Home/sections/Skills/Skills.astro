@@ -138,9 +138,7 @@ const cardNumber = (index: number) =>
 <script>
   const MAX_TILT = 12;
   const EASING = 0.12;
-  const ACTIVE_RANGE = 0.3;
   const ORBIT_PERIOD = 2600;
-  const ORBIT_RADIUS = 0.4;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const touchOnly = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
@@ -193,59 +191,74 @@ const cardNumber = (index: number) =>
   }
 
   if (!reduceMotion && touchOnly) {
-    let scheduled = false;
-    let orbiting = false;
-    let active: Controller | null = null;
+    const ORBIT_STEPS = 16;
+    const ORBIT_TILT = 7;
+    const FLAT = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+    const tilt = (angle: number) =>
+      `perspective(900px) rotateX(${(-Math.sin(angle) * ORBIT_TILT).toFixed(2)}deg) rotateY(${(Math.cos(angle) * ORBIT_TILT).toFixed(2)}deg)`;
+    const shine = (angle: number) =>
+      `translate(${(Math.cos(angle) * 22).toFixed(1)}%, ${(Math.sin(angle) * 22).toFixed(1)}%)`;
+    const angles = Array.from({ length: ORBIT_STEPS + 1 }, (_, i) => (i / ORBIT_STEPS) * Math.PI * 2);
 
-    function update() {
-      scheduled = false;
-      const middle = window.innerHeight / 2;
-      const range = window.innerHeight * ACTIVE_RANGE;
-      let nearest: Controller | null = null;
-      let nearestOffset = Infinity;
+    type Orbit = { card: HTMLElement; glare: HTMLElement; running: Animation[] };
+    const orbits = new Map<HTMLElement, Orbit>();
+    controllers.forEach(({ slot }) => {
+      const card = slot.querySelector<HTMLElement>('.card');
+      const glare = slot.querySelector<HTMLElement>('.glare');
+      if (card && glare) orbits.set(slot, { card, glare, running: [] });
+    });
 
-      for (const controller of controllers) {
-        const rect = controller.slot.getBoundingClientRect();
-        const offset = rect.top + rect.height / 2 - middle;
-        if (Math.abs(offset) <= range && Math.abs(offset) < Math.abs(nearestOffset)) {
-          nearest = controller;
-          nearestOffset = offset;
-        }
-      }
-
-      if (active && active !== nearest) {
-        active.slot.classList.remove('is-active');
-        active.aim(0, 0);
-      }
-      active = nearest;
-      if (!nearest) return;
-
-      nearest.slot.classList.add('is-active');
-      if (!orbiting) {
-        orbiting = true;
-        requestAnimationFrame(orbit);
-      }
+    function start(slot: HTMLElement) {
+      const orbit = orbits.get(slot);
+      if (!orbit || orbit.running.length) return;
+      slot.classList.add('is-active');
+      const ease = { duration: 350, easing: 'ease-out', fill: 'forwards' as const };
+      const loop = { duration: ORBIT_PERIOD, delay: 350, iterations: Infinity };
+      orbit.running = [
+        orbit.card.animate([{ transform: FLAT }, { transform: tilt(0) }], ease),
+        orbit.card.animate(angles.map((angle) => ({ transform: tilt(angle) })), loop),
+        orbit.glare.animate([{ opacity: 0, transform: shine(0) }, { opacity: 1, transform: shine(0) }], ease),
+        orbit.glare.animate(angles.map((angle) => ({ opacity: 1, transform: shine(angle) })), loop),
+      ];
     }
 
-    function orbit(time: number) {
-      if (!active) {
-        orbiting = false;
-        return;
-      }
-      const angle = (time / ORBIT_PERIOD) * Math.PI * 2;
-      active.aim(Math.cos(angle) * ORBIT_RADIUS, Math.sin(angle) * ORBIT_RADIUS);
-      requestAnimationFrame(orbit);
+    function stop(slot: HTMLElement) {
+      const orbit = orbits.get(slot);
+      if (!orbit || !orbit.running.length) return;
+      slot.classList.remove('is-active');
+      const cardNow = getComputedStyle(orbit.card).transform;
+      const glareNow = getComputedStyle(orbit.glare).transform;
+      orbit.running.forEach((animation) => animation.cancel());
+      orbit.running = [];
+      orbit.card.animate([{ transform: cardNow }, { transform: FLAT }], { duration: 300, easing: 'ease-out' });
+      orbit.glare.animate([{ opacity: 1, transform: glareNow }, { opacity: 0, transform: glareNow }], { duration: 250, easing: 'ease-out' });
     }
 
-    function schedule() {
-      if (scheduled) return;
-      scheduled = true;
-      requestAnimationFrame(update);
-    }
-
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    schedule();
+    let active: HTMLElement | null = null;
+    const visible = new Map<HTMLElement, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const slot = entry.target as HTMLElement;
+          if (entry.isIntersecting) visible.set(slot, entry.intersectionRatio);
+          else visible.delete(slot);
+        });
+        let best: HTMLElement | null = null;
+        let bestRatio = 0;
+        visible.forEach((ratio, slot) => {
+          if (ratio > bestRatio) {
+            best = slot;
+            bestRatio = ratio;
+          }
+        });
+        if (best === active) return;
+        if (active) stop(active);
+        active = best;
+        if (active) start(active);
+      },
+      { rootMargin: '-35% 0px -35% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    orbits.forEach((_, slot) => observer.observe(slot));
   }
 </script>
 
@@ -364,9 +377,14 @@ const cardNumber = (index: number) =>
     .pip-burst {
       animation: none;
     }
+
+    .card :global(.glare) {
+      background: radial-gradient(circle at center, rgb(255 255 255 / 0.6), transparent 32%);
+    }
   }
 
-  .card-slot.is-active .card {
+  .card-slot.is-active .card,
+  .card-slot.is-active .card :global(.glare) {
     will-change: transform;
   }
 
