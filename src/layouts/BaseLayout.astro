@@ -52,9 +52,9 @@ const { meta } = Astro.props as Props;
         (entries) => {
           entries.forEach((entry) => entry.target.classList.toggle('is-offscreen', !entry.isIntersecting));
         },
-        { rootMargin: '200px 0px' },
+        { rootMargin: '0px' },
       );
-      document.querySelectorAll('main > section, body > footer').forEach((section) => visibility.observe(section));
+      document.querySelectorAll('main > section, body > footer, .comic-panel').forEach((element) => visibility.observe(element));
     </script>
   </body>
 </html>
