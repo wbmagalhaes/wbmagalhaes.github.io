@@ -36,7 +36,6 @@ const CODE_LINES = [
   { x1: 76, x2: 96, y: 66, color: 'stroke-wm-sky' },
   { x1: 36, x2: 50, y: 72, color: 'stroke-wm-oxygen-200' },
 ];
-const RAYS = 'repeating-conic-gradient(from 0deg at var(--rays-at, 50% 78%), var(--color-wm-oxygen) 0deg 6deg, var(--color-wm-oxygen-600) 6deg 12deg)';
 const PUFF = [
   { cx: 0, cy: 0, r: 11 },
   { cx: -12, cy: 4, r: 8 },
@@ -211,7 +210,8 @@ const BUBBLES = [
 
         {
           finale && (
-            <article class='comic-panel relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 md:[--rays-at:calc(100%-10rem)_60%] lg:[--rays-at:calc(100%-16rem)_60%]' style={`--i: 3; background-image: ${RAYS}`}>
+            <article class='comic-panel rays relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 bg-wm-oxygen [--rays-color:black] [--rays-opacity:0.1] [--rays-y:78%] md:[--rays-x:calc(100%-10rem)] md:[--rays-y:60%] lg:[--rays-x:calc(100%-16rem)]' style='--i: 3'>
+              <span class='rays-bg' aria-hidden='true'></span>
               <div class='relative flex flex-col items-start gap-4'>
                 <p class='comic-caption'>{finale.caption}</p>
                 <h3 class='comic-headline flex flex-col items-start'>

@@ -70,7 +70,8 @@ const sentences = (description: string) =>
               style={`--theme: ${theme.color}`}
             >
               <div data-stagger class='grid flex-1 grid-cols-1 md:grid-cols-12 auto-rows-auto md:grid-rows-[auto_1fr_auto] gap-3 md:gap-4'>
-                <header data-stagger-item class='comic-panel splash md:col-span-12 relative grid lg:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 overflow-hidden'>
+                <header data-stagger-item class='comic-panel splash rays md:col-span-12 relative grid lg:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 overflow-hidden'>
+                  <span class='rays-bg' aria-hidden='true'></span>
                   <div class='relative flex flex-col items-start gap-3'>
                     <p class='comic-caption'>{work.date}</p>
                     <h3 class='comic-headline text-4xl md:text-6xl'>{work.title.split(' ').map((word, w) => (
@@ -249,20 +250,18 @@ const sentences = (description: string) =>
 
   .splash {
     background-color: var(--theme);
-    background-image: repeating-conic-gradient(
-      from 0deg at var(--rays-at, 50% 75%),
-      rgb(255 255 255 / 0.18) 0deg 6deg,
-      transparent 6deg 12deg
-    );
+    --rays-y: 75%;
 
     @media (width >= 48rem) {
-      --rays-at: 50% 72%;
+      --rays-y: 72%;
     }
 
     @media (width >= 64rem) {
-      --rays-at: calc(100% - 13rem) 50%;
+      --rays-x: calc(100% - 13rem);
+      --rays-y: 50%;
     }
   }
+
 
   .place-tag {
     box-shadow: 4px 4px 0 0 var(--color-wm-oxygen);
