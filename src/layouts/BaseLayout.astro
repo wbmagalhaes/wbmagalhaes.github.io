@@ -54,7 +54,7 @@ const { meta } = Astro.props as Props;
         },
         { rootMargin: '0px' },
       );
-      document.querySelectorAll('main > section, body > footer, .comic-panel').forEach((element) => visibility.observe(element));
+      document.querySelectorAll('main > section, body > footer, [data-anim]').forEach((element) => visibility.observe(element));
     </script>
   </body>
 </html>

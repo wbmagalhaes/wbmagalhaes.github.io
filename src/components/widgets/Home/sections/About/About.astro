@@ -65,7 +65,7 @@ const BUBBLES = [
       <div class='grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4'>
         {
           origin && (
-            <article class='comic-panel relative md:col-span-12 bg-wm-sky flex flex-col sm:flex-row items-start sm:items-center gap-6 p-5 md:p-8 min-h-56 overflow-hidden' style='--i: 0'>
+            <article data-anim class='comic-panel relative md:col-span-12 bg-wm-sky flex flex-col sm:flex-row items-start sm:items-center gap-6 p-5 md:p-8 min-h-56 overflow-hidden' style='--i: 0'>
               <Hydrocarbons class='absolute inset-0 size-full pointer-events-none opacity-50' color='var(--color-wm-sky-700)' />
               <div class='relative z-10 flex-1'>
                 <p class='comic-caption'>{origin.caption}</p>
@@ -127,7 +127,7 @@ const BUBBLES = [
 
         {
           specialization && (
-            <article class='comic-panel chalkboard relative md:col-span-7 flex flex-col gap-4 px-5 pt-5 pb-10 md:px-6 md:pt-6 md:pb-12' style='--i: 1'>
+            <article data-anim class='comic-panel chalkboard relative md:col-span-7 flex flex-col gap-4 px-5 pt-5 pb-10 md:px-6 md:pt-6 md:pb-12' style='--i: 1'>
               <svg class='absolute size-0' aria-hidden='true'>
                 <filter id='chalk' x='-5%' y='-5%' width='110%' height='110%'>
                   <feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='4' result='noise' />
@@ -172,7 +172,7 @@ const BUBBLES = [
 
         {
           remote && (
-            <article class='comic-panel hatched relative md:col-span-5 bg-wm-nitrogen flex flex-col justify-between gap-4 p-5 md:p-6 overflow-hidden' style='--i: 2'>
+            <article data-anim class='comic-panel hatched relative md:col-span-5 bg-wm-nitrogen flex flex-col justify-between gap-4 p-5 md:p-6 overflow-hidden' style='--i: 2'>
               <p class='comic-caption self-start'>{remote.caption}</p>
               <svg class='w-44 md:w-52 self-center' viewBox='0 0 160 150' role='img' aria-label='Calendar page: 2020'>
                 <rect x='8' y='14' width='144' height='130' rx='4' fill='white' stroke='black' stroke-width='4' />
@@ -210,7 +210,7 @@ const BUBBLES = [
 
         {
           finale && (
-            <article class='comic-panel rays relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 bg-wm-oxygen [--rays-color:black] [--rays-opacity:0.1] [--rays-y:78%] md:[--rays-x:calc(100%-10rem)] md:[--rays-y:60%] lg:[--rays-x:calc(100%-16rem)]' style='--i: 3'>
+            <article data-anim class='comic-panel rays relative z-10 md:col-span-12 grid md:grid-cols-[1fr_auto] items-center gap-6 p-5 md:p-8 bg-wm-oxygen [--rays-color:black] [--rays-opacity:0.1] [--rays-y:78%] md:[--rays-x:calc(100%-10rem)] md:[--rays-y:60%] lg:[--rays-x:calc(100%-16rem)]' style='--i: 3'>
               <span class='rays-bg' aria-hidden='true'></span>
               <div class='relative flex flex-col items-start gap-4'>
                 <p class='comic-caption'>{finale.caption}</p>

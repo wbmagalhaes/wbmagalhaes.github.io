@@ -29,11 +29,7 @@ export default function Header() {
   }, [open]);
 
   useScroll((y) => {
-    if (visible && y > 150) {
-      setVisible(false);
-    } else if (!visible && y < 100) {
-      setVisible(true);
-    }
+    setVisible((current) => (current && y > 150 ? false : !current && y < 100 ? true : current));
   });
 
   return (
