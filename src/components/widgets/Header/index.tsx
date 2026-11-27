@@ -40,7 +40,7 @@ export default function Header() {
     <>
     <header
       className={`fixed top-0 left-0 z-40 header-bar border-b-[5px] border-black w-full overflow-hidden transition-all duration-500 ${
-        visible ? 'h-32' : 'h-16'
+        visible ? 'h-16 lg:h-32' : 'h-16'
       }`}
     >
       <div className='relative mx-auto max-w-[68rem] px-4 md:px-8 xl:px-0 h-full'>
@@ -119,9 +119,7 @@ export default function Header() {
           initial={{ clipPath: 'inset(0 0 100% 0)' }}
           animate={{ clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
           exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.25, ease: [0.55, 0, 0.8, 0.4], delay: 0.1 } }}
-          className={`menu-panel lg:hidden fixed inset-x-0 bottom-0 z-40 flex flex-col justify-center px-6 py-8 overflow-y-auto transition-[top] duration-500 ${
-            visible ? 'top-32' : 'top-16'
-          }`}
+          className='menu-panel lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col justify-center px-6 py-8 overflow-y-auto'
         >
           <ul className='flex flex-col gap-4 w-full max-w-sm mx-auto'>
             {MOBILE_LINKS.map(({ href, text, color }, index) => (
@@ -141,7 +139,6 @@ export default function Header() {
                   onClick={() => setOpen(false)}
                   className={`flex items-center gap-3 border-[3px] border-black px-5 py-3.5 shadow-[5px_5px_0_0_black] font-comic uppercase tracking-wider text-3xl leading-none text-black active:scale-[0.96] transition-[scale] duration-100 ${color}`}
                 >
-                  <span className='text-wm-oxygen [text-shadow:1px_1px_0_#000]'>{index + 1}.</span>
                   {text}
                 </a>
               </motion.li>
