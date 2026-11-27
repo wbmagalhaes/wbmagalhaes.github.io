@@ -267,17 +267,12 @@ const cardNumber = (index: number) =>
     background-color: var(--color-wm-paper);
     background-image:
       radial-gradient(ellipse 70% 60% at 50% 40%, var(--color-wm-paper) 30%, rgb(243 233 210 / 0) 100%),
-      repeating-linear-gradient(-45deg, rgb(92 64 30 / 0.16) 0 1.5px, rgb(92 64 30 / 0) 2.5px 12px),
-      repeating-linear-gradient(45deg, rgb(92 64 30 / 0.12) 0 1.5px, rgb(92 64 30 / 0) 2.5px 12px);
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='17'%3E%3Cg stroke='rgb%2892,64,30%29' stroke-width='1.5'%3E%3Cpath stroke-opacity='0.16' d='M-1 18L18 -1M-3 3L3 -3M14 20L20 14'/%3E%3Cpath stroke-opacity='0.12' d='M-1 -1L18 18M-3 14L3 20M14 -3L20 3'/%3E%3C/g%3E%3C/svg%3E");
   }
 
   .ad {
     background-color: var(--color-wm-hydrogen-100);
-    background-image:
-      radial-gradient(rgb(0 0 0 / 0.1) 1.4px, transparent 1.8px),
-      radial-gradient(rgb(0 0 0 / 0.1) 1.4px, transparent 1.8px);
-    background-size: 12px 12px;
-    background-position: 0 0, 6px 6px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cg fill='black' fill-opacity='0.1'%3E%3Ccircle cx='3' cy='3' r='1.6'/%3E%3Ccircle cx='9' cy='9' r='1.6'/%3E%3C/g%3E%3C/svg%3E");
   }
 
   .ad-headline {
@@ -426,7 +421,6 @@ const cardNumber = (index: number) =>
   .card {
     position: relative;
     overflow: hidden;
-    transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
     transition: translate 0.25s ease-out;
   }
 

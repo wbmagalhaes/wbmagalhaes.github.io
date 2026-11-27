@@ -59,7 +59,7 @@ const SYNAPSES = LAYERS.slice(0, -1).flatMap((layer, l) =>
 const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
 ---
 
-<svg class:list={['scene overflow-visible', className]} viewBox={scene === 'dashboard' ? '-64 0 304 160' : '0 0 240 160'} aria-hidden='true'>
+<svg class:list={['scene overflow-visible will-change-transform', className]} viewBox={scene === 'dashboard' ? '-64 0 304 160' : '0 0 240 160'} aria-hidden='true'>
   {
     scene === 'dashboard' && (
       <g>
