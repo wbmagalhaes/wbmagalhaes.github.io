@@ -192,15 +192,13 @@ const cardNumber = (index: number) =>
 
   if (!reduceMotion && touchOnly && !document.documentElement.dataset.lite) {
     const ORBIT_PERIOD = 2600;
-    const ORBIT_STEPS = 16;
+    const ORBIT_STEPS = 36;
     const ORBIT_TILT = 7;
     const FLAT = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
     const tilt = (angle: number) =>
       `perspective(900px) rotateX(${(-Math.sin(angle) * ORBIT_TILT).toFixed(2)}deg) rotateY(${(Math.cos(angle) * ORBIT_TILT).toFixed(2)}deg)`;
-    const orbitFrames = [
-      { transform: FLAT, offset: 0 },
-      ...Array.from({ length: ORBIT_STEPS + 1 }, (_, i) => ({ transform: tilt((i / ORBIT_STEPS) * Math.PI * 2), offset: 0.1 + (i / ORBIT_STEPS) * 0.9 })),
-    ];
+    const orbitFrames = Array.from({ length: ORBIT_STEPS + 1 }, (_, i) => ({ transform: tilt((i / ORBIT_STEPS) * Math.PI * 2) }));
+    const ORBIT_INTRO = 350;
 
     const cards = new Map<HTMLElement, HTMLElement>();
     document.querySelectorAll<HTMLElement>('#skills .card-slot').forEach((slot) => {
@@ -214,7 +212,10 @@ const cardNumber = (index: number) =>
       const card = cards.get(slot);
       if (!card || running.has(slot)) return;
       slot.classList.add('is-active');
-      running.set(slot, [card.animate(orbitFrames, { duration: ORBIT_PERIOD, iterations: Infinity })]);
+      running.set(slot, [
+        card.animate([{ transform: FLAT }, { transform: tilt(0) }], { duration: ORBIT_INTRO, easing: 'ease-out' }),
+        card.animate(orbitFrames, { duration: ORBIT_PERIOD, delay: ORBIT_INTRO, iterations: Infinity }),
+      ]);
     }
 
     function stop(slot: HTMLElement) {
@@ -292,7 +293,6 @@ const cardNumber = (index: number) =>
     border: 4px solid currentColor;
     padding: 4px;
     border-radius: 6px;
-    mask-image: radial-gradient(circle at 30% 40%, black 60%, rgb(0 0 0 / 0.75) 61%, black 75%);
   }
 
   .coupon:hover .rubber-stamp {

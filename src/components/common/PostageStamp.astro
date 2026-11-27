@@ -25,11 +25,14 @@ const maskId = `stamp-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
 <div class:list={['relative aspect-[4/5]', className]}>
-  <svg class='absolute inset-0 size-full' viewBox={`0 0 ${WIDTH} ${HEIGHT}`} aria-hidden='true'>
+  <svg class='absolute inset-0 size-full overflow-visible' viewBox={`0 0 ${WIDTH} ${HEIGHT}`} aria-hidden='true'>
     <mask id={maskId}>
       <rect width={WIDTH} height={HEIGHT} fill='white' />
       {holes.map((h) => <circle cx={h.x} cy={h.y} r='3.2' fill='black' />)}
     </mask>
+    <g transform='translate(3 3)'>
+      <rect width={WIDTH} height={HEIGHT} fill='black' fill-opacity='0.5' mask={`url(#${maskId})`} />
+    </g>
     <rect width={WIDTH} height={HEIGHT} fill='white' mask={`url(#${maskId})`} />
     <rect x='8' y='8' width={WIDTH - 16} height={HEIGHT - 16} fill={color} stroke='black' stroke-width='2' />
   </svg>

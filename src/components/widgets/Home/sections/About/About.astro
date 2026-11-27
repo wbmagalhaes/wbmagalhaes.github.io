@@ -230,11 +230,6 @@ const BUBBLES = [
                 <rect x='20' y='6' width='120' height='80' rx='5' class='fill-wm-nitrogen-800' stroke='black' stroke-width='4' />
                 <rect x='28' y='14' width='104' height='64' rx='2' class='fill-wm-nitrogen' />
                 <text x='80' y='52' text-anchor='middle' class='font-comic fill-wm-sun' font-size='28' letter-spacing='2'>&lt;/&gt;</text>
-                <g stroke-width='3' stroke-linecap='round'>
-                  {CODE_LINES.map(({ x1, x2, y, color }, i) => (
-                    <line x1={x1} y1={y} x2={x2} y2={y} class:list={['code-line', color]} pathLength='1' style={`animation-delay: ${i * 0.45}s`} />
-                  ))}
-                </g>
                 <path d='M18 88 H142 L158 112 H2 Z' class='fill-wm-hydrogen-300' stroke='black' stroke-width='4' stroke-linejoin='round' />
                 <g class='fill-wm-hydrogen-600'>
                   {LAPTOP_KEYS.map((d) => <path d={d} />)}
@@ -242,6 +237,21 @@ const BUBBLES = [
                 <path d='M66 106 H94 L95 110 H65 Z' class='fill-wm-hydrogen-500' />
                 <path d='M2 112 H158 V114 Q158 118 154 118 H6 Q2 118 2 114 Z' class='fill-wm-hydrogen-500' stroke='black' stroke-width='4' stroke-linejoin='round' />
               </svg>
+              {CODE_LINES.map(({ x1, x2, y, color }, i) => {
+                const left = x1 - 2;
+                const width = x2 - x1 + 4;
+                return (
+                  <span
+                    class='code-window absolute'
+                    style={`left: ${(left / 160) * 100}%; top: ${((y - 2) / 122) * 100}%; width: ${(width / 160) * 100}%; height: ${(4 / 122) * 100}%; animation-delay: ${i * 0.45}s`}
+                    aria-hidden='true'
+                  >
+                    <svg class='code-inner' viewBox={`${left} ${y - 2} ${width} 4`} style={`animation-delay: ${i * 0.45}s`}>
+                      <line x1={x1} y1={y} x2={x2} y2={y} class={color} stroke-width='3' stroke-linecap='round' />
+                    </svg>
+                  </span>
+                );
+              })}
                 <span class='sfx sfx-click absolute left-[8%] bottom-[30%] -rotate-12 text-2xl md:text-3xl' style='--dx: -18px' aria-hidden='true'>Click!</span>
                 <span class='sfx sfx-click absolute right-[6%] bottom-[34%] rotate-12 text-2xl md:text-3xl' style='--dx: 18px; animation-delay: 0.4s' aria-hidden='true'>Clack!</span>
               </div>
@@ -291,10 +301,19 @@ const BUBBLES = [
     z-index: 1;
   }
 
-  .code-line {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    animation: code-typing 4.5s steps(6, end) infinite;
+  .code-window {
+    overflow: hidden;
+    transform: translateX(-100%);
+    animation: code-window 4.5s steps(6, end) infinite;
+  }
+
+  .code-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform: translateX(100%);
+    animation: code-inner 4.5s steps(6, end) infinite;
   }
 
   .sfx-click {
@@ -319,17 +338,31 @@ const BUBBLES = [
     }
   }
 
-  @keyframes code-typing {
+  @keyframes code-window {
     0% {
-      stroke-dashoffset: 1;
+      transform: translateX(-100%);
     }
     12%,
     80% {
-      stroke-dashoffset: 0;
+      transform: translateX(0);
     }
     90%,
     100% {
-      stroke-dashoffset: 1;
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes code-inner {
+    0% {
+      transform: translateX(100%);
+    }
+    12%,
+    80% {
+      transform: translateX(0);
+    }
+    90%,
+    100% {
+      transform: translateX(100%);
     }
   }
 
@@ -384,11 +417,15 @@ const BUBBLES = [
       transition: none;
     }
 
-    .code-line,
+    .code-window,
+    .code-inner {
+      animation: none;
+      transform: none;
+    }
+
     .sfx-click,
     .sfx-pop {
       animation: none;
-      stroke-dashoffset: 0;
       opacity: 1;
     }
   }
