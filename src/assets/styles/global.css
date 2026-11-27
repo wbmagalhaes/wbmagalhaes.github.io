@@ -316,3 +316,12 @@
   outline: 3px dashed currentColor;
   outline-offset: 3px;
 }
+
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after,
+.page.is-hidden *,
+.page.is-hidden *::before,
+.page.is-hidden *::after {
+  animation-play-state: paused !important;
+}

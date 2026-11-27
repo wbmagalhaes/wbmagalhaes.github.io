@@ -79,8 +79,12 @@ const sentences = (description: string) =>
                           <span class='whitespace-nowrap'>{word}</span>
                         </>
                       ))}</h3>
-                    <a href={work.atURL} target='_blank' rel='noreferrer' class='comic-balloon py-1.5 text-wm-oxygen hover:bg-wm-sun-300'>
-                      @ {work.name}
+                    <a href={work.atURL} target='_blank' rel='noreferrer' class='place-tag group inline-block -skew-x-6 bg-black px-4 py-2 mt-1'>
+                      <span class='flex skew-x-6 items-center gap-2 font-comic uppercase tracking-[0.08em] text-xl md:text-2xl leading-none text-white'>
+                        <Icon name='ic:round-place' class='size-6 text-wm-sun' />
+                        {work.name}
+                        <Icon name='ic:round-north-east' class='size-5 text-wm-sun transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                      </span>
                     </a>
                   </div>
                   <Scene scene={work.scene} class:list={['relative justify-self-center', work.scene === 'dashboard' ? 'w-[calc(100%+1.5rem)] max-w-[25.33rem] -mx-3 translate-x-2 md:translate-x-0 md:mx-0 md:w-[25.33rem] lg:mr-6' : 'w-64 md:w-80 lg:mr-4']} />
@@ -258,6 +262,22 @@ const sentences = (description: string) =>
     @media (width >= 64rem) {
       --rays-at: calc(100% - 13rem) 50%;
     }
+  }
+
+  .place-tag {
+    box-shadow: 4px 4px 0 0 var(--color-wm-oxygen);
+    transition:
+      translate 0.15s ease-out,
+      box-shadow 0.15s ease-out;
+  }
+
+  .place-tag:hover {
+    translate: -2px -2px;
+    box-shadow: 6px 6px 0 0 var(--color-wm-oxygen);
+  }
+
+  .place-tag:active {
+    scale: 0.96;
   }
 
   .narration {

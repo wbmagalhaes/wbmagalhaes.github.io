@@ -47,6 +47,14 @@ const { meta } = Astro.props as Props;
         { threshold: 0.12 },
       );
       groups.forEach((group) => observer.observe(group));
+
+      const visibility = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => entry.target.classList.toggle('is-offscreen', !entry.isIntersecting));
+        },
+        { rootMargin: '200px 0px' },
+      );
+      document.querySelectorAll('main > section, body > footer').forEach((section) => visibility.observe(section));
     </script>
   </body>
 </html>

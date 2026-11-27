@@ -150,6 +150,11 @@ const cardNumber = (index: number) =>
   };
 
   function createController(slot: HTMLElement, card: HTMLElement): Controller {
+    const glare = document.createElement('span');
+    glare.className = 'glare';
+    glare.setAttribute('aria-hidden', 'true');
+    card.append(glare);
+
     const target = { x: 0, y: 0 };
     const current = { x: 0, y: 0 };
     let frame = 0;
@@ -157,8 +162,7 @@ const cardNumber = (index: number) =>
     function render() {
       current.x += (target.x - current.x) * EASING;
       current.y += (target.y - current.y) * EASING;
-      card.style.setProperty('--tilt-x', `${(-current.y * MAX_TILT).toFixed(2)}deg`);
-      card.style.setProperty('--tilt-y', `${(current.x * MAX_TILT).toFixed(2)}deg`);
+      card.style.transform = `perspective(900px) rotateX(${(-current.y * MAX_TILT).toFixed(2)}deg) rotateY(${(current.x * MAX_TILT).toFixed(2)}deg)`;
       const settled = Math.abs(target.x - current.x) < 0.001 && Math.abs(target.y - current.y) < 0.001;
       frame = settled ? 0 : requestAnimationFrame(render);
     }
@@ -166,8 +170,7 @@ const cardNumber = (index: number) =>
     function aim(x: number, y: number) {
       target.x = x;
       target.y = y;
-      card.style.setProperty('--glare-x', `${((x + 0.5) * 100).toFixed(1)}%`);
-      card.style.setProperty('--glare-y', `${((y + 0.5) * 100).toFixed(1)}%`);
+      glare.style.transform = `translate(${(x * 50).toFixed(1)}%, ${(y * 50).toFixed(1)}%)`;
       if (!frame) frame = requestAnimationFrame(render);
     }
 
@@ -357,6 +360,16 @@ const cardNumber = (index: number) =>
     }
   }
 
+  @media (hover: none), (pointer: coarse) {
+    .pip-burst {
+      animation: none;
+    }
+  }
+
+  .card-slot.is-active .card {
+    will-change: transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .pip-burst {
       animation: none;
@@ -394,6 +407,7 @@ const cardNumber = (index: number) =>
 
   .card {
     position: relative;
+    overflow: hidden;
     transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
     transition: translate 0.25s ease-out;
   }
@@ -403,19 +417,20 @@ const cardNumber = (index: number) =>
     translate: -3px -3px;
   }
 
-  .card::after {
-    content: '';
+  .card :global(.glare) {
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgb(255 255 255 / 0.35), transparent 55%);
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgb(255 255 255 / 0.35), transparent 28%);
     opacity: 0;
     transition: opacity 0.25s ease-out;
     pointer-events: none;
   }
 
-  .card-slot:hover .card::after,
-  .card-slot.is-active .card::after {
+  .card-slot:hover .card :global(.glare),
+  .card-slot.is-active .card :global(.glare) {
     opacity: 1;
   }
 </style>
