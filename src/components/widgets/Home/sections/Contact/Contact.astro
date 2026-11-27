@@ -23,6 +23,10 @@ const stamps = [
 ---
 
 <section id='contact' class='contact relative z-10 pt-20 md:pt-26 pb-20 md:pb-26'>
+  <div class='drop-overlay absolute pointer-events-none' data-desk-overlay aria-hidden='true'>
+    <span class='sent-sfx absolute top-3 right-4 md:top-5 md:right-8 rotate-6'>Sent!</span>
+  </div>
+
   <div class='contact-paper absolute inset-0 -z-10' aria-hidden='true'></div>
   <ContentBox>
     <div class='comic-page'>
@@ -39,7 +43,6 @@ const stamps = [
 
 
         <div data-stagger-item class='comic-panel desk relative md:col-span-12 lg:col-span-7 p-5 md:p-6 flex flex-col justify-center gap-5'>
-          <span class='sent-sfx absolute top-3 right-4 md:top-5 md:right-8 z-10 rotate-6 pointer-events-none' aria-hidden='true'>Sent!</span>
           <svg data-envelope class='envelope w-full max-w-md self-center -rotate-2 overflow-visible transition-[scale] duration-150' viewBox='0 0 300 190' role='img' aria-label='Air mail envelope addressed to William Magalhães'>
             <defs>
               <pattern id='airmail' width='28' height='28' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'>
@@ -56,6 +59,9 @@ const stamps = [
               <text x='24' y='46' font-size='9' letter-spacing='1'>SOMEWHERE ON EARTH</text>
             </g>
 
+            <g class='place-hint' aria-hidden='true'>
+              <rect x='221' y='15' width='60' height='70' rx='3' fill='none' class='stroke-wm-oxygen' stroke-width='3' stroke-dasharray='6 4' />
+            </g>
             <g data-slot transform='translate(228 22) rotate(3)'>
               <rect width='46' height='56' fill='white' stroke='black' stroke-width='1.5' stroke-dasharray='3 2' />
               <rect x='5' y='5' width='36' height='46' class='fill-wm-sun' stroke='black' stroke-width='2' />
@@ -80,11 +86,15 @@ const stamps = [
               <line x1='96' y1='144' x2='276' y2='144' />
               <line x1='96' y1='162' x2='276' y2='162' />
             </g>
+            <g class='place-hint place-label-svg' transform='translate(251 104) rotate(-4)'>
+              <path d='M-48 -13 H-8 L0 -22 L8 -13 H48 V13 H-48 Z' class='fill-wm-oxygen' stroke='black' stroke-width='3' stroke-linejoin='round' />
+              <text y='6' text-anchor='middle' class='font-comic' font-size='15' letter-spacing='1' fill='white'>PLACE HERE!</text>
+            </g>
           </svg>
         </div>
 
         <div data-stagger-item class='comic-panel album md:col-span-12 lg:col-span-5 p-5 md:p-6 flex flex-col gap-4'>
-          <p class='comic-caption self-start'>Pick a stamp</p>
+          <p class='comic-caption self-start'>Pick and place a stamp</p>
           <ul class='flex-1 w-full max-w-md lg:max-w-none mx-auto grid grid-cols-3 items-center gap-3 md:gap-4'>
             {
               stamps.map(({ name, link, icon, color, external }, index) => (
@@ -124,8 +134,27 @@ const stamps = [
 
 <script>
   const envelope = document.querySelector<SVGElement>('[data-envelope]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const slot = envelope?.querySelector<SVGGElement>('[data-slot]');
-  const sentSfx = document.querySelector<HTMLElement>('.sent-sfx');
+  const section = document.querySelector<HTMLElement>('#contact');
+  const sentSfx = document.querySelector<HTMLElement>('[data-desk-overlay] .sent-sfx');
+
+  const deskOverlay = document.querySelector<HTMLElement>('[data-desk-overlay]');
+  const desk = document.querySelector<HTMLElement>('#contact .desk');
+
+  function cover(target: HTMLElement | null, element: Element | null | undefined) {
+    if (!target || !element || !section) return;
+    const box = element.getBoundingClientRect();
+    const origin = section.getBoundingClientRect();
+    target.style.left = `${box.left - origin.left}px`;
+    target.style.top = `${box.top - origin.top}px`;
+    target.style.width = `${box.width}px`;
+    target.style.height = `${box.height}px`;
+  }
+
+  function placeOverlay() {
+    cover(deskOverlay, desk);
+  }
   let landing = false;
 
   function land(stamp: HTMLElement, offset: { x: number; y: number }) {
@@ -142,8 +171,29 @@ const stamps = [
     stamp.style.translate = `${dx}px ${dy}px`;
     stamp.style.scale = String((to.height / from.height) * 1.15);
 
+    placeOverlay();
     window.setTimeout(() => {
       envelope?.classList.add('stamped');
+      if (envelope && !reduceMotion) {
+        const env = envelope.getBoundingClientRect();
+        const own = stamp.getBoundingClientRect();
+        const cx = env.left + env.width / 2;
+        const cy = env.top + env.height / 2;
+        const qx = own.left + own.width / 2;
+        const qy = own.top + own.height / 2;
+        const base = Number(stamp.style.scale) || 1;
+        const frame = (k: number) =>
+          `translate(${(((k - 1) * (qx - cx)) / base).toFixed(2)}px, ${(((k - 1) * (qy - cy)) / base).toFixed(2)}px) scale(${k})`;
+        stamp.animate(
+          [
+            { transform: frame(1), offset: 0, easing: 'ease-out' },
+            { transform: frame(0.95), offset: 0.3, easing: 'ease-out' },
+            { transform: frame(1.03), offset: 0.65, easing: 'ease-out' },
+            { transform: frame(1), offset: 1 },
+          ],
+          { duration: 350 },
+        );
+      }
       sentSfx?.classList.add('show');
     }, 380);
 
@@ -155,7 +205,7 @@ const stamps = [
       stamp.style.scale = '';
       stamp.closest('li')?.classList.remove('lifted');
       stamp.closest('.comic-panel')?.classList.remove('lifted');
-      envelope?.classList.remove('stamped');
+      envelope?.classList.remove('stamped', 'drop-ready');
       sentSfx?.classList.remove('show');
       landing = false;
     }, 1300);
@@ -184,6 +234,8 @@ const stamps = [
       start = { x: event.clientX, y: event.clientY };
       stamp.setPointerCapture(event.pointerId);
       stamp.classList.add('dragging');
+      envelope?.classList.add('awaiting');
+      placeOverlay();
       stamp.closest('li')?.classList.add('lifted');
       stamp.closest('.comic-panel')?.classList.add('lifted');
     });
@@ -215,11 +267,13 @@ const stamps = [
       frame = 0;
       wasReady = false;
       stamp.classList.remove('dragging');
-      envelope?.classList.remove('drop-ready');
+      envelope?.classList.remove('awaiting');
       if (overEnvelope(event.clientX, event.clientY)) {
+        envelope?.classList.add('drop-ready');
         land(stamp, { x: event.clientX - start.x, y: event.clientY - start.y });
         return;
       }
+      envelope?.classList.remove('drop-ready');
       stamp.closest('li')?.classList.remove('lifted');
       stamp.closest('.comic-panel')?.classList.remove('lifted');
       stamp.style.translate = '';
@@ -321,6 +375,14 @@ const stamps = [
   }
 
   .stamp-link.dragging,
+  .stamp-link :global(.stamp-shadow) {
+    transition: transform 0.3s ease-out;
+  }
+
+  .stamp-link.landing :global(.stamp-shadow) {
+    transform: translate(1px, 1px);
+  }
+
   .stamp-link.landing {
     will-change: translate, scale;
   }
@@ -351,10 +413,10 @@ const stamps = [
 
   @keyframes envelope-thunk {
     30% {
-      scale: 0.95;
+      transform: scale(0.95);
     }
     65% {
-      scale: 1.03;
+      transform: scale(1.03);
     }
   }
 
@@ -401,6 +463,21 @@ const stamps = [
       animation: none;
     }
   }
+
+  .place-hint {
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+  }
+
+  .envelope.awaiting .place-hint {
+    opacity: 1;
+  }
+
+  .drop-overlay {
+    z-index: 60;
+  }
+
+
 
   .envelope.drop-ready {
     scale: 1.04;

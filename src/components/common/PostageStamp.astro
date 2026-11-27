@@ -30,7 +30,7 @@ const maskId = `stamp-${Math.random().toString(36).slice(2, 8)}`;
       <rect width={WIDTH} height={HEIGHT} fill='white' />
       {holes.map((h) => <circle cx={h.x} cy={h.y} r='3.2' fill='black' />)}
     </mask>
-    <g transform='translate(3 3)'>
+    <g class='stamp-shadow' transform='translate(3 3)'>
       <rect width={WIDTH} height={HEIGHT} fill='black' fill-opacity='0.5' mask={`url(#${maskId})`} />
     </g>
     <rect width={WIDTH} height={HEIGHT} fill='white' mask={`url(#${maskId})`} />
