@@ -190,7 +190,7 @@ const cardNumber = (index: number) =>
   }
 
 
-  if (!reduceMotion && touchOnly) {
+  if (!reduceMotion && touchOnly && !document.documentElement.dataset.lite) {
     const ORBIT_PERIOD = 2600;
     const ORBIT_STEPS = 16;
     const ORBIT_TILT = 7;
@@ -365,7 +365,7 @@ const cardNumber = (index: number) =>
 
   @keyframes pip-burst-spin {
     to {
-      rotate: 360deg;
+      transform: rotate(360deg);
     }
   }
 

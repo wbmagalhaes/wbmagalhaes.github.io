@@ -8,6 +8,14 @@ type Props = {
 
 const { scene, class: className } = Astro.props;
 
+const VB = scene === 'dashboard' ? [-64, 0, 304, 160] : [0, 0, 240, 160];
+const VIEWBOX = VB.join(' ');
+const pct = (value: number) => `${value.toFixed(3)}%`;
+const box = (x: number, y: number, w: number, h: number, extra = '') => ({
+  viewBox: `${x} ${y} ${w} ${h}`,
+  style: `left: ${pct(((x - VB[0]) / VB[2]) * 100)}; top: ${pct(((y - VB[1]) / VB[3]) * 100)}; width: ${pct((w / VB[2]) * 100)}; height: ${pct((h / VB[3]) * 100)};${extra}`,
+});
+
 const BARS = [
   { x: 44, h: 30, color: 'fill-wm-leaf' },
   { x: 66, h: 46, color: 'fill-wm-sky' },
@@ -57,143 +65,270 @@ const SYNAPSES = LAYERS.slice(0, -1).flatMap((layer, l) =>
 );
 
 const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
+
+const SFX = {
+  dashboard: { text: 'Ding!', x: 212, y: 86, size: 22, box: box(180, 64, 64, 28) },
+  wizard: { text: 'Zap!', x: 196, y: 52, size: 24, box: box(162, 28, 68, 30) },
+  coffee: { text: 'Scan!', x: 200, y: 14, size: 20, box: box(170, -6, 60, 26) },
+  colorimeter: { text: 'Beep!', x: 160, y: 24, size: 22, box: box(128, 2, 64, 28) },
+}[scene];
 ---
 
-<svg class:list={['scene overflow-visible will-change-transform', className]} viewBox={scene === 'dashboard' ? '-64 0 304 160' : '0 0 240 160'} aria-hidden='true'>
+<div class:list={['scene', className]} style={`aspect-ratio: ${VB[2]} / ${VB[3]}`} aria-hidden='true'>
   {
     scene === 'dashboard' && (
-      <g>
-        <g transform='translate(-64 0)'>
-        <rect x='24' y='63' width='60' height='11' class='fill-wm-hydrogen-100' stroke='black' stroke-width='3' />
-        {PACKETS.map(({ color, delay }) => (
-          <rect class:list={['packet', color]} x='26' y='66' width='7' height='5' rx='1' stroke='black' stroke-width='1.5' style={`animation-delay: ${delay}s`} />
+      <>
+        <svg class='layer-static' viewBox={VIEWBOX}>
+          <rect x='-40' y='63' width='60' height='11' class='fill-wm-hydrogen-100' stroke='black' stroke-width='3' />
+          <line x1='-48' y1='54' x2='-48' y2='38' stroke='black' stroke-width='3' />
+          <circle cx='-48' cy='36' r='3.5' class='fill-wm-oxygen' stroke='black' stroke-width='2.5' />
+          <rect x='-60' y='54' width='24' height='30' rx='4' class='fill-wm-hydrogen-100' stroke='black' stroke-width='3.5' />
+          <rect x='-55' y='60' width='14' height='8' rx='1' class='fill-wm-nitrogen' />
+          <circle cx='-48' cy='76' r='3' class='fill-wm-leaf' stroke='black' stroke-width='1.5' />
+        </svg>
+        {PACKETS.map(({ color, delay }) => {
+          const b = box(-39, 64.5, 59, 8, ` animation-delay: ${delay}s;`);
+          return (
+            <svg class='layer packet' viewBox={b.viewBox} style={b.style}>
+              <rect class={color} x='-38' y='66' width='7' height='5' rx='1' stroke='black' stroke-width='1.5' />
+            </svg>
+          );
+        })}
+        {[
+          { d: 'M-57 30 Q-48 22 -39 30', b: box(-59, 20, 22, 12) },
+          { d: 'M-62 24 Q-48 12 -34 24', b: box(-64, 10, 32, 16, ' animation-delay: 0.4s;') },
+        ].map(({ d, b }) => (
+          <svg class='layer radio' viewBox={b.viewBox} style={b.style}>
+            <path d={d} fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' />
+          </svg>
         ))}
-        <g class='radio' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'>
-          <path d='M7 30 Q16 22 25 30' />
-          <path d='M2 24 Q16 12 30 24' style='animation-delay: 0.4s' />
-        </g>
-        <line x1='16' y1='54' x2='16' y2='38' stroke='black' stroke-width='3' />
-        <circle cx='16' cy='36' r='3.5' class='fill-wm-oxygen' stroke='black' stroke-width='2.5' />
-        <rect x='4' y='54' width='24' height='30' rx='4' class='fill-wm-hydrogen-100' stroke='black' stroke-width='3.5' />
-        <rect x='9' y='60' width='14' height='8' rx='1' class='fill-wm-nitrogen' />
-        <circle class='sensor-led fill-wm-leaf' cx='16' cy='76' r='3' stroke='black' stroke-width='1.5' />
-        <g transform='translate(54 68.5) scale(1.6)'>
-          <polygon class='gear fill-wm-sun' points={GEAR} stroke='black' stroke-width='2' stroke-linejoin='round' />
-          <circle r='3.5' fill='white' stroke='black' stroke-width='1.5' />
-        </g>
-        </g>
-        <g class='monitor-group'>
-          <path d='M92 122 L84 146 H134 L126 122 Z' class='fill-wm-hydrogen-400' stroke='black' stroke-width='4' stroke-linejoin='round' />
-          <rect x='66' y='144' width='86' height='8' rx='3' class='fill-wm-hydrogen-400' stroke='black' stroke-width='4' />
-          <rect x='20' y='12' width='178' height='112' rx='7' class='fill-wm-nitrogen-800' stroke='black' stroke-width='5' />
-          <rect x='30' y='22' width='158' height='92' rx='2' class='fill-wm-nitrogen' />
-          <g stroke='black' stroke-width='2.5'>
-            {BARS.map(({ x, h, color }, i) => (
-              <rect class:list={['bar', color]} x={x} y={104 - h} width='16' height={h} style={`animation-delay: ${i * 0.15}s`} />
-            ))}
-          </g>
-          <polyline class='trend' points='40,52 70,44 96,58 122,34 150,42 178,30' fill='none' pathLength='1' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' />
-          <line x1='38' y1='104' x2='180' y2='104' class='stroke-wm-hydrogen-100' stroke-width='2' />
-          <g class='bell' transform='translate(212 34)'>
-            <g class='bell-swing'>
-              <circle cx='0' cy='-17' r='4' class='fill-wm-sun' stroke='black' stroke-width='3' />
-              <circle cx='0' cy='19' r='5' class='fill-wm-sun' stroke='black' stroke-width='3' />
-              <path d='M-15 12 Q-15 -14 0 -14 Q15 -14 15 12 L20 17 H-20 Z' class='fill-wm-sun' stroke='black' stroke-width='3.5' stroke-linejoin='round' />
-            </g>
-          </g>
-          <text class='sfx-svg sfx-ding' x='212' y='86' text-anchor='middle' font-size='22'>Ding!</text>
-        </g>
-      </g>
+        {(() => {
+          const b = box(-52, 72, 8, 8);
+          return (
+            <svg class='layer blink' viewBox={b.viewBox} style={b.style}>
+              <circle cx='-48' cy='76' r='3' class='fill-wm-hydrogen-100' stroke='black' stroke-width='1.5' />
+            </svg>
+          );
+        })()}
+        {(() => {
+          const b = box(-30, 48.5, 40, 40);
+          return (
+            <svg class='layer gear' viewBox={b.viewBox} style={b.style}>
+              <g transform='translate(-10 68.5) scale(1.6)'>
+                <polygon class='fill-wm-sun' points={GEAR} stroke='black' stroke-width='2' stroke-linejoin='round' />
+                <circle r='3.5' fill='white' stroke='black' stroke-width='1.5' />
+              </g>
+            </svg>
+          );
+        })()}
+
+        <div class='monitor-group'>
+          <svg class='layer-static' viewBox={VIEWBOX}>
+            <path d='M92 122 L84 146 H134 L126 122 Z' class='fill-wm-hydrogen-400' stroke='black' stroke-width='4' stroke-linejoin='round' />
+            <rect x='66' y='144' width='86' height='8' rx='3' class='fill-wm-hydrogen-400' stroke='black' stroke-width='4' />
+            <rect x='20' y='12' width='178' height='112' rx='7' class='fill-wm-nitrogen-800' stroke='black' stroke-width='5' />
+            <rect x='30' y='22' width='158' height='92' rx='2' class='fill-wm-nitrogen' />
+            <line x1='38' y1='104' x2='180' y2='104' class='stroke-wm-hydrogen-100' stroke-width='2' />
+          </svg>
+          {BARS.map(({ x, h, color }, i) => {
+            const b = box(x, 104 - h, 16, h, ` animation-delay: ${i * 0.15}s;`);
+            return (
+              <svg class='layer bar' viewBox={b.viewBox} style={b.style}>
+                <rect class={color} x={x} y={104 - h} width='16' height={h} stroke='black' stroke-width='2.5' />
+              </svg>
+            );
+          })}
+          {(() => {
+            const b = box(38, 28, 142, 32);
+            return (
+              <div class='layer trend-window' style={b.style}>
+                <svg class='trend-inner' viewBox={b.viewBox}>
+                  <polyline class='stroke-wm-sun' points='40,52 70,44 96,58 122,34 150,42 178,30' fill='none' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' />
+                </svg>
+              </div>
+            );
+          })()}
+          {(() => {
+            const b = box(190, 12, 44, 50);
+            return (
+              <svg class='layer bell' viewBox={b.viewBox} style={b.style}>
+                <g transform='translate(212 34)'>
+                  <circle cx='0' cy='-17' r='4' class='fill-wm-sun' stroke='black' stroke-width='3' />
+                  <circle cx='0' cy='19' r='5' class='fill-wm-sun' stroke='black' stroke-width='3' />
+                  <path d='M-15 12 Q-15 -14 0 -14 Q15 -14 15 12 L20 17 H-20 Z' class='fill-wm-sun' stroke='black' stroke-width='3.5' stroke-linejoin='round' />
+                </g>
+              </svg>
+            );
+          })()}
+          <svg class='layer sfx' viewBox={SFX.box.viewBox} style={SFX.box.style}>
+            <text class='sfx-svg' x={SFX.x} y={SFX.y} text-anchor='middle' font-size={SFX.size}>{SFX.text}</text>
+          </svg>
+        </div>
+      </>
     )
   }
 
   {
     scene === 'wizard' && (
-      <g>
-        <g class='hat'>
-          <ellipse cx='100' cy='124' rx='76' ry='15' class='fill-wm-nitrogen-700' stroke='black' stroke-width='5' />
-          <path d='M50 122 L104 22 Q114 2 136 12 Q118 18 116 34 L152 122 Z' class='fill-wm-nitrogen' stroke='black' stroke-width='5' stroke-linejoin='round' />
-          <path d='M58 106 Q100 116 145 106 L150 120 Q100 130 52 120 Z' class='fill-wm-sun' stroke='black' stroke-width='4' stroke-linejoin='round' />
-          <polygon points={star(98, 70, 11)} class='fill-wm-sun' stroke='black' stroke-width='2.5' stroke-linejoin='round' />
-          <polygon points={star(122, 88, 6)} class='fill-wm-sun' stroke='black' stroke-width='2' stroke-linejoin='round' />
-          <polygon points={star(108, 40, 5)} class='fill-wm-sun' stroke='black' stroke-width='2' stroke-linejoin='round' />
-        </g>
-        <g transform='translate(150 104) rotate(-10)'>
-          <path d='M8 0 H70 Q86 0 88 18 L90 36 Q90 48 78 46 L64 32 H14 L0 46 Q-12 48 -12 36 L-10 18 Q-8 0 8 0 Z' class='fill-wm-hydrogen-100' stroke='black' stroke-width='4.5' stroke-linejoin='round' />
-          <path d='M14 10 h6 v6 h6 v6 h-6 v6 h-6 v-6 h-6 v-6 h6 Z' fill='black' />
-          <circle cx='62' cy='12' r='4' class='fill-wm-oxygen' stroke='black' stroke-width='2' />
-          <circle cx='69.5' cy='19' r='4' class='fill-wm-leaf' stroke='black' stroke-width='2' />
-          <circle cx='54.5' cy='19' r='4' class='fill-wm-sky' stroke='black' stroke-width='2' />
-          <circle cx='62' cy='26' r='4' class='fill-wm-sun' stroke='black' stroke-width='2' />
-        </g>
-        {SPARKLES.map(({ x, y, r, delay }) => (
-          <path class='sparkle fill-wm-hydrogen-100' d={sparkle(x, y, r)} stroke='black' stroke-width='2' stroke-linejoin='round' style={`animation-delay: ${delay}s`} />
-        ))}
-        <text class='sfx-svg sfx-ding' x='196' y='52' text-anchor='middle' font-size='24'>Zap!</text>
-      </g>
+      <>
+        {(() => {
+          const b = box(22, 0, 156, 142);
+          return (
+            <svg class='layer hat' viewBox={b.viewBox} style={b.style}>
+              <ellipse cx='100' cy='124' rx='76' ry='15' class='fill-wm-nitrogen-700' stroke='black' stroke-width='5' />
+              <path d='M50 122 L104 22 Q114 2 136 12 Q118 18 116 34 L152 122 Z' class='fill-wm-nitrogen' stroke='black' stroke-width='5' stroke-linejoin='round' />
+              <path d='M58 106 Q100 116 145 106 L150 120 Q100 130 52 120 Z' class='fill-wm-sun' stroke='black' stroke-width='4' stroke-linejoin='round' />
+              <polygon points={star(98, 70, 11)} class='fill-wm-sun' stroke='black' stroke-width='2.5' stroke-linejoin='round' />
+              <polygon points={star(122, 88, 6)} class='fill-wm-sun' stroke='black' stroke-width='2' stroke-linejoin='round' />
+              <polygon points={star(108, 40, 5)} class='fill-wm-sun' stroke='black' stroke-width='2' stroke-linejoin='round' />
+            </svg>
+          );
+        })()}
+        <svg class='layer-static' viewBox={VIEWBOX}>
+          <g transform='translate(150 104) rotate(-10)'>
+            <path d='M8 0 H70 Q86 0 88 18 L90 36 Q90 48 78 46 L64 32 H14 L0 46 Q-12 48 -12 36 L-10 18 Q-8 0 8 0 Z' class='fill-wm-hydrogen-100' stroke='black' stroke-width='4.5' stroke-linejoin='round' />
+            <path d='M14 10 h6 v6 h6 v6 h-6 v6 h-6 v-6 h-6 v-6 h6 Z' fill='black' />
+            <circle cx='62' cy='12' r='4' class='fill-wm-oxygen' stroke='black' stroke-width='2' />
+            <circle cx='69.5' cy='19' r='4' class='fill-wm-leaf' stroke='black' stroke-width='2' />
+            <circle cx='54.5' cy='19' r='4' class='fill-wm-sky' stroke='black' stroke-width='2' />
+            <circle cx='62' cy='26' r='4' class='fill-wm-sun' stroke='black' stroke-width='2' />
+          </g>
+        </svg>
+        {SPARKLES.map(({ x, y, r, delay }) => {
+          const b = box(x - r - 2, y - r - 2, r * 2 + 4, r * 2 + 4, ` animation-delay: ${delay}s;`);
+          return (
+            <svg class='layer sparkle' viewBox={b.viewBox} style={b.style}>
+              <path class='fill-wm-hydrogen-100' d={sparkle(x, y, r)} stroke='black' stroke-width='2' stroke-linejoin='round' />
+            </svg>
+          );
+        })}
+        <svg class='layer sfx' viewBox={SFX.box.viewBox} style={SFX.box.style}>
+          <text class='sfx-svg' x={SFX.x} y={SFX.y} text-anchor='middle' font-size={SFX.size}>{SFX.text}</text>
+        </svg>
+      </>
     )
   }
 
   {
     scene === 'coffee' && (
-      <g>
-        <g stroke='black' stroke-width='1.5' opacity='0.45'>
-          {SYNAPSES.map(({ x1, y1, x2, y2 }) => <line x1={x1} y1={y1} x2={x2} y2={y2} />)}
-          {LAYERS.at(-1)!.ys.map((y) => <line x1='98' y1={y} x2='128' y2='80' />)}
-        </g>
-        {LAYERS.map(({ x, ys }, l) =>
-          ys.map((y) => <circle class='neuron' cx={x} cy={y} r='7' stroke='black' stroke-width='3' style={`animation-delay: ${l * 0.35}s`} />),
-        )}
-        <g transform='rotate(18 178 80)'>
-          <ellipse cx='178' cy='80' rx='40' ry='56' class='fill-wm-wood' stroke='black' stroke-width='5' />
-          <path d='M178 26 Q160 52 178 80 Q196 108 178 134' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' />
-          <ellipse cx='162' cy='54' rx='7' ry='14' fill='white' opacity='0.35' />
-        </g>
-        <g fill='none' stroke='black' stroke-width='5' stroke-linecap='square'>
-          <path d='M128 18 h-0 v18 M128 18 h18' />
-          <path d='M228 18 v18 M228 18 h-18' />
-          <path d='M128 142 v-18 M128 142 h18' />
-          <path d='M228 142 v-18 M228 142 h-18' />
-        </g>
-        <g class='scanline'>
-          <rect x='130' y='20' width='96' height='4' class='fill-wm-oxygen' />
-          <rect x='130' y='24' width='96' height='10' class='fill-wm-oxygen' opacity='0.25' />
-        </g>
-        <text class='sfx-svg sfx-ding' x='200' y='14' text-anchor='middle' font-size='20'>Scan!</text>
-      </g>
+      <>
+        <svg class='layer-static' viewBox={VIEWBOX}>
+          <g stroke='black' stroke-width='1.5' opacity='0.45'>
+            {SYNAPSES.map(({ x1, y1, x2, y2 }) => <line x1={x1} y1={y1} x2={x2} y2={y2} />)}
+            {LAYERS.at(-1)!.ys.map((y) => <line x1='98' y1={y} x2='128' y2='80' />)}
+          </g>
+          {LAYERS.flatMap(({ x, ys }) => ys.map((y) => <circle cx={x} cy={y} r='7' fill='white' stroke='black' stroke-width='3' />))}
+          <g transform='rotate(18 178 80)'>
+            <ellipse cx='178' cy='80' rx='40' ry='56' class='fill-wm-wood' stroke='black' stroke-width='5' />
+            <path d='M178 26 Q160 52 178 80 Q196 108 178 134' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' />
+            <ellipse cx='162' cy='54' rx='7' ry='14' fill='white' opacity='0.35' />
+          </g>
+          <g fill='none' stroke='black' stroke-width='5' stroke-linecap='square'>
+            <path d='M128 18 h-0 v18 M128 18 h18' />
+            <path d='M228 18 v18 M228 18 h-18' />
+            <path d='M128 142 v-18 M128 142 h18' />
+            <path d='M228 142 v-18 M228 142 h-18' />
+          </g>
+        </svg>
+        {LAYERS.map(({ x, ys }, l) => {
+          const top = Math.min(...ys) - 10;
+          const b = box(x - 10, top, 20, Math.max(...ys) + 10 - top, ` animation-delay: ${l * 0.35}s;`);
+          return (
+            <svg class='layer neuron' viewBox={b.viewBox} style={b.style}>
+              {ys.map((y) => <circle cx={x} cy={y} r='7' class='fill-wm-sun' stroke='black' stroke-width='3' />)}
+            </svg>
+          );
+        })}
+        {(() => {
+          const b = box(130, 20, 96, 14);
+          return (
+            <svg class='layer scanline' viewBox={b.viewBox} style={b.style}>
+              <rect x='130' y='20' width='96' height='4' class='fill-wm-oxygen' />
+              <rect x='130' y='24' width='96' height='10' class='fill-wm-oxygen' opacity='0.25' />
+            </svg>
+          );
+        })()}
+        <svg class='layer sfx' viewBox={SFX.box.viewBox} style={SFX.box.style}>
+          <text class='sfx-svg' x={SFX.x} y={SFX.y} text-anchor='middle' font-size={SFX.size}>{SFX.text}</text>
+        </svg>
+      </>
     )
   }
 
   {
     scene === 'colorimeter' && (
-      <g>
-        <polygon class='beam fill-wm-leaf' points='48,40 112,36 112,62 48,58' />
-        <polygon class='beam beam-out fill-wm-leaf' points='136,40 186,42 186,56 136,58' />
-        <rect x='20' y='100' width='204' height='48' rx='6' class='fill-wm-sky-700' stroke='black' stroke-width='4.5' />
-        {PINS.map((x) => <rect x={x} y='104' width='6' height='8' fill='black' />)}
-        <rect x='96' y='120' width='52' height='18' rx='2' fill='black' />
-        <circle cx='38' cy='124' r='7' class='fill-wm-hydrogen-400' stroke='black' stroke-width='3' />
-        <rect class='power-led fill-wm-oxygen' x='196' y='120' width='10' height='6' stroke='black' stroke-width='2' />
-        <g stroke='black' stroke-width='3'>
-          <line x1='34' y1='66' x2='34' y2='100' />
-          <line x1='44' y1='66' x2='44' y2='100' />
-          <line x1='194' y1='66' x2='194' y2='100' />
-          <line x1='204' y1='66' x2='204' y2='100' />
-        </g>
-        <path d='M26 68 V44 Q26 28 39 28 Q52 28 52 44 V68 Z' class='fill-wm-leaf' stroke='black' stroke-width='4' stroke-linejoin='round' />
-        <rect x='22' y='64' width='34' height='6' rx='2' class='fill-wm-leaf' stroke='black' stroke-width='3' />
-        <rect x='110' y='18' width='28' height='70' rx='2' fill='white' stroke='black' stroke-width='4' />
-        <rect x='112' y='38' width='24' height='48' class='fill-wm-oxygen' />
-        <line x1='110' y1='38' x2='138' y2='38' stroke='black' stroke-width='2.5' />
-        <rect x='186' y='34' width='26' height='32' rx='3' class='fill-wm-nitrogen' stroke='black' stroke-width='4' />
-        <rect x='190' y='42' width='8' height='16' class='fill-wm-hydrogen-400' stroke='black' stroke-width='2' />
-        <text class='sfx-svg sfx-ding' x='160' y='24' text-anchor='middle' font-size='22'>Beep!</text>
-      </g>
+      <>
+        {(() => {
+          const b = box(48, 36, 64, 26);
+          return (
+            <svg class='layer beam' viewBox={b.viewBox} style={b.style}>
+              <polygon class='fill-wm-leaf' points='48,40 112,36 112,62 48,58' />
+            </svg>
+          );
+        })()}
+        {(() => {
+          const b = box(136, 40, 50, 18);
+          return (
+            <svg class='layer beam beam-out' viewBox={b.viewBox} style={b.style}>
+              <polygon class='fill-wm-leaf' points='136,40 186,42 186,56 136,58' />
+            </svg>
+          );
+        })()}
+        <svg class='layer-static' viewBox={VIEWBOX}>
+          <rect x='20' y='100' width='204' height='48' rx='6' class='fill-wm-sky-700' stroke='black' stroke-width='4.5' />
+          {PINS.map((x) => <rect x={x} y='104' width='6' height='8' fill='black' />)}
+          <rect x='96' y='120' width='52' height='18' rx='2' fill='black' />
+          <circle cx='38' cy='124' r='7' class='fill-wm-hydrogen-400' stroke='black' stroke-width='3' />
+          <rect class='fill-wm-oxygen' x='196' y='120' width='10' height='6' stroke='black' stroke-width='2' />
+          <g stroke='black' stroke-width='3'>
+            <line x1='34' y1='66' x2='34' y2='100' />
+            <line x1='44' y1='66' x2='44' y2='100' />
+            <line x1='194' y1='66' x2='194' y2='100' />
+            <line x1='204' y1='66' x2='204' y2='100' />
+          </g>
+          <path d='M26 68 V44 Q26 28 39 28 Q52 28 52 44 V68 Z' class='fill-wm-leaf' stroke='black' stroke-width='4' stroke-linejoin='round' />
+          <rect x='22' y='64' width='34' height='6' rx='2' class='fill-wm-leaf' stroke='black' stroke-width='3' />
+          <rect x='110' y='18' width='28' height='70' rx='2' fill='white' stroke='black' stroke-width='4' />
+          <rect x='112' y='38' width='24' height='48' class='fill-wm-oxygen' />
+          <line x1='110' y1='38' x2='138' y2='38' stroke='black' stroke-width='2.5' />
+          <rect x='186' y='34' width='26' height='32' rx='3' class='fill-wm-nitrogen' stroke='black' stroke-width='4' />
+          <rect x='190' y='42' width='8' height='16' class='fill-wm-hydrogen-400' stroke='black' stroke-width='2' />
+        </svg>
+        {(() => {
+          const b = box(194, 118, 14, 10);
+          return (
+            <svg class='layer blink blink-fast' viewBox={b.viewBox} style={b.style}>
+              <rect class='fill-wm-hydrogen-100' x='196' y='120' width='10' height='6' stroke='black' stroke-width='2' />
+            </svg>
+          );
+        })()}
+        <svg class='layer sfx' viewBox={SFX.box.viewBox} style={SFX.box.style}>
+          <text class='sfx-svg' x={SFX.x} y={SFX.y} text-anchor='middle' font-size={SFX.size}>{SFX.text}</text>
+        </svg>
+      </>
     )
   }
-</svg>
+</div>
 
 <style>
+  .scene {
+    position: relative;
+  }
+
+  .scene :global(.layer-static) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .scene :global(.layer) {
+    position: absolute;
+    overflow: visible;
+    will-change: transform, opacity;
+  }
+
   .scene :global(.sfx-svg) {
     font-family: var(--font-comic);
     letter-spacing: 0.06em;
@@ -205,9 +340,18 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
     paint-order: stroke fill;
   }
 
-  .sfx-ding {
-    transform-box: fill-box;
-    transform-origin: center;
+  .monitor-group {
+    position: absolute;
+    inset: 0;
+
+
+    @media (width < 48rem) {
+      transform-origin: 27.632% 42.5%;
+      scale: 0.84;
+    }
+  }
+
+  .sfx {
     animation: sfx-ding 2.4s ease-out infinite;
   }
 
@@ -215,60 +359,78 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
     0%,
     100% {
       opacity: 0;
-      scale: 0.6;
+      transform: scale(0.6, 0.6);
     }
     12% {
       opacity: 1;
-      scale: 1.15;
+      transform: scale(1.15, 1.15);
     }
     20%,
     55% {
       opacity: 1;
-      scale: 1;
+      transform: scale(1, 1);
     }
     70% {
       opacity: 0;
-      scale: 1;
+      transform: scale(1, 1);
     }
   }
 
   .bar {
-    transform-box: fill-box;
     transform-origin: 50% 100%;
     animation: bar-grow 2.4s ease-in-out infinite alternate;
   }
 
   @keyframes bar-grow {
     from {
-      scale: 1 0.55;
+      transform: scale(1, 0.55);
     }
     to {
-      scale: 1 1;
+      transform: scale(1, 1);
     }
   }
 
-  .trend {
-    stroke: var(--color-wm-sun);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    animation: trend-draw 4.8s ease-in-out infinite;
+  .trend-window {
+    overflow: hidden;
+    animation: trend-window 4.8s ease-in-out infinite;
   }
 
-  @keyframes trend-draw {
+  .trend-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: trend-inner 4.8s ease-in-out infinite;
+  }
+
+  @keyframes trend-window {
     0% {
-      stroke-dashoffset: 1;
+      transform: translate(-100%, 0);
     }
     40%,
     85% {
-      stroke-dashoffset: 0;
+      transform: translate(0, 0);
     }
     100% {
-      stroke-dashoffset: -1;
+      transform: translate(100%, 0);
     }
   }
 
-  .bell-swing {
-    transform-origin: 0 -17px;
+  @keyframes trend-inner {
+    0% {
+      transform: translate(100%, 0);
+    }
+    40%,
+    85% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-100%, 0);
+    }
+  }
+
+  .bell {
+    transform-origin: 50% 10%;
     animation: bell-swing 2.4s ease-in-out infinite;
   }
 
@@ -276,46 +438,39 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
     0%,
     40%,
     100% {
-      rotate: 0deg;
+      transform: rotate(0deg);
     }
     5% {
-      rotate: 22deg;
+      transform: rotate(22deg);
     }
     12% {
-      rotate: -18deg;
+      transform: rotate(-18deg);
     }
     19% {
-      rotate: 12deg;
+      transform: rotate(12deg);
     }
     26% {
-      rotate: -6deg;
-    }
-  }
-
-  @media (width < 48rem) {
-    .monitor-group {
-      transform-origin: 20px 68px;
-      scale: 0.84;
+      transform: rotate(-6deg);
     }
   }
 
   .packet {
-    animation: packet 1.8s linear infinite;
     opacity: 0;
+    animation: packet 1.8s linear infinite;
   }
 
   @keyframes packet {
     0% {
-      translate: 0 0;
       opacity: 0;
+      transform: translate(0, 0);
     }
     10%,
     85% {
       opacity: 1;
     }
     100% {
-      translate: 50px 0;
       opacity: 0;
+      transform: translate(84.75%, 0);
     }
   }
 
@@ -325,11 +480,11 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
 
   @keyframes gear-spin {
     to {
-      rotate: 360deg;
+      transform: rotate(360deg);
     }
   }
 
-  .radio path {
+  .radio {
     animation: radio 1.6s ease-out infinite;
   }
 
@@ -343,8 +498,19 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
     }
   }
 
-  .sensor-led {
-    animation: power-led 1.2s steps(1, end) infinite;
+  .blink {
+    opacity: 0;
+    animation: blink 1.2s steps(1, end) infinite;
+  }
+
+  .blink-fast {
+    animation-duration: 1s;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 1;
+    }
   }
 
   .hat {
@@ -352,45 +518,38 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
   }
 
   @keyframes hat-bob {
-    from {
-      translate: 0 0;
-    }
     to {
-      translate: 0 -6px;
+      transform: translate(0, -4.225%);
     }
   }
 
   .sparkle {
-    transform-box: fill-box;
-    transform-origin: center;
     animation: sparkle 2.6s ease-in-out infinite;
   }
 
   @keyframes sparkle {
     0%,
     100% {
-      scale: 0.3;
-      rotate: 0deg;
+      transform: rotate(0deg) scale(0.3, 0.3);
     }
     50% {
-      scale: 1;
-      rotate: 45deg;
+      transform: rotate(45deg) scale(1, 1);
     }
   }
 
   .neuron {
-    fill: white;
+    opacity: 0;
     animation: neuron 1.8s steps(1, end) infinite;
   }
 
   @keyframes neuron {
     0%,
     60% {
-      fill: white;
+      opacity: 0;
     }
     20%,
     40% {
-      fill: var(--color-wm-sun);
+      opacity: 1;
     }
   }
 
@@ -399,52 +558,40 @@ const PINS = Array.from({ length: 14 }, (_, i) => 70 + i * 10);
   }
 
   @keyframes scan {
-    from {
-      translate: 0 0;
-    }
     to {
-      translate: 0 104px;
+      transform: translate(0, 742.857%);
     }
   }
 
   .beam {
-    opacity: 0.75;
+    opacity: 0.41;
     animation: beam 1.6s ease-in-out infinite alternate;
   }
 
-  .beam-out {
-    opacity: 0.35;
-  }
-
   @keyframes beam {
-    from {
-      fill-opacity: 0.55;
-    }
     to {
-      fill-opacity: 1;
+      opacity: 0.75;
     }
   }
 
-  .power-led {
-    animation: power-led 1s steps(1, end) infinite;
+  .beam-out {
+    opacity: 0.19;
+    animation-name: beam-out;
   }
 
-  @keyframes power-led {
-    50% {
-      fill: var(--color-wm-hydrogen-100);
+  @keyframes beam-out {
+    to {
+      opacity: 0.35;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .scene * {
+    .scene :global(*) {
       animation: none !important;
     }
 
-    .trend {
-      stroke-dashoffset: 0;
-    }
 
-    .sfx-ding {
+    .sfx {
       opacity: 1;
     }
   }
