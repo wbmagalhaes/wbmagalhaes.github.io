@@ -9,9 +9,10 @@ import Footer from '@widgets/Footer.astro';
 
 type Props = {
   meta?: MetaSEO;
+  footerEdge?: boolean;
 };
 
-const { meta } = Astro.props as Props;
+const { meta, footerEdge = true } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -23,11 +24,11 @@ const { meta } = Astro.props as Props;
   <body class='antialiased bg-wm-nitrogen-800 text-black font-body'>
     <Header client:idle />
 
-    <main class='overflow-x-clip min-h-screen pt-16 lg:pt-32'>
+    <main class='overflow-x-clip min-h-screen pt-16 lg:pt-32 flex flex-col [&>*:last-child]:grow'>
       <slot />
     </main>
 
-    <Footer />
+    <Footer edge={footerEdge} />
 
     <script>
       const groups = document.querySelectorAll<HTMLElement>('[data-stagger]');

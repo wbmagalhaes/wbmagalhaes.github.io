@@ -2,6 +2,7 @@
 import { execSync } from 'node:child_process';
 import { Icon } from 'astro-icon/components';
 import ContentBox from '@common/ContentBox.astro';
+import BurstDivider from '@common/BurstDivider.astro';
 import { getEmail, getSocials } from '@services/myData';
 
 const REPOSITORY = 'https://github.com/wbmagalhaes/wbmagalhaes.github.io';
@@ -37,9 +38,20 @@ const tools = [
   { name: 'Tailwind', icon: 'simple-icons:tailwindcss', link: 'https://tailwindcss.com/' },
   { name: 'React', icon: 'simple-icons:react', link: 'https://react.dev/' },
 ];
+
+type Props = {
+  edge?: boolean;
+};
+
+const { edge = true } = Astro.props;
 ---
 
-<footer class='site-footer relative text-wm-hydrogen-100 pt-20 md:pt-32 pb-4'>
+<footer class:list={['site-footer relative text-wm-hydrogen-100 pb-4', edge ? 'pt-12 md:pt-16' : 'pt-20 md:pt-32']}>
+  {
+    edge && (
+      <BurstDivider color='var(--color-wm-nitrogen-800)' seed={8} />
+    )
+  }
   <svg class='the-end hidden 2xl:block absolute right-8 bottom-8 w-52 -rotate-6' viewBox='0 0 180 160' aria-hidden='true'>
     <polygon points={END_BURST} class='fill-wm-oxygen' stroke='black' stroke-width='4' stroke-linejoin='round' />
     <g class='font-comic' text-anchor='middle' fill='white' stroke='black' stroke-width='4' paint-order='stroke fill' stroke-linejoin='round'>

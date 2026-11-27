@@ -19,7 +19,7 @@ type Props = {
 const { meta } = Astro.props as Props;
 ---
 
-<Layout meta={meta}>
+<Layout meta={meta} footerEdge={false}>
   <SocialsBanner socials={socials} client:idle />
 
   <EmailBanner email={email} delay={emailBannerDelay(socials.length)} client:idle>
